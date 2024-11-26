@@ -35,27 +35,24 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.8'
 global.vs = '1.0.1'
 global.languaje = 'Español'
-global.nameqr = '${botname} Bot - MD'
+global.nameqr = 'bot'
 global.namebot = 'Nino Bσƚ - MD'
-global.sessions = '${botname}Session'
-global.jadi = '${botname}JadiBot'
+global.sessions = 'BotSession'
+global.jadi = 'NinoJadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = 'Nino Bσƚ - MD'
 global.botname = 'Nino'
-global.botname = '${botname} 🌸'
 global.author = 'By ianalejandrook15x'
 global.dev = 'Pσɯҽɾҽԃ Bყ Tҽαɱ Sԋιɳιɳɠ'
-global.textbot = 'Nino : ιαɳαʅҽʝαɳԃɾσσƙ15x 🌸'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.imagen1 = fs.readFileSync('./src/img/Menu.jpg')
-global.imagen1 = fs.readFileSync('./src/img/Menu2.jpg')
-global.imagen1 = fs.readFileSync('./src/img/Menu3.jpg')
+global.imagen2 = fs.readFileSync('./src/img/Menu2.jpg')
+global.imagen3 = fs.readFileSync('./src/img/Menu3.jpg')
 global.welcome = fs.readFileSync('./src/img/welcome.jpg')
-global.imagen1 = fs.readFileSync('./src/img/imagen1.jpg')
+global.adios = fs.readFileSync('./src/img/adios.jpg')
 global.catalogo = fs.readFileSync('./src/img/catalogo.jpg')
 global.miniurl = fs.readFileSync('./src/img/miniurl.jpg')
 global.avatar = fs.readFileSync('./src/img/avatar_contact.jpg')
