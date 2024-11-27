@@ -1,10 +1,10 @@
 {
-"name": "${botname}Bot-MD",
-"version": "2.0.7",
+"name": "Nino",
+"version": "0.0.1",
 "description": "Simple WhatsApp Bot Multi Device",
 "main": "index.js",
 "type": "module",
-"botName": "IanBot",
+"botName": "Nino",
 "directories": {
 "lib": "lib",
 "src": "src",
@@ -19,22 +19,16 @@
 "eslint": "eslint .",
 "eslintfix": "eslint --fix ."
 },
-"homepage": "https://github.com/ianalejandrook15x/${botname}Bot-MD",
+"homepage": "https://github.com/ianalejandrook15x/AkariBot-MD",
 "author": {
 "name": "ianalejandrook15x"
 },
-"collaborators": {
-"col1": "David-Chian",
-"col2": "SheZir",
-"col3": "CheirZ",
-"col4": "glyglobal"
-},
 "repository": {
 "type": "git",
-"url": "git+https://github.com/ianalejandrook15x/${botname}Bot-MD.git"
+"url": "git+https://github.com/ianalejandrook15x/AkariBot-MD.git"
 },
 "bugs": {
-"url": "https://github.com/ianalejandrook15x/${botname}Bot-MD/issues"
+"url": "https://github.com/ianalejandrook15x/AkariBot-MD/issues"
 },
 "license": "GPL-3.0-or-later",
 "dependencies": {
