@@ -7,7 +7,7 @@ import {tiktokdl} from '@bochilteam/scraper';
 //const CFROSAPI = global.APIs.CFROSAPI;
 const handler = async (m, {conn, text, args, usedPrefix, command}) => {
 //m.react('🌸') 
-  if (!text) return m.reply(`✦ Te falto el enlace de algun video de tiktok`);
+  if (!text) return m.reply(`✦ Te falto el enlace`);
   if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) if (!text) return m.reply(`✦ Te falto el enlace de algun video de tiktok`);
   const texto = `✨ @${m.sender.split`@`[0]}  Eɳʋιαɳԃσ ʂυ ʋιԃҽσ, ҽʂρҽɾҽ υɳ ɱσɱҽɳƚσ...`;
   // let buttons = [{ buttonText: { displayText: '♫ 𝙰𝚄𝙳𝙸𝙾 ♫' }, buttonId: `${usedPrefix}tomp3` }]
@@ -26,26 +26,26 @@ m.react('✅')
     //await conn.relayMessage(m.chat, prep.message, {messageId: prep.key.id, mentions: [m.sender]});
     const dataF = await tiktok.v1(args[0]);
     // let desc1 =  `*𝙽𝙸𝙲𝙺𝙽𝙰𝙼𝙴:* ${dataF.nickname || 'Indefinido'}`
-    const desc1 = `Tσɱҽ ʂυ ʋιԃҽσ ԃҽ Tιƙ Tσƙ ✦`;
+    const desc1 = `Tome su video ${botname} ✦`;
     await conn.sendMessage(m.chat, {video: {url: dataF.play}, caption: desc1}, {quoted: fkontak});
   } catch (e1) {
     try {
       const tTiktok = await tiktokdlF(args[0]);
       // let desc2 = `🔗 *Url:* ${tTiktok.video}`
-      const desc2 = `> Tσɱҽ ʂυ ʋιԃҽσ ԃҽ Tιƙ Tσƙ ✦`;
+      const desc2 = `Tome su video ${botname} ✦`;
       await conn.sendMessage(m.chat, {video: {url: tTiktok.video}, caption: desc2}, {quoted: fkontak});
     } catch (e2) {
       try {
         const p = await fg.tiktok(args[0]);
         // let te = `*𝚄𝚂𝙴𝚁𝙽𝙰𝙼𝙴:* ${p.author || 'Indefinido'}`
-        const te = `> Tσɱҽ ʂυ ʋιԃҽσ ԃҽ Tιƙ Tσƙ ✦`;
+        const te = `Tome su video ${botname} ✦`;
         await conn.sendMessage(m.chat, {video: {url: p.nowm}, caption: te}, {quoted: fkontak});
       } catch (e3) {
         try {
           const {author: {nickname}, video, description} = await tiktokdl(args[0]);
           const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd;
           // let cap = `*𝙽𝙸𝙲𝙺𝙽𝙰𝙼𝙴:* ${nickname || 'Indefinido'}`
-          const cap = `> Tσɱҽ ʂυ ʋιԃҽσ ԃҽ Tιƙ Tσƙ ✦`;
+          const cap = `Tome su video ${botname} ✦`;
           await conn.sendMessage(m.chat, {video: {url: url}, caption: cap}, {quoted: fkontak});
         } catch {
           throw `_*< DESCARGAS - TIKTOK />*_\n\n*Ocurrío un error inesperado*`;
