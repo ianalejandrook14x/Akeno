@@ -499,16 +499,16 @@ console.error(e)
 
 global.dfail = (type, m, conn) => {
 const msg = {
-rowner: '「🌸」 *Esta función solo puede ser usada por mi creador*\n\n> ianalejandrook15x.', 
-owner: '「🌸」 *Esta función solo puede ser usada por mi desarrollador.', 
-mods: '「🌸」 *Esta función solo puede ser usada por mis desarrolladores.*', 
-premium: '「🌸」 *Esta función solo es para usuarios Premium.', 
-group: '「🌸」 *Esta funcion solo puede ser ejecutada en grupos.*', 
-private: '「🌸」 *Esta función solo puede ser usada en chat privado.*', 
-admin: '「🌸」 *Este comando solo puede ser usado por admins.*', 
-botAdmin: '「🌸」 *Para usar esta función debo ser admin.*', 
-unreg: '「🌸」 *¡Hey! no estas registrado, registrese para usar esta función*\n\n*/reg nombre.edad*\n\n*Ejemplo* : */reg ${botname}.14*',
-restrict: '「🌸」 *Esta característica esta desactivada.*'
+rowner: '✧ *La función solicitada solo puede ser usada por*\n\n> ianalejandrook15x.', 
+owner: '✧ *Esta función solo puede ser usada por desarrolladores*.', 
+mods: '✧ *Esta función solo puede ser por moderadores.*', 
+premium: '✧ *Esta función solo es para usuarios Premium.', 
+group: '✧ *La función solocitada solo puede ser ejecutada en grupos.*', 
+private: '✧ *La función solo puede ser usada al chat privado del bot.*', 
+admin: '✧ *La función solo puede ser ejecutada por administradores.*', 
+botAdmin: '✧ *Para ejecutar esta funcón el bot debe ser administrador.*', 
+unreg: '✧ *No te encuentras regitrado, haga su registro*\n\n*/reg nombre.edad*\n\n*Ejemplo* : */reg Akari.14*',
+restrict: '✧ *Esta característica esta desactivada.*'
 }[type];
 if (msg) return conn.reply(m.chat, msg, m, rcanal).then(_ => m.react('✖️'))}
 
