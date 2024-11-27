@@ -21,8 +21,6 @@ conn.reply(m.chat, `
 handler.help = ['animelink']
 handler.tags = ['anime']
 handler.command = ['animelink']
-
-handler.yenes = 1
 handler.register = false
 
 export default handler 
