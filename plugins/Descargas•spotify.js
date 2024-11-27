@@ -69,7 +69,7 @@ if (!text) throw `*ACCIÓN MAL USADA*\n\n✦ *DEBE DE USAR EL COMANDO COMO EN ES
 try {
 conn.reply(m.chat, '✦ *Enviando su música de Spotify*', m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
+title: botname,
 body: dev,
 previewType: 0, thumbnail: icons,
 sourceUrl: channel }}})
