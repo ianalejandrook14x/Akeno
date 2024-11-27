@@ -9,7 +9,7 @@ try {
 await m.react(rwait)
 conn.reply(m.chat, '✦ Buscando el scraper....', m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
+title: botname,
 body: dev,
 previewType: 0, thumbnail: icons, 
 sourceUrl: channel }}})
@@ -20,7 +20,7 @@ let { objects } = await res.json()
 if (!objects.length) return conn.reply(m.chat, `『✦』 No se encontró resultado de: ${text}`, m, fake)
 
 let txt = objects.map(({ package: pkg }) => {
-return `《❀》 𝖲craper - ${botname} 《❀》
+return `《 ✧ 》 𝖲craper - ${botname} 《 ✧ 》
 
 ✦ 𝐍𝐨𝐦𝐛𝐫𝐞: ${pkg.name}
 ✦ 𝐕𝐞𝐫𝐬𝐢𝐨𝐧: V${pkg.version}
@@ -40,5 +40,4 @@ handler.help = ['npmjs']
 handler.tags = ['buscador']
 handler.command = ['npmjs']
 handler.register = false
-handler.yenes = 1
 export default handler
