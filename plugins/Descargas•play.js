@@ -6,7 +6,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     let search = await yts(text);
     let isVideo = /vid$/.test(command);
     let urls = search.all[0].url;
-    let body = `\`YouTube Play - ${botname}Bot-MD\`
+    let body = `\`YouTube Play - ${botname}\`
 
  ➢   *Título:* ${search.all[0].title}
      
