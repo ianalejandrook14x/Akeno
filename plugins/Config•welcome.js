@@ -11,18 +11,18 @@ export async function before(m, {conn, participants, groupMetadata}) {
   let chat = global.db.data.chats[m.chat]
 
  if (chat.welcome && m.messageStubType == 27) {
-    let welcome = ` 🌸≺ AKARI BOT - MD \n「 Bιҽɳʋҽɳιԃσ 」\n「 @${m.messageStubParameters[0].split`@`[0]} 」\n「 Bιҽɳʋҽɳιԃσ/α 」\n「 ${groupMetadata.subject} 」\n\n  ιαɳαʅҽʝαɳԃɾσσƙ15x`
-await conn.sendMini(m.chat, packname, textbot, welcome, img, img, redes, fkontak)
+    let welcome = ` ✦ ≺ ${botname} \n「 Bienvenido 」\n「 @${m.messageStubParameters[0].split`@`[0]} 」\n「 Bienvenido/a 」\n「 ${groupMetadata.subject} 」\n\n`
+await conn.sendMini(m.chat, welcome, img, img, redes, fkontak)
   }
 
   if (chat.welcome && m.messageStubType == 28) {
-    let bye = ` 🌸≺ AKARI BOT - MD \n「 Aԃισʂ 」\n「 @${m.messageStubParameters[0].split`@`[0]} 」\n「 Sҽ ϝυҽ 」\n「 Nυɳƈα ƚҽ ϙυιʂιɱσʂ αϙυι 」\n\n  ιαɳαʅҽʝαɳԃɾσσƙ15x`
-await conn.sendMini(m.chat, packname, textbot, bye, img, img, redes, fkontak)
+    let bye = ` ✦ ≺ ${botname} \n「 Adios 」\n「 @${m.messageStubParameters[0].split`@`[0]} 」\n「 se fue 」\n「 Nunca te quisimos aqui 」\n\n`
+await conn.sendMini(m.chat, bye, img, img, redes, fkontak)
   }
 
   if (chat.welcome && m.messageStubType == 32) {
-    let kick = ` 🌸≺ AKARI BOT - MD \n「 Aԃισʂ 」\n「 @${m.messageStubParameters[0].split`@`[0]} 」\n「 Sҽ ϝυҽ 」\n「 Nυɳƈα ƚҽ ϙυιʂιɱσʂ αϙυι 」\n\n  ιαɳαʅҽʝαɳԃɾσσƙ15x`
-await conn.sendMini(m.chat, packname, textbot, kick, img, img, redes, fkontak)
+    let kick = ` ✦ ≺ ${botname} \n「 Adios 」\n「 @${m.messageStubParameters[0].split`@`[0]} 」\n「 se fue 」\n「 Nunca te quisimos aqui 」\n\n`
+await conn.sendMini(m.chat, kick, img, img, redes, fkontak)
 }}
 
 /*import { WAMessageStubType } from '@whiskeysockets/baileys';
