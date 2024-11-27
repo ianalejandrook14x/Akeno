@@ -15,7 +15,7 @@ let handler = async (m, { conn, isRowner }) => {
     global.imagen1 = media;  
 
 
-    m.reply('¡El banner ha sido actualizado correctamente!', m, rcanal,);
+    m.reply('El banner ha sido actualizado');
 
   } catch (error) {
     console.error(error);
