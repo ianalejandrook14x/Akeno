@@ -2,7 +2,7 @@ import axios from 'axios'
 const {proto, generateWAMessageFromContent, prepareWAMessageMedia, generateWAMessageContent, getDevice} = (await import("@whiskeysockets/baileys")).default
 
 let handler = async (message, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.reply(message.chat, '🌸 *¿Que quieres buscar en tiktok?*', message, rcanal)
+if (!text) return conn.reply(message.chat, '*Que quieres buscar en tiktok*', message, rcanal)
 async function createVideoMessage(url) {
 const { videoMessage } = await generateWAMessageContent({ video: { url } }, { upload: conn.waUploadToServer })
 return videoMessage
@@ -15,7 +15,7 @@ const j = Math.floor(Math.random() * (i + 1));
 }
 try {
 await message.react(rwait)
-conn.reply(message.chat, '🌸 *Descargando Su Video...*', message, {
+conn.reply(message.chat, '✧ *Descargando Su Video...*', message, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
 title: packname,
 body: dev,
@@ -44,8 +44,8 @@ deviceListMetadata: {},
 deviceListMetadataVersion: 2
 },
 interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-body: proto.Message.InteractiveMessage.Body.create({ text: '🌸 Resultado de: ' + text }),
-footer: proto.Message.InteractiveMessage.Footer.create({ text: '🔎 Tiktok - Busquedas' }),
+body: proto.Message.InteractiveMessage.Body.create({ text: '✧ Resultado de: ' + text }),
+footer: proto.Message.InteractiveMessage.Footer.create({ text: '✦ Tiktok - Busquedas' }),
 header: proto.Message.InteractiveMessage.Header.create({ hasMediaAttachment: false }),
 carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({ cards: [...results] })})}}
 }, { quoted: message })
