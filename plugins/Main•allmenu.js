@@ -9,7 +9,6 @@ let tags = {
   'main': 'INFO',
   'buscador': 'BUSQUEDAS',
   'fun': 'JUEGOS',
-  'gacha': 'GACHA',
   'serbot': 'SUB BOTS',
   'rpg': 'RPG',
   'rg': 'REGISTRO',
