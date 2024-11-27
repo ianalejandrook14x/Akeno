@@ -17,7 +17,7 @@ m.react('✅')
     const prep = generateWAMessageFromContent(m.chat, {extendedTextMessage: {text: texto, contextInfo: {externalAdReply: {title: botname, body: wm, thumbnail: icons, sourceUrl: yt}, mentionedJid: [m.sender]}}}, aa);
     await conn.relayMessage(m.chat, prep.message, {messageId: prep.key.id, mentions: [m.sender]});
     const dataFn = await conn.getFile(`${CFROSAPI}/api/tiktokv2?url=${args[0]}`);
-    const desc1n = `> Tσɱҽ ʂυ ʋιԃҽσ ԃҽ Tιƙ Tσƙ ✦`;
+    const desc1n = `Tome su video ${botname} ✦`;
     await conn.sendMessage(m.chat, {video: dataFn.data, caption: desc1n}, {quoted: fkontak});
   } catch (ee1) {
   try {
