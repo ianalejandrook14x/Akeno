@@ -18,8 +18,6 @@ global.confirmCode = ''
 
 global.owner = [
    ['5493876639332', 'Ian', true],
-   ['573012482597'],
-   ['5218713339906', 'Diego', true]
 ]
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -35,8 +33,8 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.8'
 global.vs = '1.0.1'
 global.languaje = 'Español'
-global.nameqr = 'bot'
-global.namebot = 'Nino Bσƚ - MD'
+global.nameqr = 'Bσƚ'
+global.namebot = 'Bσƚ'
 global.sessions = 'BotSession'
 global.jadi = 'NinoJadiBot'
 
@@ -44,7 +42,7 @@ global.jadi = 'NinoJadiBot'
 
 global.botname = 'Nino'
 global.author = 'By ianalejandrook15x'
-global.dev = 'Pσɯҽɾҽԃ Bყ Tҽαɱ Sԋιɳιɳɠ'
+global.dev = 'Pσɯҽɾҽԃ Bყ Iαɳ'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
