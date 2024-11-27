@@ -46,20 +46,20 @@ const cleanDb = async () => {
 };
 
 const handler = async (m, { conn, usedPrefix, command, text }) => {
-if (!db.data.chats[m.chat].modohorny && m.isGroup) throw '🌸 *¡Estos comandos están desactivados!*';
+if (!db.data.chats[m.chat].modohorny && m.isGroup) throw '✧ *¡Estos comandos están desactivados!*';
   if (!text) {
-    throw `🌸 *Por favor, proporciona un texto*\n🌸 *Ejemplo:* ${usedPrefix + command} Alya`;
+    throw `✧ *Por favor, proporciona un texto*\n✧ *Ejemplo:* ${usedPrefix + command} Alya`;
   }
   
   try {
-  conn.reply(m.chat, '🌸  *Enviando Los Resultados...*', m, {
+  conn.reply(m.chat, '✧  *Enviando Los Resultados...*', m, {
       contextInfo: { 
         externalAdReply: { 
           mediaUrl: null, 
           mediaType: 1, 
           showAdAttribution: true,
-          title: packname,
-          body: '🌟 ${botname} - MD',
+          title: botname,
+          body: '✧ ${botname}',
           previewType: 0, 
           thumbnail: icons,
           sourceUrl: redes 
@@ -73,26 +73,26 @@ if (!db.data.chats[m.chat].modohorny && m.isGroup) throw '🌸 *¡Estos comandos
     const response = await fetch(apiUrl);
     
     if (!response.ok) {
-      throw new Error('🌸 Error en la solicitud a la API');
+      throw new Error('✧ Error en la solicitud a la API');
     }
 
     const data = await response.json();
     if (!Array.isArray(data) || data.length === 0) {
-      throw new Error('🌸 No se encontraron imágenes');
+      throw new Error('✧ No se encontraron imágenes');
     }
 
     const db = await readDb();
     const newImages = data.filter(post => !db[post.file_url]);
 
     if (newImages.length === 0) {
-      throw new Error('🌸 No se encontraron nuevas imágenes para mostrar');
+      throw new Error('✧ No se encontraron nuevas imágenes para mostrar');
     }
 
     const imagesToDownload = newImages.sort(() => 0.5 - Math.random()).slice(0, 6);
     const results = await Promise.all(imagesToDownload.map(async (post, index) => {
       const imageResponse = await fetch(post.file_url);
       if (!imageResponse.ok) {
-        throw new Error('🌸 Error al descargar la imagen');
+        throw new Error('✧ Error al descargar la imagen');
       }
       const imageBuffer = await imageResponse.buffer();
       db[post.file_url] = Date.now();
@@ -121,10 +121,10 @@ if (!db.data.chats[m.chat].modohorny && m.isGroup) throw '🌸 *¡Estos comandos
           },
           interactiveMessage: proto.Message.InteractiveMessage.fromObject({
             body: proto.Message.InteractiveMessage.Body.create({
-              text: `🌸 Resultados de: ${text}`
+              text: `✧ Resultados de: ${text}`
             }),
             footer: proto.Message.InteractiveMessage.Footer.create({
-              text: 'R U L E 3 4 - N S F W 🔍'
+              text: 'R U L E 3 4 - N S F W ✧'
             }),
             header: proto.Message.InteractiveMessage.Header.create({
               hasMediaAttachment: false
@@ -145,7 +145,7 @@ if (!db.data.chats[m.chat].modohorny && m.isGroup) throw '🌸 *¡Estos comandos
 
   } catch (error) {
     console.error(error);
-    conn.reply(m.chat, `❌️ *Ocurrió un error:* ${error.message}`, m, fake);
+    conn.reply(m.chat, `✧ *Ocurrió un error:* ${error.message}`, m, fake);
   }
 };
 
