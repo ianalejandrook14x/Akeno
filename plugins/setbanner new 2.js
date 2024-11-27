@@ -48,4 +48,5 @@ const isImageValid = (buffer) => {
 handler.help = ['setbanner'];  
 handler.tags = ['banner'];    
 handler.command = ['setban', 'setbanner'];  
+handler.rowner = true
 export default handler;
