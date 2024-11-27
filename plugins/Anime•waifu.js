@@ -5,7 +5,7 @@ try {
 await m.react(emojis)
 conn.reply(m.chat, 'Buscando Su *Waifu*', m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
+title: botname,
 body: dev,
 previewType: 0, thumbnail: icons,
 sourceUrl: channel }}})
