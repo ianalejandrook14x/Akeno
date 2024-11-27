@@ -4,6 +4,7 @@ import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
 let tags = {
+  'banner': 'SET'
   'main': 'INFO',
   'buscador': 'BUSQUEDAS',
   'descargas': 'DESCARGAS',
