@@ -3,15 +3,13 @@ import { join } from 'path'
 import fetch from 'node-fetch'
 import { xpRange } from '../lib/levelling.js'
 
+
 let tags = {
-  'banner': 'SET'
+  'banner': 'BANNER',
   'main': 'INFO',
   'buscador': 'BUSQUEDAS',
-  'descargas': 'DESCARGAS',
-  'tools': 'HERRAMIENTAS',
-  'info': 'INFORMACIÓN',
-  'owner': 'OWNER', 
   'fun': 'JUEGOS',
+  'gacha': 'GACHA',
   'serbot': 'SUB BOTS',
   'rpg': 'RPG',
   'rg': 'REGISTRO',
@@ -22,29 +20,33 @@ let tags = {
   'fix': 'FIXMSGESPERA',
   'grupo': 'GRUPOS',
   'nable': 'ON/OFF', 
+  'descargas': 'DESCARGAS',
+  'tools': 'HERRAMIENTAS',
+  'info': 'INFORMACIÓN',
+  'nsfw': 'NSFW', 
+  'owner': 'OWNER', 
   'audio': 'AUDIOS', 
-  'ai': 'IA',
+  'ai': 'AI',
   'transformador': 'CONVERTIDORES',
 }
 
 const defaultMenu = {
-  before: `*─ׄ─ׅ─⭒─ׄ─ׄ─⭒─ׅ─ׄ─⭒─ׄ─ׄ─⭒─ׄ─ׄ─*
+  before: `✦ Mҽɳυ ✦
 
 ✦ Usuario: \`\`\`%name\`\`\`
+
 ✦ Exp: \`\`\`%exp\`\`\`
 ✦ Nivel: \`\`\`%level\`\`\`
 
 
 ✦ Yenes: \`\`\`%yenes\`\`\`
-%readmore
-*─ׄ─ׄ─⭒─ׄ─ׅ─ׄ⭒─ׄ─ׄ─⭒─ׄ─ׄ─⭒─ׄ─ׅ─*
 
-\t*COMANDOS* 
+\t*C O M A N D O S* 
 `.trimStart(),
-header: '「 %category 」\n',
-body: '✦ %cmd',
-footer: '',
-  after: `> ${dev}`,
+    header: '「 %category 」\n',
+  body: '✦ %cmd',
+  footer: '',
+  after: `> ${botname}`,
 }
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
@@ -146,7 +148,7 @@ await m.react('✅')
 conn.sendMessage(m.chat, {text: text.trim(), mentions: [...text.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net'), contextInfo: { mentionedJid: [...text.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net'), "externalAdReply": {"showAdAttribution": true, "containsAutoReply": true, "renderLargerThumbnail": true, "title": botname, body: dev, "containsAutoReply": true, "mediaType": 1, "thumbnail": imagen1, "mediaUrl": global.channel, "sourceUrl": global.channel}}}, {quoted: m})
 
   } catch (e) {
-    conn.reply(m.chat, 'Lo sentimos, el menú tiene un error', m, rcanal, )
+    conn.reply(m.chat, '❌️ Lo sentimos, el menú tiene un error', m, rcanal, )
     throw e
   }
 }
