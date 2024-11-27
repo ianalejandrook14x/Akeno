@@ -1,11 +1,8 @@
-// By Jtxs 🌸
-// https://whatsapp.com/channel/0029Vanjyqb2f3ERifCpGT0W
-
 import axios from 'axios';
 const { proto, generateWAMessageFromContent, generateWAMessageContent } = (await import('@whiskeysockets/baileys')).default;
 
 let handler = async (m, { conn, text }) => {
-if (!text) { return conn.reply(m.chat, '🌸 Ingresa El Texto De Lo Que Quieres Buscar En Twitter', m, rcanal); }
+if (!text) { return conn.reply(m.chat, '✦ Ingresa El Texto De Lo Que Quieres Buscar En Twitter', m, rcanal); }
 
 async function createImage(url) {
 const { imageMessage } = await generateWAMessageContent({image: { url }}, { upload: conn.waUploadToServer });
@@ -23,10 +20,10 @@ let resultsToDisplay = json.slice(0, 7);
 let mini = [];
 for (let res of resultsToDisplay) {
 
-let txt =  `👤 *User:* ${res.user}\n`
-    txt += `📅 *Publicacion:* ${res.post}\n`
-    txt += `🎭 *Perfil:* ${res.profile}\n`
-    txt += `🔗 *Link:* ${res.user_link}\n`
+let txt =  `✧ *User:* ${res.user}\n`
+    txt += `✧ *Publicacion:* ${res.post}\n`
+    txt += `✧ *Perfil:* ${res.profile}\n`
+    txt += `✧ *Link:* ${res.user_link}\n`
 
 mini.push({
 body: proto.Message.InteractiveMessage.Body.create({text: null}),
