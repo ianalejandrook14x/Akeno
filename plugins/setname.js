@@ -19,6 +19,7 @@ let handler = async (m, { conn, isRowner }) => {
   handler.help = ['setname'];  
   handler.tags = ['banner'];
   handler.command = ['setname']; 
-  
+  handler.rowner = true
+
   export default handler;
   
