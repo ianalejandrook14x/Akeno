@@ -6,7 +6,7 @@ try {
 await m.react(rwait)
 conn.reply(m.chat, '✧ *Descargando su aplicación...*', m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
+title: botname,
 body: dev,
 previewType: 0, thumbnail: icons,
 sourceUrl: channel }}})
