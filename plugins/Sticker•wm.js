@@ -5,7 +5,7 @@ let handler = async (m, { conn, text }) => {
   let stiker = false
   try {
    await m.react(rwait)
-    let [packname, ...author] = text.split('|')
+    let [botname, ...author] = text.split('|')
     author = (author || []).join('|')
     let mime = m.quoted.mimetype || ''
     if (!/webp/.test(mime)) return m.reply('⚠️ *Responde a un sticker*')
