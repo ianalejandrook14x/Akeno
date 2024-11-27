@@ -2,7 +2,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 if (!m.quoted) return conn.reply(m.chat, `✧ Responde a un *Video.*`, m, rcanal)
 conn.reply(m.chat, global.wait, m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
+title: botname,
 body: dev,
 previewType: 0, thumbnail: icons,
 sourceUrl: channel }}})
