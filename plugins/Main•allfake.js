@@ -45,28 +45,24 @@ global.done = '✅'
 global.error = '✖️'
 
 //Emojis determinado de ${botname} 
-global.emoji = '🌸'
-global.emoji2 = '🌸'
-global.emoji3 = '✨️'
-global.emoji4 = '✨'
+global.emoji = '✅'
+global.emoji2 = '✅'
+global.emoji3 = '✅'
+global.emoji4 = '✅'
 global.emojis = [emoji, emoji2, emoji3, emoji4].getRandom()
 
 //mensaje en espera
-global.wait = '🧸 Eʂρҽɾҽ υɳ ɱσɱҽɳƚσ...'
-global.waitt = '🧸 Eʂρҽɾҽ υɳ ɱσɱҽɳƚσ...'
-global.waittt = '🧸 Eʂρҽɾҽ υɳ ɱσɱҽɳƚσ...'
-global.waitttt = '🧸 Eʂρҽɾҽ υɳ ɱσɱҽɳƚσ...'
+global.wait = 'Espere un momento...'
+global.waitt = 'Espere un momento...'
+global.waittt = 'Espere un momento...'
+global.waitttt = 'Espere un momento...'
 
 //Enlaces
 var canal = 'https://whatsapp.com/channel/0029VaQD7LAJP216tu9liI2A'  
-var git = 'https://github.com/ianalejandrook15x' 
-var youtube = 'https://www.youtube.com/@ianalejandrook15x' 
-var github = 'https://github.com/ianalejandrook15x'  
+var git = 'https://github.com/ianalejandrook15x'
 var paypal = 'https://paypal.me/kevintomasolazo23'
-let tiktok = 'https://tiktok.com/@ian.ian271'
-let correo = 'alejandroxddd92@gmail.com'
 
-global.redes = [canal, git, youtube, github, paypal, tiktok, correo].getRandom()
+global.redes = [canal, git, paypal].getRandom()
 
 global.redeshost = [paypal].getRandom()
 
