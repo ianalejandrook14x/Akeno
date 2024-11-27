@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 let regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
 let handler = async (m, { args, usedPrefix, command }) => {
   if (!args[0]) {
-    return conn.reply(m.chat, `🌸 Escribe la URL de un repositorio de GitHub que deseas descargar.`, m, rcanal)
+    return conn.reply(m.chat, `✧ Escribe la URL de un repositorio de GitHub que deseas descargar.`, m, rcanal)
   }
   if (!regex.test(args[0])) {
     return conn.reply(m.chat, `Verifica que la *URL* sea de GitHub`, m, rcanal).then(_ => m.react(error))
@@ -28,7 +28,7 @@ let handler = async (m, { args, usedPrefix, command }) => {
     let filename = zipResponse.headers.get('content-disposition').match(/attachment; filename=(.*)/)[1]
     let type = zipResponse.headers.get('content-type')
     let img = 'https://i.ibb.co/tLKyhgM/file.png'
-    let txt = `*乂  G I T H U B  -  D O W N L O A D*\n\n`
+    let txt = `* G I T H U B  -  D O W N L O A D*\n\n`
        txt += `✩  *Nombre* : ${sanitizedRepo}\n`
        txt += `✩  *Repositorio* : ${user}/${sanitizedRepo}\n`
        txt += `✩  *Creador* : ${repoData.owner.login}\n`
