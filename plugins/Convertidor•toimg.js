@@ -9,7 +9,7 @@ let mime = q.mediaType || ''
 if (!/sticker/.test(mime)) throw notStickerMessage
 conn.reply(m.chat, wait, m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
+title: botname,
 body: dev,
 previewType: 0, thumbnail: icons,
 sourceUrl: channel }}})
