@@ -4,11 +4,11 @@ const handler = async (m, {conn, usedPrefix, command}) => {
  try {    
   let q = m.quoted ? m.quoted : m;
   let mime = (q.msg || q).mimetype || q.mediaType || "";
-  if (!mime) return m.reply(`🌸 Envie una imagen o responda a la imagen utilizando el comando: ${usedPrefix + command}`);
-  if (!/image\/(jpe?g|png)/.test(mime)) return m.reply(`🌸 El formato del archivo (${mime}) no es compatible, envía o responda a una imagen`);
-  conn.reply(m.chat, '🌸 Mejorando la calidad de la imagen....', m, {
+  if (!mime) return m.reply(`✧ Envie una imagen o responda a la imagen utilizando el comando: ${usedPrefix + command}`);
+  if (!/image\/(jpe?g|png)/.test(mime)) return m.reply(`✧ El formato del archivo (${mime}) no es compatible, envía o responda a una imagen`);
+  conn.reply(m.chat, '✧ Mejorando la calidad de la imagen....', m, {
   contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-  title: packname,
+  title: botname,
   body: dev,
   previewType: 0, thumbnail: icons,
   sourceUrl: channel }}})
@@ -16,7 +16,7 @@ const handler = async (m, {conn, usedPrefix, command}) => {
   let pr = await remini(img, "enhance");
   conn.sendMessage(m.chat, {image: pr}, {quoted: fkontak});
  } catch {
- return m.reply("🌸 Ocurrió un error");
+ return m.reply("✧ Ocurrió un error");
  }
 };
 handler.help = ["remini", "hd", "enhance"];
