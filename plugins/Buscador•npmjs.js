@@ -1,18 +1,13 @@
-/*
-《🌸》DERECHOS RESERVADOS POR EL AUTOR《🌸》
-- GabrielVz (@glytglobal)
-*/
-
 import fetch from 'node-fetch'
 
 let handler = async (m, { text, usedPrefix, command }) => {
 
-if (!text) return conn.reply(m.chat, `🌸 Escribe el nonbre del scraper.\nEjemplo: ${usedPrefix + command} yt-search`, m, rcanal)
+if (!text) return conn.reply(m.chat, `✦ Escribe el nonbre del scraper.\nEjemplo: ${usedPrefix + command} yt-search`, m, rcanal)
 
 try {
 
 await m.react(rwait)
-conn.reply(m.chat, '🌸 Buscando el scraper....', m, {
+conn.reply(m.chat, '✦ Buscando el scraper....', m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
 title: packname,
 body: dev,
@@ -25,7 +20,7 @@ let { objects } = await res.json()
 if (!objects.length) return conn.reply(m.chat, `『✦』 No se encontró resultado de: ${text}`, m, fake)
 
 let txt = objects.map(({ package: pkg }) => {
-return `《🌸》 𝖲craper - ${botname} 《🌸》
+return `《❀》 𝖲craper - ${botname} 《❀》
 
 ✦ 𝐍𝐨𝐦𝐛𝐫𝐞: ${pkg.name}
 ✦ 𝐕𝐞𝐫𝐬𝐢𝐨𝐧: V${pkg.version}
@@ -37,7 +32,7 @@ return `《🌸》 𝖲craper - ${botname} 《🌸》
 await conn.reply(m.chat, txt, m, fake)
 await m.react(done)
 } catch {
-await conn.reply(m.chat, '🌸 Ocurrió un error', m, fake)
+await conn.reply(m.chat, 'Ocurrió un error', m, fake)
 await m.react(error)
 }}
 
