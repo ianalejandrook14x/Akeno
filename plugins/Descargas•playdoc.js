@@ -13,7 +13,7 @@ try {
 
 conn.reply(m.chat, wait, m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
+title: botname,
 body: dev,
 previewType: 0, thumbnail: icons,
 sourceUrl: channel }}})
@@ -110,11 +110,11 @@ const n4 = lolh.result.thumbnail
 await conn.sendMessage(m.chat, {document: {url: n2}, fileName: `${n}.mp4`, mimetype: 'video/mp4', thumbnail: await fetch(n4)}, {quoted: fkontak})
 } catch {
 
-await conn.reply(m.chat, '🌟 *Ocurrió un fallo*', m, rcanal, )
+await conn.reply(m.chat, '✧ *Ocurrió un fallo*', m, rcanal, )
 }}}}
 
 } catch {
-return conn.reply(m.chat, '🌟 *Inténtelo de nuevo*', m, rcanal, )}
+return conn.reply(m.chat, '✧ *Inténtelo de nuevo*', m, rcanal, )}
 
 }
 handler.help = ['play3', 'play4']
