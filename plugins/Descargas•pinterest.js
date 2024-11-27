@@ -16,7 +16,7 @@ let handler = async (_0x10bd40, {
     await _0x10bd40.react(rwait);
  _0x9c7141.reply(_0x10bd40.chat, '✧ *Descargando su imagen...*', _0x10bd40, {
  contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
- title: packname,
+ title: botname,
  body: dev,
  previewType: 0, thumbnail: icons,
  sourceUrl: channel }}})
