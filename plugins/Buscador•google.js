@@ -7,7 +7,7 @@ const text = args.join` `
 if (!text) return conn.reply(m.chat, '✧ Ingresa lo que deseas buscar en Google.', m, rcanal)
 conn.reply(m.chat, `✧ Buscando Información.`, m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
+title: botname,
 body: dev,
 previewType: 0, thumbnail: icons,
 sourceUrl: channel }}})
