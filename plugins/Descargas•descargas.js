@@ -53,7 +53,7 @@ let limit = 100
 
 if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react(error))
 
-await conn.sendFile(m.chat, dl_url, 'yt.jpg', `✧ Aquí está tu video de youtube.\n${packname}`, m, null, rcanal)
+await conn.sendFile(m.chat, dl_url, 'yt.jpg', `✧ Aquí está tu video de youtube.\n${botname}`, m, null, rcanal)
 await m.react(done)
 } catch {
 try {
@@ -63,7 +63,7 @@ let limit = 100
 
 if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react(error))
 
-await conn.sendFile(m.chat, dl_url, 'yt.jpg', `✧ Aquí está tu video de youtube.\n${packname}`, m, null, rcanal)
+await conn.sendFile(m.chat, dl_url, 'yt.jpg', `✧ Aquí está tu video de youtube.\n${botname}`, m, null, rcanal)
 await m.react(done)
 } catch {
 await m.react(error)
