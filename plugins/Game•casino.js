@@ -15,23 +15,23 @@ let username = conn.getName(who)
 let tiempoEspera = 15
 if (cooldowns[m.sender] && Date.now() - cooldowns[m.sender] < tiempoEspera * 1000) {
 let tiempoRestante = segundosAHMS(Math.ceil((cooldowns[m.sender] + tiempoEspera * 1000 - Date.now()) / 1000))
-conn.reply(m.chat, `🌸 Ya has iniciado una apuesta recientemente, espera *⏱️ ${tiempoRestante}* para apostar nuevamente`, m, rcanal)
+conn.reply(m.chat, `✧ Ya has iniciado una apuesta recientemente, espera *✧ ${tiempoRestante}* para apostar nuevamente`, m, rcanal)
 return
 }
 cooldowns[m.sender] = Date.now()
 count = count ? /all/i.test(count) ? Math.floor(global.db.data.users[m.sender].limit / buatall) : parseInt(count) : args[0] ? parseInt(args[0]) : 1
 count = Math.max(1, count)
-if (args.length < 1) return conn.reply(m.chat, '🌸 Ingresa la cantidad de ' + `💴 *Yenes*` + ' que deseas aportar contra' + ` *${botname}*` + `\n\n` + '`Ejemplo:`\n' + `> *${usedPrefix + command}* 100`, m, rcanal)
+if (args.length < 1) return conn.reply(m.chat, '✧ Ingresa la cantidad de ' + `💴 *Yenes*` + ' que deseas aportar contra' + ` *${botname}*` + `\n\n` + '`Ejemplo:`\n' + `> *${usedPrefix + command}* 100`, m, rcanal)
 if (user.yenes >= count * 1) {
 user.yenes -= count * 1
 if (Aku > Kamu) {
-conn.reply(m.chat, '`🌸 Veamos que numeros tienen!`\n\n'+ `➠ *${botname}* : ${Aku}\n➠ *${username}* : ${Kamu}\n\n> ${username}, *PERDISTE* ${formatNumber(count)} 💴 Yenes.`.trim(), m, rcanal)
+conn.reply(m.chat, '`✧ Veamos que numeros tienen!`\n\n'+ `➠ *${botname}* : ${Aku}\n➠ *${username}* : ${Kamu}\n\n> ${username}, *PERDISTE* ${formatNumber(count)} 💴 Yenes.`.trim(), m, rcanal)
 } else if (Aku < Kamu) {
 user.yenes += count * 2
-conn.reply(m.chat, '`🌸 Veamos que numeros tienen!`\n\n'+ `➠ *${botname}* : ${Aku}\n➠ *${username}* : ${Kamu}\n\n> ${username}, *GANASTE* ${formatNumber(count * 2)} 💴 Yenes.`.trim(), m, rcanal)
+conn.reply(m.chat, '`✧ Veamos que numeros tienen!`\n\n'+ `➠ *${botname}* : ${Aku}\n➠ *${username}* : ${Kamu}\n\n> ${username}, *GANASTE* ${formatNumber(count * 2)} 💴 Yenes.`.trim(), m, rcanal)
 } else {
 user.yenes += count * 1
-conn.reply(m.chat, '`🌸 Veamos que numeros tienen!`\n\n'+ `➠ *${botname}* : ${Aku}\n➠ *${username}* : ${Kamu}\n\n> ${username} obtienes ${formatNumber(count * 1)} 💴 Yenes.`.trim(), m, rcanal)}
+conn.reply(m.chat, '`✧ Veamos que numeros tienen!`\n\n'+ `➠ *${botname}* : ${Aku}\n➠ *${username}* : ${Kamu}\n\n> ${username} obtienes ${formatNumber(count * 1)} 💴 Yenes.`.trim(), m, rcanal)}
 } else conn.reply(m.chat, `No tienes *${formatNumber(count)} 💴 Yenes* para apostar!`.trim(), m, rcanal)}
 
 handler.help = ['apostar *<cantidad>*']
