@@ -14,7 +14,7 @@ const handler = async (m, {conn, isROwner, text}) => {
           degreesLongitude: 139.75270667105852,
           accuracyInMeters: 0,
           degreesClockwiseFromMagneticNorth: 2,
-          caption: '⭐️ M E N S A J E ⭐️\n\n' + pesan + `${packname}`,
+          caption: '⭐️ M E N S A J E ⭐️\n\n' + pesan + `${botname}`,
           sequenceNumber: 2,
           timeOffset: 3,
           contextInfo: m,
