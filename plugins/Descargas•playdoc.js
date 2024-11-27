@@ -6,7 +6,7 @@ import {youtubedl, youtubedlv2} from '@bochilteam/scraper'
 
 const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 
-if (!text) return conn.reply(m.chat, `💥 *Ingrese el nombre de un video de YouTube*\n\nEjemplo, !${command} Huellas - Maiye Torrex`,  m, rcanal, )
+if (!text) return conn.reply(m.chat, `✧ *Ingrese el nombre de un video de YouTube*\n\nEjemplo, ${command} 30 grados`,  m, rcanal, )
 m.react(rwait)
 
 try {
@@ -26,26 +26,26 @@ additionalText = 'audio'
 additionalText = 'video'}
 
 let texto1 = `﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌
-> 🌸 Tιƚυʅσ:
+> ✦ Tιƚυʅσ:
 > • ${yt_play[0].title}
 > ﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌
-> 🌸 PυႦʅιƈαԃσ ҽɳ: 
+> ✦ PυႦʅιƈαԃσ ҽɳ: 
 > • ${yt_play[0].ago}
 > ﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌
-> 🌸 Eɳʅαƈҽ:
+> ✦ Eɳʅαƈҽ:
 > • ${yt_play[0].url}
 > ﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌
-> 🌸 Aυƚσɾ:
+> ✦ Aυƚσɾ:
 > • ${yt_play[0].author.name}
 > ﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌
-> 🌸 Cαɳαʅ:
+> ✦ Cαɳαʅ:
 > • ${yt_play[0].author.url}
 >﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌
-> 🌸 Dυɾαƈισɳ:
+> ✦ Dυɾαƈισɳ:
 > • ${secondString(yt_play[0].duration.seconds)}
 ・﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌
 
-> *Eɳʋιαɳԃσ ʂυ ${additionalText}, αɠυαɾԃҽ υɳ ɱσɱҽɳƚσ 🌸...*`.trim()
+> *Eɳʋιαɳԃσ ʂυ ${additionalText}, αɠυαɾԃҽ υɳ ɱσɱҽɳƚσ ✦...*`.trim()
 await conn.sendMessage(m.chat, { text: texto1, contextInfo: { externalAdReply: { title: yt_play[0].title, body: dev, thumbnailUrl: yt_play[0].thumbnail, mediaType: 1, showAdAttribution: true, renderLargerThumbnail: true }}} , { quoted: fkontak })
 
 if (command == 'play3' || command == 'playdoc') {
