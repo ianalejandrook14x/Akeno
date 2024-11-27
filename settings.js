@@ -34,7 +34,6 @@ global.baileys = 'V 6.7.8'
 global.vs = '1.0.1'
 global.languaje = 'Español'
 global.nameqr = 'Bσƚ'
-global.namebot = 'Bσƚ'
 global.sessions = 'BotSession'
 global.jadi = 'NinoJadiBot'
 
