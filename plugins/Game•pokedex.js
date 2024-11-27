@@ -14,8 +14,8 @@ const response = await fetch(url);
 const json = await response.json();
 if (!response.ok) {
 await m.react(error)
-return conn.reply(m.chat, '🌸 *¡Oops! Parece que hubo un error al buscar el Pokémon. Por favor, inténtalo de nuevo más tarde.*', m, rcanal)}
-const aipokedex = `🌸 *Pokedex - Información de ${json.name}*\n\n🌸 *Nombre:* ${json.name}\n🌸 *ID:* ${json.id}\n🌸 *Tipo:* ${json.type}\n🌸 *Habilidades:* ${json.abilities}\n*Tamaño:* ${json.height}\n🌸 *Peso:* ${json.weight}\n\n📖 *Descripción:*\n${json.description}\n\n🔍 ¡Encuentra más detalles sobre este Pokémon en la Pokedex! 🔍\n\n🔗 https://www.pokemon.com/es/pokedex/${json.name.toLowerCase()}`
+return conn.reply(m.chat, '✦ *Hubo un error al buscar el Pokémon. Por favor, inténtalo de nuevo más tarde.*', m, rcanal)}
+const aipokedex = `✦ *Pokedex - Información de ${json.name}*\n\n✦ *Nombre:* ${json.name}\n✦ *ID:* ${json.id}\n✦ *Tipo:* ${json.type}\n✦ *Habilidades:* ${json.abilities}\n*Tamaño:* ${json.height}\n✦ *Peso:* ${json.weight}\n\n✦ *Descripción:*\n${json.description}\n\n✦ Encuentra más detalles sobre este Pokémon en la Pokedex ✦\n\n✦ https://www.pokemon.com/es/pokedex/${json.name.toLowerCase()}`
 conn.reply(m.chat, aipokedex, m, rcanal)
 await m.react(done) }
 
