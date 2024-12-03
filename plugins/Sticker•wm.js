@@ -17,7 +17,7 @@ let handler = async (m, { conn, text }) => {
     if (Buffer.isBuffer(e)) stiker = e
   } finally {
   // await conn.reply(m.chat, global.wait, m)
-     if (stiker) conn.sendFile(m.chat, stiker, 'wm.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: `${botname} Bot - MD 🌸`, body: `✡︎ Sticker By • ${botname}Bot`, mediaType: 2, sourceUrl: redes, thumbnail: icons}}}, { quoted: m })
+     if (stiker) conn.sendFile(m.chat, stiker, 'wm.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: `${botname}`, body: `✡︎ Sticker By • ${botname}`, mediaType: 2, sourceUrl: redes, thumbnail: icons}}}, { quoted: m })
   await m.react(done)
      throw '✧ *La conversión falló.*'
   }
