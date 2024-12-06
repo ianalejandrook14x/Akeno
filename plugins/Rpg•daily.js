@@ -10,14 +10,14 @@ let d = Math.floor(Math.random() * 30)
 global.db.data.users[m.sender].diamond += d
 global.db.data.users[m.sender].money += d
 let time = global.db.data.users[m.sender].lastclaim + 86400000 //12 Horas
-if (new Date - global.db.data.users[m.sender].lastclaim < 7200000) return conn.reply(m.chat, `🕚 *Vuelve en ${msToTime(time - new Date())}*`, m, )
+if (new Date - global.db.data.users[m.sender].lastclaim < 7200000) return conn.reply(m.chat, `*Vuelve en ${msToTime(time - new Date())}*`, m, )
 global.db.data.users[m.sender].exp += exppremium ? prem : exp
-conn.reply(m.chat, `🎁 *Recompensa Diaria*
+conn.reply(m.chat, `✧ *Recompensa Diaria*
 
 Recursos:
-✨ Xp : *+${isPrems ? exppremium : exp}*
-💎 Diamantes : *+${d}*
-🪙 ${botname}Coins : *+${coin}*`, m, )
+✧ Xp : *+${isPrems ? exppremium : exp}*
+✧ Diamantes : *+${d}*
+✧ Coins : *+${coin}*`, m, )
 
 global.db.data.users[m.sender].lastclaim = new Date * 1
 
