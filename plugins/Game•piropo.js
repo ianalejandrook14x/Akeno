@@ -15,10 +15,7 @@ let hasil = Math.floor(Math.random() * 5000)
 
 conn.reply(m.chat, `✦ ${pickRandom(global.piropo)}`, 
 m, 
-{ contextInfo:{ externalAdReply: {title: '✦ FRASE / PIROPO ✨️•', 
-body: dev, 
-sourceUrl: channel, 
-thumbnail: icons }}})
+{ contextInfo:{ externalAdReply: {title: 'FRASE / PIROPO' }}})
 
 }
 handler.tags = ['fun']
