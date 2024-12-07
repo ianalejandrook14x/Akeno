@@ -7,12 +7,6 @@ if (!text) return conn.reply(m.chat, `✦ Escribe el nonbre del scraper.\nEjempl
 try {
 
 await m.react(rwait)
-conn.reply(m.chat, '✦ Buscando el scraper....', m, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: botname,
-body: dev,
-previewType: 0, thumbnail: icons, 
-sourceUrl: channel }}})
 
 let res = await fetch(`http://registry.npmjs.com/-/v1/search?text=${text}`)
 let { objects } = await res.json()
