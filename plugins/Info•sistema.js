@@ -16,7 +16,7 @@ const getDiskSpace = () => {
         const [ , size, used, available, usePercent ] = stdout.split(/\s+/);
         return { size, used, available, usePercent };
     } catch (error) {
-        console.error('🌸 Error al obtener el espacio en disco:', error);
+        console.error('✦ Error al obtener el espacio en disco:', error);
         return null;
     }
 };
@@ -33,17 +33,17 @@ const handler = async (m, { conn }) => {
     const nodeUsage = process.memoryUsage();
     const diskSpace = getDiskSpace();
 
-    const message = `✅️ *ESTADO DEL SISTEMA*
+    const message = `✦ *ESTADO DEL SISTEMA*
 
-🌸 *Host ⪼* ${hostname}
-🏆 *Plataforma ⪼* ${platform}
-💫 *Arquitectura ⪼* ${arch}
-🥷 *RAM Total ⪼* ${formatBytes(totalMem)}
-🚀 *RAM Libre ⪼* ${formatBytes(freeMem)}
-⌛️ *RAM Usada ⪼* ${formatBytes(usedMem)}
-🕒 *Tiempo Activo ⪼* ${muptime}
+✦ *Host ⪼* ${hostname}
+✦ *Plataforma ⪼* ${platform}
+✦ *Arquitectura ⪼* ${arch}
+✦ *RAM Total ⪼* ${formatBytes(totalMem)}
+✦ *RAM Libre ⪼* ${formatBytes(freeMem)}
+✦ *RAM Usada ⪼* ${formatBytes(usedMem)}
+✦ *Tiempo Activo ⪼* ${muptime}
 
-🪴 *Uso de Memoria Nodejs:* 
+✦ *Uso de Memoria Nodejs:* 
 → RSS: ${formatBytes(nodeUsage.rss)}
 → Heap Total: ${formatBytes(nodeUsage.heapTotal)}
 → Heap Usado: ${formatBytes(nodeUsage.heapUsed)}
@@ -51,7 +51,7 @@ const handler = async (m, { conn }) => {
 → Arreglos: ${formatBytes(nodeUsage.arrayBuffers)}
 ${diskSpace ? `
 
-☁️ *Espacio en Disco:*
+✦ *Espacio en Disco:*
 → Tamaño Total: ${diskSpace.size}
 → Usado: ${diskSpace.used}
 → Disponible: ${diskSpace.available}
