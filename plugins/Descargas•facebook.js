@@ -5,12 +5,6 @@ if (!args[0]) {
 return conn.reply(m.chat, '✧ *Ingresa Un Link De Facebook*', m, )}
 let res
 try {
-conn.reply(m.chat, `✧ *Descargando su video de facebook.*`, m, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: botname,
-body: dev,
-previewType: 0, thumbnail: icons,
-sourceUrl: channel }}})
 await m.react(rwait)
 res = await igdl(args[0])
 } catch {
