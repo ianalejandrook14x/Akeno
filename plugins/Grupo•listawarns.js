@@ -8,7 +8,7 @@ let caption = `✦ Usuarios Advertidos
 
  *${i + 1}.* ${conn.getName(jid)  == undefined ? 'Sin Usuarios' : conn.getName(jid) + ` *(${user.warn}/4)*`}
  ${isOwner ? '@' + jid.split`@`[0] : jid}\n│ - - - - - - - - -`.trim()).join('\n') : ''}
-\n\n✦ Advertencia ⇢ ${warns ? `*${warns}/4*` : '*0/4*'}\n${botname}`
+\n\n✦ Advertencia ⇢ ${warns ? `*${warns}/4*` : '*0/4*'}\n`
 await conn.reply(m.chat, caption, m, { mentions: await conn.parseMention(caption) })}
 
 handler.help = ['listadv']
