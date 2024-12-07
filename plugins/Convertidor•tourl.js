@@ -8,12 +8,6 @@ let handler = async (m) => {
   if (!mime) return conn.reply(m.chat, '✦ Responde a una *Imagen* o *Vídeo.*', m, )
   await m.react(rwait)
   try {
-  conn.reply(m.chat, '✦ Convirtiendo la imagen en url...', m, {
-  contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-  title: botname,
-  body: dev,
-  previewType: 0, thumbnail: icons,
-  sourceUrl: channel }}})
   let media = await q.download()
   let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
   let link = await (isTele ? uploadImage : uploadFile)(media)
