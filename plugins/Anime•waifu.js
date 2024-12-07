@@ -3,12 +3,6 @@ import fetch from 'node-fetch'
 let handler = async (m, { conn, usedPrefix, command }) => {
 try {
 await m.react(emojis)
-conn.reply(m.chat, 'Buscando Su *Waifu*', m, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: botname,
-body: dev,
-previewType: 0, thumbnail: icons,
-sourceUrl: channel }}})
 let res = await fetch('https://api.waifu.pics/sfw/waifu')
 if (!res.ok) return
 let json = await res.json()
