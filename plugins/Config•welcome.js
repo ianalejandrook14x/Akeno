@@ -12,5 +12,5 @@ export async function before(m, {conn, participants, groupMetadata}) {
 
  if (chat.welcome && m.messageStubType == 27) {
     let welcome = ` ✦ ≺ ${botname} \n「 Bienvenido 」\n「 @${m.messageStubParameters[0].split`@`[0]} 」\n「 Bienvenido/a 」\n「 ${groupMetadata.subject} 」\n\n`
-await conn.sendNino(m.chat, welcome, img, img, redes, fkontak)
+await conn.sendMini(m.chat, welcome, img, img, redes, fkontak)
   }}
