@@ -25,7 +25,7 @@ return `
 `.trim()}).join('\n\n─────────────────\n\n') 
 // await m.react(done)
 let img = await (await fetch(json.items[0].owner.avatar_url)).buffer()
-await conn.sendNino(m.chat, '✰ G I T H U B - S E A R C H ✰', dev, str, img, img, redes, estilo)
+await conn.sendMini(m.chat, '✰ G I T H U B - S E A R C H ✰', dev, str, img, img, redes, estilo)
 await m.react(done)
 } catch {
 await m.react(error)
