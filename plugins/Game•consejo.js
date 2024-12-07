@@ -11,10 +11,7 @@ sourceUrl: channel }}})*/
 
 conn.reply(m.chat, `✦ ${pickRandom(global.consejo)}`, 
 m, 
-{ contextInfo:{ externalAdReply: {title: '•✦ FRASE / CONSEJO ✦•', 
-body: dev, 
-sourceUrl: channel, 
-thumbnail: icons }}})
+{ contextInfo:{ externalAdReply: {title: '✦ FRASE / CONSEJO ✦' }}})
 
 }
 handler.help = ['consejo']
