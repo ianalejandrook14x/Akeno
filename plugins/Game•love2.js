@@ -12,7 +12,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let user = global.db.data.users[who];
     let name = conn.getName(m.sender);
     let name2 = conn.getName(who);
-    await m.react('🤡');
+    await m.react('♥');
     let str = `${name} está enamorad﹫ de  ${name2}`;
     if (m.isGroup){
     
