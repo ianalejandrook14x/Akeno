@@ -8,8 +8,8 @@ var number = text.split`@`[1]
 var number = text
 }
 
-if (!text && !m.quoted) return conn.reply(m.chat, `🌸 *Mensione a un administrador para usar este comando.*`, m, rcanal)
-if (number.length > 13 || (number.length < 11 && number.length > 0)) return conn.reply(m.chat, `✨️ *Error, debe de mensionar a un administrador.*`, m, fake)
+if (!text && !m.quoted) return conn.reply(m.chat, `✦ *Mencione a un administrador para usar este comando.*`, m, rcanal)
+if (number.length > 13 || (number.length < 11 && number.length > 0)) return conn.reply(m.chat, `✦ *Error, debe de mencionar a un administrador.*`, m, fake)
 
 try {
 if (text) {
@@ -22,7 +22,6 @@ var user = number + '@s.whatsapp.net'
 } catch (e) {
 } finally {
 conn.groupParticipantsUpdate(m.chat, [user], 'demote')
-conn.reply(m.chat, `✅ *Fue descartado como admin.*`, m, fake)
 }
 
 }
