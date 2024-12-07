@@ -10,7 +10,7 @@ watch
 } from 'fs'
 let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => { 
 
-conn.reply(m.chat, `🌸 Realizado, ya se ha eliminado los archivos de la carpeta tmp`, m, rcanal, )
+conn.reply(m.chat, `✦ Realizado, ya se ha eliminado los archivos de la carpeta tmp`, m, rcanal, )
 
 const tmp = [tmpdir(), join(__dirname, '../tmp')]
 const filename = []
@@ -22,6 +22,5 @@ unlinkSync(file)
 handler.help = ['cleartmp']
 handler.tags = ['owner']
 handler.command = ['cleartmp', 'borrartmp', 'borrarcarpetatmp', 'vaciartmp']
-handler.exp = 500
 handler.rowner = true
 export default handler
