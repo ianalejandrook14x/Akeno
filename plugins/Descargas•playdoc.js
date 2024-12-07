@@ -11,13 +11,6 @@ m.react(rwait)
 
 try {
 
-conn.reply(m.chat, wait, m, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: botname,
-body: dev,
-previewType: 0, thumbnail: icons,
-sourceUrl: channel }}})
-
 const yt_play = await search(args.join(' '))
 let additionalText = ''
 if (command === 'play3' || command == 'playdoc') {
