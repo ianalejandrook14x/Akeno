@@ -2,7 +2,7 @@ let handler = async (m, { usedPrefix, command }) => {
 let uptime = await process.uptime()
 let runtime = `${botname}
 
-✰ Tιҽɱρσ ԃҽ Aƈƚιʋιԃαԃ: ${rTime(uptime)}`
+✦ Tiempo de actividad: ${rTime(uptime)}`
 conn.reply(m.chat, runtime, m, { contextInfo: { externalAdReply: { mediaUrl: false, mediaType: 1, description: false, title: botname, body: dev, previewType: 0, thumbnail: icons, sourceUrl: channel}}})
 }
 handler.help = ['runtime']
