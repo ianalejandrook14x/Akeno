@@ -44,8 +44,7 @@ let totalreg = Object.keys(global.db.data.users).length
   let old = performance.now()
   let neww = performance.now()
   let speed = neww - old
-  let infobt = ` *I N F O - A K A R I*
-  
+  let infobt = `
 *ESTADO*
 > ✧ Chats de grupo: *${groupsIn.length}*
 > ✧ Grupos unidos: *${groupsIn.length}*
@@ -57,7 +56,8 @@ let totalreg = Object.keys(global.db.data.users).length
 
 
 
-> ✧ *NodeJS Uso de memoria*
+*NodeJS Uso de memoria*
+
 ${'```' + Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v => v.length)), ' ')}: ${format(used[key])}`).join('\n') + '```'}
 `
 const prep = generateWAMessageFromContent(m.chat, { "orderMessage": { "orderId":"6288215463787", "itemCount": 2022, "message": infobt, "orderTitle": botname, "footerText": "${botname}", "token": "AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA==", "thumbnail": imagen1, "surface": "CATALOG" } }, { quoted: fkontak })
