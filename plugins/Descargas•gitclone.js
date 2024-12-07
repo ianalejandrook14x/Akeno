@@ -28,8 +28,6 @@ let handler = async (m, { args, usedPrefix, command }) => {
        txt += `✩  *Creador* : ${repoData.owner.login}\n`
        txt += `✩  *Descripción* : ${repoData.description || 'Sin descripción disponible'}\n`
        txt += `✩  *Url* : ${args[0]}\n\n`
-       txt += `*${botname}*`
-
 await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null, )
 await conn.sendFile(m.chat, await zipResponse.buffer(), filename, null, m)
 await m.react(done)
