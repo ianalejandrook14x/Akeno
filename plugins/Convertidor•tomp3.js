@@ -4,7 +4,6 @@ const handler = async (m, {conn, usedPrefix, command}) => {
   const mime = (q || q.msg).mimetype || q.mediaType || '';
   if (!/video|audio/.test(mime)) throw `*✧ Responda a algun video o nota de voz*`;
   const media = await q.download();
-  if (!media) throw '*✧ Lo lamento, ocurrio un error*';
   const audio = await toAudio(media, 'mp4');
   if (!audio.data) throw '*✧ Lo lamento, ocurrio un error*';
   conn.sendMessage(m.chat, {audio: audio.data, mimetype: 'audio/mpeg'}, {quoted: m});
