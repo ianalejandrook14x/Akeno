@@ -14,6 +14,5 @@ await m.react(done)
 handler.help = ['imagen <query>'];
 handler.tags = ['buscador', 'tools', 'descargas'];
 handler.command = ['image', 'imagen'];
-handler.yenes = 5
 handler.register = false;
 export default handler;
