@@ -3,10 +3,11 @@ const prem = 15
 
 var handler = async (m, {conn, isPrems }) => {
 
-let yenes = `${pickRandom([3500, 4500, 5000, 6500, 9000])}` * 1
+let dmt = `${pickRandom([5500, 6000, 7500, 8800, 9000, 11000, 12000, 15500, 18000, 22000, 24000, 28000, 30000,])}` * 1
 let exp = `${pickRandom([500, 600, 700, 800, 900, 999, 1000, 1300, 1500, 1800])}` * 1
 let exppremium = `${pickRandom([1000, 1500, 1800, 2100, 2500, 2900, 3300, 3600, 4000, 4500])}` * 1
 let d = Math.floor(Math.random() * 30)
+global.db.data.users[m.sender].yenes += dmt;
 global.db.data.users[m.sender].diamond += d
 global.db.data.users[m.sender].money += d
 let time = global.db.data.users[m.sender].lastclaim + 86400000 //12 Horas
@@ -17,7 +18,7 @@ conn.reply(m.chat, `✧ *Recompensa Diaria*
 Recursos:
 ✧ XP : *+${isPrems ? exppremium : exp}*
 ✧ Diamantes : *+${d}*
-✧ Yenes : *+${yenes}*`, m, )
+✧ Yenes : *+${dmt}*`, m, )
 
 global.db.data.users[m.sender].lastclaim = new Date * 1
 
