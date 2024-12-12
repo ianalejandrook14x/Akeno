@@ -15,10 +15,10 @@ const handler = async (m, {conn, usedPrefix, command}) => {
     
   const users = global.db.data.users[who];
   const rob = Math.floor(Math.random() * ro);
-  if (users.yenes < rob) return conn.reply(m.chat, `✦ @${who.split`@`[0]} Tiene menos de *${ro} Yenes 💴*`, m, {mentions: [who]});
+  if (users.yenes < rob) return conn.reply(m.chat, `✦ @${who.split`@`[0]} Tiene menos de *${ro} ${currency}*`, m, {mentions: [who]});
   global.db.data.users[m.sender].yenes += rob;
   global.db.data.users[who].yenes -= rob;
-  conn.reply(m.chat, `*✦ Robaste ${rob} Yenes 💴 a @${who.split`@`[0]}*`, m, {mentions: [who]});
+  conn.reply(m.chat, `*✦ Robaste ${rob} ${currency} a @${who.split`@`[0]}*`, m, {mentions: [who]});
   global.db.data.users[m.sender].lastrob2 = new Date * 1;
 };
 handler.help = ['rob2'];
