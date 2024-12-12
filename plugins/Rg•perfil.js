@@ -1,62 +1,21 @@
-import { canLevelUp, xpRange } from '../lib/levelling.js'
-import { createHash } from 'crypto'
+
 import PhoneNumber from 'awesome-phonenumber'
 import fetch from 'node-fetch'
-import fs from 'fs'
+var handler = async (m, { conn }) => {
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+let pp = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://telegra.ph/file/32103b8335e64d253fa98.jpg')
+let { premium, level, yenes, exp, lastclaim, registered, regTime, age, role } = global.db.data.users[m.sender]
+let username = conn.getName(who)
+let noprem = `
+✦ *Perfil*
+✦ *Nombre:* ${username}
 
-let handler = async (m, { conn, usedPrefix, command}) => {
-  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-  let bio = await conn.fetchStatus(who).catch(_ => 'undefined')
-  let biot = bio.status?.toString() || 'Sin Info'
-  let user = global.db.data.users[who]
-  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => icono)
-  let { exp, yenes, name, registered, regTime, age, level } = global.db.data.users[who]
-  let { min, xp, max } = xpRange(user.level, global.multiplier)
-  let username = conn.getName(who)
-  let prem = global.prems.includes(who.split`@`[0])
-  let sn = createHash('md5').update(who).digest('hex')
-  let api = await axios.get(`https://deliriusapi-official.vercel.app/tools/country?text=${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}`)
-  let userNationalityData = api.data.result
-  let userNationality = userNationalityData ? `${userNationalityData.name} ${userNationalityData.emoji}` : 'Desconocido'
-  let img = await (await fetch(`${pp}`)).buffer()
-let txt = `*✧ PERFIL USER*\n\n`
-txt += `✧ *Nombre* :: *${name}*\n`
-txt += `✧ *Numero* :: *${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}*\n`
-txt += `✧ *Pais* :: *${userNationality}*\n`
-txt += `✧ *Yenes* :: *${yenes}*\n`
-txt += `✧ *XP* :: Total ${exp}\n`
-txt += `✧ *Premium* :: *${prem ? 'Si' : 'No'}*\n`
-
-  let mentionedJid = [who]
-await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
+✦ *RECURSOS*
+✦ *${currency}:* ${yenes}
+✦ *Experiencia:* ${exp}`.trim()
+conn.sendFile(m.chat, pp, 'perfil.jpg', `${premium ? prem.trim() : noprem.trim()}`, m, rcanal, { mentions: [who] })
 }
-handler.help = ['perfil']
+handler.help = ['profile']
 handler.tags = ['rg']
-handler.command = ['perfil', 'profile']
-handler.register = false
-
+handler.command = ['profile', 'perfil']
 export default handler
-
-
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
-
-function formatDate(n, locale = 'es-US') {
-  let d = new Date(n)
-  return d.toLocaleDateString(locale, {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  })
-}
-
-function formatHour(n, locale = 'en-US') {
-  let d = new Date(n)
-  return d.toLocaleString(locale, {
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    hour12: true
-  })
-}
