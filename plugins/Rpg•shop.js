@@ -6,9 +6,9 @@ const handler = async (m, {conn, command, args}) => {
   if (global.db.data.users[m.sender].exp >= xpperyenes * count) {
     global.db.data.users[m.sender].exp -= xpperyenes * count;
     global.db.data.users[m.sender].yenes += count;
-    conn.reply(m.chat, `*Haz comprado*: + ${count}💴
+    conn.reply(m.chat, `*Haz comprado*: + ${count} ${currency}
     *Gastado en total*: -${xpperyenes * count} XP`, m, );
-  } else conn.reply(m.chat, `No tienes suficiente xp para comprar *${count}* Yenes 💴`, m, );
+  } else conn.reply(m.chat, `No tienes suficiente xp para comprar *${count}* ${currency}`, m, );
 };
 handler.help = ['Buy', 'Buyall'];
 handler.tags = ['xp'];
