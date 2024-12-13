@@ -12,7 +12,8 @@ let noprem = `
 
 ✦ *RECURSOS*
 ✦ *${currency}:* ${yenes}
-✦ *Experiencia:* ${exp}`.trim()
+✦ *Experiencia:* ${exp}
+✦ *Premium*: *${prems ? 'Si' : 'No'}*`.trim()
 conn.sendFile(m.chat, pp, 'perfil.jpg', `${premium ? prem.trim() : noprem.trim()}`, m, rcanal, { mentions: [who] })
 }
 handler.help = ['profile']
