@@ -36,7 +36,7 @@ let pushname = m.pushName || 'Sin nombre'
 global.creador = 'Wa.me/5493876639332'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
 global.asistencia = 'https://wa.me/5493876639332'
-global.namechannel = 'Tҽαɱ Cԋαɳɳҽʅ Iαɳ 🌸'
+global.namechannel = 'Cԋαɳɳҽʅ Bყ ✦ ιαɳαʅҽʝαɳԃɾσσƙ15x'
 global.id = "120363268849510279@g.us"
 
 //Reacciones De Comandos.!
