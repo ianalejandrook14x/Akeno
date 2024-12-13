@@ -4,17 +4,17 @@ let handler = async (m, {conn, usedPrefix}) => {
 	const name = conn.getName(who);
 	let txt = `*✧ Balance de ${name}*
 	
-		➺ *Yenes* : ${global.db.data.users[who].yenes} 
+		➺ *${currency}* : ${global.db.data.users[who].yenes} 
 		➺ *Banco* : ${global.db.data.users[who].bank} 
 		➺ *Experiencia* : ${global.db.data.users[who].exp}
 	
-	> Para proteger tus *Yenes* en el banco use */depositar*`
+	> Para proteger tus *${currency}* en el banco use */depositar*`
 	await conn.reply(m.chat, txt, m, )
 	}
 	
-	handler.help = ['yenes']
+	handler.help = ['bal']
 	handler.tags = ['rpg']
-	handler.command = ['wallet', 'cartera', 'yenes', 'bal']
+	handler.command = ['wallet', 'cartera', 'bal']
 	handler.register = false
 	export default handler
 	
