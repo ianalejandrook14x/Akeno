@@ -9,7 +9,7 @@ let handler = async (m, { conn, text }) => {
     else who = m.chat
     if (!who) return m.reply('✦ *Taguea al usuario*')
     let txt = text.replace('@' + who.split`@`[0], '').trim()
-    if (!txt) return m.reply('✦️ Ingrese la cantidad de *Yenes* que quiere añadir')
+    if (!txt) return m.reply('✦️ Ingrese la cantidad de *${currency}* que quiere añadir')
     if (isNaN(txt)) return m.reply('✦ *sólo números*')
     let dmt = parseInt(txt)
     let yenes = dmt
