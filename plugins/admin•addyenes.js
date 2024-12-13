@@ -14,7 +14,7 @@ let handler = async (m, { conn, text }) => {
     let users = global.db.data.users
    users[who].yenes += dmt
 
-   conn.fakeReply(m.chat, `✦ *Recibiste:* \n\n *+${dmt} Yenes 💴*`, who, m.text)
+   conn.fakeReply(m.chat, `✦ *Recibiste:* \n\n *+${dmt} ${currency}*`, who, m.text)
 }
 
 handler.help = ['addyen2 *<@user>*']
