@@ -2,17 +2,22 @@ let handler = async (m, { conn }) => {
   let txt = `*Hola soy ${botname}* ✧
 
 > *BANNER*
+
 *${prefix}getname*
 *${prefix}setcurrency*
 *${prefix}setdev*
 *${prefix}setname*
 *${prefix}setwelcome*
+
 > *INFO*
+
 *${prefix}perfil*
 *${prefix}menu*
 *${prefix}grupos*
 *${prefix}blocklist*
+
 > *BUSQUEDAS*
+
 *${prefix}githubsearch*
 *${prefix}google <búsqueda>*
 *${prefix}npmjs*
@@ -23,7 +28,9 @@ let handler = async (m, { conn }) => {
 *${prefix}pinterest*
 *${prefix}play*
 *${prefix}playvid*
+
 > *JUEGOS*
+
 *${prefix}abrazar <@tag>*
 *${prefix}acertijo*
 *${prefix}sonrojarse <@tag>*
@@ -39,10 +46,14 @@ let handler = async (m, { conn }) => {
 *${prefix}triste <@tag>*
 *${prefix}top <txt>*
 *${prefix}zodiac <2010 03 15*
+
 > *SUB BOTS*
+
 *${prefix}serbot*
 *${prefix}serbot --code*
+
 > *RPG*
+
 *${prefix}bal*
 *${prefix}crimen*
 *${prefix}daily*
@@ -55,18 +66,24 @@ let handler = async (m, { conn }) => {
 *${prefix}trabajar*
 *${prefix}buy*
 *${prefix}buy all*
+
 > *STICKERS*
+
 *${prefix}qc*
 *${prefix}stiker <img>*
 *${prefix}sticker <url>*
 *${prefix}take <nombre/autor>*
+
 > *ANIMES*
+
 *${prefix}infoanime*
 *${prefix}waifu*
 *${prefix}harem*
 *${prefix}claim*
 *${prefix}rollwaifu*
+
 > *GRUPOS*
+
 *${prefix}link*
 *${prefix}grupo open / close*
 *${prefix}delete*
@@ -79,10 +96,14 @@ let handler = async (m, { conn }) => {
 *${prefix}listadv*
 *${prefix}tagall <txt>*
 *${prefix}invocar <txt>*
+
 > *ON/OFF*
+
 *${prefix}enable*
 *${prefix}disable*
+
 > *DESCARGAS*
+
 *${prefix}facebook - fb*
 *${prefix}gitclone <url git>*
 *${prefix}imagen <txt>*
@@ -92,7 +113,9 @@ let handler = async (m, { conn }) => {
 *${prefix}play4*
 *${prefix}spotify*
 *${prefix}tiktok*
+
 > *HERRAMIENTAS*
+
 *${prefix}toanime*
 *${prefix}remini*
 *${prefix}hd*
@@ -100,7 +123,9 @@ let handler = async (m, { conn }) => {
 *${prefix}ssweb*
 *${prefix}ss*
 *${prefix}trad*
+
 > *AUDIOS*
+
 *${prefix}bass <vn>
 *${prefix}blown <vn>
 *${prefix}deep <vn>
@@ -113,16 +138,22 @@ let handler = async (m, { conn }) => {
 *${prefix}slow <vn>
 *${prefix}smooth <vn>
 *${prefix}tupai <vn>
+
 > *AI*
+
 *${prefix}remini*
 *${prefix}hd*
 *${prefix}enhance*
+
 > *CONVERTIDORES*
+
 *${prefix}togifaud*
 *${prefix}toimg*
 *${prefix}tourl*
 *${prefix}rovideo*
+
 > *ADMIN*
+
 *${prefix}addprem2 <@tag> <days>
 *${prefix}addyen2 <@tag>`.trim();
 
@@ -136,6 +167,5 @@ let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https:/
 handler.help = ['menu'];
 handler.tags = ['main'];
 handler.command = ['menu', 'menú', 'help', 'ayuda'];
-handler.register = true;
 
 export default handler;
