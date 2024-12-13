@@ -359,7 +359,7 @@ m.reply('chirrido -_-')
 else
 m.exp += xp
 if (!isPrems && plugin.yenes && global.db.data.users[m.sender].yenes < plugin.yenes * 1) {
-conn.reply(m.chat, `Se agotaron tus *💴 Yenes*`, m, fake)
+conn.reply(m.chat, `Se agotaron tus *${currency}*`, m, fake)
 continue
 }
 let extra = {
