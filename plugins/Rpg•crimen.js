@@ -26,7 +26,7 @@ case 0:
 users[senderId].yenes += amountTaken
 users[randomUserId].yenes -= amountTaken
 conn.sendMessage(m.chat, {
-text: `🌸¡Lograste cometer tu crimen con exito!, acabas de robar *${amountTaken} 💴 Yenes* a @${randomUserId.split("@")[0]}\n\nSe suman *+${amountTaken} 💴 Yenes* a ${senderName}.`,
+text: `✦ Lograste cometer tu crimen, acabas de robar *${amountTaken} ${currency}* a @${randomUserId.split("@")[0]}\n\nSe suman *+${amountTaken} ${currency}* a ${senderName}.`,
 contextInfo: { 
 mentionedJid: [randomUserId],
 }}, { quoted: fkontak })
@@ -34,14 +34,14 @@ break
 case 1:
 let amountSubtracted = Math.min(Math.floor(Math.random() * (senderYenes - minAmount + 1)) + minAmount, maxAmount)
 users[senderId].yenes -= amountSubtracted
-conn.reply(m.chat, `🌸 No fuiste cuidadoso y te atraparon mientras cometias tu crimen, se restaron *-${amountSubtracted} 💴 Yenes* a ${senderName}.`, m, )
+conn.reply(m.chat, `✦ No fuiste cuidadoso y te atraparon mientras cometias tu crimen, se restaron *-${amountSubtracted} ${currency}* a ${senderName}.`, m, )
 break
 case 2:
 let smallAmountTaken = Math.min(Math.floor(Math.random() * (randomUserYenes / 2 - minAmount + 1)) + minAmount, maxAmount)
 users[senderId].yenes += smallAmountTaken
 users[randomUserId].yenes -= smallAmountTaken
 conn.sendMessage(m.chat, {
-text: `🌸 Lograste cometer tu crimen con exito, pero te descubrieron y solo lograste tomar *${smallAmountTaken} 💴 Yenes* de @${randomUserId.split("@")[0]}\n\nSe suman *+${smallAmountTaken} 💴 Yenes* a ${senderName}.`,
+text: `✦ Lograste cometer tu crimen con exito, pero te descubrieron y solo lograste tomar *${smallAmountTaken} ${currency}* de @${randomUserId.split("@")[0]}\n\nSe suman *+${smallAmountTaken} ${currency}* a ${senderName}.`,
 contextInfo: { 
 mentionedJid: [randomUserId],
 }}, { quoted: fkontak })
