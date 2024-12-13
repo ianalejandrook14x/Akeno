@@ -60,7 +60,7 @@ let totalreg = Object.keys(global.db.data.users).length
 
 ${'```' + Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v => v.length)), ' ')}: ${format(used[key])}`).join('\n') + '```'}
 `
-const prep = generateWAMessageFromContent(m.chat, { "orderMessage": { "orderId":"6288215463787", "itemCount": 2022, "message": infobt, "orderTitle": botname, "footerText": "${botname}", "token": "AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA==", "thumbnail": imagen1, "surface": "CATALOG" } }, { quoted: fkontak })
+const prep = generateWAMessageFromContent(m.chat, { "orderMessage": { "orderId":"6288215463787", "itemCount": 2022, "message": infobt, "orderTitle": botname, "footerText": "${botname}", "token": "AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA==", "thumbnail": banner, "surface": "CATALOG" } }, { quoted: fkontak })
 await conn.relayMessage(m.chat, prep.message,  { messageId: prep.key.id })
 
 }
