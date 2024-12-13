@@ -38,7 +38,7 @@ const defaultMenu = {
 ✦ Nivel: \`\`\`%level\`\`\`
 
 
-✦ Yenes: \`\`\`%yenes\`\`\`
+✦ ${currency}: \`\`\`%yenes\`\`\`
 
 \t*C O M A N D O S* 
 `.trimStart(),
