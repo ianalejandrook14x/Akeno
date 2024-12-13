@@ -3,7 +3,6 @@ import fetch from 'node-fetch'
 
 export async function before(m, {conn, participants, groupMetadata}) {
   if (!m.messageStubType || !m.isGroup) return !0;
-  let welcom = `Hola bienvenido al grupo ✦`
     let pp = await conn.profilePictureUrl(m.messageStubParameters[0], 'image').catch(_ => welcome)
     let pp2 = await conn.profilePictureUrl(m.messageStubParameters[0], 'image').catch(_ => adios)
   let img = await (await fetch(`${pp}`)).buffer()
@@ -11,7 +10,7 @@ export async function before(m, {conn, participants, groupMetadata}) {
   let chat = global.db.data.chats[m.chat]
 
  if (chat.welcome && m.messageStubType == 27) {
-    let welcome = `${welcom}`
+    let welcome = `${global.welcome}`
 await conn.sendMini(m.chat, welcome)
   }
 }
