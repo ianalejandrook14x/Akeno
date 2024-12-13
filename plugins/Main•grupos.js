@@ -9,7 +9,7 @@ let grupos = `
 
 > ${dev}`
 
-await conn.sendFile(m.chat, imagen1, "nino.jpg", grupos, m, null, )
+await conn.sendFile(m.chat, banner, "nino.jpg", grupos, m, null, )
 
 await m.react(emojis)
 
