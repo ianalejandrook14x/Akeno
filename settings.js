@@ -43,6 +43,7 @@ global.botname = 'Mαɾιɳ Kιƚαɠαɯα ✦'
 global.author = 'By ianalejandrook15x'
 global.dev = 'Pσɯҽɾҽԃ Bყ Iαɳ'
 global.currency = 'Yenes'
+global.prefix = '/'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
