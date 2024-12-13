@@ -126,18 +126,18 @@ let handler = async (m, { conn }) => {
 
 > *AUDIOS*
 
-*${prefix}bass <vn>
-*${prefix}blown <vn>
-*${prefix}deep <vn>
-*${prefix}earrape <vn>
-*${prefix}fast <vn>
-*${prefix}fat <vn>
-*${prefix}nightcore <vn>
-*${prefix}reverse <vn>
-*${prefix}robot <vn>
-*${prefix}slow <vn>
-*${prefix}smooth <vn>
-*${prefix}tupai <vn>
+*${prefix}bass <vn>*
+*${prefix}blown <vn>*
+*${prefix}deep <vn>*
+*${prefix}earrape <vn>*
+*${prefix}fast <vn>*
+*${prefix}fat <vn>*
+*${prefix}nightcore <vn>*
+*${prefix}reverse <vn>*
+*${prefix}robot <vn>*
+*${prefix}slow <vn>*
+*${prefix}smooth <vn>*
+*${prefix}tupai <vn>*
 
 > *AI*
 
