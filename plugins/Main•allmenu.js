@@ -154,8 +154,8 @@ let handler = async (m, { conn }) => {
 
 > *ADMIN*
 
-*${prefix}addprem2 <@tag> <days>
-*${prefix}addyen2 <@tag>`.trim();
+*${prefix}addprem2 <@tag> <days>*
+*${prefix}addyen2 <@tag>*`.trim();
 
 let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg')
 
@@ -166,6 +166,6 @@ let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https:/
 
 handler.help = ['menu'];
 handler.tags = ['main'];
-handler.command = ['menu', 'menú', 'help', 'ayuda'];
+handler.command = ['menu', 'allmenu', 'help', 'ayuda'];
 
 export default handler;
