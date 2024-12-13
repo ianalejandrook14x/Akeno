@@ -506,7 +506,7 @@ premium: '✧ *Esta función solo es para usuarios Premium.',
 group: '✧ *La función solocitada solo puede ser ejecutada en grupos.*', 
 private: '✧ *La función solo puede ser usada al chat privado del bot.*', 
 admin: '✧ *La función solo puede ser ejecutada por administradores.*', 
-botAdmin: '✧ *Para ejecutar esta funcón el bot debe ser administrador.*', 
+botAdmin: '✧ *Para ejecutar esta función el bot debe ser administrador.*', 
 unreg: '✧ *No te encuentras regitrado, haga su registro*\n\n*/reg nombre.edad*\n\n*Ejemplo* : */reg Akari.14*',
 restrict: '✧ *Esta característica esta desactivada.*'
 }[type];
