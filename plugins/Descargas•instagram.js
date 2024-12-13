@@ -15,7 +15,6 @@ conn.reply(m.chat, '✦ Ocurrió un error.', m, fake)}}
 handler.command = ['instagram', 'ig']
 handler.tags = ['descargas']
 handler.help = ['instagram', 'ig']
-handler.yenes = 15
 handler.register = false
 
 export default handler
