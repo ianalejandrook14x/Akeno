@@ -33,13 +33,13 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.8'
 global.vs = '1.0.1'
 global.languaje = 'Español'
-global.nameqr = 'Bσƚ'
+global.nameqr = 'Bσƚ Ⴆყ ιαɳ'
 global.sessions = 'BotSession'
-global.jadi = 'NinoJadiBot'
+global.jadi = 'JadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.botname = 'Nino'
+global.botname = 'Mαɾιɳ Kιƚαɠαɯα ✦'
 global.author = 'By ianalejandrook15x'
 global.dev = 'Pσɯҽɾҽԃ Bყ Iαɳ'
 global.currency = 'Yenes'
