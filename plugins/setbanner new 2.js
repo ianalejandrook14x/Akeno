@@ -7,7 +7,7 @@ import { fileTypeFromBuffer } from "file-type";
 
 let handler = async (m, { conn, isRowner }) => {
 
-  if (!m.quoted || !/image/.test(m.quoted.mimetype)) return m.reply('✐ Por favor, responde a una imagen con el comando *setcatalogo* para actualizar la foto del catalogo.');
+  if (!m.quoted || !/image/.test(m.quoted.mimetype)) return m.reply('✦ *Responda a una imagen con el comando para cambiar el banner*.');
 
   try {
 
@@ -19,11 +19,11 @@ let handler = async (m, { conn, isRowner }) => {
     }
 
     global.banner = `${link}`;  
-m.reply('El banner fue actualizado')
+m.reply('*✦ El banner fue actualizado*')
 
   } catch (error) {
     console.error(error);
-    m.reply('✧ Hubo un error al intentar cambiar el banner.');
+    m.reply('*✧ Hubo un error al intentar cambiar el banner.*');
   }
 };
 
