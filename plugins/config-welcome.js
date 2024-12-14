@@ -10,7 +10,7 @@ export async function before(m, {conn, participants, groupMetadata}) {
   let chat = global.db.data.chats[m.chat]
 
  if (chat.welcome && m.messageStubType == 27) {
-    let welcome = `${global.welcome}`
-await conn.sendMini(m.chat, welcome)
+    let welcome = `*Hola ✦*\n\n${global.welcome}`
+await conn.sendMini(m.chat, redes, dev, welcome, catalogo, catalogo, redeshost, estilo)
   }
 }
