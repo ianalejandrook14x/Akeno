@@ -19,16 +19,16 @@ let handler = async (m, { conn, text }) => {
     let users = global.db.data.users
    users[who].yenes += dmt
 
-    await conn.reply(m.chat, `⊜ *AÑADIDO*
+    await conn.reply(m.chat, `*AÑADIDO*
 ┏━━━━━━━━━━━⬣
 ┃⋄ *Total:* ${dmt}
 ┗━━━━━━━━━━━⬣`, m, )
-   conn.fakeReply(m.chat, `⊜ *Recibiste* \n\n *+${dmt} ${currency}*`, who, m.text)
+   conn.fakeReply(m.chat, `*Recibiste* \n\n *+${dmt} ${currency}*`, who, m.text)
 }
 
 handler.help = ['addyenes *<@user>*']
 handler.tags = ['owner']
 handler.command = ['addyenes', 'adddinero', 'addyen'] 
-handler.rowner = true
+handler.mods = true
 
 export default handler
