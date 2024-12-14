@@ -58,12 +58,12 @@ global.waittt = 'Espere un momento...'
 global.waitttt = 'Espere un momento...'
 
 //Enlaces
-var canal = 'https://whatsapp.com/channel/0029VaQD7LAJP216tu9liI2A'  
-var git = 'https://github.com/ianalejandrook15x'
-var paypal = 'https://paypal.me/kevintomasolazo23'
+var mensaje = '👋🏻 Hola bienvenido al grupo'  
+var mensaje2 = '👋🏻 Seas bievenido al grupo'
+var mensaje3 = '👋🏻 Nuevo integrante bienvenido'
 var grupo = 'https://chat.whatsapp.com/KiJY7gZS17aLcP6qaGatFX'
 
-global.redes = [canal, git, paypal].getRandom()
+global.redes = [mensaje, mensaje2, mensaje3].getRandom()
 
 global.redeshost = [grupo].getRandom()
 
