@@ -19,7 +19,7 @@ let handler = async (m, { conn, isRowner }) => {
 handler.help = ['setwelcome'];  
 handler.tags = ['banner'];
 handler.command = ['setwelcome']; 
-handler.rowner = true
+handler.isAdmin = true
 
 export default handler;
 
