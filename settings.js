@@ -35,6 +35,7 @@ global.vs = '1.0.1'
 global.languaje = 'Español'
 global.nameqr = 'Bσƚ Ⴆყ ιαɳ'
 global.sessions = 'BotSession'
+global.banner = 'https://qu.ax/VyLyu.jpg'
 global.jadi = 'JadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -44,6 +45,8 @@ global.author = 'By ianalejandrook15x'
 global.dev = 'Pσɯҽɾҽԃ Bყ Iαɳ'
 global.currency = 'Yenes'
 global.prefix = '/'
+global.botStatus = true;
+global.grupos = '${groupMetadata.subject}'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -69,7 +72,7 @@ global.correo = 'alejandroxddd92@gmail.com'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "543876577197-120363317332020195@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: 'Bσƚ ԃҽ WԋαƚʂAρρ', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
+global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "543876577197-120363317332020195@g.us" } : {}) }, message: { orderMessage: { itemCount : 100, status: 1, surface : 1, message: 'Bιҽɳʋҽɳιԃσ αʅ ɠɾυρσ', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
