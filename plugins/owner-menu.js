@@ -1,6 +1,16 @@
 let handler = async (m, { conn }) => {
     let txt = `*Menu - Moderadores* ✧
-    
+
+    > *BANNER*
+
+  *${prefix}getname*
+  *${prefix}setcurrency*
+  *${prefix}setdev*
+  *${prefix}setname*
+  *${prefix}setwelcome*
+
+> Bყ ✦ ιαɳαʅҽʝαɳԃɾσσƙ15x
+
   *${prefix}copia*
   *${prefix}e*
   *${prefix}addprem <@tag> <days>*
