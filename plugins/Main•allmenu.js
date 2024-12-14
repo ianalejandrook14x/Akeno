@@ -148,7 +148,8 @@ let handler = async (m, { conn }) => {
 
 *${prefix}addprem2 <@tag> <days>*
 *${prefix}addyen2 <@tag>*`.trim();
-
+  
+m.react('✅')
 let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg')
 
   //await conn.sendFile(m.chat, imagen1, 'menu.jpg', txt, m);
