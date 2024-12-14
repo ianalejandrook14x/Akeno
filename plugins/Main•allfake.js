@@ -61,10 +61,11 @@ global.waitttt = 'Espere un momento...'
 var canal = 'https://whatsapp.com/channel/0029VaQD7LAJP216tu9liI2A'  
 var git = 'https://github.com/ianalejandrook15x'
 var paypal = 'https://paypal.me/kevintomasolazo23'
+var grupo = 'https://chat.whatsapp.com/KiJY7gZS17aLcP6qaGatFX'
 
 global.redes = [canal, git, paypal].getRandom()
 
-global.redeshost = [paypal].getRandom()
+global.redeshost = [grupo].getRandom()
 
 //Imagen
 let category = "imagen"
