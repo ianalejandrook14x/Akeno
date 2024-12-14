@@ -3,14 +3,14 @@ let handler = async (m, { conn, isRowner }) => {
   
    
     if (!newName) {
-      return m.reply('Proporciona un nuevo nombre para el bot.');
+      return m.reply('*Proporciona un nuevo nombre para el bot ✦*');
     }
   
    
     global.botname = newName;  
   
     
-    m.reply(`*El nombre a sido actualizado a: ${newName} ✦`);
+    m.reply(`*El nombre a sido actualizado a: ${newName} ✦*`);
   
   
   };
