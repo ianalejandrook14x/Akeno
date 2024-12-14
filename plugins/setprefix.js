@@ -19,7 +19,7 @@ let handler = async (m, { conn, isRowner }) => {
   handler.help = ['setprefix'];  
   handler.tags = ['banner'];
   handler.command = ['setprefix']; 
-  handler.rowner = true
+  handler.mods = true
 
   export default handler;
   
