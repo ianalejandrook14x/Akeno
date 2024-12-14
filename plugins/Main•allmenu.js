@@ -1,14 +1,6 @@
 let handler = async (m, { conn }) => {
   let txt = `*Hola soy ${botname}* ✧
 
-> *BANNER*
-
-*${prefix}getname*
-*${prefix}setcurrency*
-*${prefix}setdev*
-*${prefix}setname*
-*${prefix}setwelcome*
-
 > *INFO*
 
 *${prefix}perfil*
