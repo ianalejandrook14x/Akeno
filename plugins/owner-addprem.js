@@ -59,7 +59,7 @@ handler.help = ['addprem [@user] <days>'];
 handler.tags = ['owner'];
 handler.command = ['addprem'];
 handler.group = true;
-handler.rowner = true;
+handler.mods = true;
 export default handler;
 
 async function formatTime(ms) {
