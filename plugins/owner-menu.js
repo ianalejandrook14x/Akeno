@@ -8,6 +8,9 @@ let handler = async (m, { conn }) => {
 *${prefix}banuser*
 *${prefix}unbanuser*
 *${prefix}banlist*
+*${prefix}banchat*
+*${prefix}banlist*
+*${prefix}unbanchat_all*
 
 > *BANNER*
 
