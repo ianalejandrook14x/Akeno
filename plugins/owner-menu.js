@@ -1,6 +1,11 @@
 let handler = async (m, { conn }) => {
   let txt = `*Menu - Moderadores* ✧
 
+> *CREADOR*
+
+*${prefix}otorgar <mod/prem>*
+*${prefix}quitar <mod/prem>*
+
 > *BANNER*
 
 *${prefix}getname*
@@ -29,8 +34,6 @@ let handler = async (m, { conn }) => {
 *${prefix}join <link>*
 *${prefix}nuevabiobot <txt>*
 *${prefix}grupocrear <txt>*
-*${prefix}otorgar <mod/prem>*
-*${prefix}quitar <mod/prem>*
 *${prefix}resetperonajes*
 *${prefix}restart*
 *${prefix}addyenes <@tag>*`.trim();
