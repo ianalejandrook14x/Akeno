@@ -293,8 +293,8 @@ return
 
 //Antispam 2                
 if (user.antispam2 && isROwner) return
-let time = global.db.data.users[m.sender].spam + 6000
-if (new Date - global.db.data.users[m.sender].spam < 6000) return console.log(`[ SPAM ]`) 
+let time = global.db.data.users[m.sender].spam + 5000
+if (new Date - global.db.data.users[m.sender].spam < 5000) return console.log(`[ SPAM ]`) 
 global.db.data.users[m.sender].spam = new Date * 1
 }
 if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
