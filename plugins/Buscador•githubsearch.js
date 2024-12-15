@@ -33,8 +33,7 @@ conn.reply(m.chat, '*No se encontraron resultados de:* ' + text, m, fake)}}
 handler.help = ['githubsearch']
 handler.tags = ['buscador']
 handler.command = ['githubsearch']
-
-handler.register = false
+handler.premium = true
 
 export default handler 
 
