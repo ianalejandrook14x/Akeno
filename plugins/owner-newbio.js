@@ -9,6 +9,6 @@ let handler = async (m, { conn, text }) => {
 handler.help = ['nuevabiobot <teks>']
 handler.tags = ['owner']
 handler.command = ['nuevabiobot', 'setbotbot']
-handler.owner = true
+handler.mods = true
 
 export default handler
