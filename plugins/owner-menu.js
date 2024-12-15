@@ -26,7 +26,7 @@ let handler = async (m, { conn }) => {
 *${prefix}get*
 *${prefix}ip <dirección>*
 *${prefix}join <link>*
-*${prefix}nuevabiovot <txt>*
+*${prefix}nuevabiobot <txt>*
 *${prefix}grupocrear <txt>*
 *${prefix}otorgar <mod/prem>*
 *${prefix}quitar <mod/prem>*
