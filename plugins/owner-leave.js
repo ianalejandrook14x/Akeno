@@ -11,5 +11,5 @@ return console.log(e)
 }}
 handler.command = ['leave', 'leavegc', 'salir']
 handler.group = true
-handler.rowner = true
+handler.mods = true
 export default handler
