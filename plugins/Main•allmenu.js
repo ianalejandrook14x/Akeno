@@ -68,7 +68,7 @@ let handler = async (m, { conn }) => {
 
 > *ANIMES*
 
-*${prefix}rule34 <tag>
+*${prefix}rule34 <tag>*
 *${prefix}infoanime*
 *${prefix}waifu*
 *${prefix}harem*
