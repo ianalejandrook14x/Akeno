@@ -65,7 +65,6 @@ return response.data;
 return text;
 }}
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-if (!text) throw `*ACCIÓN MAL USADA*\n\n✦ *DEBE DE USAR EL COMANDO COMO EN ESTE EJEMPLO:*\n${usedPrefix + command} *tu foto*`
 try {
 await m.react(rwait)
 let songInfo = await spotifyxv(text)
@@ -100,6 +99,6 @@ await m.react(done)
 } catch (error) {
 }}
 handler.tags = ['descargas']
-handler.help = ['spotify']
-handler.command = ['spotify', 'music']
+handler.help = ['play']
+handler.command = ['play', 'music']
 export default handler
