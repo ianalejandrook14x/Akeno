@@ -10,7 +10,7 @@ let handler = async (m, { conn }) => {
 *${prefix}banlist*
 *${prefix}banchat*
 *${prefix}banlist*
-*${prefix}unbanchat_all*
+*${prefix}unbanchat*
 
 > *BANNER*
 
