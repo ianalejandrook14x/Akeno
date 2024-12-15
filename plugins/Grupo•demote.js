@@ -22,6 +22,7 @@ var user = number + '@s.whatsapp.net'
 } catch (e) {
 } finally {
 conn.groupParticipantsUpdate(m.chat, [user], 'demote')
+m.reply('*✦ Fue degradado a miembro.*')
 }
 
 }
