@@ -18,6 +18,8 @@ let handler = async (m, { conn }) => {
 *${prefix}play2*
 *${prefix}play3*
 *${prefix}play4*
+*${prefix}playdoc*
+*${prefix}playdoc2*
 
 > *JUEGOS*
 
