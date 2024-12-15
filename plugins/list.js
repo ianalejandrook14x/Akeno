@@ -6,7 +6,7 @@ let handler = async (m, { conn }) => {
     
       let bannedChats = Object.entries(chats)
         .filter(([id, data]) => data.isBanned)
-        .map(([id, data]) => `${id} (${data.name || 'Sin nombre'})`);
+        .map(([id, data]) => `${id} (${data.name || '✦'})`);
       
       if (bannedChats.length === 0) {
         return conn.reply(m.chat, '✦ No hay chats baneados actualmente.', m);
