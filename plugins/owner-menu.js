@@ -16,7 +16,8 @@ let handler = async (m, { conn }) => {
 *${prefix}addprem <@tag> <days>*
 *${prefix}addxp <@tag> <monto>*
 *${prefix}autoadmin*
-*${prefix}banuser <@tag> <motivo>*
+*${prefix}banuser <@tag>*
+*${prefix}unbanuser <@tag>*
 *${prefix}broadcast*
 *${prefix}bc*
 *${prefix}cheat*
@@ -32,7 +33,6 @@ let handler = async (m, { conn }) => {
 *${prefix}quitar <mod/prem>*
 *${prefix}resetperonajes*
 *${prefix}restart*
-*${prefix}unbanuser <@tag>*
 *${prefix}addyenes <@tag>*`.trim();
 
 m.react('💻')
