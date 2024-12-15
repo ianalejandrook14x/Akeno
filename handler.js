@@ -32,6 +32,14 @@ m.yenes = false
 try {
 let user = global.db.data.users[m.sender]
 if (typeof user !== 'object')
+
+if (opts['nyimak']) return
+if (!isROwner && opts['self']) return 
+if (opts['pconly'] && m.chat.endsWith('g.us')) return
+if (opts['gconly'] && !m.chat.endsWith('g.us')) return
+if (opts['swonly'] && m.chat !== 'status@broadcast') return
+if (typeof m.text !== 'string')
+m.text = ''
   
 global.db.data.users[m.sender] = {}
 if (user) {
@@ -146,6 +154,7 @@ if (!('antiPrivate' in settings)) settings.antiPrivate = false
 if (!('autoread' in settings)) settings.autoread = false
 if (!('autoread2' in settings)) settings.autoread2 = false
 if (!('antiSpam' in settings)) settings.antiSpam = false
+if (!('autoAceptar' in chat)) chat.autoAceptar = false
 if (!('autoRechazar' in chat)) chat.autoRechazar = false
 } else global.db.data.settings[this.user.jid] = {
 self: false,
@@ -501,7 +510,7 @@ const msg = {
 rowner: '✧ *La función solicitada solo puede ser usada por*\n\n> ianalejandrook15x.', 
 owner: '✧ *Esta función solo puede ser usada por desarrolladores*.', 
 mods: '✧ *Esta función solo puede ser por moderadores.*', 
-premium: '✧ *Esta función solo es para usuarios Premium.', 
+premium: '✧ *Esta función solo esta disponible para usuario Premium.*', 
 group: '✧ *La función solocitada solo puede ser ejecutada en grupos.*', 
 private: '✧ *La función solo puede ser usada al chat privado del bot.*', 
 admin: '✧ *La función solo puede ser ejecutada por administradores.*', 
