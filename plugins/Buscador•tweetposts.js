@@ -60,6 +60,6 @@ console.error(error)
 handler.help = ['tweetposts']
 handler.tags = ['buscador']
 handler.command = ['tweetposts']
-handler.register = false
+handler.premium = true
 
 export default handler;
