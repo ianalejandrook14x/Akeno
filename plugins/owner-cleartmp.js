@@ -22,5 +22,5 @@ unlinkSync(file)
 handler.help = ['cleartmp']
 handler.tags = ['owner']
 handler.command = ['cleartmp', 'borrartmp', 'borrarcarpetatmp', 'vaciartmp']
-handler.rowner = true
+handler.mods = true
 export default handler
