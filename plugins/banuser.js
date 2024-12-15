@@ -92,7 +92,7 @@ let handler = async (m, { conn, isRowner }) => {
 handler.help = ['banuser <@tag>', 'unbanuser <@tag>', 'banlist'];
 handler.tags = ['owner'];
 handler.command = ['banuser', 'unbanuser', 'banlist'];
-handler.owner = true;
+handler.rowner = true;
 
 
 client.on('ready', () => {
