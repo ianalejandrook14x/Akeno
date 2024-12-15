@@ -10,16 +10,14 @@ let handler = async (m, { conn }) => {
 
 > *BUSQUEDAS*
 
-*${prefix}githubsearch*
 *${prefix}google <búsqueda>*
-*${prefix}npmjs*
 *${prefix}tiktoksearch <txt>*
-*${prefix}tweetposts*
 *${prefix}ytsearch*
 *${prefix}imagen <txt>*
-*${prefix}pinterest*
 *${prefix}play*
-*${prefix}playvid*
+*${prefix}play2*
+*${prefix}play3*
+*${prefix}play4*
 
 > *JUEGOS*
 
@@ -69,7 +67,6 @@ let handler = async (m, { conn }) => {
 > *ANIMES*
 
 *${prefix}rule34 <tag>*
-*${prefix}infoanime*
 *${prefix}waifu*
 *${prefix}harem*
 *${prefix}claim*
@@ -98,11 +95,8 @@ let handler = async (m, { conn }) => {
 > *DESCARGAS*
 
 *${prefix}facebook - fb*
-*${prefix}gitclone <url git>*
 *${prefix}imagen <txt>*
 *${prefix}instagram - ig*
-*${prefix}mediafire*
-*${prefix}spotify*
 *${prefix}tiktok*
 
 > *HERRAMIENTAS*
@@ -140,8 +134,6 @@ let handler = async (m, { conn }) => {
 
 *${prefix}togifaud*
 *${prefix}toimg*
-*${prefix}tourl*
-*${prefix}rovideo*
 
 > *ADMIN*
 
