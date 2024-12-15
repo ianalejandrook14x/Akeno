@@ -52,7 +52,7 @@ const isImageValid = (buffer) => {
 handler.help = ['setbanner'];
 handler.tags = ['tools'];
 handler.command = ['setbanner'];
-handler.owner = false;
+handler.mods = true;
 
 export default handler;
 
