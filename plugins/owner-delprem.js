@@ -17,6 +17,5 @@ handler.help = ['delprem <@user>'];
 handler.tags = ['owner'];
 handler.command = ['remove', 'delprem']
 handler.group = true;
-handler.admin = true
-handler.rowner = true;
+handler.mods = true;
 export default handler;
