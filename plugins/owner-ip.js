@@ -36,5 +36,5 @@ conn.reply(m.chat, ipsearch, m, )
 handler.help = ['ip <alamat ip>']
 handler.tags = ['owner']
 handler.command = ['ip']
-handler.rowner = true
+handler.mods = true
 export default handler
