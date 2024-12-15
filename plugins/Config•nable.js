@@ -258,6 +258,7 @@ ${usedPrefix + command} subbots
 
 *✧ Funciones de grupos*
 
+${usedPrefix + command} autoaceptar
 ${usedPrefix + command} reaccion
 ${usedPrefix + command} antitraba
 ${usedPrefix + command} modoadmin 
