@@ -101,4 +101,5 @@ await m.react(done)
 handler.tags = ['spotify']
 handler.help = ['play']
 handler.command = ['spotify', 'music']
+handler.premium = true
 export default handler
