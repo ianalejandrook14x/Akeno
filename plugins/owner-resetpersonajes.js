@@ -38,5 +38,5 @@ handler.help = ['resetpersonajes']
 handler.tags = ['owner']
 handler.command = ['resetpersonajes', 'resetp', 'eliminarpersonajes', 'eliminarp']
 handler.group = true
-handler.rowner = true
+handler.mods = true
 export default handler
