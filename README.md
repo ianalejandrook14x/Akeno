@@ -1,4 +1,4 @@
-# Nino ✧
+# Marin Kitagawa ✧
 > [!IMPORTANT]\
 > Este proyecto **todavia sigue en desarrollo por lo que pueda que no funcione correctamente en ciertos comandos**, creador y desarrollador `ianalejandrook15x`.
 
