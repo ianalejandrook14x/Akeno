@@ -11,6 +11,6 @@ export async function before(m, {conn, participants, groupMetadata}) {
 
  if (chat.welcome && m.messageStubType == 27) {
     let welcome = `*Hola ✦*\n\n${global.welcome}`
-await conn.sendMini(m.chat, redes, dev, welcome, catalogo, catalogo, redeshost, estilo)
+await conn.sendMini(m.chat, redes, dev, welcome, adios, adios, redeshost)
   }
 }
