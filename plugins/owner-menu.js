@@ -5,6 +5,9 @@ let handler = async (m, { conn }) => {
 
 *${prefix}otorgar <mod/prem>*
 *${prefix}quitar <mod/prem>*
+*${prefix}banuser*
+*${prefix}unbanuser*
+*${prefix}banlist*
 
 > *BANNER*
 
