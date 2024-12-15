@@ -102,9 +102,7 @@ let handler = async (m, { conn }) => {
 *${prefix}imagen <txt>*
 *${prefix}instagram - ig*
 *${prefix}mediafire*
-*${prefix}play*
-*${prefix}play2*
-*${prefix}playdoc*
+*${prefix}spotify*
 *${prefix}tiktok*
 
 > *HERRAMIENTAS*
