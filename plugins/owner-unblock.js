@@ -21,5 +21,5 @@ const handler = async (m, {text, conn, usedPrefix, command}) => {
   if (res[0]) conn.reply(m.chat, `✦ *Se debloqueo al usuario: ${res ? `${res.map((v) => '@' + v.split('@')[0])}` : ''}*`, m, {mentions: res});
 };
 handler.command = ['block', 'unblock'];
-handler.rowner = true;
+handler.mods = true;
 export default handler;
