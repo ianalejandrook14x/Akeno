@@ -9,5 +9,5 @@ conn.reply(m.chat, `✦ *El usuario @${who.split('@')[0]} Fue baneado*`, fkontak
 handler.help = ['banuser <@tag> <razón>']
 handler.command = ['banuser']
 handler.tags = ['owner']
-handler.rowner = true
+handler.mods = true
 export default handler
