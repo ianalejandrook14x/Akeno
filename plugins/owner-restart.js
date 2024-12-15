@@ -19,7 +19,7 @@ process.send('reset')
 handler.help = ['restart']
 handler.tags = ['owner']
 handler.command = ['restart', 'reiniciar'] 
-handler.rowner = true
+handler.mods = true
 
 export default handler
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
