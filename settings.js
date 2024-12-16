@@ -35,12 +35,12 @@ global.vs = '1.0.1'
 global.languaje = 'Español'
 global.nameqr = 'Bσƚ Ⴆყ ιαɳ'
 global.sessions = 'BotSession'
-global.banner = 'https://qu.ax/knfar.jpg'
+global.banner = 'https://qu.ax/PMWba.jpg'
 global.jadi = 'JadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.botname = 'Mαɾιɳ Kιƚαɠαɯα ✦'
+global.botname = 'Aƙҽɳσ Hιɱҽʝιɱα ✦'
 global.author = 'By ianalejandrook15x'
 global.dev = 'Pσɯҽɾҽԃ Bყ Iαɳ'
 global.currency = 'Yenes'
