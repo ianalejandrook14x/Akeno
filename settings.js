@@ -35,7 +35,7 @@ global.vs = '1.0.1'
 global.languaje = 'Español'
 global.nameqr = 'Bσƚ Ⴆყ ιαɳ'
 global.sessions = 'BotSession'
-global.banner = 'https://qu.ax/PMWba.jpg'
+global.banner = 'https://qu.ax/nCFFn.jpg'
 global.jadi = 'JadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
