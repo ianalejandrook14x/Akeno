@@ -34,7 +34,6 @@ let user = global.db.data.users[m.sender]
 if (typeof user !== 'object')
 
 if (opts['nyimak']) return
-if (!isROwner && opts['self']) return 
 if (opts['pconly'] && m.chat.endsWith('g.us')) return
 if (opts['gconly'] && !m.chat.endsWith('g.us')) return
 if (opts['swonly'] && m.chat !== 'status@broadcast') return
