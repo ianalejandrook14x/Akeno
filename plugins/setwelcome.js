@@ -3,7 +3,7 @@ let handler = async (m, { conn, isRowner }) => {
 
  
   if (!newWelcome) {
-    return m.reply('*✦ Proporcione un mensaje de bienvenida');
+    return m.reply('*✦ Proporcione un mensaje de bienvenida*');
   }
 
  
