@@ -79,22 +79,9 @@ let handler = async (m, { conn, isRowner }) => {
     }
 };
 
-// Configuración de ayuda y comandos
 handler.help = ['banuser <@tag>', 'unbanuser <@tag>', 'banlist'];
 handler.tags = ['owner'];
 handler.command = ['banuser', 'unbanuser', 'banlist'];
 handler.rowner = true;
 
-
-client.on('ready', () => {
-    console.log('Bot iniciado');
-});
-
-
-client.on('message', async (message) => {
-    
-    await handler(message, { conn: client, isRowner: message.from === 'adminNumber@c.us' });
-});
-
-
-client.initialize();
+export default handler
