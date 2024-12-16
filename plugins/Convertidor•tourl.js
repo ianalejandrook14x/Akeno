@@ -28,7 +28,7 @@ await m.react(error)
 handler.help = ['tourl']
 handler.tags = ['transformador']
 handler.command = ['tourl', 'upload']
-handelr.premium = true
+handler.premium = true
 export default handler
 
 function formatBytes(bytes) {
