@@ -6,15 +6,6 @@ import path from 'path';
 const client = new Client();
 
 
-let banlist = [];
-const banlistPath = path.join(__dirname, 'banlist.json');
-
-
-if (fs.existsSync(banlistPath)) {
-    banlist = JSON.parse(fs.readFileSync(banlistPath));
-}
-
-
 function banUser(userId) {
     if (!banlist.includes(userId)) {
         banlist.push(userId);
