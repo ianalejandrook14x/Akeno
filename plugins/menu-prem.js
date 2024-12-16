@@ -20,9 +20,9 @@ let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https:/
   await conn.sendMessage(m.chat, { text: txt, contextInfo: { externalAdReply: { title: botname, body: dev, thumbnailUrl: banner, mediaType: 1, showAdAttribution: true, renderLargerThumbnail: true }}} , { quoted: m })
 };
 
-handler.help = ['mods'];
+handler.help = ['prem'];
 handler.tags = ['main'];
-handler.command = ['mods'];
+handler.command = ['prem'];
 handler.mods = true
 
 export default handler;
