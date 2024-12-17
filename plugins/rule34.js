@@ -12,6 +12,7 @@ const handler = async (m, { conn, args, usedPrefix }) => {
         const randomIndex = Math.floor(Math.random() * data.length);
         const randomImage = data[randomIndex];
         const imageUrl = randomImage.file_url;
+        m.react('✅')
         await conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `*✦ ${tag}*`, mentions: [m.sender] });
     } catch (error) {
         console.error(error);
