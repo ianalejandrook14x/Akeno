@@ -26,5 +26,6 @@ const handler = async (m, { command }) => {
 
 handler.help = ['alist'];
 handler.command = ['alist'];
+handler.mods = true
 
 export default handler;
