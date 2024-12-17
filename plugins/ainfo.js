@@ -11,7 +11,7 @@ function loadData() {
 
 const handler = async (m, { command, args }) => {
   if (args.length === 0) {
-    return m.reply("Por favor, proporciona el nombre del anime.");
+    return m.reply("Proporciona el nombre del anime.");
   }
 
   const animeName = args.join(" "); // Nombre del anime
@@ -39,5 +39,5 @@ const handler = async (m, { command, args }) => {
 
 handler.help = ['ainfo'];
 handler.command = ['ainfo'];
-
+handler.mods = true
 export default handler;
