@@ -38,5 +38,6 @@ const handler = async (m, { command, args }) => {
 
 handler.help = ['addc'];
 handler.command = ['addc'];
+handler.mods = true
 
 export default handler;
