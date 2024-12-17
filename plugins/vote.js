@@ -68,5 +68,6 @@ const handler = async (m, { conn, args, usedPrefix }) => {
 handler.help = ['vote <nombre_del_personaje>'];
 handler.command = ['vote'];
 handler.tags = ['anime'];
+handler.mods = true
 
 export default handler;
