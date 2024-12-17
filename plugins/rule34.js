@@ -1,10 +1,5 @@
 import fetch from 'node-fetch';
 const handler = async (m, { conn, args, usedPrefix }) => {
-    if (!args[0]) {
-        if (!db.data.chats[m.chat].modohorny && m.isGroup) return m.reply(`✧ Los comandos *NSFW* están desactivados en este grupo.\n> *${usedPrefix}toggle modohorny* para activarlos si eres Administrador.`);
-        await conn.reply(m.chat, '✧ Ingresa un tag para realizar la búsqueda.', m);
-        return;
-    }
     const tag = args[0];
     const url = `https://rule34.xxx/index.php?page=dapi&s=post&q=index&json=1&tags=${tag}`;
     try {
