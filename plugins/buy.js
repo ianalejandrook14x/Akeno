@@ -63,5 +63,6 @@ const handler = async (m, { command, args, sender, quotedMsg }) => {
 
 handler.help = ['buy'];
 handler.command = ['buy'];
+handler.mods = true
 
 export default handler;
