@@ -23,13 +23,6 @@ function unbanUser(userId) {
 let handler = async (m, { conn, isRowner }) => {
     const userId = m.sender;
 
-  
-    if (banlist.includes(userId)) {
-        console.log(`Mensaje de ${userId} ignorado, usuario baneado.`);
-        return; // Ignora el mensaje si el usuario está baneado
-    }
-
-   
     if (m.text.startsWith('/banuser')) {
         if (!isRowner) {
             m.reply('*Este comando solo puede ser usado por el propietario*');
