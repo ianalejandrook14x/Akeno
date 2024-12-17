@@ -39,5 +39,6 @@ function generateAnimeId() {
 
 handler.help = ['adda'];
 handler.command = ['adda'];
+handler.mods = true
 
 export default handler;
