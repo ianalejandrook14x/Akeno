@@ -70,9 +70,6 @@ let handler = async (m, { conn }) => {
 
 *${prefix}rule34 <tag>*
 *${prefix}waifu*
-*${prefix}harem*
-*${prefix}claim*
-*${prefix}rollwaifu*
 
 > *GRUPOS*
 
