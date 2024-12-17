@@ -1,6 +1,15 @@
 let handler = async (m, { conn }) => {
   let txt = `*Menu - Moderadores* ✧
 
+> *ROLL WAIFU - DESARROLLO*
+
+*${prefix}adda <name>*
+*${prefix}addc <id> <nombre>*
+*${prefix}alist*
+*${prefix}vote <name>*
+*${prefix}buy*
+*${prefix}ainfo <name>*
+
 > *CREADOR*
 
 *${prefix}otorgar <mod/prem>*
