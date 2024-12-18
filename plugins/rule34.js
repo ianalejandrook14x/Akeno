@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 const handler = async (m, { conn, args, usedPrefix }) => {
     const tag = args[0];
-    const url = `https://rule34.xxx/index.php?page=dapi&s=post&q=index&json=1&tags=${tag}`;
+    const url = `https://rule34.xxx/index.php?page=dapi&s=post&q=index&json=1&tags=${encodeURIComponent(tag)}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
