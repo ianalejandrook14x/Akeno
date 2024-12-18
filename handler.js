@@ -153,8 +153,6 @@ if (!('antiPrivate' in settings)) settings.antiPrivate = false
 if (!('autoread' in settings)) settings.autoread = false
 if (!('autoread2' in settings)) settings.autoread2 = false
 if (!('antiSpam' in settings)) settings.antiSpam = false
-if (!('autoAceptar' in chat)) chat.autoAceptar = false
-if (!('autoRechazar' in chat)) chat.autoRechazar = false
 } else global.db.data.settings[this.user.jid] = {
 self: false,
 restrict: false,
