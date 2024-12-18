@@ -1,5 +1,5 @@
 import fs from 'fs';
-import personajes from './personajes.json'; 
+const personajes = require('./personajes.json');
 
 const handler = async (m, { text }) => {
   const args = text.split(' ');
