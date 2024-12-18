@@ -16,9 +16,9 @@ const handler = async (m, { command }) => {
     return m.reply("No se han agregado animes aún.");
   }
   
-  let animeList = "> Lista de animes:\n\n";
+  let animeList = "*Lista de animes:*\n\n";
   for (let id in animes) {
-    animeList += `*${animes[id].name}: ${id}*\n`;
+    animeList += `> *${animes[id].name}*\n`;
   }
 
   return m.reply(animeList);
