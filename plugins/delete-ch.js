@@ -1,5 +1,4 @@
 import fs from 'fs';
-const personajes = require('./personajes.json');
 
 const handler = async (m, { text }) => {
   const args = text.split(' ');
@@ -7,24 +6,26 @@ const handler = async (m, { text }) => {
   const tag = args[1];
 
   if (!id || !tag) {
-    return m.reply('*Proporciona la ID y el Tag*');
+    return m.reply('*Proporciona una ID y un tag*');
   }
 
-  const anime = personajes.find(anime => anime.id === id);
+  const personajes = await import('./personajes.json', { assert: { type: 'json' } });
+
+  const anime = personajes.default.find(anime => anime.id === id);
 
   if (!anime) {
-    return m.reply('*No se encontró el anime con esa ID.*');
+    return m.reply('*No se encontró el anime con esa ID*');
   }
 
   const personajeIndex = anime.personajes.findIndex(p => p.tag === tag);
 
   if (personajeIndex === -1) {
-    return m.reply('*No se encontró el personaje con ese tag.*');
+    return m.reply('*No se encontró el personaje con ese tag*');
   }
 
   anime.personajes.splice(personajeIndex, 1);
 
-  fs.writeFileSync('./personajes.json', JSON.stringify(personajes, null, 2));
+  fs.writeFileSync('./personajes.json', JSON.stringify(personajes.default, null, 2));
 
   return m.reply('*Se eliminó el personaje*');
 };
