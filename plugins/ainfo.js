@@ -29,7 +29,7 @@ const handler = async (m, { command, args }) => {
     return m.reply(`*No se encontraron personajes agregados en el anime: ${anime.name}*`);
   }
 
-  let characterList = `*Personajes de ${anime.name}:*\n> \`\`\`Identificador:\`\`\`\n*${animeId}*\n\n`;
+  let characterList = `*Personajes de ${anime.name}:*\n> \`\`\`Identificador:\`\`\`*${animeId}*\n\n`;
   anime.characters.forEach(character => {
     characterList += `> *${character.name}*\n`;
   });
