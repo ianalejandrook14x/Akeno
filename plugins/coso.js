@@ -1,40 +1,39 @@
 import fs from 'fs';
 import path from 'path';
 
-const configFolder = path.resolve('./subbots_config');
+const subBotsFolder = './subbots_config';
 
-if (!fs.existsSync(configFolder)) {
-  fs.mkdirSync(configFolder);
+if (!fs.existsSync(subBotsFolder)) {
+    fs.mkdirSync(subBotsFolder, { recursive: true });
 }
 
-const defaultConfig = {
-  setcurrency: 'Yenes',
-  setdev: 'Ian',
-  setname: 'Aƙҽɳσ Hιɱҽʝιɱα ✦',
-  setbanner: 'https://qu.ax/nCFFn.jpg',
-  setprefix: '/',
-};
+const handler = async (m, { conn }) => {
+    const subBotID = m.sender; // Identificar al subbot por el ID del remitente
+    const subBotFile = path.join(subBotsFolder, `${subBotID}.json`);
 
-const handler = async (m, { args, isOwner }) => {
-  const subbotId = m.sender; 
+    const defaultConfig = {
+        setcurrency: 'Yenes',
+        setdev: 'Ian',
+        setname: 'ƙҽɳσ Hιɱҽʝιɱα ✦',
+        setbanner: 'https://qu.ax/nCFFn.jpg',
+        setprefix: '/'
+    };
 
-  const configPath = path.join(configFolder, `subbot_${subbotId}.json`);
+    let config;
+    if (fs.existsSync(subBotFile)) {
+        config = JSON.parse(fs.readFileSync(subBotFile, 'utf-8'));
+    } else {
+        config = { ...defaultConfig };
+        fs.writeFileSync(subBotFile, JSON.stringify(config, null, 2));
+    }
 
-  if (!fs.existsSync(configPath)) {
-    fs.writeFileSync(configPath, JSON.stringify(defaultConfig, null, 2));
-    m.reply('Archivo de configuración creado con valores predeterminados.');
-  } else {
-    m.reply('El archivo de configuración Ya existe.');
-  }
-
-  const config = JSON.parse(fs.readFileSync(configPath));
-
-  global.currency = config.setcurrency;
-  global.botname = config.setname;
-  global.dev = config.setdev;
-  global.banner = config.setbanner;
-  global.prefix = config.setprefix;
+    global.currency = config.setcurrency;
+    global.botname = config.setname;
+    global.dev = config.setdev;
+    global.banner = config.setbanner;
+    global.prefix = config.setprefix;
   
+    conn.reply(m.chat, `El subbot se ha configurado con éxito.\n\nNombre: ${config.setname}\nDesarrollador: ${config.setdev}\nPrefijo: ${config.setprefix}`, m);
 };
 
 export default handler;
