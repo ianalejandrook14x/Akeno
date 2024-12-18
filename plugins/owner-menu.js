@@ -6,6 +6,7 @@ let handler = async (m, { conn }) => {
 *${prefix}adda <name>*
 *${prefix}addc <id> <nombre>*
 *${prefix}alist*
+*${prefix}delete <id> <tag>*
 *${prefix}vote <name>*
 *${prefix}buy*
 *${prefix}ainfo <name>*
