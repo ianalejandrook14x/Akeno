@@ -13,7 +13,7 @@ const handler = async (m, { conn, args, usedPrefix }) => {
         const randomImage = data[randomIndex];
         const imageUrl = randomImage.file_url;
         m.react('✅')
-        await conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `*✦ ${tag}*`, mentions: [m.sender] });
+        await conn.sendMessage(m.chat, { image: { url: imageUrl }, caption: `*✦ ${tag || 'Resultados encontrados'}*`, mentions: [m.sender] });
     } catch (error) {
         console.error(error);
         await m.reply('✧ Ocurrió un error inesperado.');
