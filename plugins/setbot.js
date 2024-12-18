@@ -2,7 +2,6 @@ const primaryGroups = new Set();
 
 const handler = async (msg, { args, groupId, isAdmin }) => {
   if (!msg.isGroup) return msg.reply('*Este comando solo funciona en grupos.*');
-  if (!args[0]) return msg.reply('*Debes mencionar al bot que deseas establecer como primario.*');
   if (!isAdmin) return msg.reply('*Solo los administradores pueden usar este comando.*');
   
   const mentionedTag = args[0].replace('@', '');
@@ -15,6 +14,7 @@ const handler = async (msg, { args, groupId, isAdmin }) => {
 
 handler.command = ['setbot'];
 handler.help = ['setbot <@tag>'];
+handler.group = true;
 handler.mods = true; 
 
 export default handler;
