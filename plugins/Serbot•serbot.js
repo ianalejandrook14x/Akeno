@@ -1,3 +1,5 @@
+//editado por dylux
+
 const {
   useMultiFileAuthState,
   DisconnectReason,
