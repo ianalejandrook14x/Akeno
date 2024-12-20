@@ -6,16 +6,14 @@ let pp = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://cdn.pixa
 let { premium, level, yenes, exp, lastclaim, registered, regTime, age, role } = global.db.data.users[m.sender]
 let username = conn.getName(who)
 let noprem = `
-✦ *Perfil*
+✦ *PERFIL DEL USUARIO*
 ✦ *Nombre:* ${username}
-
-✦ *RECURSOS*
-✦ *${currency}:* ${yenes || 'Sin Información'}
+✦ *${currency}:* ${currency || 'Sin Información'}
 ✦ *Experiencia:* ${exp || 'Sin Información'}
 ✦ *Premium*: *${prems ? 'Si' : 'No'}*`.trim()
 conn.sendFile(m.chat, pp, 'perfil.jpg', `${premium ? prem.trim() : noprem.trim()}`, m, rcanal, { mentions: [who] })
 }
 handler.help = ['profile']
-handler.tags = ['rg']
+handler.tags = ['rpg']
 handler.command = ['profile', 'perfil']
 export default handler
