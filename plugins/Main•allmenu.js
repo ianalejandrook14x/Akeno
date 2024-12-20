@@ -41,8 +41,8 @@ let handler = async (m, { conn }) => {
 
 > *SUB BOTS*
 
+*${prefix}code* 
 *${prefix}serbot*
-*${prefix}serbot --code*
 
 > *RPG*
 
