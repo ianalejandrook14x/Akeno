@@ -3,56 +3,56 @@ let handler = async (m, { conn }) => {
 
 > *ROLL WAIFU - DESARROLLO*
 
-*${prefix}adda <name>*
-*${prefix}addc <id> <nombre>*
-*${prefix}alist*
-*${prefix}delete <id> <tag>*
-*${prefix}vote <name>*
-*${prefix}buy*
-*${prefix}ainfo <name>*
+*${usedPrefix}adda <name>*
+*${usedPrefix}addc <id> <nombre>*
+*${usedPrefix}alist*
+*${usedPrefix}delete <id> <tag>*
+*${usedPrefix}vote <name>*
+*${usedPrefix}buy*
+*${usedPrefix}ainfo <name>*
 
 > *CREADOR*
 
-*${prefix}otorgar <mod/prem>*
-*${prefix}quitar <mod/prem>*
-*${prefix}banuser*
-*${prefix}unbanuser*
-*${prefix}banlist*
-*${prefix}banchat*
-*${prefix}banlist*
-*${prefix}unbanchat*
+*${usedPrefix}otorgar <mod/prem>*
+*${usedPrefix}quitar <mod/prem>*
+*${usedPrefix}banuser*
+*${usedPrefix}unbanuser*
+*${usedPrefix}banlist*
+*${usedPrefix}banchat*
+*${usedPrefix}banlist*
+*${usedPrefix}unbanchat*
 
 > *BANNER*
 
-*${prefix}getname*
-*${prefix}setcurrency*
-*${prefix}setdev*
-*${prefix}setname*
-*${prefix}setwelcome*
+*${usedPrefix}getname*
+*${usedPrefix}setcurrency*
+*${usedPrefix}setdev*
+*${usedPrefix}setname*
+*${usedPrefix}setwelcome*
 
 > Bყ ✦ ιαɳαʅҽʝαɳԃɾσσƙ15x
 
-*${prefix}copia*
-*${prefix}e*
-*${prefix}addprem <@tag> <days>*
-*${prefix}addxp <@tag> <monto>*
-*${prefix}autoadmin*
-*${prefix}banuser <@tag>*
-*${prefix}unbanuser <@tag>*
-*${prefix}broadcast*
-*${prefix}bc*
-*${prefix}cheat*
-*${prefix}cleartmp*
-*${prefix}delprem <@tag>*
-*${prefix}fetch*
-*${prefix}get*
-*${prefix}ip <dirección>*
-*${prefix}join <link>*
-*${prefix}nuevabiobot <txt>*
-*${prefix}grupocrear <txt>*
-*${prefix}resetperonajes*
-*${prefix}restart*
-*${prefix}addyenes <@tag>*`.trim();
+*${usedPrefix}copia*
+*${usedPrefix}e*
+*${usedPrefix}addprem <@tag> <days>*
+*${usedPrefix}addxp <@tag> <monto>*
+*${usedPrefix}autoadmin*
+*${usedPrefix}banuser <@tag>*
+*${usedPrefix}unbanuser <@tag>*
+*${usedPrefix}broadcast*
+*${usedPrefix}bc*
+*${usedPrefix}cheat*
+*${usedPrefix}cleartmp*
+*${usedPrefix}delprem <@tag>*
+*${usedPrefix}fetch*
+*${usedPrefix}get*
+*${usedPrefix}ip <dirección>*
+*${usedPrefix}join <link>*
+*${usedPrefix}nuevabiobot <txt>*
+*${usedPrefix}grupocrear <txt>*
+*${usedPrefix}resetperonajes*
+*${usedPrefix}restart*
+*${usedPrefix}addyenes <@tag>*`.trim();
 
 m.react('💻')
 let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg')
