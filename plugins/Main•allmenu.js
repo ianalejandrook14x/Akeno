@@ -146,7 +146,8 @@ await conn.sendMessage(m.chat, {
   text: txt,
   contextInfo: {
     forwardingScore: 999, 
-    isForwarded: true, 
+    isForwarded: true,
+    rcanal,
     externalAdReply: {
       title: botname, 
       body: dev, 
