@@ -49,6 +49,7 @@ global.currency = 'Yenes'
 global.prefix '.'
 global.botStatus = true;
 global.grupos = '${groupMetadata.subject}'
+global.texto2 = 'Hola bienvenido al grupo te saluda el bot de ianalejandrook15x 👋🏻
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
