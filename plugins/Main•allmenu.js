@@ -3,141 +3,141 @@ let handler = async (m, { conn }) => {
 
 > *INFO*
 
-*perfil*
-*menu*
-*grupos*
-*blocklist*
+*${prefix}perfil*
+*${prefix}menu*
+*${prefix}grupos*
+*${prefix}blocklist*
 
 > *BUSQUEDAS*
 
-*google <búsqueda>*
-*tiktoksearch <txt>*
-*ytsearch*
-*imagen <txt>*
-*play*
-*play2*
-*play3*
-*play4*
-*playdoc*
-*playdoc2*
+*${prefix}google <búsqueda>*
+*${prefix}tiktoksearch <txt>*
+*${prefix}ytsearch*
+*${prefix}imagen <txt>*
+*${prefix}play*
+*${prefix}play2*
+*${prefix}play3*
+*${prefix}play4*
+*${prefix}playdoc*
+*${prefix}playdoc2*
 
 > *JUEGOS*
 
-*abrazar <@tag>*
-*acertijo*
-*sonrojarse <@tag>*
-*consejo*
-*enamorada <@tag>*
-*meme*
-*acariciar <@tag>*
-*personalidad*
-*piropo*
-*pokedex <pokemón>*
-*pregunta*
-*dormir <@tag>*
-*triste <@tag>*
-*top <txt>*
-*zodiac <2010 03 15*
+*${prefix}abrazar <@tag>*
+*${prefix}acertijo*
+*${prefix}sonrojarse <@tag>*
+*${prefix}consejo*
+*${prefix}enamorada <@tag>*
+*${prefix}meme*
+*${prefix}acariciar <@tag>*
+*${prefix}personalidad*
+*${prefix}piropo*
+*${prefix}pokedex <pokemón>*
+*${prefix}pregunta*
+*${prefix}dormir <@tag>*
+*${prefix}triste <@tag>*
+*${prefix}top <txt>*
+*${prefix}zodiac <2010 03 15*
 
 > *SUB BOTS*
 
-*code* 
-*serbot*
+*${prefix}code* 
+*${prefix}serbot*
 
 > *RPG*
 
-*bal*
-*crimen*
-*daily*
-*claim*
-*depositar*
-*lb*
-*retirar*
-*rob2*
-*rob*
-*trabajar*
-*buy*
-*buy all*
+*${prefix}bal*
+*${prefix}crimen*
+*${prefix}daily*
+*${prefix}claim*
+*${prefix}depositar*
+*${prefix}lb*
+*${prefix}retirar*
+*${prefix}rob2*
+*${prefix}rob*
+*${prefix}trabajar*
+*${prefix}buy*
+*${prefix}buy all*
 
 > *STICKERS*
 
-*qc*
-*stiker <img>*
-*sticker <url>*
-*take <nombre/autor>*
+*${prefix}qc*
+*${prefix}stiker <img>*
+*${prefix}sticker <url>*
+*${prefix}take <nombre/autor>*
 
 > *ANIMES*
 
-*rule34 <tag>*
-*waifu*
+*${prefix}rule34 <tag>*
+*${prefix}waifu*
 
 > *GRUPOS*
 
-*link*
-*grupo open / close*
-*delete*
-*demote*
-*promote*
-*encuesta <txt / txt>*
-*hidetag*
-*infogrupo*
-*kick*
-*listadv*
-*tagall <txt>*
-*invocar <txt>*
+*${prefix}link*
+*${prefix}grupo open / close*
+*${prefix}delete*
+*${prefix}demote*
+*${prefix}promote*
+*${prefix}encuesta <txt / txt>*
+*${prefix}hidetag*
+*${prefix}infogrupo*
+*${prefix}kick*
+*${prefix}listadv*
+*${prefix}tagall <txt>*
+*${prefix}invocar <txt>*
 
 > *ON/OFF*
 
-*enable*
-*disable*
+*${prefix}enable*
+*${prefix}disable*
 
 > *DESCARGAS*
 
-*facebook - fb*
-*imagen <txt>*
-*instagram - ig*
-*tiktok*
+*${prefix}facebook - fb*
+*${prefix}imagen <txt>*
+*${prefix}instagram - ig*
+*${prefix}tiktok*
 
 > *HERRAMIENTAS*
 
-*toanime*
-*remini*
-*hd*
-*enhance*
-*ssweb*
-*ss*
-*trad*
+*${prefix}toanime*
+*${prefix}remini*
+*${prefix}hd*
+*${prefix}enhance*
+*${prefix}ssweb*
+*${prefix}ss*
+*${prefix}trad*
 
 > *AUDIOS*
 
-*bass <vn>*
-*blown <vn>*
-*deep <vn>*
-*earrape <vn>*
-*fast <vn>*
-*fat <vn>*
-*nightcore <vn>*
-*reverse <vn>*
-*robot <vn>*
-*slow <vn>*
-*smooth <vn>*
-*tupai <vn>*
+*${prefix}bass <vn>*
+*${prefix}blown <vn>*
+*${prefix}deep <vn>*
+*${prefix}earrape <vn>*
+*${prefix}fast <vn>*
+*${prefix}fat <vn>*
+*${prefix}nightcore <vn>*
+*${prefix}reverse <vn>*
+*${prefix}robot <vn>*
+*${prefix}slow <vn>*
+*${prefix}smooth <vn>*
+*${prefix}tupai <vn>*
 
 > *AI*
 
-*remini*
-*hd*
-*enhance*
+*${prefix}remini*
+*${prefix}hd*
+*${prefix}enhance*
 
 > *CONVERTIDORES*
 
-*togifaud*
-*toimg*
+*${prefix}togifaud*
+*${prefix}toimg*
 
 > *ADMIN*
 
-*addprem2 <@tag> <days>*
-*addyen2 <@tag>*`.trim();
+*${prefix}addprem2 <@tag> <days>*
+*${prefix}addyen2 <@tag>*`.trim();
 
 m.react('✅');
 let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg');
@@ -145,9 +145,13 @@ let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https:/
 await conn.sendMessage(m.chat, {
   text: txt,
   contextInfo: {
-    forwardingScore: 999, 
-    isForwarded: true,
-    rcanal,
+    forwardingScore: 999,
+    isForwarded: true, 
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: '120363318758721861@newsletter',
+      newsletterName: namechannel,
+      serverMessageId: -1 
+    },
     externalAdReply: {
       title: botname, 
       body: dev, 
