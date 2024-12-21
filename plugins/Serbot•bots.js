@@ -99,3 +99,4 @@ case isCommand3:
 
 handler.command = ['deletesesion', 'deletebot', 'deletesession', 'stop', 'pausarbot', 'bots', 'listjadibots', 'subbots'];
 export default handler;
+//
