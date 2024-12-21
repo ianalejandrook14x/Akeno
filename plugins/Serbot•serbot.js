@@ -35,8 +35,8 @@ let crm3 = "Sinfo-Donar.js";
 let crm4 = " _autoresponder.js info-bot.js";
 let drm1 = "";
 let drm2 = "";
-let rtx = "✦ 𝗦𝗘𝗥 𝗦𝗨𝗕 𝗕𝗢𝗧 ✦\n\n*❀ Utilice otro celular para escanear este codigo QR o escanea el codigo mediante una PC para convertirte en Sub Bot*\n\n`1` » Haga clic en los tres puntos en la esquina superior derecha\n\n`2` » Toca dispositivos vinculados\n\n`3` » Escanee este codigo QR para iniciar sesión\n\n❀ *Este código QR expira en 45 segundos*\n\n*❒ Jadibot, Hecho por @Aiden_NotLogic ✦*";
-let rtx2 =  "✦ 𝗦𝗘𝗥 𝗦𝗨𝗕 𝗕𝗢𝗧 ✦\n\n*❀ Usa este Código para convertirte en un Sub Bot*\n\n`1` » Haga clic en los tres puntos en la esquina superior derecha\n\n`2` » Toca dispositivos vinculados\n\n`3` » Selecciona Vincular con el número de teléfono\n\n`4` » Escriba el Código\n\n❀ *Este código solo funciona en en el número que lo solicitó*\n\n*❒ Jadibot, Hecho por @Aiden_NotLogic ✦*";
+let rtx = "✦ 𝗦𝗘𝗥 𝗦𝗨𝗕 𝗕𝗢𝗧 ✦\n\n*❀ Utilice otro celular para escanear este codigo QR o escanea el codigo mediante una PC para convertirte en Sub Bot*\n\n`1` » Haga clic en los tres puntos en la esquina superior derecha\n\n`2` » Toca dispositivos vinculados\n\n`3` » Escanee este codigo QR para iniciar sesión\n\n❀ *Este código QR expira en 45 segundos*\n\n*❒ Editado por @Dylux Jadibot, Hecho por @Aiden_NotLogic ✦*";
+let rtx2 =  "✦ 𝗦𝗘𝗥 𝗦𝗨𝗕 𝗕𝗢𝗧 ✦\n\n*❀ Usa este Código para convertirte en un Sub Bot*\n\n`1` » Haga clic en los tres puntos en la esquina superior derecha\n\n`2` » Toca dispositivos vinculados\n\n`3` » Selecciona Vincular con el número de teléfono\n\n`4` » Escriba el Código\n\n❀ *Este código solo funciona en en el número que lo solicitó*\n\n*❒ Jadibot, Editado por @Dylux Hecho por @Aiden_NotLogic ✦*";
 if (global.conns instanceof Array) {
   console.log();
 } else {
