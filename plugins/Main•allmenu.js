@@ -138,13 +138,24 @@ let handler = async (m, { conn }) => {
 
 *${prefix}addprem2 <@tag> <days>*
 *${prefix}addyen2 <@tag>*`.trim();
-  
-m.react('✅')
-let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg')
 
-  //await conn.sendFile(m.chat, imagen1, 'menu.jpg', txt, m);
-  //await conn.sendMini(m.chat, botname, textbot, , img, img, rcanal, estilo)
-  await conn.sendMessage(m.chat, { text: txt, contextInfo: { externalAdReply: { title: botname, body: dev, thumbnailUrl: banner, mediaType: 1, showAdAttribution: true, renderLargerThumbnail: true }}} , { quoted: m })
+m.react('✅');
+let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg');
+
+await conn.sendMessage(m.chat, {
+  text: txt,
+  contextInfo: {
+    forwardingScore: 999, 
+    isForwarded: true, 
+    externalAdReply: {
+      title: botname, 
+      body: dev, 
+      thumbnailUrl: banner, 
+      mediaType: 1, 
+      renderLargerThumbnail: true 
+    }
+  }
+}, { quoted: m });
 };
 
 handler.help = ['menu'];
