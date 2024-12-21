@@ -1,16 +1,16 @@
 let handler = async (m, { conn }) => {
   let txt = `*Menu - Prem* ✧
-*${usedPrefix}mediafire <link>*
-*${usedPrefix}pin <txt>*
-*${usedPrefix}spotify <txt>*
-*${usedPrefix}gitclone <url>*
-*${usedPrefix}tovideo*
-*${usedPrefix}tourl <pfp>*
-*${usedPrefix}githubsearch <url>*
-*${usedPrefix}npmjs <txt>*
-*${usedPrefix}tweetposts <txt>*
-*${usedPrefix}cofre*
-*${usedPrefix}infoanime*`.trim();
+*mediafire <link>*
+*pin <txt>*
+*spotify <txt>*
+*gitclone <url>*
+*tovideo*
+*tourl <pfp>*
+*githubsearch <url>*
+*npmjs <txt>*
+*tweetposts <txt>*
+*cofre*
+*infoanime*`.trim();
 
 m.react('✅')
 let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg')
