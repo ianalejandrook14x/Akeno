@@ -42,38 +42,60 @@ conn.ws.close()}
 break
 
 case isCommand3:
-//if (global.db.data.settings[conn.user.jid].jadibotmd) return m.reply(`✦ Este comando se encuentra desactivado por el creador del bot.`)
-const users = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])];
-function convertirMsADiasHorasMinutosSegundos(ms) {
-var segundos = Math.floor(ms / 1000);
-var minutos = Math.floor(segundos / 60);
-var horas = Math.floor(minutos / 60);
-var días = Math.floor(horas / 24);
-segundos %= 60;
-minutos %= 60;
-horas %= 24;
-var resultado = "";
-if (días !== 0) {
-resultado += días + " días, ";
-}
-if (horas !== 0) {
-resultado += horas + " horas, ";
-}
-if (minutos !== 0) {
-resultado += minutos + " minutos, ";
-}
-if (segundos !== 0) {
-resultado += segundos + " segundos";
-}
-return resultado;
-}
-const message = users.map((v, index) => `• 「 ${index + 1} 」\n📎 Wa.me/${v.user.jid.replace(/[^0-9]/g, '')}?text=${usedPrefix}code\n✦ Usuario: ${v.user.name || 'Sub-Bot'}\n✦ Online: ${ v.uptime ? convertirMsADiasHorasMinutosSegundos(Date.now() - v.uptime) : 'Desconocido'}`).join('\n\n__________________________\n\n');
-const replyMessage = message.length === 0 ? `✦ No se encontraron JadiBots disponibles, verifique mas tarde.` : message;
-const totalUsers = users.length;
-const responseMessage = `✦ *LISTA DE JADIBOTS*\n\n✦ PUEDES PEDIR PERMISO PARA QUE TE DEJEN UNIR EL BOT A TÚ GRUPO\n\n\`\`\`CADA USUARIO SUB BOT USA FUNCIÓN COMO QUIERA, EL NÚMERO PRINCIPAL NO SE HACE RESPONSABLE DEL USO DE LA FUNCIÓN \`\`\`\n\nSUBBOT CONECTADO: ${totalUsers || '0'}\n\n${replyMessage.trim()}`.trim();
-await _envio.sendMessage(m.chat, {text: responseMessage, mentions: _envio.parseMention(responseMessage)}, {quoted: m})
-break   
-}}
+  //if (global.db.data.settings[conn.user.jid].jadibotmd) return m.reply(`✦ Este comando se encuentra desactivado por el creador del bot.`);
+  const users = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])];
 
-handler.command = ['deletesesion', 'deletebot', 'deletesession', 'deletesession', 'stop', 'pausarbot', 'bots', 'listjadibots', 'subbots']
-export default handler
+  function convertirMsADiasHorasMinutosSegundos(ms) {
+    var segundos = Math.floor(ms / 1000);
+    var minutos = Math.floor(segundos / 60);
+    var horas = Math.floor(minutos / 60);
+    var días = Math.floor(horas / 24);
+    segundos %= 60;
+    minutos %= 60;
+    horas %= 24;
+    var resultado = "";
+    if (días !== 0) {
+      resultado += días + " días, ";
+    }
+    if (horas !== 0) {
+      resultado += horas + " horas, ";
+    }
+    if (minutos !== 0) {
+      resultado += minutos + " minutos, ";
+    }
+    if (segundos !== 0) {
+      resultado += segundos + " segundos";
+    }
+    return resultado;
+  }
+
+  const message = users.map((v, index) => `• 「 ${index + 1} 」\n📎 Wa.me/${v.user.jid.replace(/[^0-9]/g, '')}?text=${usedPrefix}code\n✦ Usuario: ${v.user.name || 'Sub-Bot'}\n✦ Online: ${v.uptime ? convertirMsADiasHorasMinutosSegundos(Date.now() - v.uptime) : 'Desconocido'}`).join('\n\n__________________________\n\n');
+  const replyMessage = message.length === 0 ? `✦ No se encontraron JadiBots disponibles, verifique mas tarde.` : message;
+  const totalUsers = users.length;
+  const responseMessage = `✦ *LISTA DE JADIBOTS*\n\n✦ PUEDES PEDIR PERMISO PARA QUE TE DEJEN UNIR EL BOT A TÚ GRUPO\n\n\`\`\`CADA USUARIO SUB BOT USA FUNCIÓN COMO QUIERA, EL NÚMERO PRINCIPAL NO SE HACE RESPONSABLE DEL USO DE LA FUNCIÓN \`\`\`\n\nSUBBOT CONECTADO: ${totalUsers || '0'}\n\n${replyMessage.trim()}`.trim();
+
+  await _envio.sendMessage(m.chat, {
+    text: responseMessage,
+    mentions: _envio.parseMention(responseMessage),
+    contextInfo: {
+      forwardingScore: 10, 
+      isForwarded: true, 
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: '120363318758721861@newsletter', 
+        newsletterName: namechannel, 
+        serverMessageId: -1 
+      },
+      externalAdReply: {
+        title: botname, 
+        body: dev, 
+        thumbnailUrl: banner, 
+        mediaType: 1,
+        renderLargerThumbnail: true 
+      }
+    }
+  }, { quoted: m });
+  break;
+}
+
+handler.command = ['deletesesion', 'deletebot', 'deletesession', 'stop', 'pausarbot', 'bots', 'listjadibots', 'subbots'];
+export default handler;
