@@ -2,12 +2,12 @@ let handler = async (m, { conn, isRowner }) => {
   const newWelcome = m.text.trim().split(' ').slice(1).join(' ');
 
  
-  if (!newTexto) {
+  if (!newWelcome) {
     return m.reply('*✦ Proporcione un mensaje de bienvenida*');
   }
 
  
-  global.texto = newTexto;  
+  global.welcome = newWelcome;  
 
   
   m.reply(`*✦ El mensaje de bienvenida fue cambiado*`);
