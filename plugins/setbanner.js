@@ -6,64 +6,44 @@ import { FormData, Blob } from "formdata-node";
 import { fileTypeFromBuffer } from "file-type";
 
 let handler = async (m, { conn, isRowner }) => {
-
-  if (!m.quoted || !/image|video/.test(m.quoted.mimetype)) return m.reply('✦ *Responda a una imagen / video con el comando para cambiar el banner*.');
+  if (!m.quoted || !m.quoted.mimetype) {
+    return m.reply('✦ *Responda a una imagen, video o GIF con el comando para cambiar el banner*.');
+  }
 
   try {
-
     const media = await m.quoted.download();
-    let link = await catbox(media);
-    
-    if (!isImageValid(media)) {
-      return m.reply('✧ El archivo enviado no es una imagen válida.');
+    const { mime } = await fileTypeFromBuffer(media) || {};
+
+    if (!isMediaValid(mime)) {
+      return m.reply('✧ *El archivo enviado no es un formato válido. Solo se permiten imágenes, videos y GIFs*');
     }
 
-    global.banner = `${link}`;  
-m.reply('*✦ El banner fue actualizado*')
-
+    const link = await catbox(media);
+    global.banner = `${link}`;
+    m.reply(`*✦ El banner fue actualizado*`);
   } catch (error) {
     console.error(error);
     m.reply('*✧ Hubo un error al intentar cambiar el banner.*');
   }
 };
 
-
-const isImageValid = (buffer) => {
-  const magicBytes = buffer.slice(0, 4).toString('hex');
-
-
-  if (magicBytes === 'ffd8ffe0' || magicBytes === 'ffd8ffe1' || magicBytes === 'ffd8ffe2') {
-    return true;
-  }
-
-
-  if (magicBytes === '89504e47') {
-    return true;
-  }
-
-
-  if (magicBytes === '47494638') {
-    return true;
-  }
-
-  return false; 
+const isMediaValid = (mime) => {
+  const validTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/gif",
+    "video/mp4",
+    "video/webm"
+  ];
+  return validTypes.includes(mime);
 };
 
 handler.help = ['setbanner'];
-handler.tags = ['tools'];
+handler.tags = ['banner'];
 handler.command = ['setbanner'];
 handler.mods = true;
 
 export default handler;
-
-function formatBytes(bytes) {
-  if (bytes === 0) {
-    return "0 B";
-  }
-  const sizes = ["B", "KB", "MB", "GB", "TB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(1024));
-  return `${(bytes / 1024 ** i).toFixed(2)} ${sizes[i]}`;
-}
 
 async function catbox(content) {
   const { ext, mime } = (await fileTypeFromBuffer(content)) || {};
