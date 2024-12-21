@@ -1,70 +1,166 @@
 let handler = async (m, { conn }) => {
-  let txt = `*Menu - Moderadores* ✧
+  let txt = `*Hola soy ${botname}* ✧
 
-> *ROLL WAIFU - DESARROLLO*
+> *INFO*
 
-*${usedPrefix}adda <name>*
-*${usedPrefix}addc <id> <nombre>*
-*${usedPrefix}alist*
-*${usedPrefix}delete <id> <tag>*
-*${usedPrefix}vote <name>*
-*${usedPrefix}buy*
-*${usedPrefix}ainfo <name>*
+*perfil*
+*menu*
+*grupos*
+*blocklist*
 
-> *CREADOR*
+> *BUSQUEDAS*
 
-*${usedPrefix}otorgar <mod/prem>*
-*${usedPrefix}quitar <mod/prem>*
-*${usedPrefix}banuser*
-*${usedPrefix}unbanuser*
-*${usedPrefix}banlist*
-*${usedPrefix}banchat*
-*${usedPrefix}banlist*
-*${usedPrefix}unbanchat*
+*google <búsqueda>*
+*tiktoksearch <txt>*
+*ytsearch*
+*imagen <txt>*
+*play*
+*play2*
+*play3*
+*play4*
+*playdoc*
+*playdoc2*
 
-> *BANNER*
+> *JUEGOS*
 
-*${usedPrefix}getname*
-*${usedPrefix}setcurrency*
-*${usedPrefix}setdev*
-*${usedPrefix}setname*
-*${usedPrefix}setwelcome*
+*abrazar <@tag>*
+*acertijo*
+*sonrojarse <@tag>*
+*consejo*
+*enamorada <@tag>*
+*meme*
+*acariciar <@tag>*
+*personalidad*
+*piropo*
+*pokedex <pokemón>*
+*pregunta*
+*dormir <@tag>*
+*triste <@tag>*
+*top <txt>*
+*zodiac <2010 03 15*
 
-> Bყ ✦ ιαɳαʅҽʝαɳԃɾσσƙ15x
+> *SUB BOTS*
 
-*${usedPrefix}copia*
-*${usedPrefix}e*
-*${usedPrefix}addprem <@tag> <days>*
-*${usedPrefix}addxp <@tag> <monto>*
-*${usedPrefix}autoadmin*
-*${usedPrefix}banuser <@tag>*
-*${usedPrefix}unbanuser <@tag>*
-*${usedPrefix}broadcast*
-*${usedPrefix}bc*
-*${usedPrefix}cheat*
-*${usedPrefix}cleartmp*
-*${usedPrefix}delprem <@tag>*
-*${usedPrefix}fetch*
-*${usedPrefix}get*
-*${usedPrefix}ip <dirección>*
-*${usedPrefix}join <link>*
-*${usedPrefix}nuevabiobot <txt>*
-*${usedPrefix}grupocrear <txt>*
-*${usedPrefix}resetperonajes*
-*${usedPrefix}restart*
-*${usedPrefix}addyenes <@tag>*`.trim();
+*code* 
+*serbot*
 
-m.react('💻')
-let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg')
+> *RPG*
 
-  //await conn.sendFile(m.chat, imagen1, 'menu.jpg', txt, m);
-  //await conn.sendMini(m.chat, botname, textbot, , img, img, rcanal, estilo)
-  await conn.sendMessage(m.chat, { text: txt, contextInfo: { externalAdReply: { title: botname, body: dev, thumbnailUrl: banner, mediaType: 1, showAdAttribution: true, renderLargerThumbnail: true }}} , { quoted: m })
+*bal*
+*crimen*
+*daily*
+*claim*
+*depositar*
+*lb*
+*retirar*
+*rob2*
+*rob*
+*trabajar*
+*buy*
+*buy all*
+
+> *STICKERS*
+
+*qc*
+*stiker <img>*
+*sticker <url>*
+*take <nombre/autor>*
+
+> *ANIMES*
+
+*rule34 <tag>*
+*waifu*
+
+> *GRUPOS*
+
+*link*
+*grupo open / close*
+*delete*
+*demote*
+*promote*
+*encuesta <txt / txt>*
+*hidetag*
+*infogrupo*
+*kick*
+*listadv*
+*tagall <txt>*
+*invocar <txt>*
+
+> *ON/OFF*
+
+*enable*
+*disable*
+
+> *DESCARGAS*
+
+*facebook - fb*
+*imagen <txt>*
+*instagram - ig*
+*tiktok*
+
+> *HERRAMIENTAS*
+
+*toanime*
+*remini*
+*hd*
+*enhance*
+*ssweb*
+*ss*
+*trad*
+
+> *AUDIOS*
+
+*bass <vn>*
+*blown <vn>*
+*deep <vn>*
+*earrape <vn>*
+*fast <vn>*
+*fat <vn>*
+*nightcore <vn>*
+*reverse <vn>*
+*robot <vn>*
+*slow <vn>*
+*smooth <vn>*
+*tupai <vn>*
+
+> *AI*
+
+*remini*
+*hd*
+*enhance*
+
+> *CONVERTIDORES*
+
+*togifaud*
+*toimg*
+
+> *ADMIN*
+
+*addprem2 <@tag> <days>*
+*addyen2 <@tag>*`.trim();
+
+m.react('✅');
+let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg');
+
+await conn.sendMessage(m.chat, {
+  text: txt,
+  contextInfo: {
+    forwardingScore: 999, 
+    isForwarded: true,
+    rcanal,
+    externalAdReply: {
+      title: botname, 
+      body: dev, 
+      thumbnailUrl: banner, 
+      mediaType: 1, 
+      renderLargerThumbnail: true 
+    }
+  }
+}, { quoted: m });
 };
 
-handler.help = ['mods'];
+handler.help = ['menu'];
 handler.tags = ['main'];
-handler.command = ['mods'];
-handler.mods = true
+handler.command = ['menu', 'allmenu', 'help', 'ayuda'];
 
 export default handler;
