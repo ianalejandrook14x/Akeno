@@ -145,7 +145,7 @@ let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https:/
 await conn.sendMessage(m.chat, {
   text: txt,
   contextInfo: {
-    forwardingScore: 10, 
+    forwardingScore: 999, 
     isForwarded: true, 
     forwardedNewsletterMessageInfo: {
       newsletterJid: '120363318758721861@newsletter', 
