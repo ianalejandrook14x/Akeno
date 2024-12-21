@@ -3,141 +3,141 @@ let handler = async (m, { conn }) => {
 
 > *INFO*
 
-*${usedPrefix}perfil*
-*${usedPrefix}menu*
-*${usedPrefix}grupos*
-*${usedPrefix}blocklist*
+*${prefix}perfil*
+*${prefix}menu*
+*${prefix}grupos*
+*${prefix}blocklist*
 
 > *BUSQUEDAS*
 
-*${usedPrefix}google <búsqueda>*
-*${usedPrefix}tiktoksearch <txt>*
-*${usedPrefix}ytsearch*
-*${usedPrefix}imagen <txt>*
-*${usedPrefix}play*
-*${usedPrefix}play2*
-*${usedPrefix}play3*
-*${usedPrefix}play4*
-*${usedPrefix}playdoc*
-*${usedPrefix}playdoc2*
+*${prefix}google <búsqueda>*
+*${prefix}tiktoksearch <txt>*
+*${prefix}ytsearch*
+*${prefix}imagen <txt>*
+*${prefix}play*
+*${prefix}play2*
+*${prefix}play3*
+*${prefix}play4*
+*${prefix}playdoc*
+*${prefix}playdoc2*
 
 > *JUEGOS*
 
-*${usedPrefix}abrazar <@tag>*
-*${usedPrefix}acertijo*
-*${usedPrefix}sonrojarse <@tag>*
-*${usedPrefix}consejo*
-*${usedPrefix}enamorada <@tag>*
-*${usedPrefix}meme*
-*${usedPrefix}acariciar <@tag>*
-*${usedPrefix}personalidad*
-*${usedPrefix}piropo*
-*${usedPrefix}pokedex <pokemón>*
-*${usedPrefix}pregunta*
-*${usedPrefix}dormir <@tag>*
-*${usedPrefix}triste <@tag>*
-*${usedPrefix}top <txt>*
-*${usedPrefix}zodiac <2010 03 15*
+*${prefix}abrazar <@tag>*
+*${prefix}acertijo*
+*${prefix}sonrojarse <@tag>*
+*${prefix}consejo*
+*${prefix}enamorada <@tag>*
+*${prefix}meme*
+*${prefix}acariciar <@tag>*
+*${prefix}personalidad*
+*${prefix}piropo*
+*${prefix}pokedex <pokemón>*
+*${prefix}pregunta*
+*${prefix}dormir <@tag>*
+*${prefix}triste <@tag>*
+*${prefix}top <txt>*
+*${prefix}zodiac <2010 03 15*
 
 > *SUB BOTS*
 
-*${usedPrefix}code* 
-*${usedPrefix}serbot*
+*${prefix}code* 
+*${prefix}serbot*
 
 > *RPG*
 
-*${usedPrefix}bal*
-*${usedPrefix}crimen*
-*${usedPrefix}daily*
-*${usedPrefix}claim*
-*${usedPrefix}depositar*
-*${usedPrefix}lb*
-*${usedPrefix}retirar*
-*${usedPrefix}rob2*
-*${usedPrefix}rob*
-*${usedPrefix}trabajar*
-*${usedPrefix}buy*
-*${usedPrefix}buy all*
+*${prefix}bal*
+*${prefix}crimen*
+*${prefix}daily*
+*${prefix}claim*
+*${prefix}depositar*
+*${prefix}lb*
+*${prefix}retirar*
+*${prefix}rob2*
+*${prefix}rob*
+*${prefix}trabajar*
+*${prefix}buy*
+*${prefix}buy all*
 
 > *STICKERS*
 
-*${usedPrefix}qc*
-*${usedPrefix}stiker <img>*
-*${usedPrefix}sticker <url>*
-*${usedPrefix}take <nombre/autor>*
+*${prefix}qc*
+*${prefix}stiker <img>*
+*${prefix}sticker <url>*
+*${prefix}take <nombre/autor>*
 
 > *ANIMES*
 
-*${usedPrefix}rule34 <tag>*
-*${usedPrefix}waifu*
+*${prefix}rule34 <tag>*
+*${prefix}waifu*
 
 > *GRUPOS*
 
-*${usedPrefix}link*
-*${usedPrefix}grupo open / close*
-*${usedPrefix}delete*
-*${usedPrefix}demote*
-*${usedPrefix}promote*
-*${usedPrefix}encuesta <txt / txt>*
-*${usedPrefix}hidetag*
-*${usedPrefix}infogrupo*
-*${usedPrefix}kick*
-*${usedPrefix}listadv*
-*${usedPrefix}tagall <txt>*
-*${usedPrefix}invocar <txt>*
+*${prefix}link*
+*${prefix}grupo open / close*
+*${prefix}delete*
+*${prefix}demote*
+*${prefix}promote*
+*${prefix}encuesta <txt / txt>*
+*${prefix}hidetag*
+*${prefix}infogrupo*
+*${prefix}kick*
+*${prefix}listadv*
+*${prefix}tagall <txt>*
+*${prefix}invocar <txt>*
 
 > *ON/OFF*
 
-*${usedPrefix}enable*
-*${usedPrefix}disable*
+*${prefix}enable*
+*${prefix}disable*
 
 > *DESCARGAS*
 
-*${usedPrefix}facebook - fb*
-*${usedPrefix}imagen <txt>*
-*${usedPrefix}instagram - ig*
-*${usedPrefix}tiktok*
+*${prefix}facebook - fb*
+*${prefix}imagen <txt>*
+*${prefix}instagram - ig*
+*${prefix}tiktok*
 
 > *HERRAMIENTAS*
 
-*${usedPrefix}toanime*
-*${usedPrefix}remini*
-*${usedPrefix}hd*
-*${usedPrefix}enhance*
-*${usedPrefix}ssweb*
-*${usedPrefix}ss*
-*${usedPrefix}trad*
+*${prefix}toanime*
+*${prefix}remini*
+*${prefix}hd*
+*${prefix}enhance*
+*${prefix}ssweb*
+*${prefix}ss*
+*${prefix}trad*
 
 > *AUDIOS*
 
-*${usedPrefix}bass <vn>*
-*${usedPrefix}blown <vn>*
-*${usedPrefix}deep <vn>*
-*${usedPrefix}earrape <vn>*
-*${usedPrefix}fast <vn>*
-*${usedPrefix}fat <vn>*
-*${usedPrefix}nightcore <vn>*
-*${usedPrefix}reverse <vn>*
-*${usedPrefix}robot <vn>*
-*${usedPrefix}slow <vn>*
-*${usedPrefix}smooth <vn>*
-*${usedPrefix}tupai <vn>*
+*${prefix}bass <vn>*
+*${prefix}blown <vn>*
+*${prefix}deep <vn>*
+*${prefix}earrape <vn>*
+*${prefix}fast <vn>*
+*${prefix}fat <vn>*
+*${prefix}nightcore <vn>*
+*${prefix}reverse <vn>*
+*${prefix}robot <vn>*
+*${prefix}slow <vn>*
+*${prefix}smooth <vn>*
+*${prefix}tupai <vn>*
 
 > *AI*
 
-*${usedPrefix}remini*
-*${usedPrefix}hd*
-*${usedPrefix}enhance*
+*${prefix}remini*
+*${prefix}hd*
+*${prefix}enhance*
 
 > *CONVERTIDORES*
 
-*${usedPrefix}togifaud*
-*${usedPrefix}toimg*
+*${prefix}togifaud*
+*${prefix}toimg*
 
 > *ADMIN*
 
-*${usedPrefix}addprem2 <@tag> <days>*
-*${usedPrefix}addyen2 <@tag>*`.trim();
+*${prefix}addprem2 <@tag> <days>*
+*${prefix}addyen2 <@tag>*`.trim();
 
 m.react('✅');
 let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg');
@@ -145,9 +145,13 @@ let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https:/
 await conn.sendMessage(m.chat, {
   text: txt,
   contextInfo: {
-    forwardingScore: 999, 
-    isForwarded: true,
-    rcanal,
+    forwardingScore: 10, 
+    isForwarded: true, 
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: '120363318758721861@newsletter', 
+      newsletterName: namechannel, 
+      serverMessageId: -1 
+    },
     externalAdReply: {
       title: botname, 
       body: dev, 
