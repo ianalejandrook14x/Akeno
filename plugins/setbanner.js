@@ -7,7 +7,7 @@ import { fileTypeFromBuffer } from "file-type";
 
 let handler = async (m, { conn, isRowner }) => {
 
-  if (!m.quoted || !/image/.test(m.quoted.mimetype)) return m.reply('✦ *Responda a una imagen con el comando para cambiar el banner*.');
+  if (!m.quoted || !/image|video/.test(m.quoted.mimetype)) return m.reply('✦ *Responda a una imagen con el comando para cambiar el banner*.');
 
   try {
 
