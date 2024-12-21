@@ -46,7 +46,6 @@ global.botname = 'Aƙҽɳσ Hιɱҽʝιɱα ✦'
 global.author = 'By ianalejandrook15x'
 global.dev = 'Pσɯҽɾҽԃ Bყ Iαɳ'
 global.currency = 'Yenes'
-global.prefix '/'
 global.botStatus = true;
 global.grupos = '${groupMetadata.subject}'
 global.texto = 'Hola bienvenido al grupo te saluda el bot de ianalejandrook15x 👋🏻'
