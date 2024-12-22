@@ -8,7 +8,7 @@ let username = conn.getName(who)
 let noprem = `
 ✦ *PERFIL DEL USUARIO*
 ✦ *Nombre:* ${username}
-✦ *${currency}:* ${currency || 'Sin Información'}
+✦ *${currency}:* ${money || 'Sin Información'}
 ✦ *Experiencia:* ${exp || 'Sin Información'}
 ✦ *Premium*: *${prems ? 'Si' : 'No'}*`.trim()
 conn.sendFile(m.chat, pp, 'perfil.jpg', `${premium ? prem.trim() : noprem.trim()}`, m, rcanal, { mentions: [who] })
