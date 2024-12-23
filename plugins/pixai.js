@@ -1,4 +1,4 @@
-import fetch from "node-fetch"; // Importación correcta para módulos ES
+import fetch from "node-fetch";
 
 const handler = {
   name: "pixai",
@@ -10,6 +10,10 @@ const handler = {
   isQuery: true,
 
   async run({ conn, msg }, { query }) {
+    if (!query) return msg.reply("Por favor, proporciona una consulta válida.");
+
+    msg.reply("Procesando tu consulta..."); // Mensaje inicial
+
     const apiUrl = `https://api.dorratz.com/v2/pix-ai?prompt=${encodeURIComponent(query)}`;
 
     try {
@@ -21,7 +25,7 @@ const handler = {
 
       const data = await response.json();
       if (!data.images || data.images.length === 0) {
-        return msg.reply(`*No se encontraron imágenes*`);
+        return msg.reply("No se encontraron imágenes para la consulta.");
       }
 
       data.images.forEach((imageUrl) => {
@@ -29,9 +33,13 @@ const handler = {
       });
 
     } catch (error) {
-      msg.reply(`*Ocurrió un error*`);
+      msg.reply(`Error al procesar la solicitud: ${error.message}`);
     }
   },
 };
+
+handler.command = ['pixai'];
+handler.help = ['pixai'];
+handler.premium = true;
 
 export default handler;
