@@ -1,11 +1,11 @@
-import fetch from "node-fetch";
+import fetch from "node-fetch"; // Importación correcta para módulos ES
 
 const handler = {
   name: "pixai",
   alias: ["pixai", "pix"],
   category: "search",
   use: "<query>",
-  example: "%cmd Akeno himejima",
+  example: "%cmd akeno gremory",
   isSpam: true,
   isQuery: true,
 
