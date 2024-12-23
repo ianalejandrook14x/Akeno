@@ -12,7 +12,7 @@ const handler = {
   async run({ conn, msg }, { query }) {
     if (!query) return msg.reply("Por favor, proporciona una consulta válida.");
 
-    msg.reply("Procesando tu consulta..."); // Mensaje inicial
+    msg.reply("*Creando imagenes*"); l
 
     const apiUrl = `https://api.dorratz.com/v2/pix-ai?prompt=${encodeURIComponent(query)}`;
 
