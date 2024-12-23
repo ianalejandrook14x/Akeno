@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-export default handler = {
+  module.exports  = {
   name: "pixai",
   alias: ["pixai", "pix"],
   category: "search",
