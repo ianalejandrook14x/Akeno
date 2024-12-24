@@ -2,14 +2,14 @@ import fetch from "node-fetch";
 import yts from "yt-search";
 
 let handler = async (m, { conn, text }) => {
-  if (!text) return; 
+  if (!text) return; // No responde si no hay texto
 
   
-  await conn.sendReact(m.chat, "🕑", m.key);
+  await conn.m.react(m.chat, "🕑", m.key);
 
   let ytres = await yts(text);
   let video = ytres.videos[0];
-  if (!video) return;
+  if (!video) return; // No responde si no encuentra video
 
   let { url } = video;
 
@@ -28,7 +28,7 @@ let handler = async (m, { conn, text }) => {
     );
 
     
-    await conn.sendReact(m.chat, "✅", m.key);
+    await conn.m.react(m.chat, "✅", m.key);
   } catch (error) {
     console.error(error);
   }
