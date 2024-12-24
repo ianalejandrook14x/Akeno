@@ -45,11 +45,13 @@ let handler = async (m, { conn, text }) => {
   } catch (error) {
     console.error("Error al descargar el audio:", error);
 
-    // Reacción de error
+    
     await m.react('❌');
   }
 };
 
 handler.command = /^(ytmp3)$/i;
+handler.tags = ['busquedas']
+handler.help = ['ytmp3']
 
 export default handler;
