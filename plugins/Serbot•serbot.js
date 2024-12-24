@@ -237,7 +237,7 @@ let handler = async (msg, {
           subBot.isInit = true;
           global.conns.push(subBot);
           await user.sendMessage(msg.chat, {
-            text: args[0] ? "⚪ *Está conectado(a)!! Por favor espere se está cargando los mensajes...*\n\n♻️ *Opciones Disponibles:*\n*» " + usedPrefix + "pausarai _(Detener la función Sub Bot)_*\n*» " + usedPrefix + "deletesession _(Borrar todo rastro de Sub Bot)_*\n*» " + usedPrefix + "serbot _(Nuevo código QR o Conectarse si ya es Sub Bot)_*" : "✅ Conexión con éxito al WhatsApp si se desconecta envie *.serbot* link del canal: https://whatsapp.com/channel/0029VajkZ6bIXnlwPZmbuH1u"
+            text: args[0] ? "⚪ *Está conectado(a)!! Por favor espere se está cargando los mensajes...*\n\n♻️ *Opciones Disponibles:*\n*» " + usedPrefix + "pausarai _(Detener la función Sub Bot)_*\n*» " + usedPrefix + "deletesession _(Borrar todo rastro de Sub Bot)_*\n*» " + usedPrefix + "serbot _(Nuevo código QR o Conectarse si ya es Sub Bot)_*" : "✅ Conexión con éxito al WhatsApp si se desconecta envie *.code* link del canal: https://whatsapp.com/channel/0029VajkZ6bIXnlwPZmbuH1u"
           }, {
             quoted: msg
           });
