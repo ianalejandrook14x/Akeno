@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import yts from 'yt-search';
 
-let limit = 100;
+let limit = 100; // Límite de tamaño en MB
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) return conn.reply(m.chat, `✦ *Ingrese el nombre de un video de YouTube* o proporcione un enlace.\n\nEjemplo:\n${usedPrefix + command} https://youtu.be/ejemplo\n${usedPrefix + command} nombre del video`, m);
@@ -12,7 +12,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let query = args.join(' ');
 
     if (query.startsWith('http') || query.includes('youtu.be') || query.includes('youtube.com')) {
-      await handleDownload(m, conn, query, usedPrefix, command);
+      await handleDownload(m, conn, query);
     } else {
       await handleSearch(m, conn, query, usedPrefix, command);
     }
@@ -23,7 +23,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   }
 };
 
-async function handleDownload(m, conn, url, usedPrefix, command) {
+async function handleDownload(m, conn, url) {
   try {
     let apiUrl = `https://api-rin-tohsaka.vercel.app/download/ytmp4?url=${encodeURIComponent(url)}`;
     let response = await fetch(apiUrl);
@@ -34,13 +34,15 @@ async function handleDownload(m, conn, url, usedPrefix, command) {
     }
 
     let data = await response.json();
-    let sizeMB = data.size / (1024 * 1024);
 
+    // Verificar si el tamaño del video excede el límite
+    let sizeMB = data.size / (1024 * 1024);
     if (sizeMB >= limit) {
       await conn.reply(m.chat, `El video pesa más de ${limit} MB, por lo que no se puede enviar.`, m);
       return await m.react('❌');
     }
 
+    // Enviar el video directamente
     await conn.sendMessage(m.chat, {
       video: { url: data.download_url },
       caption: `${data.title}`,
