@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import axios from 'axios';
 import yts from 'yt-search';
 
 let limit = 100; // Límite de tamaño en MB
@@ -26,14 +26,14 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 async function handleDownload(m, conn, url) {
   try {
     let apiUrl = `https://api-rin-tohsaka.vercel.app/download/ytmp4?url=${encodeURIComponent(url)}`;
-    let response = await fetch(apiUrl);
+    let response = await axios.get(apiUrl);
 
-    if (!response.ok) {
+    if (response.status !== 200) {
       await conn.reply(m.chat, 'Error al obtener el video. Verifica el enlace e intenta nuevamente.', m);
       return await m.react('❌');
     }
 
-    let data = await response.json();
+    let data = response.data;
 
     // Verificar si el tamaño del video excede el límite
     let sizeMB = data.size / (1024 * 1024);
