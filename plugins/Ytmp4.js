@@ -4,8 +4,8 @@ import yts from "yt-search";
 let handler = async (m, { conn, text }) => {
   if (!text) return; // No responde si no hay texto
 
-  
-  await conn.m.react('🕑');
+  // Reacción de proceso
+  await conn.m.react(m.chat, '🕑', m.key);
 
   let ytres = await yts(text);
   let video = ytres.videos[0];
@@ -27,10 +27,13 @@ let handler = async (m, { conn, text }) => {
       { quoted: m }
     );
 
-    
-    await conn.m.react('✅');
+    // Reacción de éxito
+    await conn.m.react(m.chat, '✅', m.key);
   } catch (error) {
     console.error(error);
+
+    // Reacción de error (opcional, si quieres añadirla)
+    await conn.m.react(m.chat, '❌', m.key);
   }
 };
 
