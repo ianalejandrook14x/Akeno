@@ -5,7 +5,7 @@ let handler = async (m, { conn, text }) => {
   if (!text) return; // No responde si no hay texto
 
   
-  await conn.m.react(m.chat, "🕑", m.key);
+  await conn.m.react('🕑');
 
   let ytres = await yts(text);
   let video = ytres.videos[0];
@@ -28,7 +28,7 @@ let handler = async (m, { conn, text }) => {
     );
 
     
-    await conn.m.react(m.chat, "✅", m.key);
+    await conn.m.react('✅');
   } catch (error) {
     console.error(error);
   }
