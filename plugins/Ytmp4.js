@@ -21,7 +21,7 @@ let handler = async (m, { conn: star, args, text, isPrems, isOwner, usedPrefix, 
     let img = await (await fetch(`${thumbnail}`)).buffer()  
     if (size.split('MB')[0] >= limit) return star.reply(m.chat, `✦ *El archivo pesa más de ${limit} MB, se canceló la descarga.*`, m, rcanal).then(_ => m.react('✖️'))
     
-    let txt = '`Bochil`\n\n'
+    let txt = '`akeno ytmp3`\n\n'
     txt += `✦ *Titulo* : ${title}\n`
     txt += `✦ *Calidad* : ${q}\n`
     txt += `✦ *Tamaño* : ${size}\n\n`
