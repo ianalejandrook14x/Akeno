@@ -16,10 +16,7 @@ let handler = async (m, { conn }) => {
 *imagen <txt>*
 *play*
 *play2*
-*play3*
-*play4*
-*playdoc*
-*playdoc2*
+
 
 > *JUEGOS*
 
@@ -97,6 +94,9 @@ let handler = async (m, { conn }) => {
 *imagen <txt>*
 *instagram - ig*
 *tiktok*
+*ytmp4*
+*ytmp3*
+
 
 > *HERRAMIENTAS*
 
