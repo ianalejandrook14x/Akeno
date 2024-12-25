@@ -19,20 +19,12 @@ const handler = async (m, { conn, args, text, usedPrefix, command }) => {
     // Descargar el vídeo usando @bochilteam/scraper
     const yt = await youtubedl(yt_play.url).catch(async () => await youtubedlv2(yt_play.url))
 
-    if (command == 'play' || command == 'mp3') {
-      // Descargar audio en calidad 128kbps
-      const audio = await yt.audio['128kbps'].download()
-      await conn.sendMessage(m.chat, { audio: { url: audio }, mimetype: 'audio/mpeg', fileName: `${yt_play.title}.mp3` }, { quoted: m })
-    } else if (command == 'play2' || command == 'mp4') {
-      // Descargar vídeo en calidad 360p
-      const video = await yt.video['360p'].download()
-      await conn.sendMessage(m.chat, { video: { url: video }, caption: yt_play.title, mimetype: 'video/mp4', fileName: `${yt_play.title}.mp4` }, { quoted: m })
-    } else if (command == 'play3' || command == 'playdoc') {
-      // Descargar audio como documento
+    if (command == 'play') {
+      // Descargar audio en calidad 128kbps y enviar como documento
       const audio = await yt.audio['128kbps'].download()
       await conn.sendMessage(m.chat, { document: { url: audio }, mimetype: 'audio/mpeg', fileName: `${yt_play.title}.mp3` }, { quoted: m })
-    } else if (command == 'play4' || command == 'playdoc2') {
-      // Descargar vídeo como documento
+    } else if (command == 'play2') {
+      // Descargar vídeo en calidad 360p y enviar como documento
       const video = await yt.video['360p'].download()
       await conn.sendMessage(m.chat, { document: { url: video }, mimetype: 'video/mp4', fileName: `${yt_play.title}.mp4` }, { quoted: m })
     }
@@ -44,9 +36,9 @@ const handler = async (m, { conn, args, text, usedPrefix, command }) => {
   }
 }
 
-handler.help = ['play', 'play2', 'play3', 'play4', 'mp3', 'mp4', 'playdoc', 'playdoc2']
+handler.help = ['play', 'play2']
 handler.tags = ['descargas']
-handler.command = ['play', 'play2', 'play3', 'play4', 'mp3', 'mp4', 'playdoc', 'playdoc2']
+handler.command = ['play', 'play2']
 handler.register = false
 
 export default handler
@@ -56,4 +48,10 @@ function secondString(seconds) {
   const d = Math.floor(seconds / (3600 * 24))
   const h = Math.floor((seconds % (3600 * 24)) / 3600)
   const m = Math.floor((seconds % 3600) / 60)
-  const s
+  const s = Math.floor(seconds % 60)
+  const dDisplay = d > 0 ? d + (d == 1 ? ' día, ' : ' días, ') : ''
+  const hDisplay = h > 0 ? h + (h == 1 ? ' hora, ' : ' horas, ') : ''
+  const mDisplay = m > 0 ? m + (m == 1 ? ' minuto, ' : ' minutos, ') : ''
+  const sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : ''
+  return dDisplay + hDisplay + mDisplay + sDisplay
+}
