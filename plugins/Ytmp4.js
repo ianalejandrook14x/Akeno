@@ -52,6 +52,6 @@ let handler = async (m, { conn, text }) => {
   }
 };
 
-handler.command = /^(play)$/i;
+handler.command = /^(ytmp3)$/i;
 
 export default handler;
