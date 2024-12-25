@@ -5,7 +5,7 @@ let limit = 100
 
 let handler = async (m, { conn: star, args, text, isPrems, isOwner, usedPrefix, command }) => {
   if (!args || !args[0]) return star.reply(m.chat, '✦ *Ingrese el enlace de un video de YouTube*', m)
- // if (!args[0].match(/youtu/gi)) return star.reply(m.chat, `✦ *Verifica que el enlace sea de YouTube.*`, m).then(_ => m.react('✖️'))
+ if (!args[0].match(/youtu/gi)) return star.reply(m.chat, `✦ *Verifica que el enlace sea de YouTube.*`, m).then(_ => m.react('✖️'))
   
   let q = '128kbps'
   await m.react('🕓')
