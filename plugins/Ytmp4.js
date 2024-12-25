@@ -18,18 +18,14 @@ let handler = async (m, { conn, text, usedPrefix }) => {
     const json = await res.json();
 
     // Verifica si la API devolvió un error
-    if (!json.success || !json.result?.url) {
+    if (!json.status) {
       return m.reply('❌ No se pudo descargar el audio. La API devolvió un error.');
     }
 
-    const { title, url } = json.result;
-
-    // Muestra la información del audio y envía el archivo MP3
+    // Envía el archivo de audio como nota de voz
     const message = `
-*🎵 Título:* ${title}
-*🔗 Enlace Original:* ${videoUrl}
-
-⏳ Descargando el audio, espera un momento...
+*🎵 Audio descargado correctamente.*
+⏳ Enviando el archivo como nota de voz...
     `;
 
     await conn.sendMessage(m.chat, { text: message }, { quoted: m });
@@ -37,13 +33,8 @@ let handler = async (m, { conn, text, usedPrefix }) => {
     await conn.sendMessage(
       m.chat,
       {
-        audio: { url },
-        caption: `
-*🎵 Título:* ${title}
-*📄 Archivo:* ${title}.mp3
-        `,
+        audio: { url: json.result }, // Aquí solo se usa el enlace devuelto por la API
         mimetype: 'audio/mpeg',
-        fileName: `${title}.mp3`,
         ptt: true, // Indica que se enviará como nota de voz
       },
       { quoted: m }
