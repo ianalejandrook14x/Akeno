@@ -1,55 +1,60 @@
-import axios from "axios";
+import fetch from 'node-fetch';
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, usedPrefix }) => {
   if (!text) {
-    return m.reply("❀ Por favor, ingresa el enlace del video de YouTube.");
+    return m.reply(`⚠️ Escribe la URL del video de YouTube que deseas convertir a audio.\n\nUso: ${usedPrefix}ytmp3 [URL del video]`);
   }
-
-  // Verificar si el texto es una URL válida de YouTube
-  if (!text.includes("youtube.com") && !text.includes("youtu.be")) {
-    return m.reply("❀ Por favor, ingresa un enlace válido de YouTube.");
-  }
-
-  // Reacción de proceso
-  await m.react('🕑');
 
   try {
-    // Llamada a la API para descargar el audio
-    let apiUrl = `https://api-rin-tohsaka.vercel.app/download/ytmp3?url=${encodeURIComponent(text)}`;
-    let apiResponse = await axios.get(apiUrl);
+    const videoUrl = text.trim();
 
-    // Depuración: Imprimir la respuesta completa de la API en la consola
-    console.log("Respuesta de la API:", apiResponse.data);
-
-    // Verificar si la respuesta de la API es exitosa
-    if (apiResponse.status !== 200 || !apiResponse.data.status) {
-      await m.react('❌');
-      return m.reply("❀ La API no devolvió los datos necesarios. Inténtalo nuevamente.");
+    // Validar que la URL sea de YouTube
+    if (!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(videoUrl)) {
+      return m.reply('❌ Proporciona una URL válida de YouTube.');
     }
 
-    // Extraer la URL del audio descargado
-    let { download } = apiResponse.data.result;
+    // Reacción de proceso
+    await m.react('🕑');
+
+    // Llamar a la API para descargar el audio
+    const apiUrl = `https://api-rin-tohsaka.vercel.app/download/ytmp3?url=${encodeURIComponent(videoUrl)}`;
+    const res = await fetch(apiUrl);
+    const json = await res.json();
+
+    // Verificar si la API devolvió un error
+    if (!json.status || !json.result?.download?.url) {
+      await m.react('❌');
+      return m.reply('❌ No se pudo descargar el audio. La API devolvió un error.');
+    }
+
+    const { title, download } = json.result;
 
     // Enviar el audio como archivo
-    await conn.sendMessage(m.chat, {
-      audio: { url: download.url },
-      caption: ``,
-      mimetype: "audio/mpeg",
-    }, { quoted: m });
+    await conn.sendMessage(
+      m.chat,
+      {
+        audio: { url: download.url },
+        mimetype: 'audio/mpeg',
+        fileName: `${title}.mp3`,
+      },
+      { quoted: m }
+    );
 
     // Reacción de éxito
     await m.react('✅');
-  } catch (error) {
-    console.error("Error al descargar el audio:", error);
+  } catch (err) {
+    console.error(err);
 
     // Reacción de error
     await m.react('❌');
 
     // Mensaje de error al usuario
-    m.reply("❀ No se pudo descargar el audio. Inténtalo nuevamente.");
+    m.reply('❌ Ocurrió un error al procesar tu solicitud.');
   }
 };
 
-handler.command = /^(ytmp3)$/i;
+handler.tags = ['descargas'];
+handler.help = ['ytmp3'];
+handler.command = ['ytmp3', 'ytaudio'];
 
 export default handler;
