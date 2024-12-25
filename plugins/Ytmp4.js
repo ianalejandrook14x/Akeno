@@ -2,7 +2,9 @@ import fetch from "node-fetch";
 import yts from "yt-search";
 
 let handler = async (m, { conn, text }) => {
-  if (!text) return; // No responde si no hay texto
+  if (!text) {
+    return m.reply("Ingresa el texto de lo que quieres buscar");
+  }
 
   
   await m.react('🕑');
@@ -12,46 +14,36 @@ let handler = async (m, { conn, text }) => {
 
   if (!video) {
     await m.react('❌');
-    return;
+   /* return m.reply("❀ Video no encontrado");*/
   }
 
   let { url } = video;
 
   try {
-    
-    let api = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${encodeURIComponent(url)}`);
+    let api = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${url}`);
     let json = await api.json();
-
-    
-    if (!json.result || !json.result.download || !json.result.download.url) {
-      await m.react('❌');
-      return;
-    }
-
     let { download } = json.result;
 
     
-    await conn.sendMessage(
-      m.chat,
-      {
-        audio: { url: download.url },
-        mimetype: "audio/mpeg",
-      },
-      { quoted: m }
-    );
+    await conn.sendMessage(m.chat, {
+      audio: { url: download.url },
+      caption: ``,
+      mimetype: "audio/mpeg",
+    }, { quoted: m });
 
     
     await m.react('✅');
   } catch (error) {
-    console.error("Error al descargar el audio:", error);
+    console.error(error);
 
     
     await m.react('❌');
+
+   
+   m.reply(" No se pudo descargar el audio. Inténtalo nuevamente.");
   }
 };
 
 handler.command = /^(ytmp3)$/i;
-handler.tags = ['busquedas']
-handler.help = ['ytmp3']
 
 export default handler;
