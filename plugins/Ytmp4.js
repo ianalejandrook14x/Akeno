@@ -21,8 +21,17 @@ let handler = async (m, { conn, text }) => {
 
   try {
     // Llamada a la nueva API para descargar el audio
-    let api = await fetch(`https://api-rin-tohsaka.vercel.app/download/ytmp3?url=${encodeURIComponent(url)}`);
-    let json = await api.json();
+    let apiUrl = `https://api-rin-tohsaka.vercel.app/download/ytmp3?url=${encodeURIComponent(url)}`;
+    let apiResponse = await fetch(apiUrl);
+
+    // Verificar si la respuesta de la API es exitosa
+    if (!apiResponse.ok) {
+      await m.react('❌');
+      return m.reply(`❀ Error en la API: ${apiResponse.status} - ${apiResponse.statusText}`);
+    }
+
+    // Convertir la respuesta a JSON
+    let json = await apiResponse.json();
 
     // Verificar si la respuesta contiene los datos esperados
     if (!json.status || !json.result || !json.result.download || !json.result.download.url) {
