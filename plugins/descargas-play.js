@@ -7,24 +7,24 @@ const handler = async (m, { conn, args, text, usedPrefix, command }) => {
   await m.react('🕓')
 
   try {
-    // Buscar el vídeo usando yts
+    
     const search = await yts(text)
     const yt_play = search.videos[0]
     if (!yt_play) return conn.reply(m.chat, '✦ *No se encontraron resultados.*', m)
 
-    // Mostrar información del vídeo
+   
     const texto1 = `✦ *Título*\n» ${yt_play.title}\n\n✦ *Publicado*\n» ${yt_play.ago}\n\n✦ *Duración*\n» ${secondString(yt_play.duration.seconds)}`.trim()
     await conn.sendFile(m.chat, yt_play.thumbnail, 'thumbnail.jpg', texto1, m)
 
-    // Descargar el vídeo usando @bochilteam/scraper
+    
     const yt = await youtubedl(yt_play.url).catch(async () => await youtubedlv2(yt_play.url))
 
     if (command == 'play') {
-      // Descargar audio en calidad 128kbps y enviar como documento
+      
       const audio = await yt.audio['128kbps'].download()
       await conn.sendMessage(m.chat, { document: { url: audio }, mimetype: 'audio/mpeg', fileName: `${yt_play.title}.mp3` }, { quoted: m })
     } else if (command == 'play2') {
-      // Descargar vídeo en calidad 360p y enviar como documento
+      
       const video = await yt.video['360p'].download()
       await conn.sendMessage(m.chat, { document: { url: video }, mimetype: 'video/mp4', fileName: `${yt_play.title}.mp4` }, { quoted: m })
     }
