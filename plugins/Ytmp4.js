@@ -18,6 +18,9 @@ let handler = async (m, { conn, text }) => {
     let apiUrl = `https://api-rin-tohsaka.vercel.app/download/ytmp3?url=${encodeURIComponent(text)}`;
     let apiResponse = await axios.get(apiUrl);
 
+    // Depuración: Imprimir la respuesta completa de la API en la consola
+    console.log("Respuesta de la API:", apiResponse.data);
+
     // Verificar si la respuesta de la API es exitosa
     if (apiResponse.status !== 200 || !apiResponse.data.status) {
       await m.react('❌');
