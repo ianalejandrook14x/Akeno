@@ -36,7 +36,7 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
 
 handler.help = ['ytmp4']
 handler.tags = ['Descargas']
-handler.command = ['ytmp4', 'ytv', 'yt']
+handler.command = ['ytmp4']
 handler.register = false
 
 export default handler
