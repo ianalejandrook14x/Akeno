@@ -20,7 +20,7 @@ let thumbnail = await yt.thumbnail
 
 let img = await (await fetch(`${thumbnail}`)).buffer()  
 if (size.split('MB')[0] >= limit) return star.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-	let txt = '`${title}`\n\n'
+	let txt = '`Bochil`\n\n'
        txt += `✦ *Titulo* : ${title}\n`
        txt += `✦ *Calidad* : ${q}\n`
        txt += `✦ *Tamaño* : ${size}\n\n`
