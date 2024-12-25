@@ -1,45 +1,31 @@
-import fetch from "node-fetch";
-import yts from "yt-search";
+import axios from "axios";
 
 let handler = async (m, { conn, text }) => {
   if (!text) {
-    return m.reply("❀ Ingresa el texto de lo que quieres buscar");
+    return m.reply("❀ Por favor, ingresa el enlace del video de YouTube.");
+  }
+
+  // Verificar si el texto es una URL válida de YouTube
+  if (!text.includes("youtube.com") && !text.includes("youtu.be")) {
+    return m.reply("❀ Por favor, ingresa un enlace válido de YouTube.");
   }
 
   // Reacción de proceso
   await m.react('🕑');
 
-  let ytres = await yts(text);
-  let video = ytres.videos[0];
-
-  if (!video) {
-    await m.react('❌');
-    return m.reply("❀ Video no encontrado");
-  }
-
-  let { url } = video;
-
   try {
-    // Llamada a la nueva API para descargar el audio
-    let apiUrl = `https://api-rin-tohsaka.vercel.app/download/ytmp3?url=${encodeURIComponent(url)}`;
-    let apiResponse = await fetch(apiUrl);
+    // Llamada a la API para descargar el audio
+    let apiUrl = `https://api-rin-tohsaka.vercel.app/download/ytmp3?url=${encodeURIComponent(text)}`;
+    let apiResponse = await axios.get(apiUrl);
 
     // Verificar si la respuesta de la API es exitosa
-    if (!apiResponse.ok) {
-      await m.react('❌');
-      return m.reply(`❀ Error en la API: ${apiResponse.status} - ${apiResponse.statusText}`);
-    }
-
-    // Convertir la respuesta a JSON
-    let json = await apiResponse.json();
-
-    // Verificar si la respuesta contiene los datos esperados
-    if (!json.status || !json.result || !json.result.download || !json.result.download.url) {
+    if (apiResponse.status !== 200 || !apiResponse.data.status) {
       await m.react('❌');
       return m.reply("❀ La API no devolvió los datos necesarios. Inténtalo nuevamente.");
     }
 
-    let { download } = json.result;
+    // Extraer la URL del audio descargado
+    let { download } = apiResponse.data.result;
 
     // Enviar el audio como archivo
     await conn.sendMessage(m.chat, {
@@ -51,7 +37,7 @@ let handler = async (m, { conn, text }) => {
     // Reacción de éxito
     await m.react('✅');
   } catch (error) {
-    console.error(error);
+    console.error("Error al descargar el audio:", error);
 
     // Reacción de error
     await m.react('❌');
