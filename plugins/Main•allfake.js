@@ -61,7 +61,7 @@ global.waitttt = 'Espere un momento...'
 var mensaje = '👋🏻 Hola bienvenido al grupo'  
 var mensaje2 = '👋🏻 Seas bievenido al grupo'
 var mensaje3 = '👋🏻 Nuevo integrante bienvenido'
-var grupo = 'https://chat.whatsapp.com/HhEHrJuVva38Xw3vQGBJht'
+var grupo = 'https://chat.whatsapp.com/G0ppk9JUtip1HiPiRcBpxs'
 
 global.redes = [mensaje, mensaje2, mensaje3].getRandom()
 
