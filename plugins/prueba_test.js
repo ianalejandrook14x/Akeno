@@ -5,9 +5,9 @@ const handler = async (m, { conn, args, command }) => {
                 text: "Te gusta Akeno Himejima??",
                 image: "https://qu.ax/BWXFU.jpg",
                 buttons: [
-                    { buttonId: 'Si', buttonText: { displayText: "Rojo" }, type: 1 },
-                    { buttonId: 'No', buttonText: { displayText: "Azul" }, type: 1 },
-                    { buttonId: 'talvez', buttonText: { displayText: "Verde" }, type: 1 },
+                    { buttonId: 'Si', buttonText: { displayText: "Si" }, type: 1 },
+                    { buttonId: 'No', buttonText: { displayText: "No" }, type: 1 },
+                    { buttonId: 'talvez', buttonText: { displayText: "talvez" }, type: 1 },
                 ],
             },
         ];
