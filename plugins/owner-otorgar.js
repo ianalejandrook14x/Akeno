@@ -40,7 +40,11 @@ let handler = async (m, { conn, isRowner }) => {
       }
 
       if (role === 'owner') {
-        return m.reply('No puedes otorgar el rol de owner a otro usuario');
+        if (!global.mods.includes(mentionedUser)) {
+          global.mods.push(mentionedUser); 
+        return m.reply('*Se agrego como owner*');
+      } else {
+            return m.reply('*El usuario ya es propietario*');
       }
     }
   };
