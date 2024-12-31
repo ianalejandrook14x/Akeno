@@ -5,7 +5,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
   await m.react('🕓')
 
   try {
-    // Buscar la música usando la API de búsqueda
+    
     const searchQuery = encodeURIComponent(args.join(' '))
     const searchApiUrl = `https://deliriussapi-oficial.vercel.app/search/applemusicv2?query=${searchQuery}`
     const searchResponse = await fetch(searchApiUrl)
@@ -15,11 +15,11 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
       return m.reply('✦ *No se encontraron resultados para tu búsqueda.*')
     }
 
-    // Obtener el primer resultado de la búsqueda
+    
     const firstResult = searchData.data[0]
     const { title, artist, url, image } = firstResult
 
-    // Descargar la canción usando la API de descarga
+    
     const downloadApiUrl = `https://deliriussapi-oficial.vercel.app/download/applemusicdl?url=${url}`
     const downloadResponse = await fetch(downloadApiUrl)
     const downloadData = await downloadResponse.json()
@@ -30,10 +30,10 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
 
     const { download } = downloadData.data
 
-    // Construir el mensaje con el diseño especificado
+    
     const txt = `✦ *Título*\n» ${title}\n\n✦ *Artista*\n» ${artist}`
 
-    // Enviar el mensaje con la imagen de la portada y el diseño de reenviado
+    
     await conn.sendMessage(m.chat, {
       text: txt,
       contextInfo: {
@@ -41,20 +41,20 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: title, // Usa el título de la canción como nombre del canal
+          newsletterName: '✦ Akeno channel', 
           serverMessageId: -1
         },
         externalAdReply: {
-          title: 'Nombre del Bot', // Cambia esto al nombre de tu bot
-          body: 'Desarrollado por Darlingg', // Cambia esto al nombre del desarrollador
-          thumbnailUrl: image, // Usa la imagen de la portada de la música
+          title: '✦ Akeno', 
+          body: 'Descargas Play', 
+          thumbnailUrl: image, 
           mediaType: 1,
           renderLargerThumbnail: true
         }
       }
     }, { quoted: m })
 
-    // Enviar el archivo de audio con el estilo de reenviado desde el canal
+    
     await conn.sendMessage(m.chat, {
       audio: { url: download },
       mimetype: 'audio/mpeg',
@@ -64,7 +64,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: title, // Usa el título de la canción como nombre del canal
+          newsletterName: title, 
           serverMessageId: -1
         }
       }
