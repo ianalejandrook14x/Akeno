@@ -1,19 +1,19 @@
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 let txt = `Eliga`
 conn.sendMessage(m.chat, {
-  image: { url: 'https://qu.ax/MFOVJ.jpg' }, 
-  caption: "You like me?", // Título que aparecerá junto a la imagen
-  footer: "Sock", 
+  image: { url: 'https://qu.ax/GKfyo.jpg' }, 
+  caption: "Eliga una opción",
+  footer: "Powered By ianalejandrook15x", 
   buttons: [
     {
     buttonId: ".menu", 
     buttonText: { 
-      displayText: 'test' 
+      displayText: 'Menu ❀' 
     }
   }, {
-    buttonId: ".s", 
+    buttonId: ".perfil", 
     buttonText: {
-      displayText: "Hola"
+      displayText: "Perfil ❀"
     }
   }
 ],
