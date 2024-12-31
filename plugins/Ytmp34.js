@@ -11,8 +11,9 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let query = args.join(' ')
     let videoInfo
 
-    let apiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/search-yts?message=${encodeURIComponent(query)}`)
-    let searchResults = await apiResponse.json()
+    // Buscar el video en YouTube
+    let searchApiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/search-yts?message=${encodeURIComponent(query)}`)
+    let searchResults = await searchApiResponse.json()
 
     if (!searchResults.status || !searchResults.data || !searchResults.data.response || !searchResults.data.response.video || !searchResults.data.response.video.length) {
       return star.reply(m.chat, '✦ *No se encontraron resultados para tu búsqueda.*', m).then(_ => m.react('✖️'))
@@ -26,19 +27,21 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let views = videoInfo.view
     let publishedAt = videoInfo.publishedTime
 
-    let downloadApi = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp4?url=${url}`)
-    let downloadInfo = await downloadApi.json()
+    // Descargar el video usando la nueva API
+    let downloadApiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp4?url=${url}`)
+    let downloadInfo = await downloadApiResponse.json()
 
-    if (!downloadInfo.result || !downloadInfo.result.download || !downloadInfo.result.metadata) {
+    if (!downloadInfo.status || !downloadInfo.data || !downloadInfo.data.download || !downloadInfo.data.download.url) {
       return star.reply(m.chat, '✦ *No se pudo obtener la información del video.*', m).then(_ => m.react('✖️'))
     }
 
-    let dl_url = downloadInfo.result.download.url
-    let sizeMB = (downloadInfo.result.download.size / (1024 * 1024)).toFixed(2)
+    let dl_url = downloadInfo.data.download.url
+    let quality = downloadInfo.data.download.quality
+    let filename = downloadInfo.data.download.filename
 
     let txt = '`akeno ytmp4`\n\n'
     txt += `✦ *Título* : ${title}\n`
-    txt += `✦ *Calidad* : 720p\n`
+    txt += `✦ *Calidad* : ${quality}\n`
     txt += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n`
     txt += `✦ *Vistas* : ${views}\n`
     txt += `✦ *Publicado* : ${publishedAt}\n\n`
