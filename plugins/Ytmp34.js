@@ -11,7 +11,6 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let query = args.join(' ')
     let videoInfo
 
-    // Buscar el video en YouTube
     let searchApiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/search-yts?message=${encodeURIComponent(query)}`)
     let searchResults = await searchApiResponse.json()
 
@@ -27,7 +26,6 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let views = videoInfo.view
     let publishedAt = videoInfo.publishedTime
 
-    // Descargar el video usando la nueva API
     let downloadApiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp4?url=${url}`)
     let downloadInfo = await downloadApiResponse.json()
 
@@ -39,25 +37,29 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let quality = downloadInfo.data.download.quality
     let filename = downloadInfo.data.download.filename
 
-    // Crear el mensaje de información con la portada
     let infoMessage = `✦ *Akeno ytmp4* \n\n`
     infoMessage += `✦ *Título* : ${title}\n`
     infoMessage += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n`
     infoMessage += `✦ *Vistas* : ${views}\n`
     infoMessage += `✦ *Publicado* : ${publishedAt}\n`
 
-    // Enviar la información con la portada
     await star.sendMessage(m.chat, {
       image: { url: thumbnail },
-      caption: infoMessage
+      caption: infoMessage,
+      contextInfo: {
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363318758721861@newsletter',
+          newsletterName: '✦ Akeno channel',
+          serverMessageId: -1
+        }
+      }
     }, { quoted: m })
 
-    // Crear la caption para el video o documento
     let caption = `✦ *${title}*\n✦ *Duración* : ${Math.floor(duration / 60)} minutos`
 
-    // Verificar si la duración es mayor a 30 minutos (1800 segundos)
     if (duration > 1800) {
-      // Enviar como documento (con caption simple)
       await star.sendMessage(m.chat, {
         document: { url: dl_url },
         mimetype: 'video/mp4',
@@ -65,10 +67,18 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
         caption: caption
       }, { quoted: m })
     } else {
-      // Enviar como video (con caption simple)
       await star.sendMessage(m.chat, {
         video: { url: dl_url },
-        caption: caption
+        caption: caption,
+        contextInfo: {
+          forwardingScore: 999,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363318758721861@newsletter',
+            newsletterName: '✦ Akeno ytmp4',
+            serverMessageId: -1
+          }
+        }
       }, { quoted: m })
     }
 
