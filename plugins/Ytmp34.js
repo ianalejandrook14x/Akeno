@@ -46,19 +46,31 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     txt += `✦ *Vistas* : ${views}\n`
     txt += `✦ *Publicado* : ${publishedAt}\n\n`
 
-    await star.sendMessage(m.chat, {
-      video: { url: dl_url },
-      caption: txt,
-      contextInfo: {
-        forwardingScore: 999,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363318758721861@newsletter',
-          newsletterName: '✦ Akeno channel',
-          serverMessageId: -1
+    // Verificar si la duración es mayor a 30 minutos (1800 segundos)
+    if (duration > 1800) {
+      // Enviar como documento (sin efectos adicionales)
+      await star.sendMessage(m.chat, {
+        document: { url: dl_url },
+        mimetype: 'video/mp4',
+        fileName: filename,
+        caption: txt
+      }, { quoted: m })
+    } else {
+      // Enviar como video (con efectos del canal)
+      await star.sendMessage(m.chat, {
+        video: { url: dl_url },
+        caption: txt,
+        contextInfo: {
+          forwardingScore: 999,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363318758721861@newsletter',
+            newsletterName: '✦ Akeno channel',
+            serverMessageId: -1
+          }
         }
-      }
-    }, { quoted: m })
+      }, { quoted: m })
+    }
 
     await m.react('✅')
   } catch (error) {
