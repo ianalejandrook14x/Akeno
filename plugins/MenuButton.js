@@ -6,7 +6,7 @@ conn.sendMessage(m.chat, {
   footer: "Powered By ianalejandrook15x", 
   buttons: [
     {
-    buttonId: ".menu", 
+    buttonId: ".allmenu", 
     buttonText: { 
       displayText: 'Menu ❀' 
     }
@@ -21,5 +21,5 @@ conn.sendMessage(m.chat, {
   headerType: 1,
 }, { quoted: m })
 }
-handler.command = ['test']
+handler.command = ['menu']
 export default handler
