@@ -41,7 +41,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: 'Canal de Música', // Cambia esto al nombre de tu canal
+          newsletterName: title, // Usa el título de la canción como nombre del canal
           serverMessageId: -1
         },
         externalAdReply: {
@@ -64,7 +64,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: 'Canal de Música', // Cambia esto al nombre de tu canal
+          newsletterName: title, // Usa el título de la canción como nombre del canal
           serverMessageId: -1
         }
       }
