@@ -2,7 +2,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 let txt = `Eliga`
 conn.sendMessage(m.chat, {
   image: { url: 'https://qu.ax/GKfyo.jpg' }, 
-  caption: "Eliga una opción",
+  caption: "*Eliga una opción*",
   footer: "Powered By ianalejandrook15x", 
   buttons: [
     {
@@ -11,9 +11,9 @@ conn.sendMessage(m.chat, {
       displayText: 'Menu ❀' 
     }
   }, {
-    buttonId: ".pin Akeno Himejima", 
+    buttonId: ".code", 
     buttonText: {
-      displayText: "Akeno ❀"
+      displayText: "Serbot ❀"
     }
   }
 ],
