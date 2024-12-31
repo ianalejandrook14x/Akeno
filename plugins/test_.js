@@ -9,16 +9,11 @@ conn.sendMessage(m.chat, {
     buttonId: ".menu", 
     buttonText: { 
       displayText: 'Menu ❀' 
-    },
-     {
-    buttonId: ".menu", 
-    buttonText: { 
-      displayText: 'Test ❀' 
     }
   }, {
-    buttonId: ".perfil", 
+    buttonId: ".pin Akeno Himejima", 
     buttonText: {
-      displayText: "Perfil ❀"
+      displayText: "Akeno ❀"
     }
   }
 ],
