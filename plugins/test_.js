@@ -1,21 +1,23 @@
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-let txt = `Prueba de botones`
-conn.sendMessage(m.chat, { text: txt, caption: "1234", footer: grupo, buttons: [
-  {
-    buttonId: ".menu", 
-    buttonText: { 
-      displayText: 'test' 
-    }
-  }, {
-    buttonId: ".tiktoksearch nakano miku", 
-    buttonText: {
-      displayText: "test2"
-    }
-  }
-],
+conn.sendMessage(m.chat, {
+  image: { url: 'https://qu.ax/MFOVJ.jpg' }, 
+  caption: "You like me?", // Título que aparecerá junto a la imagen
+  footer: "Sock", 
+  buttons: [
+    {
+      buttonId: ".gay",
+      buttonText: {
+        displayText: "Yes",
+      },
+      type: 1, 
+    },
+    {
+      buttonId: ".play2 felices los 4",
+      buttonText: {
+        displayText: "No",
+      },
+      type: 1,
+    },
+  ],
   viewOnce: true,
-  headerType: 1,
-}, { quoted: m })
-}
-handler.command = ['test']
-export default handler
+  headerType: 4, 
+}, { quoted: m });
