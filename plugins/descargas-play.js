@@ -33,6 +33,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
     // Construir el mensaje con el diseño especificado
     const txt = `✦ *Título*\n» ${title}\n\n✦ *Artista*\n» ${artist}`
 
+    // Enviar el mensaje con la imagen de la portada y el diseño de reenviado
     await conn.sendMessage(m.chat, {
       text: txt,
       contextInfo: {
@@ -40,32 +41,34 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: 'Nombre del Canal', // Cambia esto al nombre de tu canal
+          newsletterName: 'Canal de Música', // Cambia esto al nombre de tu canal
           serverMessageId: -1
         },
         externalAdReply: {
           title: 'Nombre del Bot', // Cambia esto al nombre de tu bot
           body: 'Desarrollado por Darlingg', // Cambia esto al nombre del desarrollador
-          thumbnailUrl: 'https://i.imgur.com/XYZ1234.jpg', // Cambia esto a la URL de tu banner
+          thumbnailUrl: image, // Usa la imagen de la portada de la música
           mediaType: 1,
           renderLargerThumbnail: true
         }
       }
     }, { quoted: m })
 
-    
-    await conn.sendFile(m.chat, download, `${title}.mp3`, null, m, null, {
+    // Enviar el archivo de audio con el estilo de reenviado desde el canal
+    await conn.sendMessage(m.chat, {
+      audio: { url: download },
       mimetype: 'audio/mpeg',
+      fileName: `${title}.mp3`,
       contextInfo: {
-        externalAdReply: {
-          title: 'Nombre del Bot', // Cambia esto al nombre de tu bot
-          body: 'Desarrollado por Darlingg', // Cambia esto al nombre del desarrollador
-          thumbnailUrl: 'https://i.imgur.com/XYZ1234.jpg', // Cambia esto a la URL de tu banner
-          mediaType: 1,
-          renderLargerThumbnail: true
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363318758721861@newsletter',
+          newsletterName: 'Canal de Música', // Cambia esto al nombre de tu canal
+          serverMessageId: -1
         }
       }
-    })
+    }, { quoted: m })
 
     await m.react('✅')
   } catch (error) {
