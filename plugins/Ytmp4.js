@@ -4,9 +4,7 @@ import fetch from 'node-fetch'
 let limit = 100 // Límite de tamaño en MB
 
 let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
-  if (!args || !args[0]) return star.reply(m.chat, '✦ *Ingrese el enlace de un video de YouTube*', m)
-  if (!args[0].match(/youtu/gi)) return star.reply(m.chat, `✦ *Verifica que el enlace sea de YouTube.*`, m).then(_ => m.react('✖️'))
-
+  if (!args[0]) return star.reply(m.chat, '✦ *Ingrese el nombre o enlace de un video de YouTube*', m)
   await m.react('🕓')
 
   try {
