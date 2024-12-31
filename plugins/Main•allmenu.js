@@ -14,8 +14,9 @@ let handler = async (m, { conn }) => {
 *tiktoksearch <txt>*
 *ytsearch*
 *imagen <txt>*
-*play*
-*play2*
+*play* <musica>
+*ytmp4* <nombre>
+*ytmp3* <nombre>
 
 
 > *JUEGOS*
