@@ -1,7 +1,7 @@
 import yts from 'yt-search'
 import fetch from 'node-fetch'
 
-let limit = 100 // Límite de tamaño en MB
+let limit = 100 
 
 let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
   if (!args[0]) return star.reply(m.chat, '✦ *Ingrese el nombre o enlace de un video de YouTube*', m)
@@ -11,7 +11,7 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let url = args[0]
     let videoInfo
 
-    // Si el texto no es un enlace, buscar el vídeo por nombre
+    
     if (!url.match(/youtu/gi)) {
       let searchResults = await yts(text)
       if (!searchResults.videos || searchResults.videos.length === 0) {
@@ -21,7 +21,7 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
       url = videoInfo.url
     }
 
-    // Obtener la información del vídeo usando la API
+    
     let api = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=${url}`)
     let json = await api.json()
 
@@ -41,16 +41,16 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     txt += `✦ *Calidad* : 128kbps\n`
     txt += `✦ *Tamaño* : ${sizeMB} MB\n\n`
 
-    // Enviar la información del vídeo con la imagen de la portada
+    
     await star.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null)
 
-    // Verificar el tamaño del archivo
+    
     if (sizeMB >= limit) {
-      // Si el archivo es mayor o igual a 100 MB, enviar como documento
+      
       await star.sendMessage(m.chat, { document: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
-      await m.react('📄') // Reacción para indicar que se envió como documento
+      await m.react('📄') 
     } else {
-      // Si el archivo es menor a 100 MB, enviar como audio
+      
       await star.sendMessage(m.chat, { audio: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mp4' }, { quoted: m })
       await m.react('✅') // Reacción para indicar éxito
     }
