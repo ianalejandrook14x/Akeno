@@ -15,24 +15,9 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
       return m.reply('✦ *No se encontraron resultados para tu búsqueda.*')
     }
 
-    // Mostrar los resultados de la búsqueda
-    let searchResults = '✦ *Resultados de la búsqueda:*\n\n'
-    searchData.data.slice(0, 5).forEach((result, index) => {
-      searchResults += `*${index + 1}.* ${result.title} - ${result.artist}\n`
-    })
-    searchResults += '\n✦ *Responde con el número de la canción que deseas descargar.*'
-
-    await conn.reply(m.chat, searchResults, m)
-
     
-    const filter = (response) => {
-      return !isNaN(response) && response > 0 && response <= searchData.data.length
-    }
-    const { number } = await conn.waitForMessage(m.chat, filter, { time: 30000 })
-
-    
-    const selectedSong = searchData.data[number - 1]
-    const { title, artist, url, image } = selectedSong
+    const firstResult = searchData.data[0]
+    const { title, artist, url, image } = firstResult
 
     
     const downloadApiUrl = `https://deliriussapi-oficial.vercel.app/download/applemusicdl?url=${url}`
@@ -45,7 +30,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
 
     const { download } = downloadData.data
 
-    
+   
     const songInfo = `✦ *Título*\n» ${title}\n\n✦ *Artista*\n» ${artist}`
     await conn.sendFile(m.chat, image, 'thumbnail.jpg', songInfo, m)
     await conn.sendFile(m.chat, download, `${title}.mp3`, null, m)
