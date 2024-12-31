@@ -5,7 +5,6 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
   await m.react('🕓')
 
   try {
-    
     const searchQuery = encodeURIComponent(args.join(' '))
     const searchApiUrl = `https://deliriussapi-oficial.vercel.app/search/applemusicv2?query=${searchQuery}`
     const searchResponse = await fetch(searchApiUrl)
@@ -15,11 +14,9 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
       return m.reply('✦ *No se encontraron resultados para tu búsqueda.*')
     }
 
-    
     const firstResult = searchData.data[0]
     const { title, artist, url, image } = firstResult
 
-    
     const downloadApiUrl = `https://deliriussapi-oficial.vercel.app/download/applemusicdl?url=${url}`
     const downloadResponse = await fetch(downloadApiUrl)
     const downloadData = await downloadResponse.json()
@@ -30,24 +27,22 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
 
     const { download } = downloadData.data
 
-    
     const txt = `✦ *Título*\n» ${title}\n\n✦ *Artista*\n» ${artist}`
 
-    
     await conn.sendMessage(m.chat, {
-      text: txt,
+      image: { url: image },
+      caption: txt,
       contextInfo: {
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: '✦ Akeno channel', 
+          newsletterName: '✦ Akeno channel',
           serverMessageId: -1
         }
       }
     }, { quoted: m })
 
-    
     await conn.sendMessage(m.chat, {
       audio: { url: download },
       mimetype: 'audio/mpeg',
@@ -57,7 +52,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: title, 
+          newsletterName: title,
           serverMessageId: -1
         }
       }
