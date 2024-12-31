@@ -1,32 +1,62 @@
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
-import fetch from 'node-fetch' 
+import fetch from 'node-fetch'
+
 let limit = 100
+let durationLimit = 50
 
 let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
-  if (!args || !args[0]) return star.reply(m.chat, '✦ *Ingrese el enlace de un video de YouTube*', m)
-  if (!args[0].match(/youtu/gi)) return star.reply(m.chat, `✦ *Verifica que el enlace sea de YouTube.*`, m).then(_ => m.react('✖️'))
-  
-  let q = args[1] || '360p'
+  if (!args[0]) return star.reply(m.chat, '✦ *Ingrese el nombre o enlace de un video de YouTube*', m)
   await m.react('🕓')
 
   try {
-    let v = args[0]
-    let yt = await youtubedl(v).catch(async () => await youtubedlv2(v))
-    let dl_url = await yt.video[q].download()
-    let title = await yt.title
-    let size = await yt.video[q].fileSizeH
-    let thumbnail = await yt.thumbnail
+    let query = args.join(' ')
+    let videoInfo
 
-    let img = await (await fetch(`${thumbnail}`)).buffer()  
-    if (size.split('MB')[0] >= limit) return star.reply(m.chat, `✦ *El archivo pesa más de ${limit} MB, se canceló la descarga.*`, m).then(_ => m.react('✖️'))
-    
-    let txt = '`Akeno ytmp4`\n\n'
-    txt += `✦ *Titulo* : ${title}\n`
-    txt += `✦ *Calidad* : ${q}\n`
-    txt += `✦ *Tamaño* : ${size}\n\n`
-    
-    await star.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
-    await star.sendMessage(m.chat, { video: { url: dl_url }, caption: `${title}`, mimetype: 'video/mp4', fileName: `${title}.mp4` }, { quoted: m })
+    let apiResponse = await fetch(`https://deliriussapi-oficial.vercel.app/search/ytsearch?q=${encodeURIComponent(query)}`)
+    let searchResults = await apiResponse.json()
+
+    if (!searchResults.status || !searchResults.data || !searchResults.data.length) {
+      return star.reply(m.chat, '✦ *No se encontraron resultados para tu búsqueda.*', m).then(_ => m.react('✖️'))
+    }
+
+    videoInfo = searchResults.data[0]
+    let url = videoInfo.url
+    let title = videoInfo.title
+    let thumbnail = videoInfo.thumbnail
+    let duration = parseDuration(videoInfo.duration)
+    let views = videoInfo.views
+    let publishedAt = videoInfo.publishedAt
+
+    let downloadApi = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp4?url=${url}`)
+    let downloadInfo = await downloadApi.json()
+
+    if (!downloadInfo.result || !downloadInfo.result.download || !downloadInfo.result.metadata) {
+      return star.reply(m.chat, '✦ *No se pudo obtener la información del video.*', m).then(_ => m.react('✖️'))
+    }
+
+    let dl_url = downloadInfo.result.download.url
+    let sizeMB = (downloadInfo.result.download.size / (1024 * 1024)).toFixed(2)
+
+    let txt = '`akeno ytmp4`\n\n'
+    txt += `✦ *Título* : ${title}\n`
+    txt += `✦ *Calidad* : 720p\n`
+    txt += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n`
+    txt += `✦ *Vistas* : ${views}\n`
+    txt += `✦ *Publicado* : ${publishedAt}\n\n`
+
+    await star.sendMessage(m.chat, {
+      video: { url: dl_url },
+      caption: txt,
+      contextInfo: {
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363318758721861@newsletter',
+          newsletterName: '✦ Akeno channel',
+          serverMessageId: -1
+        }
+      }
+    }, { quoted: m })
+
     await m.react('✅')
   } catch (error) {
     console.error(error)
@@ -36,7 +66,12 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
 
 handler.help = ['ytmp4']
 handler.tags = ['Descargas']
-handler.command = ['ytmp4']
+handler.command = ['ytmp4', 'video', 'mp4']
 handler.register = false
 
 export default handler
+
+function parseDuration(duration) {
+  let parts = duration.split(':').reverse()
+  return parts.reduce((total, part, index) => total + parseInt(part) * Math.pow(60, index), 0)
+}
