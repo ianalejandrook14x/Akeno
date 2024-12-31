@@ -11,7 +11,7 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let query = args.join(' ')
     let videoInfo
 
-    // Usar la API para buscar el video por nombre
+    
     let apiResponse = await fetch(`https://deliriussapi-oficial.vercel.app/search/ytsearch?q=${encodeURIComponent(query)}`)
     let searchResults = await apiResponse.json()
 
@@ -23,11 +23,11 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let url = videoInfo.url
     let title = videoInfo.title
     let thumbnail = videoInfo.thumbnail
-    let duration = parseDuration(videoInfo.duration) // Convertir duración a segundos
+    let duration = parseDuration(videoInfo.duration) 
     let views = videoInfo.views
     let publishedAt = videoInfo.publishedAt
 
-    // Usar la API para descargar el audio
+    
     let downloadApi = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=${url}`)
     let downloadInfo = await downloadApi.json()
 
@@ -36,7 +36,7 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     }
 
     let dl_url = downloadInfo.result.download.url
-    let sizeMB = (downloadInfo.result.download.size / (1024 * 1024)).toFixed(2) // Convertir tamaño a MB
+    let sizeMB = (downloadInfo.result.download.size / (1024 * 1024)).toFixed(2) 
 
     let img = await (await fetch(thumbnail)).buffer()
 
@@ -48,10 +48,10 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     txt += `✦ *Tamaño* : ${sizeMB} MB\n`
     txt += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n\n`
 
-    // Enviar la información del vídeo con la imagen de la portada
+    // 
     await star.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null)
 
-    // Verificar la duración y el tamaño del archivo
+    // 
     if (duration / 60 >= durationLimit || sizeMB >= limit) {
       await star.sendMessage(m.chat, { document: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
       await m.react('📄')
@@ -67,12 +67,12 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
 
 handler.help = ['ytmp3']
 handler.tags = ['Descargas']
-handler.command = ['ytmp3']
+handler.command = ['ytmp3', 'audio']
 handler.register = false
 
 export default handler
 
-// Función para convertir la duración en formato hh:mm:ss a segundos
+
 function parseDuration(duration) {
   let parts = duration.split(':').reverse()
   return parts.reduce((total, part, index) => total + parseInt(part) * Math.pow(60, index), 0)
