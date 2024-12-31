@@ -1,43 +1,35 @@
-import yts from 'yt-search'
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
-import fetch from 'node-fetch' 
-let limit = 100
+/* 
+*❀ By Jtxs*
+[ Canal Principal ] :
+https://whatsapp.com/channel/0029VaeQcFXEFeXtNMHk0D0n
 
-let handler = async (m, { conn: star, args, text, isPrems, isOwner, usedPrefix, command }) => {
-  if (!args || !args[0]) return star.reply(m.chat, '✦ *Ingrese el enlace de un video de YouTube*', m)
- if (!args[0].match(/youtu/gi)) return star.reply(m.chat, `✦ *Verifica que el enlace sea de YouTube.*`, m).then(_ => m.react('✖️'))
-  
-  let q = '128kbps'
-  await m.react('🕓')
+[ Canal Rikka Takanashi Bot ] :
+https://whatsapp.com/channel/0029VaksDf4I1rcsIO6Rip2X
 
-  try {
-    let v = args[0]
-    let yt = await youtubedl(v).catch(async () => await youtubedlv2(v))
-    let dl_url = await yt.audio[q].download()
-    let title = await yt.title
-    let size = await yt.audio[q].fileSizeH
-    let thumbnail = await yt.thumbnail
+[ Canal StarlightsTeam] :
+https://whatsapp.com/channel/0029VaBfsIwGk1FyaqFcK91S
 
-    let img = await (await fetch(`${thumbnail}`)).buffer()  
-    if (size.split('MB')[0] >= limit) return star.reply(m.chat, `✦ *El archivo pesa más de ${limit} MB, se canceló la descarga.*`, m, rcanal).then(_ => m.react('✖️'))
-    
-    let txt = '`akeno ytmp3`\n\n'
-    txt += `✦ *Titulo* : ${title}\n`
-    txt += `✦ *Calidad* : ${q}\n`
-    txt += `✦ *Tamaño* : ${size}\n\n`
-    
-    await star.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null)
-    await star.sendMessage(m.chat, { audio: { url: dl_url }, fileName: title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })
-    await m.react('✅')
-  } catch (error) {
-    console.error(error)
-    await m.react('✖️')
-  }
-}
+[ HasumiBot FreeCodes ] :
+https://whatsapp.com/channel/0029Vanjyqb2f3ERifCpGT0W
+*/
 
-handler.help = ['ytmp3']
-handler.tags = ['Descargas']
-handler.command = ['ytmp3']
-handler.register = false
+// *[ ❀ YTMP3 ]*
+import fetch from 'node-fetch'
 
-export default handler
+let HS = async (m, { conn, text }) => {
+if (!text) return conn.reply(m.chat, `❀ Ingresa un link de youtube`, m)
+
+try {
+let api = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=${text}`)
+let json = await api.json()
+let title = json.result.metadata.title
+let dl_url = json.result.download.url
+await conn.sendMessage(m.chat, { audio: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mp4' }, { quoted: m })
+
+} catch (error) {
+console.error(error)
+}}
+
+HS.command = ['ytmp3']
+
+export default HS
