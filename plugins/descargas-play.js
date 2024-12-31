@@ -43,13 +43,6 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
           newsletterJid: '120363318758721861@newsletter',
           newsletterName: '✦ Akeno channel', 
           serverMessageId: -1
-        },
-        externalAdReply: {
-          title: '✦ Akeno', 
-          body: 'Descargas Play', 
-          thumbnailUrl: image, 
-          mediaType: 1,
-          renderLargerThumbnail: true
         }
       }
     }, { quoted: m })
