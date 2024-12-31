@@ -165,6 +165,6 @@ await conn.sendMessage(m.chat, {
 
 handler.help = ['menu'];
 handler.tags = ['main'];
-handler.command = ['allmenu'];
+handler.command = ['allmenu', 'menu', 'menuall', 'menucompleto'];
 
 export default handler;
