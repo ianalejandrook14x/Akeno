@@ -13,8 +13,7 @@ let k = Math.floor(Math.random() * 70);
 let x = `${pickRandom(['ㅤ'])}`
 let l = Math.floor(Math.random() * x.length);
 let vn = ``
-let top = `*${user(a)}estás de suerte , acaba de ganar ${text}
-Felicidades ✧
+let top = `*${user(a)} estás de suerte , acaba de ganar ${text} ✧*
 
 `
 let txt = '';
