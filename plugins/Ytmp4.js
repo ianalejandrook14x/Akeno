@@ -34,10 +34,6 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let thumbnail = json.result.metadata.thumbnail
     let sizeMB = (json.result.download.size / (1024 * 1024)).toFixed(2) // Convertir tamaño a MB
 
-    if (sizeMB >= limit) {
-      return star.reply(m.chat, `✦ *El archivo pesa más de ${limit} MB, se canceló la descarga.*`, m).then(_ => m.react('✖️'))
-    }
-
     let img = await (await fetch(thumbnail)).buffer()
 
     let txt = '`akeno ytmp3`\n\n'
@@ -48,10 +44,16 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     // Enviar la información del vídeo con la imagen de la portada
     await star.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null)
 
-    // Enviar el archivo de audio
-    await star.sendMessage(m.chat, { audio: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mp4' }, { quoted: m })
-
-    await m.react('✅')
+    // Verificar el tamaño del archivo
+    if (sizeMB >= limit) {
+      // Si el archivo es mayor o igual a 100 MB, enviar como documento
+      await star.sendMessage(m.chat, { document: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
+      await m.react('📄') // Reacción para indicar que se envió como documento
+    } else {
+      // Si el archivo es menor a 100 MB, enviar como audio
+      await star.sendMessage(m.chat, { audio: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mp4' }, { quoted: m })
+      await m.react('✅') // Reacción para indicar éxito
+    }
   } catch (error) {
     console.error(error)
     await m.react('✖️')
