@@ -11,20 +11,20 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let query = args.join(' ')
     let videoInfo
 
-    let apiResponse = await fetch(`https://deliriussapi-oficial.vercel.app/search/ytsearch?q=${encodeURIComponent(query)}`)
+    let apiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/search-yts?message=${encodeURIComponent(query)}`)
     let searchResults = await apiResponse.json()
 
-    if (!searchResults.status || !searchResults.data || !searchResults.data.length) {
+    if (!searchResults.status || !searchResults.data || !searchResults.data.response || !searchResults.data.response.video || !searchResults.data.response.video.length) {
       return star.reply(m.chat, '✦ *No se encontraron resultados para tu búsqueda.*', m).then(_ => m.react('✖️'))
     }
 
-    videoInfo = searchResults.data[0]
+    videoInfo = searchResults.data.response.video[0]
     let url = videoInfo.url
     let title = videoInfo.title
     let thumbnail = videoInfo.thumbnail
     let duration = parseDuration(videoInfo.duration)
-    let views = videoInfo.views
-    let publishedAt = videoInfo.publishedAt
+    let views = videoInfo.view
+    let publishedAt = videoInfo.publishedTime
 
     let downloadApi = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp4?url=${url}`)
     let downloadInfo = await downloadApi.json()
