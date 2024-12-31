@@ -1,6 +1,6 @@
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 let txt = `Prueba de botones`
-conn.sendMessage(m.chat, { text: txt, caption: "1234", footer: grupos, buttons: [
+conn.sendMessage(m.chat, { text: txt, caption: "1234", footer: grupo, buttons: [
   {
     buttonId: ".menu", 
     buttonText: { 
