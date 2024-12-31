@@ -42,7 +42,6 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
 
     let txt = '`akeno ytmp3`\n\n'
     txt += `✦ *Título* : ${title}\n`
-    txt += `✦ *Vistas* : ${views}\n`
     txt += `✦ *Calidad* : 128kbps\n`
     txt += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n\n`
 
