@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
-let limit = 100 // Límite de tamaño en MB
-let durationLimit = 50 // Límite de duración en minutos
+let limit = 100
+let durationLimit = 50
 
 let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
   if (!args[0]) return star.reply(m.chat, '✦ *Ingrese el nombre o enlace de un video de YouTube*', m)
@@ -11,7 +11,6 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let query = args.join(' ')
     let videoInfo
 
-    
     let apiResponse = await fetch(`https://deliriussapi-oficial.vercel.app/search/ytsearch?q=${encodeURIComponent(query)}`)
     let searchResults = await apiResponse.json()
 
@@ -23,11 +22,10 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let url = videoInfo.url
     let title = videoInfo.title
     let thumbnail = videoInfo.thumbnail
-    let duration = parseDuration(videoInfo.duration) 
+    let duration = parseDuration(videoInfo.duration)
     let views = videoInfo.views
     let publishedAt = videoInfo.publishedAt
 
-    
     let downloadApi = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=${url}`)
     let downloadInfo = await downloadApi.json()
 
@@ -36,19 +34,27 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     }
 
     let dl_url = downloadInfo.result.download.url
-    let sizeMB = (downloadInfo.result.download.size / (1024 * 1024)).toFixed(2) 
-
-    let img = await (await fetch(thumbnail)).buffer()
+    let sizeMB = (downloadInfo.result.download.size / (1024 * 1024)).toFixed(2)
 
     let txt = '`akeno ytmp3`\n\n'
     txt += `✦ *Título* : ${title}\n`
     txt += `✦ *Calidad* : 128kbps\n`
     txt += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n\n`
 
-    // 
-    await star.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null)
+    await star.sendMessage(m.chat, {
+      image: { url: thumbnail },
+      caption: txt,
+      contextInfo: {
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363318758721861@newsletter',
+          newsletterName: '✦ Akeno channel',
+          serverMessageId: -1
+        }
+      }
+    }, { quoted: m })
 
-    // 
     if (duration / 60 >= durationLimit || sizeMB >= limit) {
       await star.sendMessage(m.chat, { document: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
       await m.react('📄')
@@ -68,7 +74,6 @@ handler.command = ['ytmp3', 'audio']
 handler.register = false
 
 export default handler
-
 
 function parseDuration(duration) {
   let parts = duration.split(':').reverse()
