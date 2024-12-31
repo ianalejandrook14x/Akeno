@@ -39,36 +39,36 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let quality = downloadInfo.data.download.quality
     let filename = downloadInfo.data.download.filename
 
-    let txt = '`akeno ytmp4`\n\n'
-    txt += `✦ *Título* : ${title}\n`
-    txt += `✦ *Calidad* : ${quality}\n`
-    txt += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n`
-    txt += `✦ *Vistas* : ${views}\n`
-    txt += `✦ *Publicado* : ${publishedAt}\n\n`
+    // Crear el mensaje de información con la portada
+    let infoMessage = `✦ *Akeno ytmp4* \n\n`
+    infoMessage += `✦ *Título* : ${title}\n`
+    infoMessage += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n`
+    infoMessage += `✦ *Vistas* : ${views}\n`
+    infoMessage += `✦ *Publicado* : ${publishedAt}\n`
+
+    // Enviar la información con la portada
+    await star.sendMessage(m.chat, {
+      image: { url: thumbnail },
+      caption: infoMessage
+    }, { quoted: m })
+
+    // Crear la caption para el video o documento
+    let caption = `✦ *${title}*\n✦ *Duración* : ${Math.floor(duration / 60)} minutos`
 
     // Verificar si la duración es mayor a 30 minutos (1800 segundos)
     if (duration > 1800) {
-      // Enviar como documento (sin efectos adicionales)
+      // Enviar como documento (con caption simple)
       await star.sendMessage(m.chat, {
         document: { url: dl_url },
         mimetype: 'video/mp4',
         fileName: filename,
-        caption: txt
+        caption: caption
       }, { quoted: m })
     } else {
-      // Enviar como video (con efectos del canal)
+      // Enviar como video (con caption simple)
       await star.sendMessage(m.chat, {
         video: { url: dl_url },
-        caption: txt,
-        contextInfo: {
-          forwardingScore: 999,
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363318758721861@newsletter',
-            newsletterName: '✦ Akeno channel',
-            serverMessageId: -1
-          }
-        }
+        caption: caption
       }, { quoted: m })
     }
 
