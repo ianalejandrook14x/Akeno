@@ -267,7 +267,7 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
               forwardingScore: 999,
               isForwarded: true,
               forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363318758721861@newsletter', 
+                newsletterJid: '120363318758721861@newsletter',
                 newsletterName: '✦ Akeno channel', 
                 serverMessageId: -1
               }
@@ -277,18 +277,33 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
         }
         if (qr && isCode) {
           
-          await sleep(3000);
-          pairingCode = await subBot.requestPairingCode(msg.sender.split`@`[0]);
-
-          // Enviar el código de 8 dígitos con el diseño del canal
-          pairingCode = await user.sendMessage(msg.chat, {
-            text: pairingCode, // Solo el código de 8 dígitos
+          code = await user.sendMessage(msg.chat, {
+            text: rtx2 + "\n" + secret.toString("utf-8"),
             contextInfo: {
               forwardingScore: 999,
               isForwarded: true,
               forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363318758721861@newsletter', 
-                newsletterName: '✦ Akeno channel', 
+                newsletterName: '✦ Akeno Subbot', 
+                serverMessageId: -1
+              }
+            }
+          }, { quoted: msg });
+
+          // Obtener el código de 8 dígitos
+          await sleep(3000);
+          pairingCode = await subBot.requestPairingCode(msg.sender.split`@`[0]);
+
+          
+          pairingCode = await user.sendMessage(msg.chat, {
+            text: pairingCode, 
+            contextInfo: {
+              forwardingScore: 999,
+              isForwarded: true,
+              forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363318758721861@newsletter', /
+                
+                newsletterName: '✦ Akeno code', 
                 serverMessageId: -1
               }
             }
@@ -325,7 +340,7 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
             return console.log("\n❀ Tiempo de conexión agotado, reconectando...");
           } else if (disconnectCode === DisconnectReason.loggedOut) {
             fs.rmdirSync(`./${jadi}/${userName}`, { recursive: true });
-            return msg.reply("❀ *Tu dispositivo se ha deconectado*\n\nTendras que volver a conectarte usando:\n.deletesesion (Para borrar datos y poder volver a solita el QR o el code)");
+            return msg.reply("❀ *Conexión perdida...*");
           } else if (disconnectCode == 428) {
             await closeConnection(false);
             return msg.reply("❀ La conexión se ha cerrado de manera inesperada, intentaremos reconectar...");
@@ -440,4 +455,4 @@ export default handler;
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-                                    }
+  }
