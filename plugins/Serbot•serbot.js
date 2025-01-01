@@ -267,8 +267,8 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
               forwardingScore: 999,
               isForwarded: true,
               forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363318758721861@newsletter', // Reemplaza con el JID de tu canal
-                newsletterName: '✦ Akeno channel', // Reemplaza con el nombre de tu canal
+                newsletterJid: '120363318758721861@newsletter', 
+                newsletterName: '✦ Akeno channel', 
                 serverMessageId: -1
               }
             }
@@ -276,15 +276,15 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
           return;
         }
         if (qr && isCode) {
-          // Enviar el mensaje con las instrucciones y el diseño del canal
+          
           code = await user.sendMessage(msg.chat, {
             text: rtx2 + "\n" + secret.toString("utf-8"),
             contextInfo: {
               forwardingScore: 999,
               isForwarded: true,
               forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363318758721861@newsletter', // Reemplaza con el JID de tu canal
-                newsletterName: '✦ Akeno channel', // Reemplaza con el nombre de tu canal
+                newsletterJid: '120363318758721861@newsletter', 
+                newsletterName: '✦ Akeno subbot', 
                 serverMessageId: -1
               }
             }
@@ -294,15 +294,15 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
           await sleep(3000);
           pairingCode = await subBot.requestPairingCode(msg.sender.split`@`[0]);
 
-          // Enviar el código de 8 dígitos con el diseño del canal
+          
           pairingCode = await user.sendMessage(msg.chat, {
-            text: pairingCode, // Solo el código de 8 dígitos
+            text: pairingCode, 
             contextInfo: {
               forwardingScore: 999,
               isForwarded: true,
               forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363318758721861@newsletter', // Reemplaza con el JID de tu canal
-                newsletterName: '✦ Akeno channel', // Reemplaza con el nombre de tu canal
+                newsletterJid: '120363318758721861@newsletter', 
+                newsletterName: '✦ Akeno code', 
                 serverMessageId: -1
               }
             }
