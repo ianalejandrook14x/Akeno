@@ -262,17 +262,37 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
         if (qr && !isCode) {
           qrMessage = await user.sendMessage(msg.chat, {
             image: await qrcode.toBuffer(qr, { scale: 8 }),
-            caption: rtx + "\n" + secret.toString("utf-8")
-          }, { quoted: msg, rcanal });
+            caption: rtx + "\n" + secret.toString("utf-8"),
+            contextInfo: {
+              forwardingScore: 999,
+              isForwarded: true,
+              forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363318758721861@newsletter', 
+                newsletterName: '✦ Akeno channel', 
+                serverMessageId: -1
+              }
+            }
+          }, { quoted: msg });
           return;
         }
         if (qr && isCode) {
-          code = await user.sendMessage(msg.chat, {
-            text: rtx2 + "\n" + secret.toString("utf-8")
-          }, { quoted: msg, rcanal });
+          
           await sleep(3000);
           pairingCode = await subBot.requestPairingCode(msg.sender.split`@`[0]);
-          pairingCode = await msg.reply(pairingCode);
+
+          // Enviar el código de 8 dígitos con el diseño del canal
+          pairingCode = await user.sendMessage(msg.chat, {
+            text: pairingCode, // Solo el código de 8 dígitos
+            contextInfo: {
+              forwardingScore: 999,
+              isForwarded: true,
+              forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363318758721861@newsletter', 
+                newsletterName: '✦ Akeno channel', 
+                serverMessageId: -1
+              }
+            }
+          }, { quoted: msg });
         }
 
         const statusCode = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode;
@@ -420,4 +440,4 @@ export default handler;
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
+                                    }
