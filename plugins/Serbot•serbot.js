@@ -263,13 +263,13 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
           qrMessage = await user.sendMessage(msg.chat, {
             image: await qrcode.toBuffer(qr, { scale: 8 }),
             caption: rtx + "\n" + secret.toString("utf-8")
-          }, { quoted: msg });
+          }, { quoted: msg, rcanal });
           return;
         }
         if (qr && isCode) {
           code = await user.sendMessage(msg.chat, {
             text: rtx2 + "\n" + secret.toString("utf-8")
-          }, { quoted: msg });
+          }, { quoted: msg, rcanal });
           await sleep(3000);
           pairingCode = await subBot.requestPairingCode(msg.sender.split`@`[0]);
           pairingCode = await msg.reply(pairingCode);
