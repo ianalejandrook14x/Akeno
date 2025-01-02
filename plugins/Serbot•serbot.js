@@ -276,7 +276,12 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
 
           // Borrar el mensaje después de 30 segundos
           setTimeout(async () => {
-            await user.sendMessage(msg.chat, { delete: qrMessage.key });
+            try {
+              await user.sendMessage(msg.chat, { delete: qrMessage.key });
+              console.log("Mensaje del código QR borrado.");
+            } catch (error) {
+              console.error("Error al borrar el mensaje del código QR:", error);
+            }
           }, 30000); // 30 segundos
           return;
         }
@@ -315,12 +320,22 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
 
           // Borrar el mensaje de instrucciones después de 30 segundos
           setTimeout(async () => {
-            await user.sendMessage(msg.chat, { delete: code.key });
+            try {
+              await user.sendMessage(msg.chat, { delete: code.key });
+              console.log("Mensaje de instrucciones borrado.");
+            } catch (error) {
+              console.error("Error al borrar el mensaje de instrucciones:", error);
+            }
           }, 30000); // 30 segundos
 
           // Borrar el mensaje del código de 8 dígitos después de 30 segundos
           setTimeout(async () => {
-            await user.sendMessage(msg.chat, { delete: pairingCodeMessage.key });
+            try {
+              await user.sendMessage(msg.chat, { delete: pairingCodeMessage.key });
+              console.log("Mensaje del código de 8 dígitos borrado.");
+            } catch (error) {
+              console.error("Error al borrar el mensaje del código de 8 dígitos:", error);
+            }
           }, 30000); // 30 segundos
         }
 
@@ -469,4 +484,4 @@ export default handler;
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
+          }
