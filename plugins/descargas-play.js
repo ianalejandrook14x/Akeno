@@ -1,35 +1,45 @@
 import fetch from 'node-fetch';
-import yts from 'yt-search';
 
 let handler = async (m, { conn, args }) => {
   if (!args[0]) return conn.reply(m.chat, '*\`Ingresa el nombre de lo que quieres buscar\`*', m);
 
   await m.react('');
   try {
-    let res = await search(args.join(" "));
-    let video = res[0];
-    let img = await (await fetch(video.image)).buffer();
+    // Realizar la búsqueda usando la API
+    let query = args.join(" ");
+    let searchApiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/search-yts?message=${encodeURIComponent(query)}`);
+    let searchResults = await searchApiResponse.json();
 
+    // Verificar si la API devolvió resultados válidos
+    if (!searchResults.status || !searchResults.data || !searchResults.data.response || !searchResults.data.response.video || !searchResults.data.response.video.length) {
+      return conn.reply(m.chat, '*\`No se encontraron resultados para tu búsqueda.\`*', m).then(_ => m.react('✖️'));
+    }
+
+    // Obtener el primer video de los resultados
+    let video = searchResults.data.response.video[0];
+    let img = await (await fetch(video.thumbnail)).buffer();
+
+    // Construir el mensaje
     let txt = `*\`Y O U T U B E - P L A Y\`*\n\n`;
     txt += `• *\`Título:\`* ${video.title}\n`;
-    txt += `• *\`Duración:\`* ${secondString(video.duration.seconds)}\n`;
-    txt += `• *\`Publicado:\`* ${eYear(video.ago)}\n`;
-    txt += `• *\`Canal:\`* ${video.author.name || 'Desconocido'}\n`;
-    txt += `• *\`Url:\`* https://youtu.be/${video.videoId}\n\n`;
+    txt += `• *\`Duración:\`* ${parseDuration(video.duration)}\n`;
+    txt += `• *\`Canal:\`* ${video.authorName || 'Desconocido'}\n`;
+    txt += `• *\`Url:\`* ${video.url}\n\n`;
 
+    // Enviar el mensaje con botones
     await conn.sendMessage(m.chat, {
       image: img,
       caption: txt,
       footer: 'Selecciona una opción',
       buttons: [
         {
-          buttonId: `.ytmp3 https://youtu.be/${video.videoId}`,
+          buttonId: `.ytmp3 ${video.url}`,
           buttonText: {
             displayText: '✦ Audio',
           },
         },
         {
-          buttonId: `.ytmp4 https://youtu.be/${video.videoId}`,
+          buttonId: `.ytmp4 ${video.url}`,
           buttonText: {
             displayText: '✦ Video',
           },
@@ -41,9 +51,9 @@ let handler = async (m, { conn, args }) => {
 
     await m.react('');
   } catch (e) {
-    console.error(e);
-    await m.react('');
-    conn.reply(m.chat, '*\`Error al buscar el video.\`*', m);
+    console.error('Error en el handler:', e);
+    await m.react('✖️');
+    conn.reply(m.chat, '*\`Error al buscar el video. Verifica la consulta o inténtalo de nuevo.\`*', m);
   }
 };
 
@@ -53,24 +63,7 @@ handler.command = ['play'];
 
 export default handler;
 
-async function search(query, options = {}) {
-  let search = await yts.search({ query, hl: "es", gl: "ES", ...options });
-  return search.videos;
-}
-
-function secondString(seconds) {
-  seconds = Number(seconds);
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = Math.floor(seconds % 60);
-  return `${h > 0 ? h + 'h ' : ''}${m}m ${s}s`;
-}
-
-function eYear(txt) {
-  if (txt.includes('year')) return txt.replace('year', 'año').replace('years', 'años');
-  if (txt.includes('month')) return txt.replace('month', 'mes').replace('months', 'meses');
-  if (txt.includes('day')) return txt.replace('day', 'día').replace('days', 'días');
-  if (txt.includes('hour')) return txt.replace('hour', 'hora').replace('hours', 'horas');
-  if (txt.includes('minute')) return txt.replace('minute', 'minuto').replace('minutes', 'minutos');
-  return txt;
+function parseDuration(duration) {
+  let parts = duration.split(':').reverse();
+  return parts.reduce((total, part, index) => total + parseInt(part) * Math.pow(60, index), 0);
 }
