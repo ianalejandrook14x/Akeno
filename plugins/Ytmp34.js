@@ -36,6 +36,30 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let dl_url = downloadInfo.data.download.url
     let quality = downloadInfo.data.download.quality
     let filename = downloadInfo.data.download.filename
+
+    let infoMessage = `✦ *Akeno ytmp4* \n\n`
+    infoMessage += `✦ *Título* : ${title}\n`
+    infoMessage += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n`
+    infoMessage += `✦ *Vistas* : ${views}\n`
+    infoMessage += `✦ *Publicado* : ${publishedAt}\n`
+
+    await star.sendMessage(m.chat, {
+      image: { url: thumbnail },
+      caption: infoMessage,
+      contextInfo: {
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363318758721861@newsletter',
+          newsletterName: '✦ Akeno channel',
+          serverMessageId: -1
+        }
+      }
+    }, { quoted: m })
+
+    let caption = `✦ *${title}*\n✦ *Duración* : ${Math.floor(duration / 60)} minutos`
+
+    // Enviar como documento si la duración es mayor a 7 minutos (420 segundos)
     if (duration > 420) {
       await star.sendMessage(m.chat, {
         document: { url: dl_url },
@@ -54,7 +78,7 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
             newsletterJid: '120363318758721861@newsletter',
-            newsletterName: '✦ Canal ianalejandrook14x',
+            newsletterName: '✦ Akeno ytmp4',
             serverMessageId: -1
           }
         }
