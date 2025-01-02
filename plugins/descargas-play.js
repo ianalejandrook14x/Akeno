@@ -1,7 +1,3 @@
-/* 
-- Play Botones By Angel-OFC 
-- https://whatsapp.com/channel/0029VaJxgcB0bIdvuOwKTM2Y
-*/
 import fetch from 'node-fetch';
 import yts from 'yt-search';
 
