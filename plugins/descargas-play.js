@@ -5,28 +5,28 @@ let handler = async (m, { conn, args }) => {
 
   await m.react('');
   try {
-    // Realizar la búsqueda usando la API
+    
     let query = args.join(" ");
     let searchApiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/search-yts?message=${encodeURIComponent(query)}`);
     let searchResults = await searchApiResponse.json();
 
-    // Verificar si la API devolvió resultados válidos
+    
     if (!searchResults.status || !searchResults.data || !searchResults.data.response || !searchResults.data.response.video || !searchResults.data.response.video.length) {
       return conn.reply(m.chat, '*\`No se encontraron resultados para tu búsqueda.\`*', m).then(_ => m.react('✖️'));
     }
 
-    // Obtener el primer video de los resultados
+    
     let video = searchResults.data.response.video[0];
     let img = await (await fetch(video.thumbnail)).buffer();
 
-    // Construir el mensaje
+    
     let txt = `*\`Y O U T U B E - P L A Y\`*\n\n`;
     txt += `• *\`Título:\`* ${video.title}\n`;
     txt += `• *\`Duración:\`* ${parseDuration(video.duration)}\n`;
     txt += `• *\`Canal:\`* ${video.authorName || 'Desconocido'}\n`;
     txt += `• *\`Url:\`* ${video.url}\n\n`;
 
-    // Enviar el mensaje con botones
+    
     await conn.sendMessage(m.chat, {
       image: img,
       caption: txt,
