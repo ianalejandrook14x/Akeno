@@ -117,7 +117,7 @@ async function loadSubbots() {
         // Eliminar carpeta si el usuario cierra la sesión manualmente
         if (code === DisconnectReason.loggedOut) {
           fs.rmdirSync(folderPath, { recursive: true });
-          console.log(`🗑️ Carpeta de credenciales eliminada para el subbot ${folder}.`);
+          console.log(`Carpeta de credenciales eliminada para el subbot ${folder}.`);
         }
       }
 
@@ -267,61 +267,46 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
               forwardingScore: 999,
               isForwarded: true,
               forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363318758721861@newsletter', // Reemplaza con el JID de tu canal
-                newsletterName: '✦ Akeno channel', // Reemplaza con el nombre de tu canal
+                newsletterJid: '120363318758721861@newsletter', 
+                newsletterName: '✦ Akeno channel', 
                 serverMessageId: -1
               }
             }
           }, { quoted: msg });
-
-          // Borrar el mensaje después de 30 segundos
-          setTimeout(async () => {
-            await user.sendMessage(msg.chat, { delete: qrMessage.key });
-          }, 30000); // 30 segundos
           return;
         }
         if (qr && isCode) {
-          // Enviar el mensaje con las instrucciones y el diseño del canal
+          
           code = await user.sendMessage(msg.chat, {
             text: rtx2 + "\n" + secret.toString("utf-8"),
             contextInfo: {
               forwardingScore: 999,
               isForwarded: true,
               forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363318758721861@newsletter', // Reemplaza con el JID de tu canal
-                newsletterName: '✦ Akeno channel', // Reemplaza con el nombre de tu canal
+                newsletterJid: '120363318758721861@newsletter', 
+                newsletterName: '✦ Akeno channel',
                 serverMessageId: -1
               }
             }
           }, { quoted: msg });
 
-          // Obtener el código de 8 dígitos
+          
           await sleep(3000);
           pairingCode = await subBot.requestPairingCode(msg.sender.split`@`[0]);
 
-          // Enviar el código de 8 dígitos con el diseño del canal
-          pairingCodeMessage = await user.sendMessage(msg.chat, {
-            text: pairingCode, // Solo el código de 8 dígitos
+          
+          pairingCode = await user.sendMessage(msg.chat, {
+            text: pairingCode, 
             contextInfo: {
               forwardingScore: 999,
               isForwarded: true,
               forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363318758721861@newsletter', // Reemplaza con el JID de tu canal
-                newsletterName: '✦ Akeno channel', // Reemplaza con el nombre de tu canal
+                newsletterJid: '120363318758721861@newsletter', 
+                newsletterName: '✦ Akeno channel', 
                 serverMessageId: -1
               }
             }
           }, { quoted: msg });
-
-          // Borrar el mensaje de instrucciones después de 30 segundos
-          setTimeout(async () => {
-            await user.sendMessage(msg.chat, { delete: code.key });
-          }, 30000); // 30 segundos
-
-          // Borrar el mensaje del código de 8 dígitos después de 30 segundos
-          setTimeout(async () => {
-            await user.sendMessage(msg.chat, { delete: pairingCodeMessage.key });
-          }, 30000); // 30 segundos
         }
 
         const statusCode = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode;
@@ -469,4 +454,4 @@ export default handler;
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
+            }
