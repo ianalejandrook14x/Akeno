@@ -32,14 +32,6 @@ let handler = async (m, { conn, args }) => {
           newsletterJid: '120363318758721861@newsletter', // ID del canal
           newsletterName: '✦ Akeno Channel', // Nombre del canal
           serverMessageId: -1
-        },
-        externalAdReply: {
-          title: 'Facebook Video Downloader', // Título del anuncio
-          body: '¡Video descargado con éxito!', // Descripción del anuncio
-          thumbnail: await (await fetch(image)).buffer(), // Miniatura del anuncio
-          mediaType: 2, // Tipo de medio (2 para video)
-          mediaUrl: download, // URL del video
-          sourceUrl: download // URL de origen
         }
       }
     }, { quoted: m });
@@ -55,5 +47,6 @@ let handler = async (m, { conn, args }) => {
 handler.help = ['fb <url>'];
 handler.tags = ['downloader'];
 handler.command = ['fb', 'facebook'];
+handler.diamond = true;
 
 export default handler;
