@@ -2,25 +2,25 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
   if (!args[0]) {
-    // Mensaje de texto
-    await conn.reply(m.chat, '*\`Ingresa el nombre de lo que quieres buscar\`*', m);
-
-    // Quoted message de orden
+    // Respuesta combinada: texto + quoted de orden
     await conn.sendMessage(m.chat, {
-      key: {
-        fromMe: false,
-        participant: `0@s.whatsapp.net`,
-        remoteJid: 'status@broadcast'
-      },
-      message: {
-        orderMessage: {
-          itemCount: 1, // Cantidad de ítems
-          status: 1, // Estado de la orden
-          surface: 1, // Superficie (plataforma)
-          message: '*\`Ingresa el nombre de lo que quieres buscar\`*', // Mensaje principal
-          orderTitle: 'Búsqueda de YouTube', // Título de la orden
-          thumbnail: 'https://qu.ax/GSMZV.jpg', // Imagen de la orden
-          sellerJid: '0@s.whatsapp.net' // Identificador del vendedor
+      text: '*\`Ingresa el nombre de lo que quieres buscar\`*',
+      quoted: {
+        key: {
+          fromMe: false,
+          participant: `0@s.whatsapp.net`,
+          remoteJid: 'status@broadcast'
+        },
+        message: {
+          orderMessage: {
+            itemCount: 1, // Cantidad de ítems
+            status: 1, // Estado de la orden
+            surface: 1, // Superficie (plataforma)
+            message: '*\`Ingresa el nombre de lo que quieres buscar\`*', // Mensaje principal
+            orderTitle: 'Búsqueda de YouTube', // Título de la orden
+            thumbnail: 'https://qu.ax/GSMZV.jpg', // Imagen de la orden
+            sellerJid: '0@s.whatsapp.net' // Identificador del vendedor
+          }
         }
       }
     }, { quoted: m });
