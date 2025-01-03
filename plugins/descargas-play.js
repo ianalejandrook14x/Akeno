@@ -2,8 +2,11 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
   if (!args[0]) {
-    
-    return conn.sendMessage(m.chat, {
+    // Mensaje de texto
+    await conn.reply(m.chat, '*\`Ingresa el nombre de lo que quieres buscar\`*', m);
+
+    // Quoted message de orden
+    await conn.sendMessage(m.chat, {
       key: {
         fromMe: false,
         participant: `0@s.whatsapp.net`,
@@ -21,6 +24,8 @@ let handler = async (m, { conn, args }) => {
         }
       }
     }, { quoted: m });
+
+    return;
   }
 
   await m.react('');
