@@ -124,7 +124,7 @@ const Akenoestilo = {
       surface: 1,
       message: 'Akeno',
       orderTitle: '✦ Uso incorrecto, User',
-      thumbnail: 'https://tinyurl.com/2cjqnhjo',
+     // thumbnail: 'https://tinyurl.com/2cjqnhjo',
       sellerJid: '0@s.whatsapp.net'
     }
   }
