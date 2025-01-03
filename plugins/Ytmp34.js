@@ -60,7 +60,7 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let caption = `✦ *${title}*\n✦ *Duración* : ${Math.floor(duration / 60)} minutos`
 
     // Enviar como documento si la duración es mayor a 7 minutos (420 segundos)
-    if (duration > 420) {
+    if (duration > 600) {
       await star.sendMessage(m.chat, {
         document: { url: dl_url },
         mimetype: 'video/mp4',
