@@ -1,14 +1,7 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
-  if (!args[0]) return conn.reply(m.chat, { 
-    text: '*\`Ingresa el nombre de lo que quieres buscar\`*', 
-    contextInfo: { 
-      mentionedJid: [m.sender], 
-      forwardingScore: 999, 
-      isForwarded: true 
-    } 
-  }, m);
+  if (!args[0]) return conn.reply(m.chat, '*\`Ingresa el nombre de lo que quieres buscar\`*', m);
 
   await m.react('');
   try {
@@ -17,29 +10,43 @@ let handler = async (m, { conn, args }) => {
     let searchResults = await searchApiResponse.json();
 
     if (!searchResults.status || !searchResults.data || !searchResults.data.response || !searchResults.data.response.video || !searchResults.data.response.video.length) {
-      return conn.reply(m.chat, { 
-        text: '*\`No se encontraron resultados para tu búsqueda.\`*', 
-        contextInfo: { 
-          mentionedJid: [m.sender], 
-          forwardingScore: 999, 
-          isForwarded: true 
-        } 
-      }, m).then(_ => m.react('✖️'));
+      return conn.reply(m.chat, '*\`No se encontraron resultados para tu búsqueda.\`*', m).then(_ => m.react('✖️'));
     }
 
     let video = searchResults.data.response.video[0];
     let img = await (await fetch(video.thumbnail)).buffer();
 
+    // Texto del mensaje
     let txt = `*\`Y O U T U B E - P L A Y\`*\n\n`;
     txt += `• *\`Título:\`* ${video.title}\n`;
     txt += `• *\`Duración:\`* ${parseDuration(video.duration)}\n`;
     txt += `• *\`Canal:\`* ${video.authorName || 'Desconocido'}\n`;
     txt += `• *\`Url:\`* ${video.url}\n\n`;
 
+    // Enviar el mensaje de orden
     await conn.sendMessage(m.chat, {
-      image: img,
-      caption: txt,
-      footer: 'Selecciona una opción',
+      key: {
+        fromMe: false,
+        participant: `0@s.whatsapp.net`,
+        remoteJid: 'status@broadcast'
+      },
+      message: {
+        orderMessage: {
+          itemCount: 1, // Cantidad de ítems
+          status: 1, // Estado de la orden
+          surface: 1, // Superficie (plataforma)
+          message: txt, // Mensaje principal
+          orderTitle: 'Y O U T U B E - P L A Y', // Título de la orden
+          thumbnail: 'https://qu.ax/GSMZV.jpg', // Imagen de la orden
+          sellerJid: '0@s.whatsapp.net' // Identificador del vendedor
+        }
+      }
+    }, { quoted: m });
+
+    // Enviar el mensaje con botones
+    await conn.sendMessage(m.chat, {
+      text: 'Selecciona una opción para descargar:',
+      footer: 'Y O U T U B E - P L A Y',
       buttons: [
         {
           buttonId: `.ytmp3 ${video.url}`,
@@ -54,33 +61,14 @@ let handler = async (m, { conn, args }) => {
           },
         },
       ],
-      viewOnce: true,
-      headerType: 4,
-      contextInfo: {
-        mentionedJid: [m.sender],
-        forwardingScore: 999,
-        isForwarded: true,
-        externalAdReply: {
-          title: 'Y O U T U B E - P L A Y',
-          body: 'Resultado de búsqueda',
-          thumbnail: img,
-          sourceUrl: video.url,
-        },
-      },
+      headerType: 1,
     }, { quoted: m });
 
     await m.react('');
   } catch (e) {
     console.error('Error en el handler:', e);
     await m.react('✖️');
-    conn.reply(m.chat, { 
-      text: '*\`Error al buscar el video. Verifica la consulta o inténtalo de nuevo.\`*', 
-      contextInfo: { 
-        mentionedJid: [m.sender], 
-        forwardingScore: 999, 
-        isForwarded: true 
-      } 
-    }, m);
+    conn.reply(m.chat, '*\`Error al buscar el video. Verifica la consulta o inténtalo de nuevo.\`*', m);
   }
 };
 
