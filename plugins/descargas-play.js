@@ -59,7 +59,7 @@ let handler = async (m, { conn, args }) => {
 
 handler.help = ['play *<texto>*'];
 handler.tags = ['dl'];
-handler.command = ['play'];
+handler.command = ['play', 'play2'];
 
 export default handler;
 
