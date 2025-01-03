@@ -6,7 +6,7 @@ let handler = async (m, { conn, args }) => {
     return conn.sendMessage(m.chat, {
       text: 'Ingresa el nombre de lo que quieres buscar',
       quoted: Akenoestilo 
-    }, { quoted: m });
+    }, { quoted: Akenoestilo });
   }
 
   await m.react('');
