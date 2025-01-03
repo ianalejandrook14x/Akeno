@@ -124,7 +124,7 @@ const Akenoestilo = {
       surface: 1,
       message: 'Akeno',
       orderTitle: '✦ Uso incorrecto, User',
-      //thumbnail: 'https://qu.ax/GSMZV.jpg',
+      thumbnail: 'https://qu.ax/GSMZV.jpg',
       sellerJid: '0@s.whatsapp.net'
     }
   }
