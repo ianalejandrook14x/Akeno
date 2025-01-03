@@ -9,7 +9,7 @@ let handler = async (m, { conn, args }) => {
   let apiUrl = `https://api-rin-tohsaka.vercel.app/download/facebook?url=${encodeURIComponent(url)}`;
 
   try {
-    await m.react('🕓'); // Reacción de espera
+    await m.react('🕓');
 
     let response = await fetch(apiUrl);
     let data = await response.json();
@@ -18,28 +18,28 @@ let handler = async (m, { conn, args }) => {
       return conn.reply(m.chat, '✦ *No se pudo obtener el video. Verifica la URL e inténtalo de nuevo.*', m).then(_ => m.react('✖️'));
     }
 
-    const title = data.data?.title || 'Sin título'; // Extraer el título o usar "Sin título" si no está disponible
+    const title = data.data?.title || 'Sin título'; 
     const image = data.data?.image;
     const download = data.data?.download;
 
     await conn.sendMessage(m.chat, {
       video: { url: download },
-      caption: `✦ *Título*: ${title}`, // Solo el título en la caption
+      caption: `✦ *Título*: ${title}`, 
       contextInfo: {
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363318758721861@newsletter', // ID del canal
-          newsletterName: '✦ Akeno Channel', // Nombre del canal
+          newsletterJid: '120363318758721861@newsletter', 
+          newsletterName: '✦ Akeno Channel', 
           serverMessageId: -1
         }
       }
     }, { quoted: m });
 
-    await m.react('✅'); // Reacción de éxito
+    await m.react('✅'); 
   } catch (e) {
     console.error('Error en el handler:', e);
-    await m.react('✖️'); // Reacción de error
+    await m.react('✖️'); 
     conn.reply(m.chat, '✦ *Ocurrió un error al procesar la solicitud. Inténtalo de nuevo más tarde.*', m);
   }
 };
@@ -47,6 +47,5 @@ let handler = async (m, { conn, args }) => {
 handler.help = ['fb <url>'];
 handler.tags = ['downloader'];
 handler.command = ['fb', 'facebook'];
-handler.diamond = true;
 
 export default handler;
