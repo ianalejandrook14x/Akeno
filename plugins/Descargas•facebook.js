@@ -22,16 +22,22 @@ let handler = async (m, { conn, args }) => {
 
     await conn.sendMessage(m.chat, {
       video: { url: download },
-      caption: `✦ *Título*: ${title || 'Sin título'}\n✦ *Descarga*: ${download}`,
-      thumbnail: await (await fetch(image)).buffer(),
+      caption: `✦ *Título*: ${title || 'Sin título'}`, 
       contextInfo: {
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363318758721861@newsletter', 
+          newsletterName: '✦ Akeno Channel', 
+          serverMessageId: -1
+        },
         externalAdReply: {
-          title: 'Facebook Video Downloader',
-          body: '¡Video descargado con éxito!',
-          thumbnail: await (await fetch(image)).buffer(),
-          mediaType: 2,
-          mediaUrl: download,
-          sourceUrl: download
+          title: 'Facebook Video Downloader', 
+          body: '¡Video descargado con éxito!', 
+          thumbnail: await (await fetch(image)).buffer(), 
+          mediaType: 2, 
+          mediaUrl: download, 
+          sourceUrl: download 
         }
       }
     }, { quoted: m });
