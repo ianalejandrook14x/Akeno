@@ -124,10 +124,10 @@ const Akenoestilo = {
       surface: 1,
       message: 'Akeno',
       orderTitle: '✦ Uso incorrecto, User',
-      thumbnail: 'img',
+      thumbnail: 'https://qu.ax/hMOxx.jpg',
       sellerJid: '0@s.whatsapp.net'
     }
   }
 };
 
-let img = await (await fetch(`https://tinyurl.com/2c5hk765`)).buffer()
+
