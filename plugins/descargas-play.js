@@ -4,16 +4,24 @@ let handler = async (m, { conn, args }) => {
   let username = m.pushName || 'User';
 
   if (!args[0]) {
+    let txt = `✦ *Ingresa el nombre de lo que quieres buscar @${username}*\n\n✦ *Ejemplo*: /play Akeno`;
+
     return conn.sendMessage(m.chat, {
-      text: `✦ *Ingresa el nombre de lo que quieres buscar @${username}*`,
-      quoted: {
-        ...Akenoestilo,
-        message: {
-          orderMessage: {
-            ...Akenoestilo.message.orderMessage,
-            orderTitle: `✦ Uso incorrecto, ${username}`,
-            message: 'Por favor, ingresa un nombre válido.',
-          }
+      text: txt,
+      contextInfo: {
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363318758721861@newsletter',
+          newsletterName: 'Nombre del Canal', // Cambia esto al nombre de tu canal
+          serverMessageId: -1
+        },
+        externalAdReply: {
+          title: 'BotName', // Cambia esto al nombre de tu bot
+          body: 'Desarrollado por Dev', // Cambia esto al nombre del desarrollador
+          thumbnailUrl: 'https://qu.ax/GSMZV.jpg', // Cambia esto a la URL de tu banner
+          mediaType: 1,
+          renderLargerThumbnail: true
         }
       }
     }, { quoted: Akenoestilo });
@@ -38,7 +46,7 @@ let handler = async (m, { conn, args }) => {
             }
           }
         }
-      }, { quoted: m }).then(_ => m.react('✖️'));
+      }, { quoted: Akenoestilo }).then(_ => m.react('✖️'));
     }
 
     let video = searchResults.data.response.video[0];
