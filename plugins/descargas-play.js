@@ -2,9 +2,28 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
   let username = m.pushName || 'User';
+  let pp = 'https://qu.ax/hMOxx.jpg';
+  let thumbnail = await (await fetch(pp)).buffer();
 
   if (!args[0]) {
     let txt = `✦ *Ingresa el nombre de lo que quieres buscar @${username}*\n\n✦ *Ejemplo*: /play Akeno`;
+
+    const anu = {
+      key: {
+        fromMe: false,
+        participant: "0@s.whatsapp.net",
+        remoteJid: "0@s.whatsapp.net"
+      },
+      message: {
+        groupInviteMessage: {
+          groupJid: "6285240750713-1610340626@g.us",
+          inviteCode: "mememteeeekkeke",
+          groupName: "P",
+          caption: "Akeno",
+          jpegThumbnail: thumbnail
+        }
+      }
+    };
 
     return conn.sendMessage(m.chat, {
       text: txt,
@@ -13,18 +32,16 @@ let handler = async (m, { conn, args }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: '✦ Akeno channel', 
+          newsletterName: '✦ Akeno channel',
           serverMessageId: -1
         },
         externalAdReply: {
-          title: 'Uso incorrecto', 
-          body: 'Youtube play', 
-          thumbnailUrl: 'https://qu.ax/hMOxx.jpg', 
-          mediaType: 1,
-          renderLargerThumbnail: true
+          title: 'Uso incorrecto',
+          body: 'Youtube play',
+          thumbnailUrl: pp
         }
       }
-    }, { quoted: Akenoestilo });
+    }, { quoted: anu });
   }
 
   await m.react('');
@@ -34,23 +51,31 @@ let handler = async (m, { conn, args }) => {
     let searchResults = await searchApiResponse.json();
 
     if (!searchResults.status || !searchResults.data || !searchResults.data.response || !searchResults.data.response.video || !searchResults.data.response.video.length) {
-      return conn.sendMessage(m.chat, {
-        text: `No se encontraron resultados, ${username}.`,
-        quoted: {
-          ...Akenoestilo,
-          message: {
-            orderMessage: {
-              ...Akenoestilo.message.orderMessage,
-              orderTitle: `No se encontraron resultados, ${username}`,
-              message: 'Intenta con otro nombre.',
-            }
+      const anu = {
+        key: {
+          fromMe: false,
+          participant: "0@s.whatsapp.net",
+          remoteJid: "0@s.whatsapp.net"
+        },
+        message: {
+          groupInviteMessage: {
+            groupJid: "6285240750713-1610340626@g.us",
+            inviteCode: "mememteeeekkeke",
+            groupName: "P",
+            caption: "No se encontraron resultados",
+            jpegThumbnail: thumbnail
           }
         }
-      }, { quoted: Akenoestilo }).then(_ => m.react('✖️'));
+      };
+
+      return conn.sendMessage(m.chat, {
+        text: `No se encontraron resultados, ${username}.`,
+        quoted: anu
+      }, { quoted: anu }).then(_ => m.react('✖️'));
     }
 
     let video = searchResults.data.response.video[0];
-    let img = await (await fetch(video.thumbnail)).buffer();
+    let videoImg = await (await fetch(video.thumbnail)).buffer();
 
     let txt = `*\`Y O U T U B E - P L A Y\`*\n\n`;
     txt += `• *\`Título:\`* ${video.title}\n`;
@@ -59,7 +84,7 @@ let handler = async (m, { conn, args }) => {
     txt += `• *\`Url:\`* ${video.url}\n\n`;
 
     await conn.sendMessage(m.chat, {
-      image: img,
+      image: videoImg,
       caption: txt,
       footer: 'Selecciona una opción',
       buttons: [
@@ -84,19 +109,28 @@ let handler = async (m, { conn, args }) => {
   } catch (e) {
     console.error('Error en el handler:', e);
     await m.react('✖️');
-    conn.sendMessage(m.chat, {
-      text: `Error al buscar el video, ${username}. Verifica la consulta o inténtalo de nuevo.`,
-      quoted: {
-        ...Akenoestilo,
-        message: {
-          orderMessage: {
-            ...Akenoestilo.message.orderMessage,
-            orderTitle: `Error al buscar el video, ${username}`,
-            message: 'Intenta nuevamente.',
-          }
+
+    const anu = {
+      key: {
+        fromMe: false,
+        participant: "0@s.whatsapp.net",
+        remoteJid: "0@s.whatsapp.net"
+      },
+      message: {
+        groupInviteMessage: {
+          groupJid: "6285240750713-1610340626@g.us",
+          inviteCode: "mememteeeekkeke",
+          groupName: "P",
+          caption: "Error al buscar el video",
+          jpegThumbnail: thumbnail
         }
       }
-    }, { quoted: m });
+    };
+
+    conn.sendMessage(m.chat, {
+      text: `Error al buscar el video, ${username}. Verifica la consulta o inténtalo de nuevo.`,
+      quoted: anu
+    }, { quoted: anu });
   }
 };
 
@@ -110,24 +144,3 @@ function parseDuration(duration) {
   let parts = duration.split(':').reverse();
   return parts.reduce((total, part, index) => total + parseInt(part) * Math.pow(60, index), 0);
 }
-
-const Akenoestilo = {
-  key: {
-    fromMe: false,
-    participant: `0@s.whatsapp.net`,
-    ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {})
-  },
-  message: {
-    orderMessage: {
-      itemCount: -999999,
-      status: 1,
-      surface: 1,
-      message: 'Akeno',
-      orderTitle: '✦ Uso incorrecto, User',
-     // thumbnail: 'https://tinyurl.com/2cjqnhjo',
-      sellerJid: '0@s.whatsapp.net'
-    }
-  }
-};
-
-
