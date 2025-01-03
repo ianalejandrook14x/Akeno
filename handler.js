@@ -411,7 +411,7 @@ await plugin.after.call(this, m, extra)
 console.error(e)
 }}
 if (m.yenes)
-conn.reply(m.chat, `Utilizaste *${+m.yenes}* 💴`, m, fake)
+conn.reply(m.chat, `Utilizaste *${+m.yenes}* ${currency}`, m, fake)
 }
 break
 }}
