@@ -1,10 +1,13 @@
 import fetch from 'node-fetch';
 
 
-global.estilo = {
+global.botname2 = "Akeno";
+
+
+global.estilo = (user) => ({
   key: {
     fromMe: false,
-    participant: `0@s.whatsapp.net`,
+    participant: `${user}@s.whatsapp.net`, /
     ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {})
   },
   message: {
@@ -12,16 +15,16 @@ global.estilo = {
       itemCount: -999999,
       status: 1,
       surface: 1,
-      message: global.botname,
+      message: global.botname2, 
       orderTitle: 'Bang',
-      thumbnail: 'https://qu.ax/GSMZV.jpg', 
+      thumbnail: 'https://qu.ax/GSMZV.jpg',
       sellerJid: '0@s.whatsapp.net'
     }
   }
-};
+});
 
 let handler = async (m, { conn, args }) => {
-  if (!args[0]) return conn.reply(m.chat, '*✦ Ingresa el nombre de lo que quieres buscar.*', m, global.estilo);
+  if (!args[0]) return conn.reply(m.chat, '*✦ Ingresa el nombre de lo que quieres buscar.*', m, global.estilo(m.sender));
 
   await m.react('🕓');
   try {
@@ -30,11 +33,11 @@ let handler = async (m, { conn, args }) => {
     let searchResults = await searchApiResponse.json();
 
     if (!searchResults.status || !searchResults.data || !searchResults.data.response || !searchResults.data.response.video || !searchResults.data.response.video.length) {
-      return conn.reply(m.chat, '*✦ No se encontraron resultados para tu búsqueda.*', m, global.estilo).then(_ => m.react('✖️'));
+      return conn.reply(m.chat, '*✦ No se encontraron resultados para tu búsqueda.*', m, global.estilo(m.sender)).then(_ => m.react('✖️'));
     }
 
     let video = searchResults.data.response.video[0];
-    let img = await (await fetch('https://qu.ax/GSMZV.jpg')).buffer(); // Usar la imagen proporcionada como thumbnail
+    let img = await (await fetch('https://qu.ax/GSMZV.jpg')).buffer(); 
 
     let txt = `*Y O U T U B E - P L A Y* \n\n`;
     txt += `• *Título:* ${video.title}\n`;
@@ -62,13 +65,14 @@ let handler = async (m, { conn, args }) => {
       ],
       viewOnce: true,
       headerType: 4,
-    }, { quoted: m, contextInfo: global.estilo });
+      contextInfo: global.estilo(m.sender) 
+    }, { quoted: m });
 
     await m.react('✅');
   } catch (e) {
     console.error('Error en el handler:', e);
     await m.react('✖️');
-    conn.reply(m.chat, '*✦ Error al buscar el video. Verifica la consulta o inténtalo de nuevo.*', m, global.estilo);
+    conn.reply(m.chat, '*✦ Error al buscar el video. Verifica la consulta o inténtalo de nuevo.*', m, global.estilo(m.sender));
   }
 };
 
