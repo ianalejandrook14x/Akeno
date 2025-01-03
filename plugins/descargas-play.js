@@ -24,7 +24,7 @@ global.estilo = (user) => ({
 });
 
 let handler = async (m, { conn, args }) => {
-  if (!args[0]) return conn.reply(m.chat, '*✦ Ingresa el nombre de lo que quieres buscar.*', m, global.estilo(m.sender));
+  if (!args[0]) return conn.reply(m.chat, '*✦ Ingresa el nombre de lo que quieres buscar.*',  global.estilo(m.sender));
 
   await m.react('🕓');
   try {
