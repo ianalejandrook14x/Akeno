@@ -1,39 +1,51 @@
-import { igdl } from 'ruhend-scraper'
+import fetch from 'node-fetch';
 
-const handler = async (m, { text, conn, args, usedPrefix, command }) => {
-if (!args[0]) {
-return conn.reply(m.chat, '✧ *Ingresa Un Link De Facebook*', m, )}
-let res
-try {
-await m.react(rwait)
-res = await igdl(args[0])
-} catch {
-await m.react(error)
-return conn.reply(m.chat, '✧ *Error al obtener datos. Verifica el enlace.*', m, fake)}
-let result = res.data
-if (!result || result.length === 0) {
-return conn.reply(m.chat, '✧ *No se encontraron resultados.*', m, fake)}
-let data
-try {
-await m.react(rwait)
-data = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)")
-} catch {
-await m.react(error)
-return conn.reply(m.chat, '✧ *Error al procesar los datos.*', m, )}
-if (!data) {
-return conn.reply(m.chat, '✧ *No se encontró una resolución adecuada.*', m, )}
-let video = data.url
-try {
-await m.react(rwait)
-await conn.sendMessage(m.chat, { video: { url: video }, caption: '✧ *Tu video de facebook.*\n' + textbot, fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: fkontak })
-await m.react(done)
-} catch {
-await m.react(error)
-return conn.reply(m.chat, '✧ *Error al enviar el video.*', m, )}}
+let handler = async (m, { conn, args }) => {
+  if (!args[0]) {
+    return conn.reply(m.chat, '✦ *Ingresa la URL de un video de Facebook.*\n\n✦ *Ejemplo*: /fb https://www.facebook.com/...', m);
+  }
 
-handler.help = ['facebook', 'fb']
-handler.tags = ['descargas']
-handler.command = ['facebook', 'fb']
-handler.register = false
+  let url = args[0];
+  let apiUrl = `https://api-rin-tohsaka.vercel.app/download/facebook?url=${encodeURIComponent(url)}`;
 
-export default handler
+  try {
+    await m.react('🕓'); 
+
+    let response = await fetch(apiUrl);
+    let data = await response.json();
+
+    if (!data.status || !data.data) {
+      return conn.reply(m.chat, '✦ *No se pudo obtener el video. Verifica la URL e inténtalo de nuevo.*', m).then(_ => m.react('✖️'));
+    }
+
+    let { title, image, download } = data.data;
+
+    await conn.sendMessage(m.chat, {
+      video: { url: download },
+      caption: `✦ *Título*: ${title || 'Sin título'}\n✦ *Descarga*: ${download}`,
+      thumbnail: await (await fetch(image)).buffer(),
+      contextInfo: {
+        externalAdReply: {
+          title: 'Facebook Video Downloader',
+          body: '¡Video descargado con éxito!',
+          thumbnail: await (await fetch(image)).buffer(),
+          mediaType: 2,
+          mediaUrl: download,
+          sourceUrl: download
+        }
+      }
+    }, { quoted: m });
+
+    await m.react('✅'); 
+  } catch (e) {
+    console.error('Error en el handler:', e);
+    await m.react('✖️'); 
+    conn.reply(m.chat, '✦ *Ocurrió un error al procesar la solicitud. Inténtalo de nuevo más tarde.*', m);
+  }
+};
+
+handler.help = ['fb <url>'];
+handler.tags = ['downloader'];
+handler.command = ['fb', 'facebook'];
+
+export default handler;
