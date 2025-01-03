@@ -2,7 +2,28 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
   if (!args[0]) {
-    return conn.reply(m.chat, akenoStyle, m); 
+    
+    return conn.sendMessage(m.chat, {
+      text: 'Ingresa el nombre de lo que quieres buscar',
+      quoted: {
+        key: {
+          fromMe: false,
+          participant: `0@s.whatsapp.net`,
+          ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {})
+        },
+        message: {
+          orderMessage: {
+            itemCount: -999999,
+            status: 1,
+            surface: 1,
+            message: 'Akeno', 
+            orderTitle: 'Akeno', 
+            thumbnail: 'https://qu.ax/GSMZV.jpg', 
+            sellerJid: '0@s.whatsapp.net'
+          }
+        }
+      }
+    }, { quoted: m });
   }
 
   await m.react('');
@@ -64,23 +85,3 @@ function parseDuration(duration) {
   let parts = duration.split(':').reverse();
   return parts.reduce((total, part, index) => total + parseInt(part) * Math.pow(60, index), 0);
 }
-
-
-const akenoStyle = {
-  key: {
-    fromMe: false,
-    participant: `0@s.whatsapp.net`,
-    ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {})
-  },
-  message: {
-    orderMessage: {
-      itemCount: -999999,
-      status: 1,
-      surface: 1,
-      message: 'Akeno', 
-      orderTitle: 'Akeno', 
-      thumbnail: 'https://qu.ax/GSMZV.jpg', 
-      sellerJid: '0@s.whatsapp.net'
-    }
-  }
-};
