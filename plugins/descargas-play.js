@@ -5,7 +5,7 @@ let handler = async (m, { conn, args }) => {
 
   if (!args[0]) {
     return conn.sendMessage(m.chat, {
-      text: `Uso incorrecto, ${username}`,
+      text: `*`Uso incorrecto, ${username} Ejemplo /play akeno`*`,
       quoted: {
         ...Akenoestilo,
         message: {
