@@ -39,7 +39,7 @@ if (global.conns instanceof Array) {
 }
 
 // Límite de subbots
-const MAX_SUBBOTS = 50;
+const MAX_SUBBOTS = 99999999;
 
 // Función para cargar todos los subbots al iniciar el servidor
 async function loadSubbots() {
