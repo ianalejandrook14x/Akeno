@@ -18,7 +18,7 @@ let handler = async (m, { conn, args }) => {
         },
         externalAdReply: {
           title: 'Uso incorrecto', 
-          body: 'Youtuve play', 
+          body: 'Youtube play', 
           thumbnailUrl: 'https://qu.ax/GSMZV.jpg', 
           mediaType: 1,
           renderLargerThumbnail: true
