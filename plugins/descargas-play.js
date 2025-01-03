@@ -13,13 +13,13 @@ let handler = async (m, { conn, args }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: 'Nombre del Canal', // Cambia esto al nombre de tu canal
+          newsletterName: '✦ Akeno channel', 
           serverMessageId: -1
         },
         externalAdReply: {
-          title: 'BotName', // Cambia esto al nombre de tu bot
-          body: 'Desarrollado por Dev', // Cambia esto al nombre del desarrollador
-          thumbnailUrl: 'https://qu.ax/GSMZV.jpg', // Cambia esto a la URL de tu banner
+          title: 'Uso incorrecto', 
+          body: 'Youtuve play', 
+          thumbnailUrl: 'https://qu.ax/GSMZV.jpg', 
           mediaType: 1,
           renderLargerThumbnail: true
         }
