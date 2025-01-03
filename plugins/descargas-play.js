@@ -5,13 +5,13 @@ let handler = async (m, { conn, args }) => {
 
   if (!args[0]) {
     return conn.sendMessage(m.chat, {
-      text: `*`Uso incorrecto, ${username} Ejemplo /play akeno`*`,
+      text: `✦ *Ingresa el nombre de lo que quieres buscar @${username}*`,
       quoted: {
         ...Akenoestilo,
         message: {
           orderMessage: {
             ...Akenoestilo.message.orderMessage,
-            orderTitle: `Uso incorrecto, ${username}`,
+            orderTitle: `✦ Uso incorrecto, ${username}`,
             message: 'Por favor, ingresa un nombre válido.',
           }
         }
@@ -115,8 +115,8 @@ const Akenoestilo = {
       status: 1,
       surface: 1,
       message: 'Akeno',
-      orderTitle: 'Uso incorrecto, User',
-     // thumbnail: 'https://qu.ax/GSMZV.jpg',
+      orderTitle: '✦ Uso incorrecto, User',
+      //thumbnail: 'https://qu.ax/GSMZV.jpg',
       sellerJid: '0@s.whatsapp.net'
     }
   }
