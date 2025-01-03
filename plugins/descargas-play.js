@@ -1,12 +1,22 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
+  let username = m.pushName || 'User';
+
   if (!args[0]) {
-    
     return conn.sendMessage(m.chat, {
-      text: 'Ingresa el nombre de lo que quieres buscar',
-      quoted: Akenoestilo 
-    }, { quoted: Akenoestilo });
+      text: `Uso incorrecto, ${username}`,
+      quoted: {
+        ...Akenoestilo,
+        message: {
+          orderMessage: {
+            ...Akenoestilo.message.orderMessage,
+            orderTitle: `Uso incorrecto, ${username}`,
+            message: 'Por favor, ingresa un nombre válido.',
+          }
+        }
+      }
+    }, { quoted: m });
   }
 
   await m.react('');
@@ -16,7 +26,19 @@ let handler = async (m, { conn, args }) => {
     let searchResults = await searchApiResponse.json();
 
     if (!searchResults.status || !searchResults.data || !searchResults.data.response || !searchResults.data.response.video || !searchResults.data.response.video.length) {
-      return conn.reply(m.chat, '*\`No se encontraron resultados para tu búsqueda.\`*', m).then(_ => m.react('✖️'));
+      return conn.sendMessage(m.chat, {
+        text: `No se encontraron resultados, ${username}.`,
+        quoted: {
+          ...Akenoestilo,
+          message: {
+            orderMessage: {
+              ...Akenoestilo.message.orderMessage,
+              orderTitle: `No se encontraron resultados, ${username}`,
+              message: 'Intenta con otro nombre.',
+            }
+          }
+        }
+      }, { quoted: m }).then(_ => m.react('✖️'));
     }
 
     let video = searchResults.data.response.video[0];
@@ -54,7 +76,19 @@ let handler = async (m, { conn, args }) => {
   } catch (e) {
     console.error('Error en el handler:', e);
     await m.react('✖️');
-    conn.reply(m.chat, '*\`Error al buscar el video. Verifica la consulta o inténtalo de nuevo.\`*', m);
+    conn.sendMessage(m.chat, {
+      text: `Error al buscar el video, ${username}. Verifica la consulta o inténtalo de nuevo.`,
+      quoted: {
+        ...Akenoestilo,
+        message: {
+          orderMessage: {
+            ...Akenoestilo.message.orderMessage,
+            orderTitle: `Error al buscar el video, ${username}`,
+            message: 'Intenta nuevamente.',
+          }
+        }
+      }
+    }, { quoted: m });
   }
 };
 
@@ -69,7 +103,6 @@ function parseDuration(duration) {
   return parts.reduce((total, part, index) => total + parseInt(part) * Math.pow(60, index), 0);
 }
 
-
 const Akenoestilo = {
   key: {
     fromMe: false,
@@ -81,9 +114,9 @@ const Akenoestilo = {
       itemCount: -999999,
       status: 1,
       surface: 1,
-      message: `Uso incorrecto ${username}`, 
-      orderTitle: `Uso incorrecto ${username}`, 
-      //thumbnail: 'https://qu.ax/GSMZV.jpg', 
+      message: 'Akeno',
+      orderTitle: 'Uso incorrecto, User',
+     // thumbnail: 'https://qu.ax/GSMZV.jpg',
       sellerJid: '0@s.whatsapp.net'
     }
   }
