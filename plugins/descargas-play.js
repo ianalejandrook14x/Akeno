@@ -18,7 +18,7 @@ let handler = async (m, { conn, args }) => {
             surface: 1, // Superficie (plataforma)
             message: '*\`Ingresa el nombre de lo que quieres buscar\`*', // Mensaje principal
             orderTitle: 'Búsqueda de YouTube', // Título de la orden
-            thumbnail: 'https://qu.ax/GSMZV.jpg', // Imagen de la orden
+            //thumbnail: 'https://qu.ax/GSMZV.jpg', // Imagen de la orden
             sellerJid: '0@s.whatsapp.net' // Identificador del vendedor
           }
         }
