@@ -1,7 +1,27 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
-  if (!args[0]) return conn.reply(m.chat, '*\`Ingresa el nombre de lo que quieres buscar\`*', m);
+  if (!args[0]) {
+    
+    return conn.sendMessage(m.chat, {
+      key: {
+        fromMe: false,
+        participant: `0@s.whatsapp.net`,
+        remoteJid: 'status@broadcast'
+      },
+      message: {
+        orderMessage: {
+          itemCount: 1, // Cantidad de ítems
+          status: 1, // Estado de la orden
+          surface: 1, // Superficie (plataforma)
+          message: '*\`Ingresa el nombre de lo que quieres buscar\`*', // Mensaje principal
+          orderTitle: 'Búsqueda de YouTube', // Título de la orden
+          thumbnail: 'https://qu.ax/GSMZV.jpg', // Imagen de la orden
+          sellerJid: '0@s.whatsapp.net' // Identificador del vendedor
+        }
+      }
+    }, { quoted: m });
+  }
 
   await m.react('');
   try {
@@ -23,30 +43,11 @@ let handler = async (m, { conn, args }) => {
     txt += `• *\`Canal:\`* ${video.authorName || 'Desconocido'}\n`;
     txt += `• *\`Url:\`* ${video.url}\n\n`;
 
-    // Enviar el mensaje de orden
+    // Enviar el mensaje con los resultados de búsqueda
     await conn.sendMessage(m.chat, {
-      key: {
-        fromMe: false,
-        participant: `0@s.whatsapp.net`,
-        remoteJid: 'status@broadcast'
-      },
-      message: {
-        orderMessage: {
-          itemCount: 1, // Cantidad de ítems
-          status: 1, // Estado de la orden
-          surface: 1, // Superficie (plataforma)
-          message: txt, // Mensaje principal
-          orderTitle: 'Y O U T U B E - P L A Y', // Título de la orden
-          thumbnail: 'https://qu.ax/GSMZV.jpg', // Imagen de la orden
-          sellerJid: '0@s.whatsapp.net' // Identificador del vendedor
-        }
-      }
-    }, { quoted: m });
-
-    // Enviar el mensaje con botones
-    await conn.sendMessage(m.chat, {
-      text: 'Selecciona una opción para descargar:',
-      footer: 'Y O U T U B E - P L A Y',
+      image: img,
+      caption: txt,
+      footer: 'Selecciona una opción',
       buttons: [
         {
           buttonId: `.ytmp3 ${video.url}`,
@@ -61,7 +62,8 @@ let handler = async (m, { conn, args }) => {
           },
         },
       ],
-      headerType: 1,
+      viewOnce: true,
+      headerType: 4,
     }, { quoted: m });
 
     await m.react('');
