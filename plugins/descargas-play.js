@@ -16,7 +16,7 @@ let handler = async (m, { conn, args }) => {
           }
         }
       }
-    }, { quoted: m });
+    }, { quoted: Akenoestilo });
   }
 
   await m.react('');
