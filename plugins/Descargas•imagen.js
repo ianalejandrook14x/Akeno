@@ -6,13 +6,12 @@ await m.react(rwait)
 const res = await googleImage(text);
 const image = await res.getRandom();
 const link = image;
-const messages = [['Imagen 1', botname, await res.getRandom(),
-[[]], [[]], [[]], [[]]], ['Imagen 2', botname, await res.getRandom(), [[]], [[]], [[]], [[]]], ['Imagen 3', botname, await res.getRandom(), [[]], [[]], [[]], [[]]], ['Imagen 4', botname, await res.getRandom(), [[]], [[]], [[]], [[]]]]
+const messages = [[${botname}, await res.getRandom(),
+[[]], [[]], [[]], [[]]], [${botname}, await res.getRandom(), [[]], [[]], [[]], [[]]], [${botname}, await res.getRandom(), [[]], [[]], [[]], [[]]], [${botname}, await res.getRandom(), [[]], [[]], [[]], [[]]]]
 await conn.sendCarousel(m.chat, `✧ Resultado de ${text}`, '✧ Imagen - Descargas', null, messages, m);
 await m.react(done)
 };
 handler.help = ['imagen <query>'];
 handler.tags = ['buscador', 'tools', 'descargas'];
 handler.command = ['image', 'imagen'];
-handler.register = false;
 export default handler;
