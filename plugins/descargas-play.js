@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
   if (!args[0]) {
-    return conn.reply(m.chat, estilo, m);
+    return conn.reply(m.chat, akenoStyle, m); 
   }
 
   await m.react('');
@@ -66,7 +66,7 @@ function parseDuration(duration) {
 }
 
 
-estilo = {
+const akenoStyle = {
   key: {
     fromMe: false,
     participant: `0@s.whatsapp.net`,
@@ -77,8 +77,8 @@ estilo = {
       itemCount: -999999,
       status: 1,
       surface: 1,
-      message: 'Ingresa el nombre de lo que quieres buscar',
-      orderTitle: 'Bang',
+      message: 'Akeno', 
+      orderTitle: 'Akeno', 
       thumbnail: 'https://qu.ax/GSMZV.jpg', 
       sellerJid: '0@s.whatsapp.net'
     }
