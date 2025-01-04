@@ -88,3 +88,6 @@ const messageContent = {
 
 const message = generateWAMessageFromContent(m.chat, messageContent, { userJid: conn.user.id });
 await conn.relayMessage(m.chat, message.message, { messageId: message.key.id });
+
+handler.command = ['test2']
+export default handler
