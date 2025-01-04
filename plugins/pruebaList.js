@@ -1,5 +1,5 @@
-const { prepareWAMessageMedia, generateWAMessageFromContent } = require("@whiskeysockets/baileys");
-const { randomBytes } = require("crypto");
+import { prepareWAMessageMedia, generateWAMessageFromContent } from "@whiskeysockets/baileys";
+import { randomBytes } from "crypto";
 
 const { imageMessage } = await prepareWAMessageMedia({
     image: { url: "https://i.pinimg.com/736x/1c/b9/dc/1cb9dce731c1544b0bd018b02567fd1f.jpg" }
@@ -45,7 +45,6 @@ const listButton = {
         sections: sections,
     }),
 };
-
 const additionalButtons = [
     {
         buttonId: ".ping",
@@ -86,10 +85,10 @@ const messageContent = {
         messageSecret: randomBytes(32)
     }
 };
-
 const message = generateWAMessageFromContent(m.chat, messageContent, { userJid: conn.user.id });
 await conn.relayMessage(m.chat, message.message, { messageId: message.key.id });
 
+const handler = {};
 handler.command = ['test']; 
 handler.mods = true;
 
