@@ -26,7 +26,7 @@ let handler = async (m, { conn, args }) => {
       video: { url: download },
       caption: `✦ *Título*: ${title}`, 
       contextInfo: {
-        forwardingScore: 999,
+        forwardingScore: 2,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter', 
