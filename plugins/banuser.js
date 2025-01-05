@@ -23,7 +23,20 @@ function unbanUser(userId) {
 let handler = async (m, { conn, isRowner }) => {
     const userId = m.sender;
 
-   if (m.text.startsWith('/banuser')) {
+  
+    if (banlist.includes(userId)) {
+        console.log(`Mensaje de ${userId} ignorado, usuario baneado.`);
+        return; // Ignora el mensaje si el usuario está baneado
+    }
+
+   
+    if (m.text.startsWith('/banuser')) {
+        if (!isRowner) {
+            m.reply('*Este comando solo puede ser usado por el propietario*');
+            return;
+        }
+        
+      
         const mentionedUser = m.mentionedJid[0];
         if (!mentionedUser) {
             m.reply('*Etiquete el usuario*');
@@ -35,13 +48,18 @@ let handler = async (m, { conn, isRowner }) => {
     }
 
    
-  if (m.text.startsWith('/unbanuser')) {
+    if (m.text.startsWith('/unbanuser')) {
+        if (!isRowner) {
+            m.reply('*El comando solicitado solo puede ser usado por el creador*');
+            return;
+        }
+
         const mentionedUser = m.mentionedJid[0];
         if (!mentionedUser) {
             m.reply('*Etiqueta al usuario*');
             return;
         }
-      
+
         unbanUser(mentionedUser);
         m.reply(`Usuario ${mentionedUser} ha sido desbaneado.`);
     }
@@ -53,11 +71,10 @@ let handler = async (m, { conn, isRowner }) => {
             return;
         }
 
-      if (m.text === '/banlist') {
         if (banlist.length === 0) {
-            m.reply('*No se encontraron usuarios baneados*');
+            m.reply('*No se encontraron usuario baneados*');
         } else {
-            m.reply('*Lista de baneados*:\n' + banlist.join('\n'));
+            m.reply('Lista de baneados:\n' + banlist.join('\n'));
         }
     }
 };
