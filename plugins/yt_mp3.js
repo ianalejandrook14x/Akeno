@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch'
 
 let limit = 100
@@ -13,7 +12,14 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let videoInfo
 
     let apiResponse = await fetch(`https://deliriussapi-oficial.vercel.app/search/ytsearch?q=${encodeURIComponent(query)}`)
-    let searchResults = await apiResponse.json()
+    
+    if (!apiResponse.ok) {
+      throw new Error(`HTTP error! status: ${apiResponse.status}`);
+    }
+
+    let searchResults = await apiResponse.json().catch(() => {
+      throw new Error('La respuesta de la API no es JSON válido');
+    })
 
     if (!searchResults.status || !searchResults.data || searchResults.data.length === 0) {
       return star.reply(m.chat, '✦ *No se encontraron resultados para tu búsqueda.*', m).then(_ => m.react('✖️'))
@@ -22,49 +28,31 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     videoInfo = searchResults.data[0]
     let url = videoInfo.url
     let title = videoInfo.title
-    let thumbnail = videoInfo.thumbnail
     let duration = parseDuration(videoInfo.duration)
-    let views = videoInfo.views
-    let publishedAt = videoInfo.publishedAt
 
+    // Obtener información de descarga
     let downloadApi = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=${url}`)
-    let downloadInfo = await downloadApi.json()
+    
+    // Verificar si la respuesta es JSON
+    if (!downloadApi.ok) {
+      throw new Error(`HTTP error! status: ${downloadApi.status}`);
+    }
+
+    let downloadInfo = await downloadApi.json().catch(() => {
+      throw new Error('La respuesta de la API no es JSON válido');
+    })
 
     if (!downloadInfo.result || !downloadInfo.result.download || !downloadInfo.result.metadata) {
       return star.reply(m.chat, '✦ *No se pudo obtener la información del video.*', m).then(_ => m.react('✖️'))
     }
 
     let dl_url = downloadInfo.result.download.url
-    let sizeMB = (downloadInfo.result.download.size / (1024 * 1024)).toFixed(2)
 
-    let txt = '`akeno ytmp3`\n\n'
-    txt += `✦ *Título* : ${title}\n`
-    txt += `✦ *Calidad* : 128kbps\n`
-    txt += `✦ *Duración* : ${Math.floor(duration / 60)} minutos\n\n`
-
-    await star.sendMessage(m.chat, {
-      image: { url: thumbnail },
-      caption: txt,
-      contextInfo: {
-        forwardingScore: 999,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363318758721861@newsletter',
-          newsletterName: '✦ Akeno channel',
-          serverMessageId: -1
-        }
-      }
-    }, { quoted: m })
-
-    if (duration / 60 >= durationLimit || sizeMB >= limit) {
-      await star.sendMessage(m.chat, { document: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
-      await m.react('📄')
-    } else {
-      await star.sendMessage(m.chat, { audio: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mp4' }, { quoted: m })
-      await m.react('✅')
-    }
+    await star.sendMessage(m.chat, { audio: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mp4' }, { quoted: m })
+    await m.react('✅')
   } catch (error) {
     console.error(error)
+    await star.reply(m.chat, `✦ *Ocurrió un error: ${error.message}*`, m)
     await m.react('✖️')
   }
 }
