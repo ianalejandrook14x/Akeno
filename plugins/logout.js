@@ -42,7 +42,7 @@ const handler = async (m, { conn, args }) => {
     }
 };
 
-handler.command = ["logout"];
+handler.command = ["log_out"];
 handler.mods = true; 
 
 export default handler;
