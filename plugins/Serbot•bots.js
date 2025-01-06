@@ -67,10 +67,10 @@ resultado += segundos + " segundos";
 }
 return resultado;
 }
-const message = users.map((v, index) => `• 「 ${index + 1} 」\n📎 Wa.me/${v.user.jid.replace(/[^0-9]/g, '')}?text=${usedPrefix}code\n✦ Usuario: ${v.user.name || 'Sub-Bot'}\n✦ Online: ${ v.uptime ? convertirMsADiasHorasMinutosSegundos(Date.now() - v.uptime) : 'Desconocido'}`).join('\n\n__________________________\n\n');
-const replyMessage = message.length === 0 ? `✦ No se encontraron JadiBots disponibles, verifique mas tarde.` : message;
+const message = users.map((v, index) => `❀ ${index + 1} \n*✦ +${v.user.jid.replace(/[^0-9]/g, '')}*\n*✦ User:* ${v.user.name || 'JadiBot'}\n*✦ Online:* ${ v.uptime ? convertirMsADiasHorasMinutosSegundos(Date.now() - v.uptime) : 'A stranger'}`).join('\n\n> JadiBot data available ❀\n\n');
+const replyMessage = message.length === 0 ? `*✦ No available JadiBots found*` : message;
 const totalUsers = users.length;
-const responseMessage = `✦ *LISTA DE JADIBOTS*\n\n✦ PUEDES PEDIR PERMISO PARA QUE TE DEJEN UNIR EL BOT A TÚ GRUPO\n\n\`\`\`CADA USUARIO SUB BOT USA FUNCIÓN COMO QUIERA, EL NÚMERO PRINCIPAL NO SE HACE RESPONSABLE DEL USO DE LA FUNCIÓN \`\`\`\n\nSUBBOT CONECTADO: ${totalUsers || '0'}\n\n${replyMessage.trim()}`.trim();
+const responseMessage = `✦ *JadiBot List*\n\n\`\`\`To have a JadiBot session execute the command (.code) or send a message to a user \`\`\`\n\n*sub bot connected:* ${totalUsers || '0'}\n\n${replyMessage.trim()}`.trim();
 await _envio.sendMessage(m.chat, {text: responseMessage, mentions: _envio.parseMention(responseMessage)}, {quoted: m})
 break   
 }}
