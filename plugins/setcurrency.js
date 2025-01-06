@@ -19,6 +19,6 @@ let handler = async (m, { conn, isRowner }) => {
 handler.help = ['setcurrency'];
 handler.tags = ['customization'];
 handler.command = ['setcurrency'];
-handler.mods = true;
+handler.mods = false;
 
 export default handler;
