@@ -36,16 +36,16 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.8'
 global.vs = '1.0.1'
 global.languaje = 'Español'
-global.nameqr = 'Bσƚ Ⴆყ ιαɳ'
+global.nameqr = 'sk  '
 global.sessions = 'BotSession'
 global.banner = 'https://qu.ax/nCFFn.jpg'
 global.jadi = 'JadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.botname = 'Aƙҽɳσ Hιɱҽʝιɱα ✦'
-global.author = 'By ianalejandrook15x'
-global.dev = 'Pσɯҽɾҽԃ Bყ Iαɳ'
+global.botname = 'k mm ✦'
+global.author = ' rk15'
+global.dev = '  '
 global.currency = 'Yenes'
 global.botStatus = true;
 global.grupos = '${groupMetadata.subject}'
@@ -74,11 +74,11 @@ global.correo = 'alejandroxddd92@gmail.com'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "543876577197-120363317332020195@g.us" } : {}) }, message: { orderMessage: { itemCount : 100, status: 1, surface : 1, message: '🇧 🇾  - 🇮 🇦 🇳 ', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
+global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "543876577197-120363317332020195@g.us" } : {}) }, message: { orderMessage: { itemCount : 100, status: 1, surface : 1, message: 'by ian', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.esti = { key: {participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "6289643739077-1613049930@g.us" } : {})},message: {"videoMessage": { "title": `🇧 🇾  - 🇮 🇦 🇳 `, "h": `Hmm`,'seconds': '99999', 'gifPlayback': 'true', 'caption': `🇧 🇾  - 🇮 🇦 🇳 `, 'jpegThumbnail': catalogo }}}
+global.esti = { key: {participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "6289643739077-1613049930@g.us" } : {})},message: {"videoMessage": { "title": `🇧 🇾  - 🇮 🇦 🇳 `, "h": `Hmm`,'seconds': '99999', 'gifPlayback': 'true', 'caption': `by ian`, 'jpegThumbnail': catalogo }}}
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
