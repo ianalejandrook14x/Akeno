@@ -7,7 +7,7 @@ if (!m.quoted) throw notStickerMessage
 const q = m.quoted || m
 let mime = q.mediaType || ''
 if (!/sticker/.test(mime)) throw notStickerMessage
-m.reply('*Espere un momento*
+m.reply('*Espere un momento*')
 let media = await q.download()
 let out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
 await conn.sendFile(m.chat, out, 'error.png', null, m, m)
