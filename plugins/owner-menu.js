@@ -21,6 +21,7 @@ let handler = async (m, { conn }) => {
 *banchat*
 *banlist*
 *unbanchat*
+*log_out*
 
 > *BANNER*
 
