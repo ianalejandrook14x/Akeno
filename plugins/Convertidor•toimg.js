@@ -7,12 +7,7 @@ if (!m.quoted) throw notStickerMessage
 const q = m.quoted || m
 let mime = q.mediaType || ''
 if (!/sticker/.test(mime)) throw notStickerMessage
-conn.reply(m.chat, wait, m, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: botname,
-body: dev,
-previewType: 0, thumbnail: icons,
-sourceUrl: channel }}})
+m.reply('*Espere un momento*
 let media = await q.download()
 let out = await webp2png(media).catch(_ => null) || Buffer.alloc(0)
 await conn.sendFile(m.chat, out, 'error.png', null, m, m)
