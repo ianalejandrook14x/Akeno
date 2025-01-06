@@ -339,7 +339,7 @@ let handler = async (msg, { conn, args, usedPrefix, command, isOwner }) => {
             return console.log("\n❀ Tiempo de conexión agotado, reconectando...");
           } else if (disconnectCode === DisconnectReason.loggedOut) {
             fs.rmdirSync(`./${jadi}/${userName}`, { recursive: true });
-            return msg.reply("❀ *Conexión perdida...");
+            return msg.reply("❀ *Conexión perdida...*");
           } else if (disconnectCode == 428) {
             await closeConnection(false);
             return msg.reply("❀ La conexión se ha cerrado de manera inesperada, intentaremos reconectar...");
