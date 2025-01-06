@@ -78,10 +78,10 @@ let handler = async (m, { conn, args }) => {
     let videoImg = await (await fetch(video.thumbnail)).buffer();
 
     let txt = `*\`Y O U T U B E - P L A Y\`*\n\n`;
-    txt += `• *\`Título:\`* ${video.title}\n`;
-    txt += `• *\`Duración:\`* ${parseDuration(video.duration)}\n`;
-    txt += `• *\`Canal:\`* ${video.authorName || 'Desconocido'}\n`;
-    txt += `• *\`Url:\`* ${video.url}\n\n`;
+    txt += `*\`Título:\`* ${video.title}\n`;
+    txt += `*\`Duración:\`* ${parseDuration(video.duration)}\n`;
+    txt += `*\`Canal:\`* ${video.authorName || 'Desconocido'}\n`;
+    txt += `*\`Url:\`* ${video.url}\n\n`;
 
     await conn.sendMessage(m.chat, {
       image: videoImg,
