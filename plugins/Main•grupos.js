@@ -5,9 +5,7 @@ let handler  = async (m, { conn, usedPrefix, command }) => {
 
 let grupos = `
 1- Grupo oficial
-*✰* ${grupo}
-
-> ${dev}`
+*✰* ${grupo}`
 
 await conn.sendFile(m.chat, banner, "nino.jpg", grupos, m, null, )
 
@@ -16,5 +14,5 @@ await m.react(emojis)
 }
 handler.help = ['grupos']
 handler.tags = ['main']
-handler.command = ['grupos', 'iangrupos', 'gruposian']
+handler.command = ['grupos']
 export default handler
