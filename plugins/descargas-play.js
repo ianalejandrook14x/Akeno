@@ -44,7 +44,7 @@ let handler = async (m, { conn, args }) => {
     }, { quoted: anu });
   }
 
-  await m.react('');
+  await m.react('✅');
   try {
     let query = args.join(" ");
     let searchApiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/search-yts?message=${encodeURIComponent(query)}`);
@@ -105,7 +105,7 @@ let handler = async (m, { conn, args }) => {
       headerType: 4,
     }, { quoted: m });
 
-    await m.react('');
+    await m.react('✅');
   } catch (e) {
     console.error('Error en el handler:', e);
     await m.react('✖️');
