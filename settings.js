@@ -45,7 +45,7 @@ global.jadi = 'JadiBot'
 
 global.botname = 'Akeno Himejima'
 global.author = 'By ianalejandrook15x'
-global.dev = 'ian'
+global.dev = 'Powered By ianalejandrook15x'
 global.currency = 'Yenes'
 global.botStatus = true;
 global.grupos = '${groupMetadata.subject}'
