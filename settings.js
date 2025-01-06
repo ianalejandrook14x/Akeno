@@ -36,16 +36,16 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.8'
 global.vs = '1.0.1'
 global.languaje = 'Español'
-global.nameqr = 'sk  '
+global.nameqr = 'Akeno Main'
 global.sessions = 'BotSession'
 global.banner = 'https://qu.ax/nCFFn.jpg'
 global.jadi = 'JadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.botname = 'k mm ✦'
-global.author = ' rk15'
-global.dev = '  '
+global.botname = 'Akeno Himejima'
+global.author = 'By ianalejandrook15x'
+global.dev = 'ian'
 global.currency = 'Yenes'
 global.botStatus = true;
 global.grupos = '${groupMetadata.subject}'
