@@ -69,7 +69,7 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
   }
 }
 
-handler.command = ['ytmp4', 'video', 'mp4', 'ytvideo', 'ytv', 'ytmp4doc', 'playvideo']
+handler.command = ['ytdlmp4']
 
 export default handler
 
