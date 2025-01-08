@@ -1,5 +1,5 @@
 let handler = async (m, { conn, isRowner }) => {
-  const newName = m.text.trim().split(' ').slice(1).join(' ');
+  const newJadiname = m.text.trim().split(' ').slice(1).join(' ');
 
   if (!newJadiname) {
     return m.reply('*Proporciona un nuevo nombre para el bot ✦*');
