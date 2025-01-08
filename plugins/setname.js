@@ -12,7 +12,7 @@ let handler = async (m, { conn, isRowner }) => {
     return m.reply('*Este comando solo puede ser usado por el dueño del PreBot*');
   }
 
-  global.subbots[userId].name = newJadiname;
+  global.subbots[userId].jadiname = newJadiname;
   m.reply(`*El nombre de tu subbot ha sido actualizado a: ${newJadiname} ✦*`);
 };
 
