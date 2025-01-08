@@ -12,7 +12,7 @@ let handler = async (m, { conn, isRowner }) => {
       return m.reply('*Este comando solo puede ser usado por el dueño del PreBot*');
     }
 
-    global.subbots[userId].currency = newJadicurrency;
+    global.subbots[userId].jadicurrency = newJadicurrency;
     m.reply(`*La moneda de tu subbot ha sido actualizada a: ${newJadicurrency}*`);
 };
 
