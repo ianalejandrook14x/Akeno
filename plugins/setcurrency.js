@@ -1,7 +1,7 @@
 let handler = async (m, { conn, isRowner }) => {
     const newCurrency = m.text.trim().split(' ').slice(1).join(' ');
 
-    if (!newCurrency) {
+    if (!newJadicurrency) {
         return m.reply('*Proporciona una nueva moneda (por ejemplo, USD, EUR)*');
     }
 
@@ -12,8 +12,8 @@ let handler = async (m, { conn, isRowner }) => {
       return m.reply('*Este comando solo puede ser usado por el dueño del PreBot*');
     }
 
-    global.subbots[userId].currency = newCurrency;
-    m.reply(`*La moneda de tu subbot ha sido actualizada a: ${newCurrency}*`);
+    global.subbots[userId].currency = newJadicurrency;
+    m.reply(`*La moneda de tu subbot ha sido actualizada a: ${newJadicurrency}*`);
 };
 
 handler.help = ['setcurrency'];
