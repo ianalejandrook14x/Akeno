@@ -38,11 +38,17 @@ global.vs = '1.0.1'
 global.languaje = 'Español'
 global.nameqr = 'Akeno Main'
 global.sessions = 'BotSession'
-global.banner = 'https://qu.ax/nCFFn.jpg'
 global.jadi = 'JadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
+global.jadibanner = 'https://qu.ax/nCFFn.jpg'
+global.jadiname = 'Akeno Himejima'
+global.jadicurrency = 'Yenes'
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.banner = 'https://qu.ax/nCFFn.jpg'
 global.botname = 'Akeno Himejima'
 global.author = 'By ianalejandrook15x'
 global.dev = 'Powered By ianalejandrook15x'
