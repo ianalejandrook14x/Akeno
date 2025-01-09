@@ -23,7 +23,7 @@ let handler = async (m, { conn, isRowner }) => {
       return m.reply('*Este comando solo puede ser usado por el dueño del PreBot*');
     }
 
-    global.subbots[userId].jadibanner = `${link}`;
+    global.subbots[userId].banner = `${link}`;
     m.reply('*✦ El banner de tu subbot fue actualizado*');
   } catch (error) {
     console.error(error);
