@@ -18,7 +18,7 @@ let handler = async (m, { text }) => {
     }
 
     let replyMessage = '*Resultados de búsqueda:*\n\n';
-    result.data.forEach((item, index) => {
+    result.data.slice(0, 1).forEach((item, index) => {
       replyMessage += `${index + 1}. ${item.title}\n`;
       replyMessage += `> *${item.description}*\n\n`;
       replyMessage += `   URL: ${item.url}\n\n`;
