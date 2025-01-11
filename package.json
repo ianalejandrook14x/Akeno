@@ -1,10 +1,10 @@
 {
-"name": "Nino",
+"name": "Akeno Himejima",
 "version": "0.0.1",
 "description": "Simple WhatsApp Bot Multi Device",
 "main": "index.js",
 "type": "module",
-"botName": "Nino",
+"botName": "Akeno Himejima",
 "directories": {
 "lib": "lib",
 "src": "src",
