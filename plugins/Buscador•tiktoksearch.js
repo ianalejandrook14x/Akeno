@@ -1,57 +1,57 @@
+const searchHistory = {};
 
-import axios from 'axios'
-const {proto, generateWAMessageFromContent, prepareWAMessageMedia, generateWAMessageContent, getDevice} = (await import("@whiskeysockets/baileys")).default
+async function tiktokSearch(query) {
+  const apiUrl = `https://delirius-apiofc.vercel.app/search/tiktoksearch?query=${encodeURIComponent(query)}`;
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
 
-let handler = async (message, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.reply(message.chat, '*Que quieres buscar en tiktok*', message, )
-async function createVideoMessage(url) {
-const { videoMessage } = await generateWAMessageContent({ video: { url } }, { upload: conn.waUploadToServer })
-return videoMessage
-}
-async function shuffleArray(array) {
-for (let i = array.length - 1; i > 0; i--) {
-const j = Math.floor(Math.random() * (i + 1));
-[array[i], array[j]] = [array[j], array[i]]
-}
-}
-try {
-await message.react(rwait)
-let results = []
-let { data: response } = await axios.get('https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=' + text)
-let searchResults = response.data
-shuffleArray(searchResults)
-let selectedResults = searchResults.splice(0, 7)
-for (let result of selectedResults) {
-results.push({
-body: proto.Message.InteractiveMessage.Body.fromObject({ text: null }),
-footer: proto.Message.InteractiveMessage.Footer.fromObject({ text: dev }),
-header: proto.Message.InteractiveMessage.Header.fromObject({
-title: '' + result.title,
-hasMediaAttachment: true,
-videoMessage: await createVideoMessage(result.nowm)
-}),
-nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({ buttons: [] })})}
-const responseMessage = generateWAMessageFromContent(message.chat, {
-viewOnceMessage: {
-message: {
-messageContextInfo: {
-deviceListMetadata: {},
-deviceListMetadataVersion: 2
-},
-interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-body: proto.Message.InteractiveMessage.Body.create({ text: '✧ Resultado de: ' + text }),
-footer: proto.Message.InteractiveMessage.Footer.create({ text: '✦ Tiktok - Busquedas' }),
-header: proto.Message.InteractiveMessage.Header.create({ hasMediaAttachment: false }),
-carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({ cards: [...results] })})}}
-}, { quoted: message })
-await message.react(done)
-await conn.relayMessage(message.chat, responseMessage.message, { messageId: responseMessage.key.id })
-} catch (error) {
-await conn.reply(message.chat, error.toString(), message)
-}}
+    if (data.status !== 200) {
+      throw new Error('Error en la búsqueda');
+    }
 
-handler.help = ['tiktoksearch <txt>']
-handler.register = false
-handler.tags = ['buscador']
-handler.command = ['tiktoksearch', 'tiktoks']
-export default handler
+    if (!searchHistory[query]) {
+      searchHistory[query] = {
+        shownIds: new Set(),
+        data: data.meta
+      };
+    }
+
+    const { shownIds, data: results } = searchHistory[query];
+
+    const newResults = results.filter(video => !shownIds.has(video.id));
+
+    if (newResults.length === 0) {
+      searchHistory[query].shownIds.clear();
+      return results[0];  
+    }
+
+    const nextResult = newResults[0];
+    shownIds.add(nextResult.id);
+
+    return nextResult;
+  } catch (error) {
+    return { error: error.message };
+  }
+}
+
+const handler = async (m, { text, conn }) => {
+  if (!text) {
+    throw '*Proporciona un nombre para realizar una busqueda*';
+  }
+
+  const result = await tiktokSearch(text);
+
+  if (result.error) {
+    return m.reply(`Error: ${result.error}`);
+  }
+
+  const videoUrl = result.hd;
+  const caption = `*Título:* ${result.title}\n\n*Autor:* ${result.author.username} (${result.author.nickname})\n\n*Reproducciones:* ${result.play}\n\n*Likes:* ${result.like}`;
+  
+  await conn.sendFile(m.chat, videoUrl, 'video.mp4', caption, m);
+};
+
+handler.command = ['tiktoksearch <txt>'];
+
+export default handler;
