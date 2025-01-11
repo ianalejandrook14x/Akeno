@@ -30,10 +30,8 @@ let handler = async (m, { conn: star, args, text, usedPrefix, command }) => {
     let title = videoInfo.title
     let duration = parseDuration(videoInfo.duration)
 
-    // Obtener información de descarga
     let downloadApi = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=${url}`)
     
-    // Verificar si la respuesta es JSON
     if (!downloadApi.ok) {
       throw new Error(`HTTP error! status: ${downloadApi.status}`);
     }
