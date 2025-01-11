@@ -19,16 +19,16 @@
 "eslint": "eslint .",
 "eslintfix": "eslint --fix ."
 },
-"homepage": "https://github.com/ianalejandrook15x/AkariBot-MD",
+"homepage": "https://github.com/ianalejandrook15x/Akeno",
 "author": {
 "name": "ianalejandrook15x"
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/ianalejandrook15x/AkariBot-MD.git"
+"url": "git+https://github.com/ianalejandrook15x/Akeno.git"
 },
 "bugs": {
-"url": "https://github.com/ianalejandrook15x/AkariBot-MD/issues"
+"url": "https://github.com/ianalejandrook15x/Akeno/issues"
 },
 "license": "GPL-3.0-or-later",
 "dependencies": {
@@ -86,7 +86,6 @@
 "@vitalets/google-translate-api": "^9.2.0",
 "hispamemes": "^1.0.7",
 "openai": "^3.3.0",
-"aptoide-scraper": "github:DIEGO-OFC/dv-aptoide-scraper",
 "megajs": "^1.1.3",
 "mime-types": "^2.1.35",
 "api-dylux": "^1.7.2",
