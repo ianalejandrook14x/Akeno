@@ -27,7 +27,7 @@ const handler = async (m, { command, args }) => {
   newCharacters.forEach((character) => {
     const [tag, name] = character.split(" = ");
     if (tag && name) {
-      anime.characters.push({ tag: tag.trim(), name: name.trim(), value: 50, price: 1000 });
+      anime.characters.push({ tag: tag.trim(), name: name.trim(), value: 50 });
     }
   });
 
