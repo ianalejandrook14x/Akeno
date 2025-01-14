@@ -36,26 +36,22 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.8'
 global.vs = '1.0.1'
 global.languaje = 'Español'
-global.nameqr = 'Akeno Main'
+global.nameqr = '𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼'
 global.sessions = 'BotSession'
 global.jadi = 'JadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.jadibanner = 'https://qu.ax/nCFFn.jpg'
-global.jadiname = 'Akeno Himejima'
-global.jadicurrency = 'Yenes'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.banner = 'https://qu.ax/nCFFn.jpg'
-global.botname = 'Akeno Himejima'
-global.author = 'By ianalejandrook15x'
-global.dev = 'Powered By ianalejandrook15x'
+global.banner = 'https://qu.ax/mepuk.jpg'
+global.botname = '𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼'
+global.author = '𝗕𝘆 𝗜𝗮𝗻𝗮𝗹𝗲𝗷𝗮𝗻𝗱𝗿𝗼𝗼𝗸𝟭𝟱𝘅'
+global.dev = '𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 𝗜𝗮𝗻𝗮𝗹𝗲𝗷𝗮𝗻𝗱𝗿𝗼𝗼𝗸𝟭𝟱𝘅'
 global.currency = 'Yenes'
 global.botStatus = true;
-global.grupos = '${groupMetadata.subject}'
-global.welcome = 'Hola bienvenido al grupo te saluda el bot de ianalejandrook15x 👋🏻'
+global.welcome = '𝗛𝗼𝗹𝗮 𝗯𝗶𝗲𝗻𝘃𝗲𝗻𝗶𝗱𝗼 𝗮𝗹 𝗴𝗿𝘂𝗽𝗼 𝘁𝗲 𝘀𝗮𝗹𝘂𝗱𝗮 𝗲𝗹 𝗕𝗼𝘁 𝗱𝗲 𝗶𝗮𝗻𝗮𝗹𝗲𝗷𝗮𝗻𝗱𝗿𝗼𝗼𝗸𝟭𝟱𝘅'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
