@@ -508,7 +508,7 @@ rowner: '✧ *La función solicitada solo puede ser usada por*\n\n> ianalejandro
 owner: '✧ *Esta función solo puede ser usada por desarrolladores*.', 
 mods: '✧ *Esta función solo puede ser por moderadores.*', 
 premium: '✧ *Esta función solo esta disponible para usuario Premium.*', 
-group: '✧ *La función solocitada solo puede ser ejecutada en grupos.*', 
+group: '✧ *La función solicitada solo puede ser ejecutada en grupos.*', 
 private: '✧ *La función solo puede ser usada al chat privado del bot.*', 
 admin: '✧ *La función solo puede ser ejecutada por administradores.*', 
 botAdmin: '✧ *Para ejecutar esta función el bot debe ser administrador.*', 
