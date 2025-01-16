@@ -249,12 +249,20 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (!/[01]/.test(command)) return conn.reply(m.chat, `
 *✧ Funciones solo para owner*
 
-${usedPrefix + command} status 
-${usedPrefix + command} restrict
-${usedPrefix + command} autoread
-${usedPrefix + command} antispam
-${usedPrefix + command} antiprivado
-${usedPrefix + command} subbots
+*${usedPrefix + command} status* 🎋
+> ➤ *La función cambia la descripción del usuario reemplazando por una nueva*
+
+*${usedPrefix + command} restrict* 🎋
+> ➤ *La función activa o desactiva los comandos restringidos*
+
+*${usedPrefix + command} autoread* 🎋
+> ➤ *Esta función permite que la lectura sea automatica*
+
+*${usedPrefix + command} antiprivado* 🎋
+> ➤ *Esta función permite bloquear a usuarios que escriben al privado del bot de manera automatica*
+
+*${usedPrefix + command} subbots* 🎋
+> ➤ *Esta función activa o desactiva la opción para convertirse en Jadibot*
 
 *✧ Funciones de grupos*
 
