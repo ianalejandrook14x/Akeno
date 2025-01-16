@@ -16,7 +16,7 @@ const handler = async (m, { text, usedPrefix, command }) => {
     }
 };
 const extractChannelId = (link) => {
-    const regex = /(?:https?:\/\/)?chat\.whatsapp\.com\/([a-zA-Z0-9_-]+)/;
+    const regex = /(?:https?:\/\/)?whatsapp\.com\channel\/([a-zA-Z0-9_-]+)/;
     const match = link.match(regex);
     return match ? match[1] : null;
 };
