@@ -4,10 +4,6 @@ let handler = async (m, { conn }) => {
    
     const isROwner = m.fromMe || global.owner?.includes(m.sender);
   
-    if (!isROwner) {
-      return conn.reply(m.chat, '*✦ Solo el propietario del bot puede utilizar este comando*', m);
-    }
-  
     if (/^\/chat_baneado$/i.test(m.text)) {
      
       let bannedChats = Object.entries(chats)
@@ -30,9 +26,7 @@ let handler = async (m, { conn }) => {
       return conn.reply(m.chat, '✦ *Todos los chats han sido desbaneados.*', m);
     }
   };
-  
-  handler.help = ['chat_baneado', 'unbanchat_all'];
-  handler.tags = ['mods'];
+
   handler.command = ['chat_baneado', 'unbanchat_all'];
   handler.rowner = true;
   
