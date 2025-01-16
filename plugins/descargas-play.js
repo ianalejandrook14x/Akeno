@@ -32,7 +32,7 @@ let handler = async (m, { conn, args }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter',
-          newsletterName: '✦ Akeno channel',
+          newsletterName: '✦ ᥴᥲᥒᥲᥣ ძᥱ іᥲᥒᥲᥣᥱȷᥲᥒძr᥆᥆k15᥊',
           serverMessageId: -1
         },
         externalAdReply: {
