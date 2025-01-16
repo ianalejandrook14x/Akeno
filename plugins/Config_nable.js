@@ -249,7 +249,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (!/[01]/.test(command)) return conn.reply(m.chat, `
 *✧ Funciones solo para owner*
 
-${usedPrefix + command} status
+${usedPrefix + command} status 
 ${usedPrefix + command} restrict
 ${usedPrefix + command} autoread
 ${usedPrefix + command} antispam
@@ -258,28 +258,50 @@ ${usedPrefix + command} subbots
 
 *✧ Funciones de grupos*
 
-${usedPrefix + command} autoaceptar
-${usedPrefix + command} reaccion
+${usedPrefix + command} reaccion 
+➤ *Esta función permita para que el bot pueda reaccionar a mensajes con cualquier emoji*
+
 ${usedPrefix + command} antitraba
+➤ *Esta función permite eliminar a usuarios que tengan textos que contengan muchos caracteres*
+
 ${usedPrefix + command} modoadmin 
-${usedPrefix + command} antiarabes 
+➤ *Esta función permite que solo administradores del grupo puedan utilizar el bot*
+
+${usedPrefix + command} antiarabes
+➤ *Esta función cuando esta activa elimina a los usuarios arabes cuando mandan un mensaje automaticamente*
+
 ${usedPrefix + command} simi
-${usedPrefix + command} audios
+➤ *Esta función te permite hablar con Simi una IA 
+
 ${usedPrefix + command} autoread
+➤ *Solo esta disponible para Jadibot o bot general trata de leer mensajes de grupos o chats cuando ingresan algun comando*
+
 ${usedPrefix + command} antiver
+➤ *Esta función permite que un usuario que mando una imagen o video para 1 sola vez, el bot lo envia sin restricción*
+
 ${usedPrefix + command} detect 
+➤ *Esta función solo esta disponible para grupos cuando alguien realiza algun cambio en el grupo el bot lo detecta*
+
 ${usedPrefix + command} delete
-${usedPrefix + command} nsfw 
-${usedPrefix + command} welcome 
+➤ *Esta función permite enviar el mensaje, imagen o video que algun usuario haya eliminado*
+
+${usedPrefix + command} nsfw
+➤ *Esta función permite activar los comandos +18*
+
+${usedPrefix + command} welcome
+➤ *Esta función permite a los nuevo usuarios que sean recibidos por un mensaje de bienvenida*
+
 ${usedPrefix + command} antibot
-${usedPrefix + command} antilink`, m, )
+➤ *Esta función permite eliminar a todos los bots que se encuentren activo en el grupo*
+
+${usedPrefix + command} antilink
+➤ *Esta función elimina a los usuarios que hayan enviado algun link de algn grupo o canal`, m, )
       throw false
   }
   conn.reply(m.chat, `✧ La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este Bot' : isUser ? '' : 'para este chat'}`, m, )
 }
 
 handler.help = ['enable', 'disable']
-handler.tags = ['nable', 'owner']
 handler.command = ['enable', 'disable', 'on', 'off', '1', '0']
 
 export default handler
