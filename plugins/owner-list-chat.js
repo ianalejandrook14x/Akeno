@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
    
     const isROwner = m.fromMe || global.owner?.includes(m.sender);
   
-    if (/^\/chat_baneado$/i.test(m.text)) {
+    if (/^\.chat_baneado$/i.test(m.text)) {
      
       let bannedChats = Object.entries(chats)
         .filter(([id, data]) => data.isBanned)
@@ -18,7 +18,7 @@ let handler = async (m, { conn }) => {
       return conn.reply(m.chat, message, m);
     }
   
-    if (/^\/unbanchat_all$/i.test(m.text)) {
+    if (/^\.unbanchat_all$/i.test(m.text)) {
   
       for (let id in chats) {
         chats[id].isBanned = false;
