@@ -24,13 +24,13 @@ let handler = async (m, { conn, args }) => {
 
     await conn.sendMessage(m.chat, {
       video: { url: download },
-      caption: `✦ *Título*: ${title}`, 
+      caption: `✦ *${botname}*`, 
       contextInfo: {
         forwardingScore: 2,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363318758721861@newsletter', 
-          newsletterName: '✦ Akeno Channel', 
+          newsletterName: '✦ Ian.xyz', 
           serverMessageId: -1
         }
       }
