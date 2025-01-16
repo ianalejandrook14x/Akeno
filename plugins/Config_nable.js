@@ -270,9 +270,6 @@ ${usedPrefix + command} subbots
 *${usedPrefix + command} antiarabes* 🎋
 > ➤ *Esta función cuando esta activa elimina a los usuarios arabes cuando mandan un mensaje automaticamente*
 
-*${usedPrefix + command} simi* 🎋
-> ➤ *Esta función te permite hablar con Simi una IA*
-
 *${usedPrefix + command} autoread* 🎋
 > ➤ *Solo esta disponible para Jadibot o bot general trata de leer mensajes de grupos o chats cuando ingresan algun comando*
 
