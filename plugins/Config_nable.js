@@ -264,7 +264,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 *${usedPrefix + command} subbots* 🎋
 > ➤ *Esta función activa o desactiva la opción para convertirse en Jadibot*
 
-*__________________________________*
+*______________________________________*
 
 *✧ Funciones de grupos*
 
