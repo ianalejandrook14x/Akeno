@@ -1,22 +1,24 @@
 const handler = async (m, { text, usedPrefix, command }) => {
     if (!text) {
-        return m.reply(`Uso: ${usedPrefix + command} <ñink>`);
+        return m.reply(`Uso: ${usedPrefix + command} <link>`);
     }
 
     try {
         const channelId = extractChannelId(text);
 
         if (!channelId) {
-            return m.reply('*Enlace de canal de WhatsApp no válido.*');
+            return m.reply('*Enlace de canal de WhatsApp no es válido*');
         }
+
         m.reply(`${channelId}`);
     } catch (error) {
         console.error(error);
-        m.reply('Ocurrío un error');
+        m.reply('*Ocurrio un error*');
     }
 };
+
 const extractChannelId = (link) => {
-    const regex = /(?:https?:\/\/)?whatsapp\.com\channel\/([a-zA-Z0-9_-]+)/;
+    const regex = /(?:https?:\/\/)?whatsapp\.com\/channel\/([a-zA-Z0-9_-]+)/;
     const match = link.match(regex);
     return match ? match[1] : null;
 };
