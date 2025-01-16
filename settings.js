@@ -55,12 +55,7 @@ global.welcome = '𝗛𝗼𝗹𝗮 𝗯𝗶𝗲𝗻𝘃𝗲𝗻𝗶𝗱𝗼 𝗮
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.imagen1 = fs.readFileSync('./src/img/Menu.jpg')
-global.imagen2 = fs.readFileSync('./src/img/Menu2.jpg')
-global.imagen3 = fs.readFileSync('./src/img/Menu3.jpg')
-global.adios = fs.readFileSync('./src/img/adios.jpg')
-global.catalogo = fs.readFileSync('./src/img/catalogo.jpg')
-global.miniurl = fs.readFileSync('./src/img/miniurl.jpg')
+global.image = fs.readFileSync('./src/img/imagen.jpg')
 global.avatar = fs.readFileSync('./src/img/avatar_contact.jpg')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
