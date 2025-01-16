@@ -5,8 +5,7 @@ import { webp2png } from '../lib/webp2mp4.js'
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 
-let text1 = `✦ → Solicitado por:\n\n✦ → Bot:\n\n✦ → Made By:`
-let text2 = `✧ ${nombre}\n\n✧ ${botname}\n\n✧ ianalejandrook15x`
+let text1 = `✦ ${botname} / ${dev}`
 let stiker = false
 try {
 let q = m.quoted ? m.quoted : m
@@ -19,7 +18,7 @@ if (!img) return conn.reply(m.chat, `*Responda a una imagen o video* ✧`, m, )
 
 let out
 try {
-stiker = await sticker(img, false, text1, text2)
+stiker = await sticker(img, false, text1)
 } catch (e) {
 console.error(e)
 } finally {
@@ -33,7 +32,7 @@ stiker = await sticker(false, out, text1, text2)
 } else if (args[0]) {
 if (isUrl(args[0])) stiker = await sticker(false, args[0], text1, text2)
 
-else return m.reply(`💫 El url es incorrecto`)
+else return m.reply(`❀ El url es incorrecto`)
 
 }
 } catch (e) {
