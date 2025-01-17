@@ -31,19 +31,17 @@ let handler = async (m, { conn, text }) => {
   await m.reply(`*Tiempo de conexión:* ${uptime}.`);
 };
 
-handler.command = ['estado'];
+handler.command = ['estado', 'status', 'tiempo'];
 
 export default handler;
 
 function formatDuration(ms) {
-  const seconds = Math.floor(ms / 1000);
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
 
-  const displaySeconds = seconds % 60;
   const displayMinutes = minutes % 60;
   const displayHours = hours % 24;
 
-  return `\`${days}${displayHours}:${displayMinutes}${displaySeconds}\``;
+  return `\`${days}${displayHours}:${displayMinutes}\``;
 }
