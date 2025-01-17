@@ -1,57 +1,58 @@
-const searchHistory = {};
+import fetch from 'node-fetch';
+import axios from 'axios';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-async function tiktokSearch(query) {
-  const apiUrl = `https://delirius-apiofc.vercel.app/search/tiktoksearch?query=${encodeURIComponent(query)}`;
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-
-    if (data.status !== 200) {
-      throw new Error('Error en la búsqueda');
-    }
-
-    if (!searchHistory[query]) {
-      searchHistory[query] = {
-        shownIds: new Set(),
-        data: data.meta
-      };
-    }
-
-    const { shownIds, data: results } = searchHistory[query];
-
-    const newResults = results.filter(video => !shownIds.has(video.id));
-
-    if (newResults.length === 0) {
-      searchHistory[query].shownIds.clear();
-      return results[0];  
-    }
-
-    const nextResult = newResults[0];
-    shownIds.add(nextResult.id);
-
-    return nextResult;
-  } catch (error) {
-    return { error: error.message };
-  }
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const handler = async (m, { text, conn }) => {
-  if (!text) {
-    throw '*Proporciona un nombre para realizar una busqueda*';
-  }
+    if (!text) throw '*Proporciona un mensaje para realizar la busqueda.*';
 
-  const result = await tiktokSearch(text);
+    const searchQuery = encodeURIComponent(text);
+    const apiUrl = `https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?text=${searchQuery}`;
 
-  if (result.error) {
-    return m.reply(`Error: ${result.error}`);
-  }
+    try {
+        const response = await fetch(apiUrl);
+        const result = await response.json();
 
-  const videoUrl = result.hd;
-  const caption = `*Título:* ${result.title}\n\n*Autor:* ${result.author.username} (${result.author.nickname})\n\n*Reproducciones:* ${result.play}\n\n*Likes:* ${result.like}`;
-  
-  await conn.sendFile(m.chat, videoUrl, 'video.mp4', caption, m);
+        if (result.status !== 200) throw 'Error al obtener los datos de TikTok.';
+
+        const videos = result.data;
+        if (!videos.length) throw 'No se encontraron videos.';
+
+        const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+
+        const videoMessage = `
+Título: ${randomVideo.title}
+Creador: ${randomVideo.creator}
+Vistas: ${randomVideo.views}
+Likes: ${randomVideo.likes}
+Comentarios: ${randomVideo.comments}
+        `;
+
+        const videoUrl = randomVideo.nowm; 
+        const videoPath = path.join(__dirname, 'video.mp4');
+
+        const responseVideo = await axios({
+            method: 'get',
+            url: videoUrl,
+            responseType: 'stream',
+        });
+
+        responseVideo.data.pipe(fs.createWriteStream(videoPath)).on('finish', async () => {
+            const media = fs.readFileSync(videoPath);
+            await conn.sendMessage(m.chat, { video: media, caption: videoMessage });
+
+            fs.unlinkSync(videoPath);
+        });
+    } catch (error) {
+        console.error(error);
+        m.reply('Ocurrió un error al buscar el video.');
+    }
 };
 
-handler.command = ['tiktoksearch <txt>'];
+handler.command = ['tiktoksearch', 'tiktoks'];
 
 export default handler;
