@@ -2,7 +2,7 @@ let handler = async (m, { conn, isRowner }) => {
     const userId = m.sender; 
   
    
-    if (m.text.startsWith('/otorgar ')) {
+    if (m.text.startsWith('.otorgar ')) {
   
       const role = m.text.slice(9).trim().split(' ')[0]; 
       const mentionedUser = m.mentionedJid[0]; 
