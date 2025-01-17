@@ -2,7 +2,7 @@
 > [!IMPORTANT]\
 > Este proyecto **todavia sigue en desarrollo por lo que pueda que no funcione correctamente en ciertos comandos**, creador y desarrollador `ianalejandrook15x`.
 
-## [Pɾσɳƚσ ҽɳ ҽʅ Ⴆσƚ](https://github.com/ianalejandrook14x/itsuki)
+## [Pronto en el bot](https://github.com/ianalejandrook14x/itsuki)
 - [x] Configuración de grupo
 - [x] antidelete, antilink, antiarabes, et
 - [x] Roll Waifu
