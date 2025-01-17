@@ -45,10 +45,11 @@ let handler = async (m, { conn }) => {
 ❀ *top <txt>*
 ❀ *zodiac <2010 03 15*
 
- *\`JADI BOTS\`*
+ *\`JADI / BOTS\`*
 
 ❀ *code* 
 ❀ *serbot*
+❀ *estado*
 
  *\`RPG\`*
 
