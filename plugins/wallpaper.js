@@ -48,7 +48,7 @@ const handler = async (m, { text, conn }) => {
 
         fs.writeFileSync(filePath, buffer);
 
-        await conn.sendFile(m.chat, filePath, 'wallpaper.jpg', `Título: ${title}`, m);
+        await conn.sendFile(m.chat, filePath, 'wallpaper.jpg', `*Título:* ${title}`, m);
 
         fs.unlinkSync(filePath);
 
