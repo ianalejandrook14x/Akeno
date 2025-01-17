@@ -2,7 +2,7 @@ let handler = async (m, { conn, isRowner }) => {
     const userId = m.sender; 
   
    
-    if (m.text.startsWith('.otorgar ')) {
+    if (m.text.startsWith('.setrol ')) {
   
       const role = m.text.slice(9).trim().split(' ')[0]; 
       const mentionedUser = m.mentionedJid[0]; 
@@ -45,9 +45,8 @@ let handler = async (m, { conn, isRowner }) => {
     }
   };
   
-  handler.help = ['otorgar <mod/prem/owner>'];
-  handler.tags = ['owner'];
-  handler.command = ['otorgar'];
+  handler.command = ['setrol'];
+
   handler.rowner = true; 
   
   export default handler;
