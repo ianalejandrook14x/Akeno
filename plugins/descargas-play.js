@@ -6,7 +6,7 @@ let handler = async (m, { conn, args }) => {
   let thumbnail = await (await fetch(pp)).buffer();
 
   if (!args[0]) {
-    let txt = `✦ *Ingresa el nombre de lo que quieres buscar @${username}*\n\n✦ *Ejemplo*: /play Akeno`;
+    let txt = `✦ *Ingresa el nombre de lo que quieres buscar*`;
 
     const anu = {
       key: {
@@ -19,7 +19,7 @@ let handler = async (m, { conn, args }) => {
           groupJid: "6285240750713-1610340626@g.us",
           inviteCode: "mememteeeekkeke",
           groupName: "P",
-          caption: "Akeno",
+          caption: "Itsuki",
           jpegThumbnail: thumbnail
         }
       }
@@ -34,11 +34,6 @@ let handler = async (m, { conn, args }) => {
           newsletterJid: '120363318758721861@newsletter',
           newsletterName: '✦ ᥴᥲᥒᥲᥣ ძᥱ іᥲᥒᥲᥣᥱȷᥲᥒძr᥆᥆k15᥊',
           serverMessageId: -1
-        },
-        externalAdReply: {
-          title: 'Uso incorrecto',
-          body: 'Youtube play',
-          thumbnailUrl: pp
         }
       }
     }, { quoted: anu });
