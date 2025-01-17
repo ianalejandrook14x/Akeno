@@ -9,12 +9,12 @@ let handler = async (m, { conn, isRowner }) => {
   
 
       if (!mentionedUser) {
-        return m.reply('*Menciona al usuario*');
+        return m.reply('*Mentioned the user* 🎋');
       }
   
     
       if (!['mod', 'prem', 'owner'].includes(role)) {
-        return m.reply('*Los roles disponibles son: mod, prem, owner*');
+        return m.reply('*Available roles are: mod, prem, owner* 🎋');
       }
   
       
@@ -24,23 +24,23 @@ let handler = async (m, { conn, isRowner }) => {
       if (role === 'mod') {
         if (!global.mods.includes(mentionedUser)) {
           global.mods.push(mentionedUser); 
-          return m.reply(`*Se ha agregado como moderador*`);
+          return m.reply(`*Has been added as a moderator* 🎋`);
         } else {
-          return m.reply('*El usuario ya es moderador*');
+          return m.reply('*The user is already a moderator* 🎋');
         }
       }
   
       if (role === 'prem') {
         if (!global.prems.includes(mentionedUser)) {
           global.prems.push(mentionedUser);
-          return m.reply(`*El usuario fue agregado como usuario premium*`);
+          return m.reply(`*User was added as a premium user* 🎋`);
         } else {
-          return m.reply('*El usuario ya es premium*');
+          return m.reply('*The user is already premium* 🎋');
         }
       }
 
       if (role === 'owner') {
-        return m.reply('No puedes otorgar el rol de owner a otro usuario');
+        return m.reply('You cannot grant the owner role to another user 🎋');
       }
     }
   };
