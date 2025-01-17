@@ -7,6 +7,7 @@ let handler = async (m, { conn }) => {
 ❀ *menu*
 ❀ *grupos*
 ❀ *blocklist*
+❀ *wallpaper <txt>*
 
  *\`BUSQUEDAS\`*
 
@@ -63,6 +64,11 @@ let handler = async (m, { conn }) => {
 ❀ *stiker <img>*
 ❀ *sticker <url>*
 ❀ *take <nombre/autor>*
+
+ *\`+18\`*
+
+❀ *xnxxsearch <txt>*
+❀ *xnxxdl <link>*
 
  *\`ANIMES\`*
 
