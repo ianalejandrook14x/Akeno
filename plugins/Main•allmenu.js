@@ -6,8 +6,15 @@ let handler = async (m, { conn }) => {
 ❀ *perfil*
 ❀ *menu*
 ❀ *grupos*
-❀ *blocklist*
+
+*\`AI\`*
+
+❀ *remini*
+❀ *hd*
+❀ *enhance*
 ❀ *wallpaper <txt>*
+❀ *gemini / ia*
+❀ *pixai*
 
  *\`BUSQUEDAS\`*
 
@@ -16,8 +23,8 @@ let handler = async (m, { conn }) => {
 ❀ *ytsearch*
 ❀ *imagen <txt>*
 ❀ *play* <musica>
-❀ *ytmp4* <nombre>
-❀ *ytmp3* <nombre>
+❀ *ytdlmp4* <nombre>
+❀ *ytdlmp3* <nombre>
 
 
  *\`JUEGOS\`*
@@ -128,12 +135,6 @@ let handler = async (m, { conn }) => {
 ❀ *slow <vn>*
 ❀ *smooth <vn>*
 ❀ *tupai <vn>*
-
- *\`AI\`*
-
-❀ *remini*
-❀ *hd*
-❀ *enhance*
 
  *\`CONVERTIDORES\`*
 
