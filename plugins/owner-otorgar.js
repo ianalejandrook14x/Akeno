@@ -2,7 +2,7 @@ let handler = async (m, { conn, isRowner }) => {
     const userId = m.sender; 
   
    
-    if (m.text.startsWith('.setrol ')) {
+    if (m.text.startsWith('.setrole ')) {
   
       const role = m.text.slice(9).trim().split(' ')[0]; 
       const mentionedUser = m.mentionedJid[0]; 
@@ -45,7 +45,7 @@ let handler = async (m, { conn, isRowner }) => {
     }
   };
   
-  handler.command = ['setrol'];
+  handler.command = ['setrole'];
 
   handler.rowner = true; 
   
