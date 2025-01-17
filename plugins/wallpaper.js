@@ -26,7 +26,7 @@ const handler = async (m, { text, conn }) => {
 
         if (filteredData.length === 0) {
             sentResults = [];
-            throw 'No se encontraron nuevos resultados. Inténtalo de nuevo.';
+            throw 'No se encontraron nuevos resultados';
         }
 
         const wallpaper = filteredData[0];
