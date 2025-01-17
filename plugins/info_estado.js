@@ -31,7 +31,7 @@ let handler = async (m, { conn, text }) => {
   await m.reply(`*Tiempo de conexión:* ${uptime}.`);
 };
 
-handler.command = ['estado', 'status', 'tiempo'];
+handler.command = ['estado'];
 
 export default handler;
 
