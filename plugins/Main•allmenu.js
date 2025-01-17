@@ -82,6 +82,8 @@ let handler = async (m, { conn }) => {
 
 ❀ *rule34 <tag>*
 ❀ *waifu*
+❀ *hentaisearch <query>*
+❀ *hentaidl <link / id>*
 
  *\`GRUPOS\`*
 
