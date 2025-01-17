@@ -2,19 +2,19 @@ let handler = async (m, { conn, isRowner }) => {
     const userId = m.sender; 
   
  
-    if (m.text.startsWith('/quitar ')) {
+    if (m.text.startsWith('.degrade ')) {
     
       const role = m.text.slice(8).trim().split(' ')[0];
       const mentionedUser = m.mentionedJid[0]; 
   
    
       if (!mentionedUser) {
-        return m.reply('*Menciona a un usuario*');
+        return m.reply('*Mentioned the user 🎋*');
       }
   
     
       if (!['mod', 'prem', 'owner'].includes(role)) {
-        return m.reply('*Utiliza un rol valido, roles disponibles son: mod, prem, owner.*');
+        return m.reply('🎋 *Available roles: mod, prem, creator*');
       }
   
    
@@ -23,30 +23,28 @@ let handler = async (m, { conn, isRowner }) => {
       if (role === 'mod') {
         if (global.mods.includes(mentionedUser)) {
           global.mods = global.mods.filter(id => id !== mentionedUser); 
-          return m.reply(`*El moderador ha sido removido*`);
+          return m.reply(`*The moderator has been removed 🎋*`);
         } else {
-          return m.reply('*El usuario no es un moderador*');
+          return m.reply('*The user is not a moderator 🎋*');
         }
       }
   
       if (role === 'prem') {
         if (global.prems.includes(mentionedUser)) {
           global.prems = global.prems.filter(id => id !== mentionedUser);
-          return m.reply(`*El usuario premium ha sido removido*`);
+          return m.reply(`*Premium user has been removed* 🎋`);
         } else {
-          return m.reply('*Este usuario no es un usuario premium*');
+          return m.reply('*This user is not a premium user* 🎋');
         }
       }
   
       if (role === 'owner') {
-        return m.reply('*No puedes remover a un propietario de la lista*');
+        return m.reply('*You cannot remove an owner from the list* 🎋');
       }
     }
   };
   
-  handler.help = ['quitar <mod/prem>'];
-  handler.tags = ['owner'];
-  handler.command = ['quitar'];
+  handler.command = ['degrade'];
   handler.rowner = true;
   
   export default handler;
