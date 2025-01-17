@@ -1,8 +1,8 @@
-# Akeno Himejima ✧
+# Itsuki Nakano ✧
 > [!IMPORTANT]\
 > Este proyecto **todavia sigue en desarrollo por lo que pueda que no funcione correctamente en ciertos comandos**, creador y desarrollador `ianalejandrook15x`.
 
-## [Pɾσɳƚσ ҽɳ ҽʅ Ⴆσƚ](https://github.com/ianalejandrook14x/Nino)
+## [Pɾσɳƚσ ҽɳ ҽʅ Ⴆσƚ](https://github.com/ianalejandrook14x/itsuki)
 - [x] Configuración de grupo
 - [x] antidelete, antilink, antiarabes, et
 - [x] Roll Waifu
@@ -11,8 +11,8 @@
 - [x] Imágenes a url
 - [x] Juego RPG
 ---------
-## [Contactos](https://github.com/ianalejandrook14x/Nino)
- <a href="https://wa.me/543876639332"><img alt="Dinito.xtlv" src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>    
+## [Contactos](https://github.com/ianalejandrook14x/itsuki)
+ <a href="https://wa.me/543876639332"><img alt="Ianalejandrook14x" src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>    
  
 ---------
 ![github stats](https://github-readme-stats.vercel.app/api?username=ianalejandrook14x&show_icons=true&theme=chartreuse-dark)
