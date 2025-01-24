@@ -39,7 +39,31 @@ if (user) {
 if (!isNumber(user.exp))
 user.exp = 0
 if (!isNumber(user.yenes))
-user.yenes= 100
+user.yenes = 10
+if (!isNumber(user.joincount))
+user.joincount = 1
+if (!isNumber(user.diamond))
+user.diamond = 3
+if (!isNumber(user.lastadventure))
+user.lastadventure = 0
+if (!isNumber(user.lastclaim))
+user.lastclaim = 0
+if (!isNumber(user.crime))
+user.crime = 0
+if (!isNumber(user.lastcofre))
+user.lastcofre = 0
+if (!isNumber(user.lastdiamantes))
+user.lastdiamantes = 0
+if (!isNumber(user.lastpago))
+user.lastpago = 0
+if (!isNumber(user.lastcode))
+user.lastcode = 0
+if (!isNumber(user.lastcodereg))
+user.lastcodereg = 0
+if (!isNumber(user.lastduel))
+user.lastduel = 0
+if (!isNumber(user.lastmining))
+user.lastmining = 0
 if (!('muto' in user))
 user.muto = false
 if (!('premium' in user)) 
@@ -48,6 +72,14 @@ if (!user.premium)
 user.premiumTime = 0
 if (!('registered' in user))
 user.registered = false
+if (!('genre' in user))
+user.genre = ''
+if (!('birth' in user))
+user.birth = ''
+if (!('marry' in user))
+user.marry = ''
+if (!('description' in user))
+user.description = ''
 if (!user.registered) {
 if (!('name' in user))
 user.name = m.name
@@ -56,12 +88,18 @@ user.age = -1
 if (!isNumber(user.regTime))
 user.regTime = -1
 }
+if (!isNumber(user.afk))
+user.afk = -1
+if (!('afkReason' in user))
+user.afkReason = ''
 if (!('role' in user))
 user.role = 'Sin Rango'
 if (!('banned' in user))
 user.banned = false
 if (!('useDocument' in user))
 user.useDocument = false
+if (!isNumber(user.level))
+user.level = 0
 if (!isNumber(user.bank))
 user.bank = 0
 if (!('premium' in user))
@@ -73,15 +111,33 @@ user.premiumTime = 0
 } else
                 global.db.data.users[m.sender] = {
 exp: 0,
-yenes: 100,
+yenes: 10,
+joincount: 1,
+diamond: 3,
+lastadventure: 0,
+lastclaim: 0,
+lastcofre: 0,
+lastdiamantes: 0,
+lastcode: 0,
+lastduel: 0,
+lastpago: 0,
+lastmining: 0,
+lastcodereg: 0,
 muto: false,
 registered: false,
+genre: '',
+birth: '',
+marry: '',
+description: '',
 name: m.name,
 age: -1,
 regTime: -1,
+afk: -1,
+afkReason: '',
 banned: false,
 useDocument: false,
 bank: 0,
+level: 0,
 premium: false,
 premiumTime: 0,                 
 }
@@ -376,7 +432,7 @@ if (xp > 200)
 m.reply('chirrido -_-')
 else
 m.exp += xp
-if (!isPrems && plugin.yenes && global.db.data.users[m.sender].coin < plugin.yenes * 1) {
+if (!isPrems && plugin.yenes && global.db.data.users[m.sender].yenes < plugin.yenes * 1) {
 conn.reply(m.chat, `❀ Se agotaron tus ${global.currency}`, m)
 continue
 }
@@ -424,7 +480,7 @@ await plugin.after.call(this, m, extra)
 console.error(e)
 }}
 if (m.yenes)
-conn.reply(m.chat, `Utilizaste ${+m.yenes} ${global.moneda}`, m)
+conn.reply(m.chat, `Utilizaste ${+m.yenes} ${global.currency}`, m)
 }
 break
 }}
@@ -445,7 +501,7 @@ await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id:
 }
 if (m.sender && (user = global.db.data.users[m.sender])) {
 user.exp += m.exp
-user.yenes -= m.coin * 1
+user.yenes -= m.yenes * 1
 }
 
 let stat
@@ -530,7 +586,7 @@ group: '✧ *La función solicitada solo puede ser ejecutada en grupos.*',
 private: '✧ *La función solo puede ser usada al chat privado del bot.*', 
 admin: '✧ *La función solo puede ser ejecutada por administradores.*', 
 botAdmin: '✧ *Para ejecutar esta función el bot debe ser administrador.*', 
-unreg: '✧ *No te encuentras regitrado, haga su registro*\n\n*/reg nombre.edad*\n\n*Ejemplo* : */reg Akari.14*',
+unreg: '✧ *No te encuentras regitrado, haga su registro*\n\n*/reg nombre.edad*\n\n*Ejemplo* : */reg Ian.14*',
 restrict: '✧ *Esta característica esta desactivada.*'
 }[type];
 if (msg) return m.reply(msg).then(_ => m.react('✖️'))}
