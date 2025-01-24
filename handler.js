@@ -29,7 +29,7 @@ m = smsg(this, m) || m
 if (!m)
 return
 m.exp = 0
-m.coin = false
+m.yenes = false
 try {
 let user = global.db.data.users[m.sender]
 if (typeof user !== 'object')
@@ -38,6 +38,8 @@ global.db.data.users[m.sender] = {}
 if (user) {
 if (!isNumber(user.exp))
 user.exp = 0
+if (!isNumber(user.coin))
+user.yenes= 100
 if (!('muto' in user))
 user.muto = false
 if (!('premium' in user)) 
@@ -54,18 +56,12 @@ user.age = -1
 if (!isNumber(user.regTime))
 user.regTime = -1
 }
-if (!isNumber(user.afk))
-user.afk = -1
-if (!('afkReason' in user))
-user.afkReason = ''
 if (!('role' in user))
 user.role = 'Sin Rango'
 if (!('banned' in user))
 user.banned = false
 if (!('useDocument' in user))
 user.useDocument = false
-if (!isNumber(user.level))
-user.level = 0
 if (!isNumber(user.bank))
 user.bank = 0
 if (!('premium' in user))
@@ -77,17 +73,15 @@ user.premiumTime = 0
 } else
                 global.db.data.users[m.sender] = {
 exp: 0,
+yenes: 100,
 muto: false,
 registered: false,
 name: m.name,
 age: -1,
 regTime: -1,
-afk: -1,
-afkReason: '',
 banned: false,
 useDocument: false,
 bank: 0,
-level: 0,
 premium: false,
 premiumTime: 0,                 
 }
