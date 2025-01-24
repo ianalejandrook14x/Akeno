@@ -3,10 +3,6 @@ import fs from "fs";
 import path from "path";
 
 const handler = async (m, { conn }) => {
-    if (!global.db.data.settings[conn.user.jid]?.jadibotmd) {
-        return conn.reply(m.chat, "*❀ Este comando está deshabilitado por mi creador.*", m);
-    }
-
     let userJid;
 
     if (m.quoted) {
