@@ -38,7 +38,7 @@ global.db.data.users[m.sender] = {}
 if (user) {
 if (!isNumber(user.exp))
 user.exp = 0
-if (!isNumber(user.coin))
+if (!isNumber(user.yenes))
 user.yenes= 100
 if (!('muto' in user))
 user.muto = false
@@ -376,7 +376,7 @@ if (xp > 200)
 m.reply('chirrido -_-')
 else
 m.exp += xp
-if (!isPrems && plugin.coin && global.db.data.users[m.sender].coin < plugin.coin * 1) {
+if (!isPrems && plugin.yenes && global.db.data.users[m.sender].coin < plugin.yenes * 1) {
 conn.reply(m.chat, `❀ Se agotaron tus ${global.currency}`, m)
 continue
 }
@@ -423,8 +423,8 @@ await plugin.after.call(this, m, extra)
 } catch (e) {
 console.error(e)
 }}
-if (m.coin)
-conn.reply(m.chat, `Utilizaste ${+m.coin} ${global.currency}`, m)
+if (m.yenes)
+conn.reply(m.chat, `Utilizaste ${+m.yenes} ${global.moneda}`, m)
 }
 break
 }}
@@ -445,7 +445,7 @@ await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id:
 }
 if (m.sender && (user = global.db.data.users[m.sender])) {
 user.exp += m.exp
-user.coin -= m.coin * 1
+user.yenes -= m.coin * 1
 }
 
 let stat
