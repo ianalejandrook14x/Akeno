@@ -15,6 +15,7 @@ resolve()
 
 export async function handler(chatUpdate) {
 this.msgqueque = this.msgqueque || []
+this.uptime = this.uptime || Date.now()
 if (!chatUpdate)
 return
     this.pushMessage(chatUpdate.messages).catch(console.error)
@@ -28,24 +29,15 @@ m = smsg(this, m) || m
 if (!m)
 return
 m.exp = 0
-m.yenes = false
+m.coin = false
 try {
 let user = global.db.data.users[m.sender]
 if (typeof user !== 'object')
-
-if (opts['nyimak']) return
-if (opts['pconly'] && m.chat.endsWith('g.us')) return
-if (opts['gconly'] && !m.chat.endsWith('g.us')) return
-if (opts['swonly'] && m.chat !== 'status@broadcast') return
-if (typeof m.text !== 'string')
-m.text = ''
   
 global.db.data.users[m.sender] = {}
 if (user) {
 if (!isNumber(user.exp))
 user.exp = 0
-if (!isNumber(user.yenes))
-user.yenes = 10
 if (!('muto' in user))
 user.muto = false
 if (!('premium' in user)) 
@@ -66,6 +58,8 @@ if (!isNumber(user.afk))
 user.afk = -1
 if (!('afkReason' in user))
 user.afkReason = ''
+if (!('role' in user))
+user.role = 'Sin Rango'
 if (!('banned' in user))
 user.banned = false
 if (!('useDocument' in user))
@@ -74,10 +68,15 @@ if (!isNumber(user.level))
 user.level = 0
 if (!isNumber(user.bank))
 user.bank = 0
+if (!('premium' in user))
+user.premium = false
+if (!isNumber(user.warn))
+user.warn = 0
+if (!user.premiumTime) 
+user.premiumTime = 0
 } else
                 global.db.data.users[m.sender] = {
 exp: 0,
-yenes: 10,
 muto: false,
 registered: false,
 name: m.name,
@@ -89,6 +88,8 @@ banned: false,
 useDocument: false,
 bank: 0,
 level: 0,
+premium: false,
+premiumTime: 0,                 
 }
 let chat = global.db.data.chats[m.chat]
 if (typeof chat !== 'object')
@@ -96,14 +97,20 @@ global.db.data.chats[m.chat] = {}
 if (chat) {
 if (!('isBanned' in chat))
 chat.isBanned = false
+if (!('sAutoresponder' in chat))
+chat.sAutoresponder = ''
 if (!('welcome' in chat))
 chat.welcome = true
-if (!('audios' in chat))
-chat.audios = false
+if (!('autolevelup' in chat))
+chat.autolevelup = true
+if (!('autoAceptar' in chat))
+chat.autoAceptar = false
+if (!('autoRechazar' in chat))
+chat.autoRechazar = false
+if (!('autoresponder' in chat))
+chat.autoresponder = false
 if (!('detect' in chat))
 chat.detect = true
-if (!('onlyLatinos' in chat))
-chat.onlyLatinos = true 
 if (!('antiBot' in chat))
 chat.antiBot = false
 if (!('antiBot2' in chat))
@@ -111,15 +118,21 @@ chat.antiBot2 = false
 if (!('modoadmin' in chat))                     
 chat.modoadmin = false   
 if (!('antiLink' in chat))
-chat.antiLink = false
-if (!('modohorny' in chat))
-chat.modohorny = false
+chat.antiLink = true
 if (!('reaction' in chat))
+chat.reaction = false
+if (!('nsfw' in chat))
 chat.reaction = false
 if (!('simi' in chat))
 chat.simi = false
 if (!('antiver' in chat))
 chat.antiver = false
+if (!('antifake' in chat))
+chat.antifake = false
+if (!('antiTraba' in chat))
+chat.antiTraba = false
+if (!('antitoxic' in chat))
+chat.antitoxic = false
 if (!('delete' in chat))
 chat.delete = false
 if (!isNumber(chat.expired))
@@ -127,41 +140,45 @@ chat.expired = 0
 } else
 global.db.data.chats[m.chat] = {
 isBanned: false,
+sAutoresponder: '',
 welcome: true,
+autolevelup: true,
+autoresponder: false,
 delete: false,
-onlyLatinos: false,
-audios: false,
+autoAceptar: false,
+autoRechazar: false,
 detect: true,
 antiBot: false,
 antiBot2: false,
 modoadmin: false,
-antiLink: false,
+antiLink: true,
 simi: false,
 antiver: false,
-modohorny: false, 
+antifake: false,
+antitoxic: false, 
+antiTraba: false,
 reaction: false,
+nsfw: false,
 expired: 0, 
 }
 var settings = global.db.data.settings[this.user.jid]
 if (typeof settings !== 'object') global.db.data.settings[this.user.jid] = {}
 if (settings) {
 if (!('self' in settings)) settings.self = false
-if (!('restrict' in settings)) settings.restrict = false
+if (!('restrict' in settings)) settings.restrict = true
 if (!('jadibotmd' in settings)) settings.jadibotmd = true
-if (!('autobio' in settings)) settings.autobio = false
 if (!('antiPrivate' in settings)) settings.antiPrivate = false
 if (!('autoread' in settings)) settings.autoread = false
 if (!('autoread2' in settings)) settings.autoread2 = false
 if (!('antiSpam' in settings)) settings.antiSpam = false
 } else global.db.data.settings[this.user.jid] = {
 self: false,
-restrict: false,
+restrict: true,
 jadibotmd: true,
-autobio: false,
 antiPrivate: false,
 autoread: false,
 autoread2: false,
-antiSpam: true,
+antiSpam: false,
 status: 0
 }
 } catch (e) {
@@ -190,8 +207,7 @@ await delay(time)
 }, time)
 }
 
-//if (m.isBaileys) return 
-if (m.isBaileys || isBaileysFail && m?.sender === this?.this?.user?.jid) {
+if (m.isBaileys) {
 return
 }
 m.exp += Math.ceil(Math.random() * 10)
@@ -214,6 +230,9 @@ continue
 if (plugin.disabled)
 continue
 const __filename = join(___dirname, name)
+/*if (m.sender === this.user.jid) {
+continue
+}*/
 if (typeof plugin.all === 'function') {
 try {
 await plugin.all.call(this, m, {
@@ -283,6 +302,8 @@ typeof plugin.command === 'string' ?
 plugin.command === command :
 false
 
+global.comando = command
+
 if (!isAccept) {
 continue
 }
@@ -290,8 +311,8 @@ m.plugin = name
 if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
 let chat = global.db.data.chats[m.chat]
 let user = global.db.data.users[m.sender]
-if (!['owner-unbanchat.js'].includes(name) && chat && chat.isBanned && !isROwner) return // Except this
-if (name != 'owner-unbanchat.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'tool-delete.js' && chat?.isBanned && !isROwner) return 
+if (!['grupo-unbanchat.js'].includes(name) && chat && chat.isBanned && !isROwner) return // Except this
+if (name != 'grupo-unbanchat.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'grupo-delete.js' && chat?.isBanned && !isROwner) return 
 if (m.text && user.banned && !isROwner) {
 if (user.antispam > 2) return
 user.antispam++        
@@ -300,19 +321,17 @@ return
 
 //Antispam 2                
 if (user.antispam2 && isROwner) return
-let time = global.db.data.users[m.sender].spam + 5000
-if (new Date - global.db.data.users[m.sender].spam < 5000) return console.log(`[ SPAM ]`) 
+let time = global.db.data.users[m.sender].spam + 3000
+if (new Date - global.db.data.users[m.sender].spam < 3000) return console.log(`⪩ S P A M ⪨`) 
 global.db.data.users[m.sender].spam = new Date * 1
 }
 if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
 let chat = global.db.data.chats[m.chat]
 let user = global.db.data.users[m.sender]
 let setting = global.db.data.settings[this.user.jid]
-if (name != 'group-unbanchat.js' && chat?.isBanned)
+if (name != 'grupo-unbanchat.js' && chat?.isBanned)
 return 
 if (name != 'owner-unbanuser.js' && user?.banned)
-return
-if (name != 'owner-unbanbot.js' && setting?.banned)
 return
 }
 let hl = _prefix 
@@ -363,8 +382,8 @@ if (xp > 200)
 m.reply('chirrido -_-')
 else
 m.exp += xp
-if (!isPrems && plugin.yenes && global.db.data.users[m.sender].yenes < plugin.yenes * 1) {
-conn.reply(m.chat, `Se agotaron tus *${currency}*`, m, fake)
+if (!isPrems && plugin.coin && global.db.data.users[m.sender].coin < plugin.coin * 1) {
+conn.reply(m.chat, `❀ Se agotaron tus ${global.currency}`, m)
 continue
 }
 let extra = {
@@ -393,7 +412,7 @@ __filename
 try {
 await plugin.call(this, m, extra)
 if (!isPrems)
-m.yenes = m.yenes || plugin.yenes || false
+m.coin = m.coin || plugin.coin || false
 } catch (e) {
 m.error = e
 console.error(e)
@@ -410,8 +429,8 @@ await plugin.after.call(this, m, extra)
 } catch (e) {
 console.error(e)
 }}
-if (m.yenes)
-conn.reply(m.chat, `Utilizaste *${+m.yenes}* ${currency}`, m, fake)
+if (m.coin)
+conn.reply(m.chat, `Utilizaste ${+m.coin} ${global.moneda}`, m)
 }
 break
 }}
@@ -432,7 +451,7 @@ await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id:
 }
 if (m.sender && (user = global.db.data.users[m.sender])) {
 user.exp += m.exp
-user.yenes -= m.yenes * 1
+user.coin -= m.coin * 1
 }
 
 let stat
@@ -473,8 +492,8 @@ if (settingsREAD.autoread2) await this.readMessages([m.key])
 // await conn.sendPresenceUpdate('composing', m.chat)
 // this.sendPresenceUpdate('recording', m.chat)
 
-if (db.data.chats[m.chat].reaction && m.text.match(/(ción|dad|aje|oso|izar|mente|pero|tion|age|ous|ate|and|but|ify|ai|yaemori|a|s)/gi)) {
-let emot = pickRandom(["🌸", "😃", "😄", "😁", "😆", "🍓", "😅", "😂", "🤣", "🥲", "☺️", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "🌺", "🌸", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🌟", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "💫", "😞", "😔", "😟", "😕", "🙁", "☹️", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😶‍🌫️", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🫣", "🤭", "🤖", "🍭", "🤫", "🫠", "🤥", "😶", "📇", "😐", "💧", "😑", "🫨", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😮‍💨", "😵", "😵‍💫", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👺", "🧿", "🌩", "👻", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "🫶", "👍", "✌️", "🙏", "🫵", "🤏", "🤌", "☝️", "🖕", "🙏", "🫵", "🫂", "🐱", "🤹‍♀️", "🤹‍♂️", "🗿", "✨", "⚡", "🔥", "🌈", "🩷", "❤️", "🧡", "💛", "💚", "🩵", "💙", "💜", "🖤", "🩶", "🤍", "🤎", "💔", "❤️‍🔥", "❤️‍🩹", "❣️", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "🌸", "👊", "⚡️", "💋", "🫰", "💅", "👑", "🐣", "🐤", "🐈"])
+if (db.data.chats[m.chat].reaction && m.text.match(/(ción|dad|aje|oso|izar|mente|pero|tion|age|ous|ate|and|but|ify|ai|yuki|a|s)/gi)) {
+let emot = pickRandom(["🍟", "😃", "😄", "😁", "😆", "🍓", "😅", "😂", "🤣", "🥲", "☺️", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "🌺", "🌸", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🌟", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "💫", "😞", "😔", "😟", "😕", "🙁", "☹️", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😶‍🌫️", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🫣", "🤭", "🤖", "🍭", "🤫", "🫠", "🤥", "😶", "📇", "😐", "💧", "😑", "🫨", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😮‍💨", "😵", "😵‍💫", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👺", "🧿", "🌩", "👻", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "🫶", "👍", "✌️", "🙏", "🫵", "🤏", "🤌", "☝️", "🖕", "🙏", "🫵", "🫂", "🐱", "🤹‍♀️", "🤹‍♂️", "🗿", "✨", "⚡", "🔥", "🌈", "🩷", "❤️", "🧡", "💛", "💚", "🩵", "💙", "💜", "🖤", "🩶", "🤍", "🤎", "💔", "❤️‍🔥", "❤️‍🩹", "❣️", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "🚩", "👊", "⚡️", "💋", "🫰", "💅", "👑", "🐣", "🐤", "🐈"])
 if (!m.fromMe) return this.sendMessage(m.chat, { react: { text: emot, key: m.key }})
 }
 function pickRandom(list) { return list[Math.floor(Math.random() * list.length)]}
@@ -489,20 +508,25 @@ let chat = global.db.data.chats[msg?.chat] || {}
 if (!chat?.delete) return 
 if (!msg) return 
 if (!msg?.isGroup) return 
-const antideleteMessage = `╭•┈•〘❌ 𝗔𝗡𝗧𝗜 𝗗𝗘𝗟𝗘𝗧𝗘 ❌〙•┈• ◊
+const antideleteMessage = `╭•┈•〘✖️ 𝗔𝗡𝗧𝗜 𝗗𝗘𝗟𝗘𝗧𝗘 ✖️〙•┈• ◊
 │❒ 𝗨𝗦𝗨𝗔𝗥𝗜𝗢:
 │• @${participant.split`@`[0]}
 │
 │❒ 𝗔𝗰𝗮𝗯𝗮 𝗱𝗲 𝗲𝗹𝗶𝗺𝗶𝗻𝗮𝗿 𝘂𝗻 𝗺𝗲𝗻𝘀𝗮𝗷𝗲
-│𝗿𝗲𝗲𝗻𝘃𝗶𝗮𝗻𝗱𝗼... ⏱️
-╰•┈•〘❌ 𝗔𝗡𝗧𝗜 𝗗𝗘𝗟𝗘𝗧𝗘 ❌〙•┈• ◊`.trim();
+│𝗿𝗲𝗲𝗻𝘃𝗶𝗮𝗻𝗱𝗼... ˚₊· ͟͟͞͞➳❥
+╰•┈•〘✖️ 𝗔𝗡𝗧𝗜 𝗗𝗘𝗟𝗘𝗧𝗘 ✖️〙•┈• ◊`.trim();
 await this.sendMessage(msg.chat, {text: antideleteMessage, mentions: [participant]}, {quoted: msg})
 this.copyNForward(msg.chat, msg).catch(e => console.log(e, msg))
 } catch (e) {
 console.error(e)
 }}
 
-global.dfail = (type, m, conn) => {
+global.dfail = (type, m, usedPrefix, command, conn) => {
+
+let edadaleatoria = ['10', '28', '20', '40', '18', '21', '15', '11', '9', '17', '25'].getRandom()
+let user2 = m.pushName || 'Anónimo'
+let verifyaleatorio = ['registrar', 'reg', 'verificar', 'verify', 'register'].getRandom()
+
 const msg = {
 rowner: '✧ *La función solicitada solo puede ser usada por*\n\n> ianalejandrook15x.', 
 owner: '✧ *Esta función solo puede ser usada por desarrolladores*.', 
@@ -515,11 +539,16 @@ botAdmin: '✧ *Para ejecutar esta función el bot debe ser administrador.*',
 unreg: '✧ *No te encuentras regitrado, haga su registro*\n\n*/reg nombre.edad*\n\n*Ejemplo* : */reg Akari.14*',
 restrict: '✧ *Esta característica esta desactivada.*'
 }[type];
-if (msg) return conn.reply(m.chat, msg, m, ).then(_ => m.react('✖️'))}
+if (msg) return m.reply(msg).then(_ => m.react('✖️'))}
 
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
 unwatchFile(file)
 console.log(chalk.magenta("Se actualizo 'handler.js'"))
-if (global.reloadHandler) console.log(await global.reloadHandler())
-})
+//if (global.reloadHandler) console.log(await global.reloadHandler())
+
+if (global.conns && global.conns.length > 0 ) {
+const users = [...new Set([...global.conns.filter((conn) => conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED).map((conn) => conn)])];
+for (const userr of users) {
+userr.subreloadHandler(false)
+}}});
