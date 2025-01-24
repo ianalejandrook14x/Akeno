@@ -406,7 +406,7 @@ __filename
 try {
 await plugin.call(this, m, extra)
 if (!isPrems)
-m.coin = m.coin || plugin.coin || false
+m.yenes = m.yenes || plugin.yenes || false
 } catch (e) {
 m.error = e
 console.error(e)
