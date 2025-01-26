@@ -33,7 +33,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url } = video;
 
-    // Información del video usando youtubedl o youtubedlv2 como respaldo
+    // Información del video usando youtubedl o youtubedlv2
     let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
     let videoInfo = yt.video['360p'] || yt.video['480p']; // Preferencia por calidad 360p o 480p
 
@@ -52,13 +52,13 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     // Enviar la miniatura y detalles
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
-    // Usar la API para obtener el enlace de descarga
+    // Usar la API exclusivamente para descargar el video
     let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
     let json = await api.json();
     let { data } = json;
 
-    if (!data || !data.dl || !data.size) {
-      return star.reply(m.chat, '✦ *Error al obtener los datos del video desde la API.*', m).then(() => m.react('✖️'));
+    if (!data || !data.dl) {
+      return star.reply(m.chat, '✦ *Error al obtener el enlace de descarga desde la API.*', m).then(() => m.react('✖️'));
     }
 
     let { dl: downloadUrl } = data;
