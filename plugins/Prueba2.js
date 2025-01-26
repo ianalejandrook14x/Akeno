@@ -1,36 +1,61 @@
-/* 
+import fetch from 'node-fetch';
+import yts from 'yt-search';
+import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 
-[ Canal Principal ] :
-https://whatsapp.com/channel/0029VaeQcFXEFeXtNMHk0D0n
+let limit = 94;
 
-[ Canal Rikka Takanashi Bot ] :
-https://whatsapp.com/channel/0029VaksDf4I1rcsIO6Rip2X
+let handler = async (m, { conn: star, args, usedPrefix, command }) => {
+  if (!args || !args[0]) {
+    return star.reply(m.chat, `✦ *¡Ingresa el enlace del vídeo de YouTube!*\n\n» *Ejemplo:*\n> *${usedPrefix + command}* https://youtu.be/QSvaCSt8ixs`, m);
+  }
 
-[ Canal StarlightsTeam] :
-https://whatsapp.com/channel/0029VaBfsIwGk1FyaqFcK91S
+  if (!args[0].match(/youtu/gi)) {
+    return star.reply(m.chat, '✦ *Verifica que el enlace sea de YouTube.*', m).then(_ => m.react('✖️'));
+  }
 
-[ HasumiBot FreeCodes ] :
-https://whatsapp.com/channel/0029Vanjyqb2f3ERifCpGT0W
-*/
+  await m.react('🕓');
 
-// *[ ❀ YTMP4 ]*
-import fetch from 'node-fetch'
+  try {
+    let v = args[0];
+    let yt = await youtubedl(v).catch(async () => await youtubedlv2(v));
+    let { title, thumbnail, timestamp, views, ago } = yt;
 
-let HS = async (m, { conn, text }) => {
-if (!text) {
-return m.reply("❀ Ingresa un link de youtube")
-}
-    
-try {
-let api = await fetch(`https://api.giftedtech.my.id/api/download/dlmp4?apikey=gifted&url=${text}`)
-let json = await api.json()
-let { quality, title, download_url } = json.result
+    let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${v}`);
+    let json = await api.json();
+    let { result } = json;
+    let { download, size } = result;
 
-await conn.sendMessage(m.chat, { video: { url: download_url }, caption: `${title}`, mimetype: 'video/mp4', fileName: `${title}` + `.mp4`}, {quoted: m })
-} catch (error) {
-console.error(error)
-}}
+    size = (size / (1024 * 1024)).toFixed(2);
 
-HS.command = /^(ytmp4)$/i
+    if (size >= 700) {
+      return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(_ => m.react('✖️'));
+    }
 
-export default HS
+    let txt = `✦ *Título:* » ${title}\n`;
+    txt += `✦ *Duración:* » ${timestamp}\n`;
+    txt += `✦ *Visitas:* » ${views}\n`;
+    txt += `✦ *Subido:* » ${ago}\n`;
+    txt += `✦ *Tamaño:* » ${size} MB\n\n`;
+  //  txt += `> *- ↻ El vídeo se está enviando, espera un momento...*`;
+
+    await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
+
+    if (size >= limit) {
+      await star.sendMessage(m.chat, { document: { url: download }, mimetype: 'video/mp4', fileName: `${title}.mp4` }, { quoted: m });
+    } else {
+      await star.sendMessage(m.chat, { video: { url: download }, mimetype: 'video/mp4', fileName: `${title}.mp4` }, { quoted: m });
+    }
+
+    await m.react('✅');
+  } catch (error) {
+    console.error(error);
+    await m.react('✖️');
+  }
+};
+
+handler.help = ['ytmp4 *<link yt>*'];
+handler.tags = ['downloader'];
+handler.command = ['ytmp4', 'ytv']; 
+//handler.register = true;
+
+export default handler;
