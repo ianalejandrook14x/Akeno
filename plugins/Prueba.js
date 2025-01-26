@@ -44,8 +44,8 @@ let handler = async (m, { conn, text }) => {
     let json = await api.json();
     let { download } = json.result;
 
-    if (fileSize > 100 * 1024 * 1024) {
-      await conn.sendMessage(m.chat, { document: { url: download.url }, mimetype: 'audio/mpeg', fileName: `${title}.mp3` }, { quoted: m });
+    if (fileSize > 50 * 1024 * 1024) {
+      await conn.sendMessage(m.chat, { document: { url: download.url }, mimetype: 'audio/mp4', fileName: `${title}.m4a` }, { quoted: m });
     } else {
       await conn.sendMessage(m.chat, { audio: { url: download.url }, mimetype: "audio/mpeg" }, { quoted: m });
     }
