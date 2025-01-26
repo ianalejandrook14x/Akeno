@@ -2,14 +2,14 @@ import fetch from 'node-fetch';
 import yts from 'yt-search';
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 
-let limit = 94; // Límite de tamaño en MB para enviar como documento M4A
+let limit = 94; 
 
 let handler = async (m, { conn: star, args, usedPrefix, command }) => {
   if (!args || !args[0]) {
     return star.reply(m.chat, `✦ *¡Ingresa el texto o enlace del vídeo de YouTube!*\n\n» *Ejemplo:*\n> *${usedPrefix + command}* Canción de ejemplo`, m);
   }
 
-  await m.react('🕓'); // Reacción de espera
+  await m.react('🕓'); 
 
   try {
     let query = args.join(' ');
@@ -17,11 +17,11 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let video;
     if (isUrl) {
-      // Si es un enlace, obtener información directamente con yt-search
+      
       let ytres = await yts({ videoId: query.split('v=')[1] });
       video = ytres.videos[0];
     } else {
-      // Si es un texto, buscar en YouTube
+     
       let ytres = await yts(query);
       video = ytres.videos[0];
       if (!video) {
