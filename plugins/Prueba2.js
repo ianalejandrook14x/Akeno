@@ -2,8 +2,6 @@ import fetch from 'node-fetch';
 import yts from 'yt-search';
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 
-let limit = 700; // Tamaño límite en MB
-
 let handler = async (m, { conn: star, args, usedPrefix, command }) => {
   if (!args || !args[0]) {
     return star.reply(
@@ -38,18 +36,16 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     // Información del video usando youtubedl o youtubedlv2 como respaldo
     let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
     let videoInfo = yt.video['360p'] || yt.video['480p']; // Preferencia por calidad 360p o 480p
-    let { fileSizeH: size } = videoInfo;
 
-    let sizeMB = parseFloat(size.split('MB')[0]);
-
-    if (sizeMB >= limit) {
-      return star.reply(
-        m.chat,
-        `✦ *El archivo es demasiado pesado (más de ${limit} MB). Se canceló la descarga.*`,
-        m
-      ).then(() => m.react('✖️'));
+    if (!videoInfo) {
+      return star.reply(m.chat, '✦ *No se encontró una calidad compatible para el video.*', m).then(() => m.react('✖️'));
     }
 
+    let { fileSizeH: sizeHumanReadable, fileSize: sizeInKB } = videoInfo;
+
+    let sizeMB = (sizeInKB / 1024).toFixed(2); // Convertir de KB a MB con dos decimales
+
+    // Enlace de descarga desde la API externa (opcional como respaldo)
     let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
     let json = await api.json();
     let { data } = json;
@@ -59,19 +55,21 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     txt += `✦ *Duración:* » ${timestamp}\n`;
     txt += `✦ *Visitas:* » ${views}\n`;
     txt += `✦ *Subido:* » ${ago}\n`;
-    txt += `✦ *Tamaño:* » ${size}\n\n`;
+    txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
 
     // Enviar la miniatura y detalles
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
-    // Enviar el video
-    if (sizeMB >= limit) {
+    // Enviar el video según el tamaño
+    if (sizeMB > 100) {
+      // Enviar como documento si el tamaño supera los 100 MB
       await star.sendMessage(
         m.chat,
         { document: { url: download }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
         { quoted: m }
       );
     } else {
+      // Enviar como video normal si es menor a 100 MB
       await star.sendMessage(
         m.chat,
         { video: { url: download }, caption: `${title}` },
@@ -83,6 +81,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
   } catch (error) {
     console.error(error);
     await m.react('✖️'); // Error durante el proceso
+    star.reply(m.chat, '✦ *Ocurrió un error al procesar tu solicitud. Intenta nuevamente más tarde.*', m);
   }
 };
 
