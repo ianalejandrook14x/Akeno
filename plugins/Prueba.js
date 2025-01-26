@@ -1,60 +1,68 @@
-import fetch from "node-fetch";
-import yts from "yt-search";
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
+import fetch from 'node-fetch';
+import yts from 'yt-search';
 
-let limit = 50; // Límite de tamaño en MB
+let limit = 50; // Límite de tamaño en MB para enviar como documento M4A
 
-let handler = async (m, { conn, text }) => {
-  if (!text) {
-    return m.reply("*❀ Ingresa el texto de lo que quieres buscar*");
-  }
+let handler = async (m, { conn: star, args, usedPrefix, command }) => {
+  if (!args || !args[0]) return star.reply(m.chat, '🚩 Ingresa el enlace del vídeo de YouTube junto al comando.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* https://youtu.be/QSvaCSt8ixs`, m);
+  if (!args[0].match(/youtu/gi)) return star.reply(m.chat, `Verifica que el enlace sea de YouTube.`, m).then(_ => m.react('✖️'));
 
-  let ytres = await yts(text);
-  let video = ytres.videos[0];
-
-  if (!video) {
-    return m.reply("*❀ Video no encontrado*");
-  }
-
-  let { url, title, thumbnail, timestamp, views, ago } = video;
-
-  await m.react('🕓');
+  await m.react('🕓'); // Reacción de espera
 
   try {
-    let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
-    let q = '128kbps'; // Calidad del audio
-    let dl_url = await yt.audio[q].download();
-    let size = await yt.audio[q].fileSizeH;
+    let v = args[0]; // URL del video
+    let ytres = await yts(v); // Buscar información del video
+    let video = ytres.videos[0];
 
-    if (size.split('MB')[0] >= 700) {
-      return m.reply("*❀ El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*").then(_ => m.react('✖️'));
+    if (!video) {
+      return star.reply(m.chat, '*❀ Video no encontrado.*', m).then(_ => m.react('✖️'));
     }
 
-    let audioDetails = `
-*❀ Información del audio:*
+    let { title, thumbnail, timestamp, views, ago } = video;
 
-*• Título:* ${title}
-*• Duración:* ${timestamp}
-*• Visitas:* ${views}
-*• Subido:* ${ago}
-*• Calidad:* ${q}
-*• Tamaño:* ${size}`;
+    // Extraer el audio usando la API
+    let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=${v}`);
+    let json = await api.json();
+    let { download } = json.result;
 
-    await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: audioDetails }, { quoted: m });
+    // Obtener el tamaño del archivo
+    let size = (await fetch(download.url, { method: 'HEAD' })).headers.get('content-length');
+    size = (size / (1024 * 1024)).toFixed(2); // Convertir a MB
 
-    if (size.split('MB')[0] >= limit) {
-      await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: 'audio/mp4', fileName: `${title}.m4a` }, { quoted: m });
+    if (size >= 700) {
+      return star.reply(m.chat, '*❀ El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(_ => m.react('✖️'));
+    }
+
+    // Nuevo diseño de la información del audio
+    let txt = `🎵 *M P 3* 🎵\n\n`;
+    txt += `✨ *Título*: ${title}\n`;
+    txt += `⏳ *Duración*: ${timestamp}\n`;
+    txt += `👀 *Visitas*: ${views}\n`;
+    txt += `📅 *Subido*: ${ago}\n`;
+    txt += `📦 *Tamaño*: ${size} MB\n\n`;
+    txt += `> *- ↻ El audio se está enviando, espera un momento...*`;
+
+    // Enviar la miniatura y la información del audio
+    await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
+
+    // Enviar el audio según el tamaño
+    if (size >= limit) {
+      await star.sendMessage(m.chat, { document: { url: download.url }, mimetype: 'audio/mp4', fileName: `${title}.m4a` }, { quoted: m });
     } else {
-      await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: "audio/mpeg" }, { quoted: m });
+      await star.sendMessage(m.chat, { audio: { url: download.url }, mimetype: 'audio/mpeg', fileName: `${title}.mp3` }, { quoted: m });
     }
 
-    await m.react('✅');
+    await m.react('✅'); // Reacción de éxito
   } catch (error) {
     console.error(error);
-    await m.react('✖️');
+    await m.react('✖️'); // Reacción de error
   }
 };
 
-handler.command = /^(ytmp3)$/i;
+handler.help = ['ytmp3 *<link yt>*'];
+handler.tags = ['downloader'];
+handler.command = ['ytmp3', 'yta']; // Comandos que activan el handler
+// handler.limit = 1; // Límite de uso (opcional)
+handler.register = true;
 
 export default handler;
