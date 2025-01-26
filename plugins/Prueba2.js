@@ -64,15 +64,15 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let { dl: downloadUrl } = data;
 
     // Enviar el video según el tamaño
-    if (fileSize / (1024 * 1024) > 10) { // Comparar en MB
-      // Enviar como documento si el tamaño supera los 100 MB
+    if (fileSize / (1024 * 1024) > 9) { // Comparar en MB
+      // Enviar como documento si el tamaño supera los 9 MB
       await star.sendMessage(
         m.chat,
         { document: { url: downloadUrl }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
         { quoted: m }
       );
     } else {
-      // Enviar como video normal si es menor a 100 MB
+      // Enviar como video normal si es menor o igual a 9 MB
       await star.sendMessage(
         m.chat,
         { video: { url: downloadUrl }, caption: `${title}` },
