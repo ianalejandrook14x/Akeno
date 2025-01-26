@@ -63,6 +63,6 @@ handler.help = ['ytmp3 *<link yt>*'];
 handler.tags = ['downloader'];
 handler.command = ['ytmp3', 'yta']; // Comandos que activan el handler
 // handler.limit = 1; // Límite de uso (opcional)
-handler.register = true;
+handler.register = false;
 
 export default handler;
