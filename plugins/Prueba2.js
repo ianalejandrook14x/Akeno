@@ -1,24 +1,25 @@
 
 import fetch from 'node-fetch'
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.reply(m.chat, `❀ Ingresa un  link de youtube`, m)
-    
+let handler = async (m, { conn, command, text, usedPrefix }) => {
+if (!text) return conn.reply(m.chat, `❀ Ingresa un link de youtube`, m)
+
 try {
-let api = await fetch(`https://apidl.asepharyana.cloud/api/downloader/ytmp4?url=${text}&quality=360`)
+let api = await fetch(`https://axeel.my.id/api/download/video?url=${text}`)
 let json = await api.json()
-let { title, author, authorUrl, lengthSeconds, views, uploadDate, thumbnail, description, duration, downloadUrl, quality } = json
+let { title, views, likes, description, author } = json.metadata
 let HS = `- *Titulo :* ${title}
-- *Autor :* ${author}
+- *Descripcion :* ${description}
 - *Visitas :* ${views}
-- *Subido :* ${uploadDate}
-- *Duracion :* ${duration}
-- *Calidad :* ${quality}p`
-await conn.sendMessage(m.chat, { video: { url: downloadUrl }, caption: HS }, { quoted: m })
+- *Likes :* ${likes}
+- *Autor :* ${author}
+- *Tamaño :* ${json.downloads.size}
+`
+await conn.sendFile(m.chat, json.downloads.url, 'HasumiBotFreeCodes.mp4', HS, m)
 } catch (error) {
 console.error(error)
 }}
 
-handler.command = ['ytmp4']
+handler.command = /^(ytmp4)$/i
 
 export default handler
