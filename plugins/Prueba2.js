@@ -63,7 +63,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
     txt += `> *- ↻ El video se está enviando, espera un momento...*`;
 
-    // Enviar la miniatura como imagen
+    // Enviar la miniatura y detalles
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
     // Usar la API para descargar el video
