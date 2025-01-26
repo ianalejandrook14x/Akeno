@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import yts from 'yt-search';
+import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 
 let limit = 94;
 
@@ -16,14 +17,8 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
   try {
     let v = args[0];
-    let ytres = await yts(v);
-    let video = ytres.videos[0];
-
-    if (!video) {
-      return star.reply(m.chat, '✦ *Video no encontrado.*', m).then(_ => m.react('✖️'));
-    }
-
-    let { title, thumbnail, timestamp, views, ago } = video;
+    let yt = await youtubedl(v).catch(async () => await youtubedlv2(v));
+    let { title, thumbnail, timestamp, views, ago } = yt;
 
     let api = await fetch(`https://api.vreden.web.id/api/ytmp3?url=${v}`);
     let json = await api.json();
