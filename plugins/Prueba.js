@@ -2,6 +2,8 @@ import fetch from "node-fetch";
 import yts from "yt-search";
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 
+let limit = 50; // Límite de tamaño en MB
+
 let handler = async (m, { conn, text }) => {
   if (!text) {
     return m.reply("*❀ Ingresa el texto de lo que quieres buscar*");
@@ -19,12 +21,12 @@ let handler = async (m, { conn, text }) => {
   await m.react('🕓');
 
   try {
-    let ytInfo = await youtubedl(url).catch(async () => await youtubedlv2(url));
+    let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
+    let q = '128kbps'; // Calidad del audio
+    let dl_url = await yt.audio[q].download();
+    let size = await yt.audio[q].fileSizeH;
 
-    let audioInfo = ytInfo.audio['128kbps'];
-    let { quality, fileSizeH, fileSize } = audioInfo;
-
-    if (fileSize > 700 * 1024 * 1024) {
+    if (size.split('MB')[0] >= 700) {
       return m.reply("*❀ El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*").then(_ => m.react('✖️'));
     }
 
@@ -35,19 +37,15 @@ let handler = async (m, { conn, text }) => {
 *• Duración:* ${timestamp}
 *• Visitas:* ${views}
 *• Subido:* ${ago}
-*• Calidad:* ${quality}
-*• Tamaño:* ${fileSizeH}`;
+*• Calidad:* ${q}
+*• Tamaño:* ${size}`;
 
     await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: audioDetails }, { quoted: m });
 
-    let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=${url}`);
-    let json = await api.json();
-    let { download } = json.result;
-
-    if (fileSize > 50 * 1024 * 1024) {
-      await conn.sendMessage(m.chat, { document: { url: download.url }, mimetype: 'audio/mp4', fileName: `${title}.m4a` }, { quoted: m });
+    if (size.split('MB')[0] >= limit) {
+      await conn.sendMessage(m.chat, { document: { url: dl_url }, mimetype: 'audio/mp4', fileName: `${title}.m4a` }, { quoted: m });
     } else {
-      await conn.sendMessage(m.chat, { audio: { url: download.url }, mimetype: "audio/mpeg" }, { quoted: m });
+      await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: "audio/mpeg" }, { quoted: m });
     }
 
     await m.react('✅');
