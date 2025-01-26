@@ -61,7 +61,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     txt += `✦ *Visitas:* » ${views}\n`;
     txt += `✦ *Subido:* » ${ago}\n`;
     txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
-    txt += `> *- ↻ El video se está enviando, espera un momento...*`;
+    //txt += `> *- ↻ El video se está enviando, espera un momento...*`;
 
     
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
