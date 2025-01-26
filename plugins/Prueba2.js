@@ -48,11 +48,12 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     // Convertir el tamaño a MB
     let sizeMB = fileSize / (1024 * 1024); // Convertir bytes a MB
 
+    // Verificar si el archivo excede los 700 MB
     if (sizeMB >= 700) {
       return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(() => m.react('✖️'));
     }
 
-    // Verificar la duración del video
+    // Verificar la duración del video (en minutos)
     let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
 
     // Nuevo diseño de la información del video
@@ -66,7 +67,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     // Enviar la miniatura y detalles
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
-    // Usar la API para descargar el video
+    // Usar la API para obtener el enlace de descarga del video
     let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
     let json = await api.json();
     let { data } = json;
@@ -79,7 +80,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     // Enviar el video según el tamaño o la duración
     if (sizeMB > limit || durationInMinutes > 30) {
-      // Enviar como documento si el tamaño supera el límite o si dura más de 30 minutos
+      // Enviar como documento si el tamaño supera los 100 MB o si dura más de 30 minutos
       await star.sendMessage(
         m.chat,
         { document: { url: downloadUrl }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
