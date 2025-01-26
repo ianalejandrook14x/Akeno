@@ -41,15 +41,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       return star.reply(m.chat, '✦ *No se encontró una calidad compatible para el video.*', m).then(() => m.react('✖️'));
     }
 
-    let { fileSizeH: sizeHumanReadable, fileSize: sizeInKB } = videoInfo;
+    let { fileSizeH: sizeHumanReadable, fileSize } = videoInfo;
 
-    let sizeMB = (sizeInKB / 1024).toFixed(2); // Convertir de KB a MB con dos decimales
-
-    // Enlace de descarga desde la API externa (opcional como respaldo)
-    let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
-    let json = await api.json();
-    let { data } = json;
-    let { dl: download } = data;
+    let sizeMB = (fileSize / 1024).toFixed(2); // Convertir de KB a MB con dos decimales
 
     let txt = `✦ *Título:* » ${title}\n`;
     txt += `✦ *Duración:* » ${timestamp}\n`;
@@ -65,14 +59,14 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       // Enviar como documento si el tamaño supera los 100 MB
       await star.sendMessage(
         m.chat,
-        { document: { url: download }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
+        { document: { url: await videoInfo.download() }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
         { quoted: m }
       );
     } else {
       // Enviar como video normal si es menor a 100 MB
       await star.sendMessage(
         m.chat,
-        { video: { url: download }, caption: `${title}` },
+        { video: { url: await videoInfo.download() }, caption: `${title}` },
         { quoted: m }
       );
     }
