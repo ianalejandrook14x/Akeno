@@ -33,17 +33,17 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url } = video;
 
-    // Información del video usando youtubedl o youtubedlv2 como respaldo
-    let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
-    let videoInfo = yt.video['360p'] || yt.video['480p']; // Preferencia por calidad 360p o 480p
+    // Llamada a la API para descargar el video
+    let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
+    let json = await api.json();
+    let { data } = json;
 
-    if (!videoInfo) {
-      return star.reply(m.chat, '✦ *No se encontró una calidad compatible para el video.*', m).then(() => m.react('✖️'));
+    if (!data || !data.dl || !data.size) {
+      return star.reply(m.chat, '✦ *Error al obtener los datos del video desde la API.*', m).then(() => m.react('✖️'));
     }
 
-    let { fileSizeH: sizeHumanReadable, fileSize } = videoInfo;
-
-    let sizeMB = (fileSize / 1024).toFixed(2); // Convertir de KB a MB con dos decimales
+    let { dl: downloadUrl, size: sizeHumanReadable } = data;
+    let sizeInMB = parseFloat(sizeHumanReadable.split(' MB')[0]);
 
     let txt = `✦ *Título:* » ${title}\n`;
     txt += `✦ *Duración:* » ${timestamp}\n`;
@@ -55,18 +55,18 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
     // Enviar el video según el tamaño
-    if (sizeMB > 100) {
+    if (sizeInMB > 100) {
       // Enviar como documento si el tamaño supera los 100 MB
       await star.sendMessage(
         m.chat,
-        { document: { url: await videoInfo.download() }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
+        { document: { url: downloadUrl }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
         { quoted: m }
       );
     } else {
       // Enviar como video normal si es menor a 100 MB
       await star.sendMessage(
         m.chat,
-        { video: { url: await videoInfo.download() }, caption: `${title}` },
+        { video: { url: downloadUrl }, caption: `${title}` },
         { quoted: m }
       );
     }
