@@ -67,6 +67,6 @@ handler.help = ['ytmp4 *<texto o link yt>*'];
 handler.tags = ['downloader'];
 handler.command = ['ytmp4', 'ytv', 'yt']; // Comandos que activan el handler
 // handler.limit = 1; // Límite de uso (opcional)
-handler.register = true;
+//handler.register = true;
 
 export default handler;
