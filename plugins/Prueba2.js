@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import yts from 'yt-search';
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 
-let limit = 100; // Límite de tamaño en MB para enviar como documento MP4
+let limit = 100; 
 
 let handler = async (m, { conn: star, args, usedPrefix, command }) => {
   if (!args || !args[0]) {
@@ -13,7 +13,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     );
   }
 
-  await m.react('🕓'); // Indicador de proceso
+  await m.react('🕓'); 
 
   try {
     let query = args.join(' ');
@@ -21,7 +21,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let video;
     if (isUrl) {
-      // Si es un enlace
+     
       let ytres = await yts({ videoId: query.split('v=')[1] });
       video = ytres.videos[0];
     } else {
@@ -35,9 +35,8 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url } = video;
 
-    // Obtener el peso del video en 360p usando @bochilteam/scraper
     let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
-    let videoInfo = yt.video['360p']; // Calidad 360p
+    let videoInfo = yt.video['360p']; 
 
     if (!videoInfo) {
       return star.reply(m.chat, '✦ *No se encontró una calidad compatible para el video.*', m).then(() => m.react('✖️'));
@@ -45,18 +44,18 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { fileSizeH: sizeHumanReadable, fileSize } = videoInfo;
 
-    // Convertir el tamaño a MB
-    let sizeMB = fileSize / (1024 * 1024); // Convertir bytes a MB
+    
+    let sizeMB = fileSize / (1024 * 1024); 
 
-    // Verificar si el archivo excede los 700 MB
+    
     if (sizeMB >= 700) {
       return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(() => m.react('✖️'));
     }
 
-    // Verificar la duración del video (en minutos)
+    
     let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
 
-    // Nuevo diseño de la información del video
+    
     let txt = `✦ *Título:* » ${title}\n`;
     txt += `✦ *Duración:* » ${timestamp}\n`;
     txt += `✦ *Visitas:* » ${views}\n`;
