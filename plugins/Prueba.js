@@ -31,52 +31,52 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url } = video;
 
-    // Obtener el peso del audio usando @bochilteam/scraper
+    
     let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
-    let audioInfo = yt.audio['128kbps']; // Calidad 128kbps
+    let audioInfo = yt.audio['128kbps']; 
     let { fileSizeH: size } = audioInfo;
 
-    // Convertir el tamaño a MB
+    
     let sizeMB = parseFloat(size.split('MB')[0]);
 
     if (sizeMB >= 700) {
       return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(_ => m.react('✖️'));
     }
 
-    // Extraer el audio usando la API
+    
     let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${url}`);
     let json = await api.json();
     let { data } = json;
     let { dl: download } = data;
 
-    // Nuevo diseño de la información del audio
+    
     let txt = `✦ *Título:* » ${title}\n`;
     txt += `✦ *Duración:* » ${timestamp}\n`;
     txt += `✦ *Visitas:* » ${views}\n`;
     txt += `✦ *Subido:* » ${ago}\n`;
     txt += `✦ *Tamaño:* » ${size}\n\n`;
-    //txt += `> *- ↻ El audio se está enviando, espera un momento...*`;
+    
 
-    // Enviar la miniatura y la información del audio
+   
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
-    // Enviar el audio según el tamaño
+    
     if (sizeMB >= limit) {
       await star.sendMessage(m.chat, { document: { url: download }, mimetype: 'audio/mp4', fileName: `${title}.m4a` }, { quoted: m });
     } else {
       await star.sendMessage(m.chat, { audio: { url: download }, mimetype: 'audio/mpeg', fileName: `${title}.mp3` }, { quoted: m });
     }
 
-    await m.react('✅'); // Reacción de éxito
+    await m.react('✅'); 
   } catch (error) {
     console.error(error);
-    await m.react('✖️'); // Reacción de error
+    await m.react('✖️'); 
   }
 };
 
-handler.help = ['ytmp3 *<texto o link yt>*'];
+handler.help = ['ytmp3'];
 handler.tags = ['downloader'];
-handler.command = ['ytmp3', 'yta']; // Comandos que activan el handler
+handler.command = ['ytmp3', 'yta']; 
 // handler.limit = 1; // Límite de uso (opcional)
 //handler.register = true;
 
