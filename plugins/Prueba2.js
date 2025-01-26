@@ -35,9 +35,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url } = video;
 
-    // Obtener el peso del video usando @bochilteam/scraper
+    // Obtener el peso del video en 360p usando @bochilteam/scraper
     let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
-    let videoInfo = yt.video['360p'] || yt.video['480p']; // Preferencia por calidad 360p o 480p
+    let videoInfo = yt.video['360p']; // Calidad 360p
 
     if (!videoInfo) {
       return star.reply(m.chat, '✦ *No se encontró una calidad compatible para el video.*', m).then(() => m.react('✖️'));
