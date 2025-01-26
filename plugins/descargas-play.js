@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import yts from 'yt-search';  // Importamos el paquete yt-search
 
 let handler = async (m, { conn, args }) => {
   let username = m.pushName || 'User';
@@ -42,10 +43,11 @@ let handler = async (m, { conn, args }) => {
   await m.react('✅');
   try {
     let query = args.join(" ");
-    let searchApiResponse = await fetch(`https://restapi.apibotwa.biz.id/api/search-yts?message=${encodeURIComponent(query)}`);
-    let searchResults = await searchApiResponse.json();
 
-    if (!searchResults.status || !searchResults.data || !searchResults.data.response || !searchResults.data.response.video || !searchResults.data.response.video.length) {
+    // Usamos yt-search para obtener resultados
+    let searchResults = await yts(query);
+
+    if (!searchResults || !searchResults.videos || searchResults.videos.length === 0) {
       const anu = {
         key: {
           fromMe: false,
@@ -69,13 +71,13 @@ let handler = async (m, { conn, args }) => {
       }, { quoted: anu }).then(_ => m.react('✖️'));
     }
 
-    let video = searchResults.data.response.video[0];
+    let video = searchResults.videos[0];  // Tomamos el primer video de los resultados
     let videoImg = await (await fetch(video.thumbnail)).buffer();
 
     let txt = `*\`Y O U T U B E - P L A Y\`*\n\n`;
     txt += `*\`Título:\`* ${video.title}\n`;
-    txt += `*\`Duración:\`* ${parseDuration(video.duration)}\n`;
-    txt += `*\`Canal:\`* ${video.authorName || 'Desconocido'}\n`;
+    txt += `*\`Duración:\`* ${parseDuration(video.timestamp)}\n`;
+    txt += `*\`Canal:\`* ${video.author.name || 'Desconocido'}\n`;
     txt += `*\`Url:\`* ${video.url}\n\n`;
 
     await conn.sendMessage(m.chat, {
