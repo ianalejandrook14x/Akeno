@@ -25,7 +25,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago } = video;
 
-    let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=${v}`);
+    let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=$${v}`);
     let json = await api.json();
     let { download } = json.result;
 
@@ -41,7 +41,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     txt += `✦ *Visitas:* » ${views}\n`;
     txt += `✦ *Subido:* » ${ago}\n`;
     txt += `✦ *Tamaño:* » ${size} MB\n\n`;
-  //  txt += `> *- ↻ El audio se está enviando, espera un momento...*`;
+ 
 
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
