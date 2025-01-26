@@ -52,6 +52,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(() => m.react('✖️'));
     }
 
+    // Verificar la duración del video
+    let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
+
     // Nuevo diseño de la información del video
     let txt = `✦ *Título:* » ${title}\n`;
     txt += `✦ *Duración:* » ${timestamp}\n`;
@@ -60,7 +63,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
     txt += `> *- ↻ El video se está enviando, espera un momento...*`;
 
-    // Enviar la miniatura y detalles
+    // Enviar la miniatura como imagen
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
     // Usar la API para descargar el video
@@ -74,24 +77,24 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { dl: downloadUrl } = data;
 
-    // Enviar el video según el tamaño
-    if (sizeMB > limit) {
-      // Enviar como documento si el tamaño supera el límite
+    // Enviar el video según el tamaño o la duración
+    if (sizeMB > limit || durationInMinutes > 30) {
+      // Enviar como documento si el tamaño supera el límite o si dura más de 30 minutos
       await star.sendMessage(
         m.chat,
         { document: { url: downloadUrl }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
         { quoted: m }
       );
+      await m.react('📄'); // Reacción de documento
     } else {
-      // Enviar como video normal si es menor o igual al límite
+      // Enviar como video normal si es menor o igual al límite y dura menos de 30 minutos
       await star.sendMessage(
         m.chat,
         { video: { url: downloadUrl }, caption: `${title}`, mimetype: 'video/mp4', fileName: `${title}.mp4` },
         { quoted: m }
       );
+      await m.react('✅'); // Reacción de éxito
     }
-
-    await m.react('✅'); // Proceso completado
   } catch (error) {
     console.error(error);
     await m.react('✖️'); // Error durante el proceso
