@@ -92,7 +92,7 @@ let handler = async (m, { conn, args }) => {
           },
         },
         {
-          buttonId: `.ytdlmp4 ${video.url}`,
+          buttonId: `.ytmp4 ${video.url}`,
           buttonText: {
             displayText: '✦ Video',
           },
