@@ -34,7 +34,7 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.8'
 global.vs = '1.0.1'
 global.languaje = 'Español'
-global.nameqr = '𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼'
+global.nameqr = 'Tsukasa 🌸'
 global.sessions = 'BotSession'
 global.jadi = 'JadiBot'
 
@@ -44,9 +44,9 @@ global.jadi = 'JadiBot'
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.banner = 'https://qu.ax/ucKST.jpg'
-global.botname = '𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼'
-global.author = '𝗕𝘆 𝗜𝗮𝗻𝗮𝗹𝗲𝗷𝗮𝗻𝗱𝗿𝗼𝗼𝗸𝟭𝟱𝘅'
-global.dev = '𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 𝗜𝗮𝗻𝗮𝗹𝗲𝗷𝗮𝗻𝗱𝗿𝗼𝗼𝗸𝟭𝟱𝘅'
+global.botname = 'Tsυƙαsα Yυȥαƙι'
+global.author = 'Creator | Ian.xyz'
+global.dev = 'Developed by Ian.xyz'
 global.currency = 'Yenes'
 global.botStatus = true;
 global.welcome = '𝗛𝗼𝗹𝗮 𝗯𝗶𝗲𝗻𝘃𝗲𝗻𝗶𝗱𝗼 𝗮𝗹 𝗴𝗿𝘂𝗽𝗼 𝘁𝗲 𝘀𝗮𝗹𝘂𝗱𝗮 𝗲𝗹 𝗕𝗼𝘁 𝗱𝗲 𝗶𝗮𝗻𝗮𝗹𝗲𝗷𝗮𝗻𝗱𝗿𝗼𝗼𝗸𝟭𝟱𝘅'
