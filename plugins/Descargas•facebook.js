@@ -29,7 +29,7 @@ let handler = async (m, { conn, args }) => {
         forwardingScore: 2,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363344288629189@newsletter', 
+          newsletterJid: '120363318758721861@newsletter', 
           newsletterName: 'MULTI-BOT OFC ☁', 
           serverMessageId: -1
         }
