@@ -1,12 +1,15 @@
-const handler = async (m, { usedPrefix, command, plugins }) => {
-    let text = m.text.trim();
-    let prefix = usedPrefix || '';
+const handler = async (m, { conn, usedPrefix, commands }) => {
+    let text = m.text.trim(); 
 
-    let cmd = text.startsWith(prefix) ? text.slice(prefix.length).split(' ')[0] : text.split(' ')[0];
+    let availableCommands = Object.keys(commands);
 
-    let plugin = plugins[cmd];
-    if (plugin) {
-        await plugin(m);
+    let cmd = text.split(' ')[0].replace(usedPrefix, '');
+
+    if (availableCommands.includes(cmd)) {
+        let plugin = commands[cmd]; 
+        if (plugin) {
+            await plugin(m, { conn });
+        }
     }
 };
 
