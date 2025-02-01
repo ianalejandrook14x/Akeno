@@ -1,51 +1,44 @@
-import fetch from 'node-fetch';
+import { igdl } from 'ruhend-scraper'
 
-let handler = async (m, { conn, args }) => {
+const handler = async (m, { text, conn, args }) => {
   if (!args[0]) {
-    return conn.reply(m.chat, '✦ *Ingresa la URL de un video de Facebook.*\n\n✦ *Ejemplo*: /fb https://www.facebook.com/...', m);
+    return conn.reply(m.chat, '*Ingrese algun enlace de Facebook', m)
   }
 
-  let url = args[0];
-  let apiUrl = `https://api-rin-tohsaka.vercel.app/download/facebook?url=${encodeURIComponent(url)}`;
-
+  let res;
   try {
-    await m.react('🕓');
-
-    let response = await fetch(apiUrl);
-    let data = await response.json();
-
-    if (!data.status || !data.data) {
-      return conn.reply(m.chat, '*No se pudo obtener el video. Verifica la URL e inténtalo de nuevo.*', m).then(_ => m.react('✖️'));
-    }
-
-    const title = data.data?.title || 'Sin título'; 
-    const image = data.data?.image;
-    const download = data.data?.download;
-
-    await conn.sendMessage(m.chat, {
-      video: { url: download },
-      caption: `✦ *${botname}*`, 
-      contextInfo: {
-        forwardingScore: 2,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363318758721861@newsletter', 
-          newsletterName: 'ᥴᥲᥒᥲᥣ ძᥱ іᥲᥒᥲᥣᥱȷᥲᥒძr᥆᥆k15᥊', 
-          serverMessageId: -1
-        }
-      }
-    }, { quoted: m });
-
-    await m.react('✅'); 
+    await m.react(rwait);
+    res = await igdl(args[0]);
   } catch (e) {
-    console.error('Error en el handler:', e);
-    await m.react('✖️'); 
-    conn.reply(m.chat, '✦ *Ocurrió un error al procesar la solicitud. Inténtalo de nuevo más tarde.*', m);
+    return conn.reply(m.chat, '*Enlace no valido*', m)
   }
-};
 
-handler.help = ['fb <url>'];
-handler.tags = ['downloader'];
-handler.command = ['fb', 'facebook'];
+  let result = res.data;
+  if (!result || result.length === 0) {
+    return conn.reply(m.chat, 'No se encontraron resultados.', m)
+  }
 
-export default handler;
+  let data;
+  try {
+    data = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)");
+  } catch (e) {
+    return conn.reply(m.chat, 'Ocurrio un error al procesar los datos', m)
+  }
+
+  if (!data) {
+    return conn.reply(m.chat, 'No se encontró una resolución adecuada.', m)
+  }
+
+  let video = data.url;
+  try {
+    await conn.sendMessage(m.chat, { video: { url: video }, caption: '${botname}', fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: m })
+    await m.react(done);
+  } catch (e) {
+    return conn.reply(m.chat, '*Error al enviar el video.*', m)
+    await m.react(error);
+  }
+}
+
+handler.command = ['facebook', 'fb']
+
+export default handler
