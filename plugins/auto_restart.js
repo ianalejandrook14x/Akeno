@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { exec } from 'child_process';
 
-const restartInterval = 3 * 60 * 60; // 3 horas
+const restartInterval = 3 * 60 * 60 * 1000; // 3 horas
 
 function limpiarTemp() {
     const tmpFolder = './tmp';
