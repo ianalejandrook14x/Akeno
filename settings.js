@@ -43,7 +43,7 @@ global.jadi = 'JadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.banner = 'https://qu.ax/mepuk.jpg'
+global.banner = 'https://qu.ax/ucKST.jpg'
 global.botname = '𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼'
 global.author = '𝗕𝘆 𝗜𝗮𝗻𝗮𝗹𝗲𝗷𝗮𝗻𝗱𝗿𝗼𝗼𝗸𝟭𝟱𝘅'
 global.dev = '𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 𝗜𝗮𝗻𝗮𝗹𝗲𝗷𝗮𝗻𝗱𝗿𝗼𝗼𝗸𝟭𝟱𝘅'
