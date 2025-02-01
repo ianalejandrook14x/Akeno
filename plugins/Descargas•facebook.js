@@ -31,7 +31,7 @@ const handler = async (m, { text, conn, args }) => {
 
   let video = data.url;
   try {
-    await conn.sendMessage(m.chat, { video: { url: video }, caption: '${botname}', fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: m })
+    await conn.sendMessage(m.chat, { video: { url: video }, caption: '*Facebook | Downloader*', fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: m })
     await m.react(done);
   } catch (e) {
     return conn.reply(m.chat, '*Error al enviar el video.*', m)
