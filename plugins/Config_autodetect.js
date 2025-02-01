@@ -13,8 +13,8 @@ foto = `*El usuario ${usuario} ha realizado un cambio en la imagen en el grupo*\
 edit = `*El ${usuario}*\n✦ Ha configurado que ${m.messageStubParameters[0] == 'on' ? 'solo admins' : 'todos'} puedan configurar el grupo`
 newlink = `✦ El enlace de este fue restablecido acción hecha por:\n*» ${usuario}*`
 status = `El grupo ha sido ${m.messageStubParameters[0] == 'on' ? '*cerrado ✦*' : '*abierto ✦*'} Por *${usuario}*\n\n✦ Ahora ${m.messageStubParameters[0] == 'on' ? '*solo admins*' : '*todos*'} pueden enviar mensaje`
-admingp = `El usuario *@${m.messageStubParameters[0].split`@`[0]}* Es el nuevo administrador del grupo\n\n✦ Acción realizada por:\n*✦ ${usuario}*`
-noadmingp =  `El usuario *@${m.messageStubParameters[0].split`@`[0]}* deja de ser administrador de etse grupo\n\nAcción realizada por:\n*✦ ${usuario}*`
+admingp = `*El usuario @${m.messageStubParameters[0].split`@`[0]} Es el nuevo administrador del grupo*\n\n*Acción realizada por: ${usuario}*`
+noadmingp =  `*El usuario @${m.messageStubParameters[0].split`@`[0]} deja de ser administrador de etse grupo*\n\n*Acción realizada por: ${usuario}*`
 
 if (chat.detect && m.messageStubType == 21) {
 await conn.sendMessage(m.chat, { text: nombre, mentions: [m.sender] }, { quoted: fkontak })   
