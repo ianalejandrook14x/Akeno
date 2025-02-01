@@ -2,7 +2,7 @@ const handler = async (m, { conn }) => {
     const _muptime = process.uptime() * 1000;
     const muptime = clockString(_muptime);
     
-    const message = `✦ *Tiempo Activo:* ${muptime}`;
+    const message = `*Tiempo Activo: | ${muptime}*`;
     await conn.reply(m.chat, message.trim(), m);
 };
 
