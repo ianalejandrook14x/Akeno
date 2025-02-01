@@ -1,8 +1,8 @@
 
 let handler = async (m, { conn }) => {
-  let txt = `*ESTE ES EL MENU DEL BOT*
+  let txt = `*THIS IS THE BOT MENU*
   
-*BOT OFICIAL: +${global.ofcbot}*
+*OFFICIAL BOT: +${global.ofcbot}*
 
 *\`INFO\`*
 
