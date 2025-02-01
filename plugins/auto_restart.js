@@ -1,19 +1,19 @@
 import fs from 'fs';
 import { exec } from 'child_process';
 
-const restartInterval = 10 * 60 * 1000; // 10 minutos
+const restartInterval = 1 * 60 * 1000; // 1 minuto para pruebas
 
 function limpiarTemp() {
     const tmpFolder = './tmp';
     if (fs.existsSync(tmpFolder)) {
-        fs.readdirSync(tmpFolder).forEach(file => {
-            fs.unlinkSync(`${tmpFolder}/${file}`);
-        });
+        fs.rmSync(tmpFolder, { recursive: true, force: true });
+        fs.mkdirSync(tmpFolder);
     }
 }
 
 function reiniciarBot() {
     limpiarTemp();
+    
     exec('pm2 restart all', (err) => {
         if (err) {
             process.exit(1);
@@ -22,6 +22,13 @@ function reiniciarBot() {
     });
 }
 
-setInterval(reiniciarBot, restartInterval);
+function iniciarReinicio() {
+    setTimeout(() => {
+        reiniciarBot();
+        iniciarReinicio();
+    }, restartInterval);
+}
+
+iniciarReinicio();
 
 export default {};
