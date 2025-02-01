@@ -15,7 +15,7 @@ let handler = async (m, { conn, args }) => {
     let data = await response.json();
 
     if (!data.status || !data.data) {
-      return conn.reply(m.chat, '✦ *No se pudo obtener el video. Verifica la URL e inténtalo de nuevo.*', m).then(_ => m.react('✖️'));
+      return conn.reply(m.chat, '*No se pudo obtener el video. Verifica la URL e inténtalo de nuevo.*', m).then(_ => m.react('✖️'));
     }
 
     const title = data.data?.title || 'Sin título'; 
@@ -29,8 +29,8 @@ let handler = async (m, { conn, args }) => {
         forwardingScore: 2,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363318758721861@newsletter', 
-          newsletterName: '✦ ᥴᥲᥒᥲᥣ ძᥱ іᥲᥒᥲᥣᥱȷᥲᥒძr᥆᥆k15᥊', 
+          newsletterJid: '120363344288629189@newsletter', 
+          newsletterName: 'MULTI-BOT OFC ☁', 
           serverMessageId: -1
         }
       }
