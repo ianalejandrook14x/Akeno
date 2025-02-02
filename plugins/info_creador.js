@@ -1,14 +1,13 @@
 function handler(m) {
-    let numc = '5493876639332';
+    let numcr = '5493876639332';
+    let name = conn.getName(`${numcr}@s.whatsapp.net`);
 
-    let name = conn.getName(`${numc}@s.whatsapp.net`);
-
-    conn.getProfilePicture(`${numc}@s.whatsapp.net`).then(pic => {
-        conn.sendContact(m.chat, [[`${numc}@s.whatsapp.net`, `${name}`]], m, {
+    conn.profilePictureUrl(`${numcr}@s.whatsapp.net`, 'image').then(pic => {
+        conn.sendContact(m.chat, [[`${numcr}@s.whatsapp.net`, `${name}`]], m, {
             thumbnail: pic,
         });
     }).catch(() => {
-        conn.sendContact(m.chat, [[`${numc}@s.whatsapp.net`, `${name}`]], m);
+        conn.sendContact(m.chat, [[`${numcr}@s.whatsapp.net`, `${name}`]], m);
     });
 }
 
