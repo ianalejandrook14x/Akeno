@@ -1,21 +1,23 @@
 let handler = async (m, { conn, text }) => {
     let who;
-
-    if (text.includes('@')) {
-        who = text.split('@')[1] + '@s.whatsapp.net';
-    } else {
-        who = `${text}@s.whatsapp.net`;
-    }
+    if (m.isGroup) who = m.mentionedJid[0];
+    else who = m.chat;
 
     let users = global.db.data.users;
-
-    if (!users[who]) {
-        users[who] = {};
-    }
-
     users[who].banned = true;
 
-    conn.reply(m.chat, `✦ *El usuario @${who.split('@')[0]} fue baneado*`, fkontak, { mentions: [who] });
+    conn.reply(m.chat, `✦ *El usuario @${who.split('@')[0]} Fue baneado*`, fkontak, { mentions: [who] });
+};
+
+export const before = async (m, { conn }) => {
+    const userId = m.sender;
+    let users = global.db.data.users;
+
+    if (users[userId] && users[userId].banned) {
+        return false;
+    }
+
+    return true; 
 };
 
 handler.command = ['banuser'];
