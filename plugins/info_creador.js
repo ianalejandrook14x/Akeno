@@ -10,7 +10,7 @@ let biobot = biografiaBot.status?.toString() || 'Sin Biografía'
 let name = await conn.getName(who)
 
   await sendContactArray(conn, m.chat, [
-     [`${numc}`, `Creador`, `Ian.xyz`, dev, md, `🇦🇷 Argentina`, `${global.botname}`, bio]
+     [`${numc}`, `Iαɳ.xყȥ`, `ianalejandrook15x`, author, correo, `🇦🇷 Argentina`, `${global.botname}`, bio]
 ], m)
   } 
 
@@ -34,10 +34,10 @@ item.ORG:${isi}
 item1.TEL;waid=${number}:${PhoneNumber('+' + number).getNumber('international')}
 item1.X-ABLabel:${isi1}
 item2.EMAIL;type=INTERNET:${isi2}
-item2.X-ABLabel:📧 Email
+item2.X-ABLabel:🌵 Correo Electronico
 item3.ADR:;;${isi3};;;;
 item3.X-ABADR:ac
-item3.X-ABLabel:🏷 Region
+item3.X-ABLabel:🌴 Pais
 item4.URL:${isi4}
 item4.X-ABLabel:Website
 item5.X-ABLabel:${isi5}
