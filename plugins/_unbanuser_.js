@@ -1,7 +1,11 @@
 let handler = async (m, { conn, text }) => {
     let who;
-    if (m.isGroup) who = m.mentionedJid[0];
-    else who = m.chat;
+
+    if (text.includes('@')) {
+        who = text.split('@')[1] + '@s.whatsapp.net'; 
+    } else {
+        who = `${text}@s.whatsapp.net`; 
+    }
 
     let users = global.db.data.users;
 
