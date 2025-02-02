@@ -5,8 +5,7 @@ if (!chat.isBanned) return conn.reply(m.chat, '*El bot fue desactivado en este c
 chat.isBanned = false
 await conn.reply(m.chat, '*El bot ha sido reactivado*', m, fake)
 }
-handler.help = ['unbanchat'];
-handler.tags = ['grupo'];
+
 handler.command = ['unbanchat','desbanearchat','desbanchat']
 handler.admin = true 
 handler.botAdmin = true
