@@ -6,7 +6,7 @@ let pp = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://cdn.pixa
 let username = conn.getName(who)
 let { currency, yenes, exp } = global.db.data.users[who]
 let perfil = `
-✎ \`\`\`PERFIL DEL USUARIO\`\`\`
+\`\`\`PERFIL DEL USUARIO\`\`\`
 ✦ *Nombre:* ${username}
 ✦ *${currency}:* ${yenes || 'Sin Información'}
 ✦ *Experiencia:* ${exp || 'Sin Información'}
