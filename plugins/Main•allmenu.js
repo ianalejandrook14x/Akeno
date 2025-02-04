@@ -156,25 +156,7 @@ let handler = async (m, { conn }) => {
 m.react('✅');
 let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg');
 
-await conn.sendMessage(m.chat, {
-  text: txt,
-  contextInfo: {
-    forwardingScore: 999, 
-    isForwarded: true, 
-    forwardedNewsletterMessageInfo: {
-      newsletterJid: '120363318758721861@newsletter', 
-      newsletterName: namechannel, 
-      serverMessageId: -1 
-    },
-    externalAdReply: {
-      title: botname, 
-      body: dev, 
-      thumbnailUrl: banner, 
-      mediaType: 1, 
-      renderLargerThumbnail: true 
-    }
-  }
-}, { quoted: m });
+await conn.sendMessage(m.chat, { text: txt, contextInfo: { externalAdReply: { title: botname, body: dev, thumbnailUrl: banner, mediaType: 1, showAdAttribution: true, renderLargerThumbnail: true }}} , { quoted: m })
 };
 
 handler.help = ['menu'];
