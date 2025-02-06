@@ -10,5 +10,5 @@ export async function before(m, {conn, participants, groupMetadata}) {
 
  if (chat.welcome && m.messageStubType == 27) {
    let welcome = `*Hola 👋🏻 @${m.messageStubParameters[0].split`@`[0]}*\n*Grupo: \`${groupMetadata.subject}\`*\n\n${global.welcome}`
- await conn.sendMini(m.chat, redes, dev, welcome, img, img, redeshost)
+ await conn.sendMini(m.chat, welc, dev, welcome, img, img, link)
   }}
