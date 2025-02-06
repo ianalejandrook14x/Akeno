@@ -86,13 +86,13 @@ let handler = async (m, { conn, args }) => {
       footer: 'Selecciona una opción',
       buttons: [
         {
-          buttonId: `.ytmp3 ${video.title}`,
+          buttonId: `/ytmp3 ${video.title}`,
           buttonText: {
             displayText: '✦ Audio',
           },
         },
         {
-          buttonId: `.ytmp4 ${video.title}`,
+          buttonId: `/ytmp4 ${video.title}`,
           buttonText: {
             displayText: '✦ Video',
           },
