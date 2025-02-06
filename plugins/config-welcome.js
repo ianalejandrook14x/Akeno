@@ -9,6 +9,6 @@ export async function before(m, {conn, participants, groupMetadata}) {
   let chat = global.db.data.chats[m.chat]
 
  if (chat.welcome && m.messageStubType == 27) {
-   let welcome = `*Hola 👋🏻 @${m.messageStubParameters[0].split`@`[0]}*\n\n${global.welcome}`
+   let welcome = `*Hola 👋🏻 @${m.messageStubParameters[0].split`@`[0]}*\n*Grupo: \`${groupMetadata.subject}\`*\n\n${global.welcome}`
  await conn.sendMini(m.chat, redes, dev, welcome, img, img, redeshost)
   }}
