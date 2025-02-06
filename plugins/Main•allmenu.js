@@ -1,157 +1,141 @@
 
 let handler = async (m, { conn }) => {
-  let txt = `*THIS IS THE BOT MENU*
+  let txt = `*ᴛʜɪꜱ ɪꜱ ᴛʜᴇ ʙᴏᴛ ᴍᴇɴᴜ*
   
 *OFFICIAL BOT: +${global.ofcbot}*
 
-*\`INFO\`*
+*\`ɪɴꜰᴏ\`*
 
-❀ *perfil*
-❀ *menu*
-❀ *grupos*
+☆ *ᴘᴇʀꜰɪʟ*
+☆ *ᴍᴇɴᴜ*
 
-*\`AI\`*
+*\`ᴀɪ\`*
 
-❀ *remini*
-❀ *hd*
-❀ *enhance*
-❀ *wallpaper <txt>*
-❀ *gemini / ia*
-❀ *pixai*
+☆ *ʀᴇᴍɪɴɪ*
+☆ *ʜᴅ*
+☆ *ᴇɴʜᴀɴᴄᴇ*
+☆ *ᴡᴀʟʟᴘᴀᴘᴇʀ <ᴛxᴛ>*
+☆ *ɢᴇᴍɪɴɪ / ɪᴀ*
+☆ *ᴘɪxᴀɪ*
 
- *\`BUSQUEDAS\`*
+ *\`ʙᴜꜱQᴜᴇᴅᴀꜱ\`*
 
-❀ *google <búsqueda>*
-❀ *tiktoksearch <txt>*
-❀ *ytsearch*
-❀ *imagen <txt>*
-❀ *play* <musica>
-❀ *ytdlmp4* <nombre>
-❀ *ytdlmp3* <nombre>
+☆ *ɢᴏᴏɢʟᴇ <ʙÚꜱQᴜᴇᴅᴀ>*
+☆ *ᴛɪᴋᴛᴏᴋꜱᴇᴀʀᴄʜ <ᴛxᴛ>*
+☆ *ʏᴛꜱᴇᴀʀᴄʜ*
+☆ *ɪᴍᴀɢᴇɴ <ᴛxᴛ>*
+☆ *ᴘʟᴀʏ* <ᴍᴜꜱɪᴄᴀ>
+☆ *ʏᴛᴅʟᴍᴘ4* <ɴᴏᴍʙʀᴇ>
+☆ *ʏᴛᴅʟᴍᴘ3* <ɴᴏᴍʙʀᴇ>
 
 ‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌‍‌‍‌‍‌‍‌‍‌‌‍‍‍‍‌
- *\`JUEGOS\`*
+ *\`ᴊᴜᴇɢᴏꜱ\`*
 
-❀ *abrazar <@tag>*
-❀ *acertijo*
-❀ *sonrojarse <@tag>*
-❀ *consejo*
-❀ *enamorada <@tag>*
-❀ *meme*
-❀ *acariciar <@tag>*
-❀ *personalidad*
-❀ *piropo*
-❀ *pokedex <pokemón>*
-❀ *pregunta*
-❀ *dormir <@tag>*
-❀ *triste <@tag>*
-❀ *top <txt>*
-❀ *zodiac <2010 03 15*
+☆ *ᴀʙʀᴀᴢᴀʀ <@ᴛᴀɢ>*
+☆ *ᴀᴄᴇʀᴛɪᴊᴏ*
+☆ *ꜱᴏɴʀᴏᴊᴀʀꜱᴇ <@ᴛᴀɢ>*
+☆ *ᴄᴏɴꜱᴇᴊᴏ*
+☆ *ᴇɴᴀᴍᴏʀᴀᴅᴀ <@ᴛᴀɢ>*
+☆ *ᴍᴇᴍᴇ*
+☆ *ᴀᴄᴀʀɪᴄɪᴀʀ <@ᴛᴀɢ>*
+☆ *ᴘᴇʀꜱᴏɴᴀʟɪᴅᴀᴅ*
+☆ *ᴘɪʀᴏᴘᴏ*
+☆ *ᴘᴏᴋᴇᴅᴇx <ᴘᴏᴋᴇᴍÓɴ>*
+☆ *ᴘʀᴇɢᴜɴᴛᴀ*
+☆ *ᴅᴏʀᴍɪʀ <@ᴛᴀɢ>*
+☆ *ᴛʀɪꜱᴛᴇ <@ᴛᴀɢ>*
+☆ *ᴛᴏᴘ <ᴛxᴛ>*
+☆ *ᴢᴏᴅɪᴀᴄ <2010 03 15*
 
- *\`JADI / BOTS\`*
+ *\`ᴊᴀᴅɪ / ʙᴏᴛꜱ\`*
 
-❀ *code* 
-❀ *serbot*
-❀ *estado*
+☆ *ᴄᴏᴅᴇ* 
+☆ *ꜱᴇʀʙᴏᴛ*
+☆ *ᴇꜱᴛᴀᴅᴏ*
 
- *\`RPG\`*
+ *\`ʀᴘɢ\`*
 
-❀ *bal*
-❀ *crimen*
-❀ *daily*
-❀ *claim*
-❀ *depositar*
-❀ *lb*
-❀ *retirar*
-❀ *rob2*
-❀ *rob*
-❀ *trabajar*
-❀ *buy*
-❀ *buy all*
+☆ *ʙᴀʟ*
+☆ *ᴄʀɪᴍᴇɴ*
+☆ *ᴅᴀɪʟʏ*
+☆ *ᴄʟᴀɪᴍ*
+☆ *ᴅᴇᴘᴏꜱɪᴛᴀʀ*
+☆ *ʟʙ*
+☆ *ʀᴇᴛɪʀᴀʀ*
+☆ *ʀᴏʙ2*
+☆ *ʀᴏʙ*
+☆ *ᴛʀᴀʙᴀᴊᴀʀ*
+☆ *ʙᴜʏ*
+☆ *ʙᴜʏ ᴀʟʟ*
 
- *\`STICKERS\`*
+ *\`ꜱᴛɪᴄᴋᴇʀꜱ\`*
 
-❀ *qc*
-❀ *stiker <img>*
-❀ *sticker <url>*
-❀ *take <nombre/autor>*
+☆ *Qᴄ*
+☆ *ꜱᴛɪᴋᴇʀ <ɪᴍɢ>*
+☆ *ꜱᴛɪᴄᴋᴇʀ <ᴜʀʟ>*
+☆ *ᴛᴀᴋᴇ <ɴᴏᴍʙʀᴇ/ᴀᴜᴛᴏʀ>*
 
  *\`+18\`*
 
-❀ *xnxxsearch <txt>*
-❀ *xnxxdl <link>*
+☆ *xɴxxꜱᴇᴀʀᴄʜ <ᴛxᴛ>*
+☆ *xɴxxᴅʟ <ʟɪɴᴋ>*
 
- *\`ANIMES\`*
+ *\`ᴀɴɪᴍᴇꜱ\`*
 
-❀ *rule34 <tag>*
-❀ *waifu*
-❀ *hentaisearch <query>*
-❀ *hentaidl <link / id>*
+☆ *ʀᴜʟᴇ34 <ᴛᴀɢ>*
+☆ *ᴡᴀɪꜰᴜ*
+☆ *ʜᴇɴᴛᴀɪꜱᴇᴀʀᴄʜ <Qᴜᴇʀʏ>*
+☆ *ʜᴇɴᴛᴀɪᴅʟ <ʟɪɴᴋ / ɪᴅ>*
 
- *\`GRUPOS\`*
+ *\`ɢʀᴜᴘᴏꜱ\`*
 
-❀ *link*
-❀ *grupo open / close*
-❀ *delete*
-❀ *demote*
-❀ *promote*
-❀ *encuesta <txt / txt>*
-❀ *hidetag*
-❀ *infogrupo*
-❀ *kick*
-❀ *listadv*
-❀ *tagall <txt>*
-❀ *invocar <txt>*
+☆ *ʟɪɴᴋ*
+☆ *ɢʀᴜᴘᴏ ᴏᴘᴇɴ / ᴄʟᴏꜱᴇ*
+☆ *ᴅᴇʟᴇᴛᴇ*
+☆ *ᴅᴇᴍᴏᴛᴇ*
+☆ *ᴘʀᴏᴍᴏᴛᴇ*
+☆ *ᴇɴᴄᴜᴇꜱᴛᴀ <ᴛxᴛ / ᴛxᴛ>*
+☆ *ʜɪᴅᴇᴛᴀɢ*
+☆ *ɪɴꜰᴏɢʀᴜᴘᴏ*
+☆ *ᴋɪᴄᴋ*
+☆ *ʟɪꜱᴛᴀᴅᴠ*
+☆ *ᴛᴀɢᴀʟʟ <ᴛxᴛ>*
+☆ *ɪɴᴠᴏᴄᴀʀ <ᴛxᴛ>*
 
- *\`ON/OFF\`*
+ *\`ᴏɴ/ᴏꜰꜰ\`*
 
-❀ *enable*
-❀ *disable*
+☆ *ᴇɴᴀʙʟᴇ*
+☆ *ᴅɪꜱᴀʙʟᴇ*
 
- *\`DESCARGAS\`*
+ *\`ᴅᴇꜱᴄᴀʀɢᴀꜱ\`*
 
-❀ *facebook - fb*
-❀ *imagen <txt>*
-❀ *instagram - ig*
-❀ *tiktok*
-❀ *ytmp4*
-❀ *ytmp3*
+☆ *ꜰᴀᴄᴇʙᴏᴏᴋ - ꜰʙ*
+☆ *ɪᴍᴀɢᴇɴ <ᴛxᴛ>*
+☆ *ɪɴꜱᴛᴀɢʀᴀᴍ - ɪɢ*
+☆ *ᴛɪᴋᴛᴏᴋ*
+☆ *ʏᴛᴍᴘ4*
+☆ *ʏᴛᴍᴘ3*
 
- *\`HERRAMIENTAS\`*
+ *\`ʜᴇʀʀᴀᴍɪᴇɴᴛᴀꜱ\`*
 
-❀ *toanime*
-❀ *remini*
-❀ *hd*
-❀ *enhance*
-❀ *ssweb*
-❀ *ss*
-❀ *trad*
+☆ *ᴛᴏᴀɴɪᴍᴇ*
+☆ *ʀᴇᴍɪɴɪ*
+☆ *ʜᴅ*
+☆ *ᴇɴʜᴀɴᴄᴇ*
+☆ *ꜱꜱᴡᴇʙ*
+☆ *ꜱꜱ*
+☆ *ᴛʀᴀᴅ*
 
- *\`AUDIOS\`*
+ *\`ᴄᴏɴᴠᴇʀᴛɪᴅᴏʀᴇꜱ\`*
 
-❀ *bass <vn>*
-❀ *blown <vn>*
-❀ *deep <vn>*
-❀ *earrape <vn>*
-❀ *fast <vn>*
-❀ *fat <vn>*
-❀ *nightcore <vn>*
-❀ *reverse <vn>*
-❀ *robot <vn>*
-❀ *slow <vn>*
-❀ *smooth <vn>*
-❀ *tupai <vn>*
+☆ *ᴛᴏɢɪꜰᴀᴜᴅ*
+☆ *ᴛᴏɪᴍɢ*
+☆ *ᴛᴏᴀᴜᴅɪᴏ*
 
- *\`CONVERTIDORES\`*
+ *\`ᴀᴅᴍɪɴ\`*
 
-❀ *togifaud*
-❀ *toimg*
-❀ *toaudio*
-
- *\`ADMIN\`*
-
-❀ *addprem2 <@tag> <days>*
-❀ *addyen2 <@tag>*`.trim();
+☆ *ᴀᴅᴅᴘʀᴇᴍ2 <@ᴛᴀɢ> <ᴅᴀʏꜱ>*
+☆ *ᴀᴅᴅʏᴇɴ2 <@ᴛᴀɢ>*`.trim();
 
 m.react('✅');
 let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg');
@@ -159,8 +143,6 @@ let perfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https:/
 await conn.sendMessage(m.chat, { text: txt, contextInfo: { externalAdReply: { title: botname, body: dev, thumbnailUrl: banner, mediaType: 1, showAdAttribution: true, renderLargerThumbnail: true }}} , { quoted: m })
 };
 
-handler.help = ['menu'];
-handler.tags = ['main'];
 handler.command = ['allmenu', 'menu', 'menuall', 'menucompleto'];
 
 export default handler;
