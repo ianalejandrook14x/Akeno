@@ -2,11 +2,11 @@ const handler = async (m, { conn }) => {
     const _muptime = process.uptime() * 1000;
     const muptime = clockString(_muptime);
     
-    const message = `*Tiempo Activo: | ${muptime}*\n*Prefijo [${global.prefix}]*`;
+    const message = `*Tiempo Activo: | ${muptime}*`;
     await conn.reply(m.chat, message.trim(), m);
 };
 
-handler.customPrefix = /^(check)$/i;
+handler.customPrefix = /^(Op|time|uptime|tiempo)$/i;
 handler.command = new RegExp;
 
 export default handler;
