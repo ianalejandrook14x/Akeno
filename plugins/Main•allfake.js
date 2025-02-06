@@ -61,11 +61,12 @@ global.waitttt = 'Espere un momento...'
 var mensaje = '👋🏻 Hola bienvenido al grupo'  
 var mensaje2 = '👋🏻 Seas bievenido al grupo'
 var mensaje3 = '👋🏻 Nuevo integrante bienvenido'
-var grupo = 'https://chat.whatsapp.com/KaDy99ZsNbeE0pA9nc5FXK'
 
-global.redes = [mensaje, mensaje2, mensaje3].getRandom()
+var grupo = 'https://chat.whatsapp.com/GSXgETuAcJzCTrczXuPzmw'
 
-global.redeshost = [grupo].getRandom()
+global.welc = [mensaje, mensaje2, mensaje3].getRandom()
+
+global.link = [grupo].getRandom()
 
 //Imagen
 let category = "imagen"
