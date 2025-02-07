@@ -71,28 +71,42 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let videoBuffer = await fetch(downloadUrl).then(res => res.buffer());
     let img = await star.resize(thumbnail, 400, 400); 
 
-    
-    let pageCount = 6666; 
+    // Si la duración es mayor de 30 minutos, enviar como documento
+    if (durationInMinutes > 30) {
+      let pageCount = 1;  // Para documentos PDF, por ejemplo
 
-    await star.sendMessage(
-      m.chat,
-      {
-        document: videoBuffer,
-        mimetype: 'video/mp4',
-        fileName: `${title}.mp4`,
-        caption: txt,
-        img, 
-        fileLength: videoBuffer.length,
-        pageCount 
-      },
-      { quoted: m }
-    );
-
-    await m.react('✅'); 
+      await star.sendMessage(
+        m.chat,
+        {
+          document: videoBuffer,
+          mimetype: 'video/mp4',
+          fileName: `${title}.mp4`,
+          caption: txt,
+          img,
+          fileLength: videoBuffer.length,
+          pageCount  // Aunque no se usa para video, se puede dejar
+        },
+        { quoted: m }
+      );
+      await m.react('📄'); // Reacción de documento
+    } else {
+      // Si la duración es menor o igual a 30 minutos, enviar como video normal
+      await star.sendMessage(
+        m.chat,
+        {
+          video: { url: downloadUrl },
+          caption: txt,
+          mimetype: 'video/mp4',
+          fileName: `${title}.mp4`
+        },
+        { quoted: m }
+      );
+      await m.react('✅'); // Reacción de éxito
+    }
 
   } catch (error) {
     console.error(error);
-    await m.react('✖️'); 
+    await m.react('✖️'); // Error durante el proceso
     star.reply(m.chat, '✦ *Ocurrió un error al procesar tu solicitud. Intenta nuevamente más tarde.*', m);
   }
 };
