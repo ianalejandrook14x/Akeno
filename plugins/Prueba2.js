@@ -56,9 +56,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     txt += `✦ *Subido:* » ${ago}\n`;
     txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
 
-    // Enviar el video con la miniatura como archivo
-    await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
-    
+    // Obtener enlace de descarga
     let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
     let json = await api.json();
     let { data } = json;
@@ -69,26 +67,25 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { dl: downloadUrl } = data;
 
-    // Enviar el video según el tamaño o la duración
-    if (sizeMB > limit || durationInMinutes > 30) {
-      // Enviar como documento si el tamaño supera los 100 MB o si dura más de 30 minutos
-      await star.sendMessage(
-        m.chat,
-        { document: { url: downloadUrl }, mimetype: 'video/mp4', fileName: `${title}.mp4`, caption: txt },
-        { quoted: m }
-      );
-      await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', 'Aquí está la imagen de portada del video.', m);
-      await m.react('📄'); // Reacción de documento
-    } else {
-      // Enviar como video normal si es menor o igual al límite y dura menos de 30 minutos
-      await star.sendMessage(
-        m.chat,
-        { video: { url: downloadUrl }, caption: `${title}`, mimetype: 'video/mp4', fileName: `${title}.mp4` },
-        { quoted: m }
-      );
-      await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', 'Aquí está la imagen de portada del video.', m);
-      await m.react('✅'); // Reacción de éxito
-    }
+    // Enviar el video como documento con la miniatura
+    let videoBuffer = await fetch(downloadUrl).then(res => res.buffer());
+    let img = await star.resize(thumbnail, 400, 400); // Redimensionar la miniatura
+
+    await star.sendMessage(
+      m.chat,
+      {
+        document: videoBuffer,
+        mimetype: 'video/mp4',
+        fileName: `${title}.mp4`,
+        caption: txt,
+        img, // Incluir la miniatura como portada
+        fileLength: videoBuffer.length
+      },
+      { quoted: m }
+    );
+
+    await m.react('✅'); // Reacción de éxito
+
   } catch (error) {
     console.error(error);
     await m.react('✖️'); // Error durante el proceso
