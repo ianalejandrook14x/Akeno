@@ -72,7 +72,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let img = await star.resize(thumbnail, 400, 400); 
 
     
-    let pageCount = 1; 
+    let pageCount = 6666; 
 
     await star.sendMessage(
       m.chat,
