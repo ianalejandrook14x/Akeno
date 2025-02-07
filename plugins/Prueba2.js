@@ -33,7 +33,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url } = video;
 
-    // Obtener minutos y segundos del timestamp (formato mm:ss)
+    
     let timeParts = timestamp.split(':');
     let minutes = parseInt(timeParts[0]);
     let seconds = parseInt(timeParts[1]);
@@ -73,9 +73,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let videoBuffer = await fetch(downloadUrl).then(res => res.buffer());
     let img = await star.resize(thumbnail, 400, 400);
 
-    // Verificar si la duración es mayor de 30 minutos
+    
     if (durationInMinutes > 30) {
-      let pageCount = 1;  // El número de páginas en un documento PDF, por ejemplo
+      let pageCount = 1;  
 
       await star.sendMessage(
         m.chat,
@@ -90,9 +90,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
         },
         { quoted: m }
       );
-      await m.react('📄'); // Reacción de documento
+      await m.react('📄'); 
     } else {
-      // Si la duración es menor o igual a 30 minutos, enviar como video normal
+      
       await star.sendMessage(
         m.chat,
         {
@@ -103,11 +103,11 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
         },
         { quoted: m }
       );
-      await m.react('✅'); // Reacción de éxito
+      await m.react('✅'); 
     }
   } catch (error) {
     console.error(error);
-    await m.react('✖️'); // Error durante el proceso
+    await m.react('✖️'); 
     star.reply(m.chat, '✦ *Ocurrió un error al procesar tu solicitud. Intenta nuevamente más tarde.*', m);
   }
 };
