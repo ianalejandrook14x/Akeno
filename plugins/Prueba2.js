@@ -21,11 +21,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let video;
     if (isUrl) {
-     
       let ytres = await yts({ videoId: query.split('v=')[1] });
       video = ytres.videos[0];
     } else {
-      // Si es un texto
       let ytres = await yts(query);
       video = ytres.videos[0];
       if (!video) {
@@ -43,30 +41,24 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     }
 
     let { fileSizeH: sizeHumanReadable, fileSize } = videoInfo;
-
     
     let sizeMB = fileSize / (1024 * 1024); 
 
-    
     if (sizeMB >= 700) {
       return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(() => m.react('✖️'));
     }
 
-    
     let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
 
-    
     let txt = `✦ *Título:* » ${title}\n`;
     txt += `✦ *Duración:* » ${timestamp}\n`;
     txt += `✦ *Visitas:* » ${views}\n`;
     txt += `✦ *Subido:* » ${ago}\n`;
     txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
-    //txt += `> *- ↻ El video se está enviando, espera un momento...*`;
 
-    
+    // Enviar el video con la miniatura como archivo
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
-
-   
+    
     let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
     let json = await api.json();
     let { data } = json;
@@ -82,9 +74,10 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       // Enviar como documento si el tamaño supera los 100 MB o si dura más de 30 minutos
       await star.sendMessage(
         m.chat,
-        { document: { url: downloadUrl }, mimetype: 'video/mp4', fileName: `${title}.mp4` },
+        { document: { url: downloadUrl }, mimetype: 'video/mp4', fileName: `${title}.mp4`, caption: txt },
         { quoted: m }
       );
+      await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', 'Aquí está la imagen de portada del video.', m);
       await m.react('📄'); // Reacción de documento
     } else {
       // Enviar como video normal si es menor o igual al límite y dura menos de 30 minutos
@@ -93,6 +86,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
         { video: { url: downloadUrl }, caption: `${title}`, mimetype: 'video/mp4', fileName: `${title}.mp4` },
         { quoted: m }
       );
+      await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', 'Aquí está la imagen de portada del video.', m);
       await m.react('✅'); // Reacción de éxito
     }
   } catch (error) {
