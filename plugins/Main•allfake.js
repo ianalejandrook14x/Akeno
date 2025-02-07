@@ -126,6 +126,7 @@ global.me = [
 'Aprovecha tu vida al maximo ya que solo hay una',
 'Este bot todavía sigue en desarrollo cada vez es un avance',
 'El diseño es algo basico pero lo suficiente para mostrarlo',
+].getRamdon()
 
 global.rcanal = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: "120363318758721861@newsletter", serverMessageId: 100, newsletterName: namechannel, }, externalAdReply: { showAdAttribution: true, title: botname, body: dev, mediaUrl: null, description: null, previewType: "PHOTO", thumbnailUrl: icono, sourceUrl: welc, mediaType: 1, renderLargerThumbnail: false }, }, }}
 
