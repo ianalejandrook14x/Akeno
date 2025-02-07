@@ -1,8 +1,8 @@
 let handler = async (m, { conn }) => {
-  let txt = `*ᴛʜɪꜱ ɪꜱ ᴛʜᴇ ʙᴏᴛ ᴍᴇɴᴜ*
-
+  let txt = `
 *Hola 👋🏻 \`${global.nombre}\`*
 *BOT OFC: +${global.ofcbot}*
+\`INFO:`\ ${e} ${me} 
 
 *\`ɪɴꜰᴏ\`*
 
