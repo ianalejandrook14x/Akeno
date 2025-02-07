@@ -118,7 +118,7 @@ global.e = [
 global.me = [
 'Este es el menu del bot no realices spam o de lo contrario seran sancionado',
 'Menu completo del bot aqui tienes todas sus funciones',
-'Recuerda que puedes hablar con el creador utilizando este comando \`/creador`\',
+'Recuerda que puedes hablar con el creador utilizando este comando /creador',
 'Si tienes alguna duda o problema con el bot pon el comando \`/creador`\',
 'Pronto se añadiran mas comandos espere pacientemente',
 'Sabías que \`ianalejandrook15x`\ empezo por \`ianBot-MD`\',
