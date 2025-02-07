@@ -71,6 +71,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let videoBuffer = await fetch(downloadUrl).then(res => res.buffer());
     let img = await star.resize(thumbnail, 400, 400); // Redimensionar la miniatura
 
+    // Establecer pageCount a 1 para el archivo de video
+    let pageCount = 1; // Un solo "documento" para el video
+
     await star.sendMessage(
       m.chat,
       {
@@ -79,7 +82,8 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
         fileName: `${title}.mp4`,
         caption: txt,
         img, // Incluir la miniatura como portada
-        fileLength: videoBuffer.length
+        fileLength: videoBuffer.length,
+        pageCount // Establecer pageCount
       },
       { quoted: m }
     );
