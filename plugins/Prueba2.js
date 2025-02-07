@@ -78,7 +78,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       m.chat,
       {
         document: videoBuffer,
-        mimetype: 'application/pdf',
+        mimetype: 'video/mp4',
         fileName: `${title}.mp4`,
         caption: txt,
         img, 
