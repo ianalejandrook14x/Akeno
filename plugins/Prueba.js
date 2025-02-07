@@ -44,7 +44,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     }
 
     
-    let api = await fetch(`https://api.davidcyriltech.my.id/download/ytmp3?url=${url}`);
+    let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=${url}`);
     let json = await api.json();
     let { data } = json;
     let { dl: download } = data;
