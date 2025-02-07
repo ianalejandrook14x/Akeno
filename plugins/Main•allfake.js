@@ -115,6 +115,18 @@ global.e = [
 '🌊'
 ].getRamdon()
 
+global.me = [
+'Este es el menu del bot no realices spam o de lo contrario seran sancionado',
+'Menu completo del bot aqui tienes todas sus funciones',
+'Recuerda que puedes hablar con el creador utilizando este comando \`/creador`\',
+'Si tienes alguna duda o problema con el bot pon el comando \`/creador`\',
+'Pronto se añadiran mas comandos espere pacientemente',
+'Sabías que \`ianalejandrook15x`\ empezo por \`ianBot-MD`\',
+'Cada problema tiene su solución ¿Y para la muerte?',
+'Aprovecha tu vida al maximo ya que solo hay una',
+'Este bot todavía sigue en desarrollo cada vez es un avance',
+'El diseño es algo basico pero lo suficiente para mostrarlo',
+
 global.rcanal = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: "120363318758721861@newsletter", serverMessageId: 100, newsletterName: namechannel, }, externalAdReply: { showAdAttribution: true, title: botname, body: dev, mediaUrl: null, description: null, previewType: "PHOTO", thumbnailUrl: icono, sourceUrl: welc, mediaType: 1, renderLargerThumbnail: false }, }, }}
 
 export default handler
