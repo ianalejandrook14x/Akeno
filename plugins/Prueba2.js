@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import yts from 'yt-search';
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 
-let limit = 100; 
+let limit = 100;
 
 let handler = async (m, { conn: star, args, usedPrefix, command }) => {
   if (!args || !args[0]) {
@@ -13,7 +13,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     );
   }
 
-  await m.react('🕓'); 
+  await m.react('🕓');
 
   try {
     let query = args.join(' ');
@@ -33,22 +33,26 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url } = video;
 
+    // Obtener minutos y segundos del timestamp (formato mm:ss)
+    let timeParts = timestamp.split(':');
+    let minutes = parseInt(timeParts[0]);
+    let seconds = parseInt(timeParts[1]);
+    let durationInMinutes = minutes + (seconds / 60);
+
     let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
-    let videoInfo = yt.video['360p']; 
+    let videoInfo = yt.video['360p'];
 
     if (!videoInfo) {
       return star.reply(m.chat, '✦ *No se encontró una calidad compatible para el video.*', m).then(() => m.react('✖️'));
     }
 
     let { fileSizeH: sizeHumanReadable, fileSize } = videoInfo;
-    
-    let sizeMB = fileSize / (1024 * 1024); 
+
+    let sizeMB = fileSize / (1024 * 1024);
 
     if (sizeMB >= 700) {
       return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(() => m.react('✖️'));
     }
-
-    let durationInMinutes = parseFloat(timestamp.split(':')[0]) * 60 + parseFloat(timestamp.split(':')[1]);
 
     let txt = `✦ *Título:* » ${title}\n`;
     txt += `✦ *Duración:* » ${timestamp}\n`;
@@ -56,7 +60,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     txt += `✦ *Subido:* » ${ago}\n`;
     txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
 
-    
     let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
     let json = await api.json();
     let { data } = json;
@@ -67,13 +70,12 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { dl: downloadUrl } = data;
 
-    
     let videoBuffer = await fetch(downloadUrl).then(res => res.buffer());
-    let img = await star.resize(thumbnail, 400, 400); 
+    let img = await star.resize(thumbnail, 400, 400);
 
-    // Si la duración es mayor de 30 minutos, enviar como documento
+    // Verificar si la duración es mayor de 30 minutos
     if (durationInMinutes > 30) {
-      let pageCount = 1;  // Para documentos PDF, por ejemplo
+      let pageCount = 1;  // El número de páginas en un documento PDF, por ejemplo
 
       await star.sendMessage(
         m.chat,
@@ -84,7 +86,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
           caption: txt,
           img,
           fileLength: videoBuffer.length,
-          pageCount  // Aunque no se usa para video, se puede dejar
+          pageCount
         },
         { quoted: m }
       );
@@ -103,7 +105,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       );
       await m.react('✅'); // Reacción de éxito
     }
-
   } catch (error) {
     console.error(error);
     await m.react('✖️'); // Error durante el proceso
@@ -113,6 +114,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
 handler.help = ['ytmp4'];
 handler.tags = ['downloader'];
-handler.command = ['ytmp4', 'ytv']; 
+handler.command = ['ytmp4', 'ytv'];
 
 export default handler;
