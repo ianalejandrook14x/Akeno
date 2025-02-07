@@ -56,7 +56,7 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     txt += `✦ *Subido:* » ${ago}\n`;
     txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
 
-    // Obtener enlace de descarga
+    
     let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
     let json = await api.json();
     let { data } = json;
@@ -67,12 +67,12 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { dl: downloadUrl } = data;
 
-    // Enviar el video como documento con la miniatura
+    
     let videoBuffer = await fetch(downloadUrl).then(res => res.buffer());
-    let img = await star.resize(thumbnail, 400, 400); // Redimensionar la miniatura
+    let img = await star.resize(thumbnail, 400, 400); 
 
-    // Establecer pageCount a 1 para el archivo de video
-    let pageCount = 1; // Un solo "documento" para el video
+    
+    let pageCount = 1; 
 
     await star.sendMessage(
       m.chat,
@@ -81,24 +81,24 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
         mimetype: 'video/mp4',
         fileName: `${title}.mp4`,
         caption: txt,
-        img, // Incluir la miniatura como portada
+        img, 
         fileLength: videoBuffer.length,
-        pageCount // Establecer pageCount
+        pageCount 
       },
       { quoted: m }
     );
 
-    await m.react('✅'); // Reacción de éxito
+    await m.react('✅'); 
 
   } catch (error) {
     console.error(error);
-    await m.react('✖️'); // Error durante el proceso
+    await m.react('✖️'); 
     star.reply(m.chat, '✦ *Ocurrió un error al procesar tu solicitud. Intenta nuevamente más tarde.*', m);
   }
 };
 
 handler.help = ['ytmp4'];
 handler.tags = ['downloader'];
-handler.command = ['ytmp4', 'ytv']; // Comandos disponibles
+handler.command = ['ytmp4', 'ytv']; 
 
 export default handler;
