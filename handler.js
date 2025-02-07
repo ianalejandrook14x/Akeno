@@ -581,8 +581,6 @@ const msg = {
 premium: '✧ *Esta función solo esta disponible para usuario Premium.*', 
 group: '✧ *La función solicitada solo puede ser ejecutada en grupos.*', 
 private: '✧ *La función solo puede ser usada al chat privado del bot.*', 
-admin: '✧ *La función solo puede ser ejecutada por administradores.*', 
-botAdmin: '✧ *Para ejecutar esta función el bot debe ser administrador.*', 
 restrict: '✧ *Esta característica esta desactivada.*'
 }[type];
 if (msg) return m.reply(msg).then(_ => m.react('✖️'))}
