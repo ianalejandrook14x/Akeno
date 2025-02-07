@@ -22,7 +22,8 @@ var handler = async (m, { conn, participants, usedPrefix, command }) => {
 
 };
 
-handler.command = ['kick', 'ban']
+handler.customPrefix = /^(Kick|kick|.kick|tiempo)$/i;
+handler.command = new RegExp;
 handler.admin = true;
 handler.group = true;
 handler.botAdmin = true;
