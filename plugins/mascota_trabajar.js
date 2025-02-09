@@ -26,7 +26,7 @@ let handler = async (m, { conn }) => {
     
     fs.writeFileSync(WALLET_PATH, JSON.stringify(wallets, null, 2));
     
-    conn.reply(m.chat, `*Haz realizado y te pagaron ${earnings} monedas*`, m);
+    conn.reply(m.chat, `*Haz realizado y te pagaron \`${earnings}\` monedas*`, m);
 };
 
 handler.command = ['trabajar'];
