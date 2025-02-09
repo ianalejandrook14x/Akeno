@@ -16,7 +16,7 @@ const handler = async (m, { conn }) => {
 
     ranking.sort((a, b) => b.xp - a.xp);
 
-    let mensaje = "❀ *TOP 10 Mascotas con más XP* ❀\n\n";
+    let mensaje = "❀ *TOP 10 Pokemón con más XP* ❀\n\n";
     let top10 = ranking.slice(0, 10);
     top10.forEach((user, i) => {
         mensaje += `*${i + 1}.* @${user.id.split('@')[0]} - ✦ *Nivel:* ${user.nivel} | ✧ *XP:* ${user.xp}\n`;
