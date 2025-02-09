@@ -1,14 +1,154 @@
 {
   "mascotas": [
     {
-      "nombre": "Perro",
+      "nombre": "Bulbasaur",
       "rareza": "Común",
-      "imagen": "https://qu.ax/RXlyW.jpg"
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/wBuTn.jpg"
     },
     {
-      "nombre": "Gato",
+      "nombre": "Ivysaur",
       "rareza": "Común",
-      "imagen": "https://qu.ax/ANCtE.jpg"
-    }
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/NrERo.jpg"
+    },
+    {
+      "nombre": "Venusaur",
+      "rareza": "Raro",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/DRlsH.jpg"
+    },
+    {
+      "nombre": "Mega-Venusaur",
+      "rareza": "Mítico",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/XBTZv.jpg"
+    },
+    {
+      "nombre": "Oddish",
+      "rareza": "Común",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/GHrfr.jpg"
+    },
+    {
+      "nombre": "Gloom",
+      "rareza": "Común",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/chsOY.jpg"
+    },
+    {
+      "nombre": "Vileplume",
+      "rareza": "Común",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/kzKjk.jpg"
+    },
+    {
+      "nombre": "Voltorb de Hisui",
+      "rareza": "Común",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/Balrn.jpg"
+    },
+    {
+      "nombre": "Exeggcute",
+      "rareza": "Común",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/iTMkr.jpg"
+    },
+    {
+      "nombre": "Exeggutor",
+      "rareza": "Raro",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/YrRZV.jpg"
+    },
+    {
+      "nombre": "Exeggutor - Alola",
+      "rareza": "Raro",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/llxAS.jpg"
+    },
+    {
+      "nombre": "Tangela",
+      "rareza": "Común",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/eNlxt.jpg"
+    },
+    {
+      "nombre": "Chikorita",
+      "rareza": "Común",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/cHATf.jpg"
+    },
+    {
+      "nombre": "Bayleef",
+      "rareza": "Raro",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/HQZOK.jpg"
+    },
+    {
+      "nombre": "Meganium",
+      "rareza": "Raro",
+      "tipo": "Planta 🍃",
+      "imagen": "https://qu.ax/FJEWS.jpg"
+    },
+    {
+      "nombre": "Sandshrew - Alola",
+      "rareza": "Común",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/vJbgX.jpg"
+    },
+    {
+      "nombre": "Sandslash - Alola",
+      "rareza": "Común",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/ebpgE.jpg"
+    },
+    {
+      "nombre": "Vulpix - Alola",
+      "rareza": "Raro",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/pdtOU.jpg"
+    },
+    {
+      "nombre": "Ninetales de Alola",
+      "rareza": "Épico",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/LgkPB.jpg"
+    },
+    {
+      "nombre": "Dewgong",
+      "rareza": "Raro",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/xRVXi.jpg"
+    },
+    {
+      "nombre": "Cloyster",
+      "rareza": "Épico",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/OcxNv.jpg"
+    },
+    {
+      "nombre": "Jynx",
+      "rareza": "Raro",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/fESld.jpg"
+    },
+    {
+      "nombre": "Lapras",
+      "rareza": "Épico",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/mQyJl.jpg"
+    },
+    {
+      "nombre": "Lapras Gigamax",
+      "rareza": "Mítico",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/ucUSi.jpg"
+    },
+    {
+      "nombre": "Articuno",
+      "rareza": "Legendario",
+      "tipo": "Hielo 🧊",
+      "imagen": "https://qu.ax/phtdJ.jpg"
+    },
   ]
 }
