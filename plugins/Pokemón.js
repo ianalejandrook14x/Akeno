@@ -5,7 +5,7 @@ const handler = async (m, { conn }) => {
     let userId = m.sender;
 
     if (users[userId]?.mascota) {
-        return conn.reply(m.chat, `❀ *Ya tienes un pokemón y no puedes reclamar otra.*`, m);
+        return conn.reply(m.chat, `❀ *Ya tienes un Pokémon y no puedes reclamar otro.*`, m);
     }
 
     let data = JSON.parse(fs.readFileSync('./mascotas.json'));
@@ -15,18 +15,19 @@ const handler = async (m, { conn }) => {
     users[userId] = users[userId] || {};
     users[userId].mascota = {
         nombre: mascota.nombre,
+        tipo: mascota.tipo || "Desconocido",
         rareza: mascota.rareza,
-        tipo: mascota.tipo,
         nivel: 1,
         xp: 0,
         xpNecesaria: 100,
-        imagen: mascotas.imagen
+        imagen: mascota.imagen,
+        timestamp: Date.now()
     };
 
-    let mensaje = `*Has reclamado un Pokemón*\n\n`;
+    let mensaje = `*Has reclamado un Pokémon*\n\n`;
     mensaje += `❀ *Nombre:* ${mascota.nombre}\n`;
+    mensaje += `❀ *Tipo:* ${mascota.tipo || "Desconocido"}\n`;
     mensaje += `❀ *Rareza:* ${mascota.rareza}\n`;
-    mensaje += `❀ *Tipo:* ${mascota.tipo}\n`;
     mensaje += `❀ *Nivel:* 1 | (0 / 100 XP)\n\n`;
 
     await conn.sendMessage(m.chat, { image: { url: mascota.imagen }, caption: mensaje }, { quoted: m });
