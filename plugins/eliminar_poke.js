@@ -15,7 +15,7 @@ const handler = async (m, { conn }) => {
     if (tiempoRestante > 0) {
         let minutos = Math.floor(tiempoRestante / (60 * 1000));
         let segundos = Math.floor((tiempoRestante % (60 * 1000)) / 1000);
-        return conn.reply(m.chat, `*Todavía no puedes descartar tu Pokémon.*\n\n✦ *Tiempo restante:* ${minutos}m ${segundos}s`, m);
+        return conn.reply(m.chat, `*Todavía no puedes descartar tu Pokémon.*\n\n✦ *Tiempo restante: ${minutos}m ${segundos}s*`, m);
     }
 
     delete users[userId].mascota;
