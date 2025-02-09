@@ -1,23 +1,28 @@
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, participants }) => {
     let who;
-    if (m.isGroup) who = m.mentionedJid[0];
-    else who = m.chat;
 
-    let users = global.db.data.users;
-    users[who].banned = true;
-
-    conn.reply(m.chat, `✦ *El usuario @${who.split('@')[0]} Fue baneado*`, fkontak, { mentions: [who] });
-};
-
-export const before = async (m, { conn }) => {
-    const userId = m.sender;
-    let users = global.db.data.users;
-
-    if (users[userId] && users[userId].banned) {
-        return false;
+    if (m.isGroup) {
+        who = m.mentionedJid?.[0] || (text && text.replace(/[^0-9]/g, '') + '@s.whatsapp.net');
+    } else {
+        who = text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat;
     }
 
-    return true; 
+    if (!who) return conn.reply(m.chat, '✦ *Menciona al usuario o escribe su número*', m);
+
+    let users = global.db?.data?.users || {};
+    
+    if (!users[who]) {
+        return conn.reply(m.chat, '✦ *El usuario no se encuentra en la base de datos*', m);
+    }
+
+    users[who].banned = true;
+
+    conn.reply(m.chat, `✦ *El usuario @${who.split('@')[0]} ha sido baneado*`, m, { mentions: [who] });
+};
+
+export const before = async (m) => {
+    let users = global.db?.data?.users || {};
+    return !users[m.sender]?.banned;
 };
 
 handler.command = ['banuser'];
