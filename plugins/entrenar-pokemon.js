@@ -3,7 +3,7 @@ const handler = async (m, { conn }) => {
     let userId = m.sender;
 
     if (!users[userId]?.mascota) {
-        return conn.reply(m.chat, `❀ *Aún no tienes una mascota. Usa /mascota para reclamar una.*`, m);
+        return conn.reply(m.chat, `❀ *Todavía no tienes un Pokemón. Usa /pokemon para reclamar uno.*`, m);
     }
 
     let mascota = users[userId].mascota;
@@ -13,7 +13,7 @@ const handler = async (m, { conn }) => {
     if (mascota.ultimoEntrenamiento && ahora - mascota.ultimoEntrenamiento < cooldown) {
         let tiempoRestante = cooldown - (ahora - mascota.ultimoEntrenamiento);
         let minutos = Math.ceil(tiempoRestante / (60 * 1000));
-        return conn.reply(m.chat, `*Tu mascota está cansada Debes esperar \`${minutos}\` Minutos para entrenar de nuevo*`, m);
+        return conn.reply(m.chat, `*Tu Pokemón está cansado Debes esperar \`${minutos}\` Minutos para entrenar de nuevo*`, m);
     }
 
     let xpAleatoria = [10, 20, 30, 50, 70, 80, 110];
@@ -22,7 +22,7 @@ const handler = async (m, { conn }) => {
     mascota.xp += xpGanada;
     mascota.ultimoEntrenamiento = ahora;
 
-    let mensaje = `*Tu mascota ha entrenado*\n\n`;
+    let mensaje = `*Tu Pokemón ha entrenado*\n\n`;
     mensaje += `❀ *Nombre:* ${mascota.nombre}\n`;
     mensaje += `❀ *Nivel:* ${mascota.nivel}\n`;
     mensaje += `❀ *Experiencia Ganada:* +${xpGanada} XP\n`;
@@ -33,7 +33,7 @@ const handler = async (m, { conn }) => {
         mascota.nivel += 1;
         mascota.xpNecesaria = Math.floor(mascota.xpNecesaria * 1.5);
         
-        mensaje += `\n*Tu mascota subio de nivel ${mascota.nivel}.* ✨`;
+        mensaje += `\n*Tu Pokemón subio de nivel ${mascota.nivel}.*`;
     }
 
     await conn.reply(m.chat, mensaje, m);
