@@ -30,5 +30,5 @@ const handler = async (m, { conn }) => {
     await conn.sendMessage(m.chat, { image: { url: mascota.imagen }, caption: mensaje }, { quoted: m });
 };
 
-handler.command = ['poke', 'mascota'];
+handler.command = ['pokemon', 'mascota', 'pokemón'];
 export default handler;
