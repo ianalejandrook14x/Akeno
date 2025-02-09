@@ -3,7 +3,7 @@ const handler = async (m, { conn }) => {
     let userId = m.sender;
 
     if (!users[userId]?.mascota) {
-        return conn.reply(m.chat, `❀ *Todavía no tienes un Pokemón.* Usa /pokemon para reclamar uno.`, m);
+        return conn.reply(m.chat, `❀ *Todavía no tienes un Pokémon.* Usa /pokemon para reclamar uno.`, m);
     }
 
     let mascota = users[userId].mascota;
@@ -12,9 +12,11 @@ const handler = async (m, { conn }) => {
     let tiempoRestante = mascota.ultimoEntrenamiento ? cooldown - (ahora - mascota.ultimoEntrenamiento) : 0;
     let tiempoFaltante = tiempoRestante > 0 ? `${Math.ceil(tiempoRestante / (60 * 1000))} min` : "Disponible";
 
-    let mensaje = `❀ *Tu Pokemón*\n\n`;
+    let tipo = mascota.tipo ? mascota.tipo : "Desconocido";
+
+    let mensaje = `❀ *Tu Pokémon*\n\n`;
     mensaje += `❀ *Nombre:* ${mascota.nombre}\n`;
-    mensaje += `❀ *Tipo:* ${mascota.tipo}\n`;
+    mensaje += `❀ *Tipo:* ${tipo}\n`;
     mensaje += `❀ *Rareza:* ${mascota.rareza}\n`;
     mensaje += `❀ *Nivel:* ${mascota.nivel}\n`;
     mensaje += `❀ *XP:* ${mascota.xp} / ${mascota.xpNecesaria}\n`;
