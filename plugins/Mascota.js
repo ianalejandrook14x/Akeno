@@ -23,9 +23,9 @@ const handler = async (m, { conn }) => {
     };
 
     let mensaje = `*Has reclamado una mascota*\n\n`;
-    mensaje += `🐾 *Nombre:* ${mascota.nombre}\n`;
-    mensaje += `🌟 *Rareza:* ${mascota.rareza}\n`;
-    mensaje += `📈 *Nivel:* 1 | (0 / 100 XP)\n\n`;
+    mensaje += `❀ *Nombre:* ${mascota.nombre}\n`;
+    mensaje += `❀ *Rareza:* ${mascota.rareza}\n`;
+    mensaje += `❀ *Nivel:* 1 | (0 / 100 XP)\n\n`;
 
     await conn.sendMessage(m.chat, { image: { url: mascota.imagen }, caption: mensaje }, { quoted: m });
 };
