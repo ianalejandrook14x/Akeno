@@ -1,33 +1,51 @@
-let handler = async (m, { conn, text, mentionedJid }) => {
-    let who;
+import { DisconnectReason } from "@whiskeysockets/baileys";
+import fs from "fs";
+import path from "path";
 
-    if (mentionedJid?.[0]) {
-        who = mentionedJid[0];
+const handler = async (m, { conn, text, mentionedJid }) => {
+    let userJid;
+
+    if (m.quoted) {
+        userJid = m.quoted.sender;
+    } else if (mentionedJid?.[0]) {
+        userJid = mentionedJid[0];
     } else if (text) {
         let cleanedNumber = text.replace(/[^0-9]/g, "") + "@s.whatsapp.net";
-        who = cleanedNumber;
+        userJid = cleanedNumber;
     }
 
-    if (!who) {
-        return conn.reply(m.chat, "✦ *Menciona el usuario o escribe su número*", m);
+    if (!userJid) {
+        return conn.reply(m.chat, "*Menciona al Jadibot o escribe su número*", m);
     }
 
-    let users = global.db?.data?.users || {};
+    const userName = userJid.split("@")[0];
+    const folderPath = path.join(process.cwd(), "jadi", userName);
+    const subBotIndex = global.conns.findIndex(bot => bot.user?.jid === userJid);
 
-    if (!users[who]) {
-        return conn.reply(m.chat, `✦ *El usuario @${who.split('@')[0]} no se encuentra en la base de datos.*`, m, { mentions: [who] });
+    if (subBotIndex === -1) {
+        return conn.reply(m.chat, `*El usuario @${userName} no está conectado como JadiBot*`, m, { mentions: [userJid] });
     }
 
-    if (!users[who].banned) {
-        return conn.reply(m.chat, `✦ *El usuario @${who.split('@')[0]} no se encuentra baneado.*`, m, { mentions: [who] });
+    let subBot = global.conns[subBotIndex];
+    global.conns.splice(subBotIndex, 1);
+
+    try {
+        if (subBot.ws.readyState === subBot.ws.OPEN) {
+            subBot.ws.close(DisconnectReason.loggedOut);
+        }
+        subBot.ev.removeAllListeners();
+    } catch (error) {
+        console.error(error);
     }
 
-    users[who].banned = false;
+    if (fs.existsSync(folderPath)) {
+        fs.rmdirSync(folderPath, { recursive: true });
+    }
 
-    conn.reply(m.chat, `✦ *El usuario @${who.split('@')[0]} ha sido desbaneado.*`, m, { mentions: [who] });
+    conn.reply(m.chat, `*El JadiBot @${userName} ha sido desconectado*`, m, { mentions: [userJid] });
 };
 
-handler.command = ['unbanuser'];
-handler.rowner = true;
+handler.command = ["disconnect"];
+handler.mods = true;
 
 export default handler;
