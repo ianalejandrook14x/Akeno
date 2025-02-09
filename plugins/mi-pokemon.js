@@ -25,5 +25,5 @@ const handler = async (m, { conn }) => {
     await conn.sendFile(m.chat, imagen, 'mascota.jpg', mensaje, m);
 };
 
-handler.command = ['pokemon'];
+handler.command = ['poke-info', 'poke', 'infomascota'];
 export default handler;
