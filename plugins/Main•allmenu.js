@@ -10,11 +10,10 @@ let handler = async (m, { conn }) => {
 
 *\`ᴘᴏᴋᴇᴍᴏɴ 🧊🍃\`*
 
-☆ *pokemon* <reclama un pokemón>
-☆ *info-pokemon* <ver tu pokemón>
-☆ *alimentar* <alimenta tu pokemón>
-☆ *entrenar* <entrena tu pokemón>
-
+☆ *ᴘᴏᴋᴇᴍᴏɴ* <ʀᴇᴄʟᴀᴍᴀ ᴜɴ ᴘᴏᴋᴇᴍÓɴ>
+☆ *ɪɴꜰᴏ-ᴘᴏᴋᴇᴍᴏɴ* <ᴠᴇʀ ᴛᴜ ᴘᴏᴋᴇᴍÓɴ>
+☆ *ᴀʟɪᴍᴇɴᴛᴀʀ* <ᴀʟɪᴍᴇɴᴛᴀ ᴛᴜ ᴘᴏᴋᴇᴍÓɴ>
+☆ *ᴇɴᴛʀᴇɴᴀʀ* <ᴇɴᴛʀᴇɴᴀ ᴛᴜ ᴘᴏᴋᴇᴍÓɴ>
 
 *\`ᴀɪ\`*
 
