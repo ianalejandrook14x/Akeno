@@ -1,0 +1,14 @@
+{
+  "mascotas": [
+    {
+      "nombre": "Perro",
+      "rareza": "Común",
+      "imagen": "https://qu.ax/RXlyW.jpg"
+    },
+    {
+      "nombre": "Gato",
+      "rareza": "Común",
+      "imagen": "https://qu.ax/ANCtE.jpg"
+    }
+  ]
+}
