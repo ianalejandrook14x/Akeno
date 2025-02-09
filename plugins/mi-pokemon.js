@@ -14,6 +14,7 @@ const handler = async (m, { conn }) => {
 
     let mensaje = `❀ *Tu Pokemón*\n\n`;
     mensaje += `❀ *Nombre:* ${mascota.nombre}\n`;
+    mensaje += `❀ *Tipo:* ${mascota.tipo}\n`;
     mensaje += `❀ *Rareza:* ${mascota.rareza}\n`;
     mensaje += `❀ *Nivel:* ${mascota.nivel}\n`;
     mensaje += `❀ *XP:* ${mascota.xp} / ${mascota.xpNecesaria}\n`;
