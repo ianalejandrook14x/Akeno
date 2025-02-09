@@ -5,7 +5,7 @@ const handler = async (m, { conn }) => {
     let userId = m.sender;
 
     if (users[userId]?.mascota) {
-        return conn.reply(m.chat, `❀ *Ya tienes una mascota y no puedes reclamar otra.*`, m);
+        return conn.reply(m.chat, `❀ *Ya tienes un pokemón y no puedes reclamar otra.*`, m);
     }
 
     let data = JSON.parse(fs.readFileSync('./mascotas.json'));
@@ -22,7 +22,7 @@ const handler = async (m, { conn }) => {
         imagen: mascotas.imagen
     };
 
-    let mensaje = `*Has reclamado una mascota*\n\n`;
+    let mensaje = `*Has reclamado un Pokemón*\n\n`;
     mensaje += `❀ *Nombre:* ${mascota.nombre}\n`;
     mensaje += `❀ *Rareza:* ${mascota.rareza}\n`;
     mensaje += `❀ *Nivel:* 1 | (0 / 100 XP)\n\n`;
@@ -30,5 +30,5 @@ const handler = async (m, { conn }) => {
     await conn.sendMessage(m.chat, { image: { url: mascota.imagen }, caption: mensaje }, { quoted: m });
 };
 
-handler.command = ['mascota'];
+handler.command = ['pokemon', 'pokemón', 'mascota'];
 export default handler;
