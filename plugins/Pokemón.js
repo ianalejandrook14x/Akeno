@@ -16,6 +16,7 @@ const handler = async (m, { conn }) => {
     users[userId].mascota = {
         nombre: mascota.nombre,
         rareza: mascota.rareza,
+        tipo: mascota.tipo,
         nivel: 1,
         xp: 0,
         xpNecesaria: 100,
