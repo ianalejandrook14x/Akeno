@@ -4,7 +4,7 @@ const handler = async (m, { conn }) => {
     let now = Date.now();
 
     if (!users[userId]?.mascota) {
-        return conn.reply(m.chat, '*No tienes un Pokémon para acariciar.* Usa /pokemon para reclamar uno.', m);
+        return conn.reply(m.chat, '*No tienes un Pokémon para acariciar. Usa /pokemon para reclamar uno*', m);
     }
 
     let mascota = users[userId].mascota;
