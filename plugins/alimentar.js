@@ -19,7 +19,7 @@ const handler = async (m, { conn }) => {
     let comidas = [
         { nombre: "🥕 Zanahoria", energia: 5, felicidad: 2 },
         { nombre: "🍄 Champiñon", energia: 23, felicidad: 7 },
-        { nombre: "🍿 Helado", energia: 33, felicidad: 20 },
+        { nombre: "🍿 Pochoclo", energia: 33, felicidad: 20 },
         { nombre: "🍪 Galleta", energia: 15, felicidad: 10 },
         { nombre: "🍕 Pizza", energia: 25, felicidad: 14 },
         { nombre: "🍬 Caramelo", energia: 35, felicidad: 28 },
