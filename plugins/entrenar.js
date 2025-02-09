@@ -23,10 +23,10 @@ const handler = async (m, { conn }) => {
     mascota.ultimoEntrenamiento = ahora;
 
     let mensaje = `*Tu mascota ha entrenado*\n\n`;
-    mensaje += `🐾 *Nombre:* ${mascota.nombre}\n`;
-    mensaje += `📈 *Nivel:* ${mascota.nivel}\n`;
-    mensaje += `⚡ *Experiencia Ganada:* +${xpGanada} XP\n`;
-    mensaje += `⚡ *Experiencia Total:* ${mascota.xp} / ${mascota.xpNecesaria}\n`;
+    mensaje += `❀ *Nombre:* ${mascota.nombre}\n`;
+    mensaje += `❀ *Nivel:* ${mascota.nivel}\n`;
+    mensaje += `❀ *Experiencia Ganada:* +${xpGanada} XP\n`;
+    mensaje += `❀ *Experiencia Total:* ${mascota.xp} / ${mascota.xpNecesaria}\n`;
 
     if (mascota.xp >= mascota.xpNecesaria) {
         mascota.xp -= mascota.xpNecesaria;
