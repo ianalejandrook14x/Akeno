@@ -3,7 +3,7 @@ const handler = async (m, { conn }) => {
     let userId = m.sender;
 
     if (!users[userId]?.mascota) {
-        return conn.reply(m.chat, `❀ *Aún no tienes una mascota.* Usa /mascota para reclamar una.`, m);
+        return conn.reply(m.chat, `❀ *Todavía no tienes un Pokemón* Usa /pokemon para reclamar uno.`, m);
     }
 
     let mascota = users[userId].mascota;
@@ -13,11 +13,29 @@ const handler = async (m, { conn }) => {
 
     if (tiempoRestante > 0) {
         let minutosFaltantes = Math.ceil(tiempoRestante / (60 * 1000));
-        return conn.reply(m.chat, `🐾 *Tu mascota aún no tiene hambre.*\n*Tiempo restante:* ${minutosFaltantes} min`, m);
+        return conn.reply(m.chat, `✿ *Tu pokemón aún no tiene hambre.*\n*Tiempo restante:* ${minutosFaltantes} min`, m);
     }
 
     let comidas = [
         { nombre: "🥕 Zanahoria", energia: 5, felicidad: 2 },
+        { nombre: "🍄 Champiñon", energia: 23, felicidad: 7 },
+        { nombre: "🍿 Helado", energia: 33, felicidad: 20 },
+        { nombre: "🍪 Galleta", energia: 15, felicidad: 10 },
+        { nombre: "🍕 Pizza", energia: 25, felicidad: 14 },
+        { nombre: "🍬 Caramelo", energia: 35, felicidad: 28 },
+        { nombre: "🍙 Arroz", energia: 13, felicidad: 9 },
+        { nombre: "🍫 Chocolate", energia: 40, felicidad: 33 },
+        { nombre: "🥗 Ensalada", energia: 17, felicidad: 12 },
+        { nombre: "🥧 Pastel", energia: 55, felicidad: 40 },
+        { nombre: "🍉 Sandía", energia: 25, felicidad: 24 },
+        { nombre: "🥜 Maní", energia: 14, felicidad: 15 },
+        { nombre: "🍩 Dona", energia: 28, felicidad: 22 },
+        { nombre: "🍒 Cereza", energia: 23, felicidad: 11 },
+        { nombre: "🍈 Melón", energia: 18, felicidad: 15 },
+        { nombre: "🍊 Mandarina", energia: 19, felicidad: 13 },
+        { nombre: "🍍 Ananá", energia: 22, felicidad: 12 },
+        { nombre: "🥭 Mango", energia: 27, felicidad: 26 },
+        { nombre: "🍐 Pera", energia: 28, felicidad: 23 },
         { nombre: "🍖 Carne", energia: 15, felicidad: 10 },
         { nombre: "🍎 Manzana", energia: 8, felicidad: 5 },
         { nombre: "🥩 Carne", energia: 20, felicidad: 15 },
@@ -29,7 +47,7 @@ const handler = async (m, { conn }) => {
     mascota.felicidad = Math.min(100, (mascota.felicidad || 0) + comidaElegida.felicidad);
     mascota.ultimoAlimento = ahora;
 
-    let mensaje = `❀ *Has alimentado a tu mascota con ${comidaElegida.nombre}*\n\n`;
+    let mensaje = `❀ *Has alimentado a tu Pokemón con ${comidaElegida.nombre}*\n\n`;
     mensaje += `❀ *Felicidad:* +${comidaElegida.felicidad} (Total: ${mascota.felicidad}/100)\n`;
     mensaje += `❀ *Energía:* +${comidaElegida.energia} (Total: ${mascota.energia}/100)\n`;
     mensaje += `❀ *Podrás alimentarla de nuevo en 30 minutos.*`;
