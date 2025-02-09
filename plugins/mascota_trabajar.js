@@ -17,10 +17,10 @@ let handler = async (m, { conn }) => {
     
     if (now - lastWork < cooldown) {
         let remaining = Math.ceil((cooldown - (now - lastWork)) / 60000);
-        return conn.reply(m.chat, `*Debes esperar ${remaining} minutos para volver a trabajar.*`, m);
+        return conn.reply(m.chat, `*Debes esperar \`${remaining}\` minutos para volver a trabajar.*`, m);
     }
     
-    let earnings = [50, 100, 150, 200, 250, 300][Math.floor(Math.random() * 6)];
+    let earnings = [50, 100, 125, 150, 200, 220, 250, 300, 375, 400, 450, 500, 650, 780, 820, 870, 930, 960, 1000][Math.floor(Math.random() * 6)];
     wallets.usuarios[userId].monedas += earnings;
     wallets.usuarios[userId].lastWork = now;
     
