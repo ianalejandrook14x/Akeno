@@ -20,8 +20,8 @@ const handler = async (m, { conn }) => {
     mensaje += `❀ *XP:* ${mascota.xp} / ${mascota.xpNecesaria}\n`;
     mensaje += `❀ *Siguiente Entrenamiento:* ${tiempoFaltante}\n`;
 
-await conn.sendMessage(m.chat, { image: { url: mascota.imagen }, caption: mensaje }, { quoted: m });
+ await conn.sendMessage(m.chat, { image: { url: mascota.imagen }, caption: mensaje }, { quoted: m });
 };
 
-handler.command = ['mimascota'];
+handler.command = ['mipokemon', 'mascota', 'poke'];
 export default handler;
