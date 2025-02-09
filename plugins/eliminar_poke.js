@@ -7,13 +7,15 @@ const handler = async (m, { conn }) => {
         return conn.reply(m.chat, '*No tienes un Pokémon para eliminar.*', m);
     }
 
-    let tiempoEspera = 12 * 60 * 60 * 1000;
-    let tiempoRestante = tiempoEspera - (now - users[userId].mascota.timestamp);
+    let timestamp = users[userId].mascota.timestamp || 0;
+
+    let tiempoEspera = 30 * 60 * 1000;
+    let tiempoRestante = tiempoEspera - (now - timestamp);
 
     if (tiempoRestante > 0) {
-        let horas = Math.floor(tiempoRestante / (60 * 60 * 1000));
-        let minutos = Math.floor((tiempoRestante % (60 * 60 * 1000)) / (60 * 1000));
-        return conn.reply(m.chat, `*Todavía no puedes descartar tu Pokémon.*\n\n✦ *Tiempo restante:* ${horas}h ${minutos}m`, m);
+        let minutos = Math.floor(tiempoRestante / (60 * 1000));
+        let segundos = Math.floor((tiempoRestante % (60 * 1000)) / 1000);
+        return conn.reply(m.chat, `*Todavía no puedes descartar tu Pokémon.*\n\n✦ *Tiempo restante:* ${minutos}m ${segundos}s`, m);
     }
 
     delete users[userId].mascota;
