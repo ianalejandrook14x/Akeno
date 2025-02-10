@@ -18,7 +18,7 @@ let HS = async (m, { conn, text }) => {
     let api = await axios.get(`https://mahiru-shiina.vercel.app/download/ytmp3?url=${videoUrl}`);
     let json = api.data;
 
-    let { title, uploaded, duration, views, url, thumbnail, download } = json.data;
+    let { title, uploaded, duration, views, thumbnail, download } = json.data;
 
     
     let durationParts = duration.split(':').map(Number);
@@ -58,14 +58,19 @@ let HS = async (m, { conn, text }) => {
     }, { quoted: m });
 
     
-    let mimetype = durationSeconds > 2400 ? 'audio/mp4' : 'audio/mpeg';
-    let extension = durationSeconds > 2400 ? '.m4a' : '.mp3';
-
-    await conn.sendMessage(m.chat, { 
-      audio: { url: download }, 
-      mimetype, 
-      fileName: `${title}${extension}`
-    }, { quoted: m });
+    if (durationSeconds > 2400) {
+      await conn.sendMessage(m.chat, { 
+        document: { url: download }, 
+        mimetype: 'audio/mp4', 
+        fileName: `${title}.m4a`
+      }, { quoted: m });
+    } else {
+      await conn.sendMessage(m.chat, { 
+        audio: { url: download }, 
+        mimetype: 'audio/mpeg', 
+        fileName: `${title}.mp3`
+      }, { quoted: m });
+    }
 
   } catch (error) {
     console.error(error);
