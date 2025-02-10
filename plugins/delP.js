@@ -23,8 +23,8 @@ const handler = async (m, { conn }) => {
     }
 };
 
-handler.customPrefix = /^(delP)$/i;
+handler.customPrefix = /^(DelP)$/i;
 handler.command = new RegExp;
-handelr.rowner = true
+handler.rowner = true
 
 export default handler;
