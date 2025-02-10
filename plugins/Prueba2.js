@@ -33,7 +33,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url } = video;
 
-    
     let timeParts = timestamp.split(':');
     let minutes = parseInt(timeParts[0]);
     let seconds = parseInt(timeParts[1]);
@@ -60,7 +59,8 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     txt += `✦ *Subido:* » ${ago}\n`;
     txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
 
-    let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
+    
+    let api = await fetch(`https://api.agungny.my.id/api/youtube-video?url=${url}`);
     let json = await api.json();
     let { data } = json;
 
@@ -73,7 +73,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     let videoBuffer = await fetch(downloadUrl).then(res => res.buffer());
     let img = await star.resize(thumbnail, 400, 400);
 
-    
     if (durationInMinutes > 30) {
       let pageCount = 1;  
 
@@ -92,7 +91,6 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
       );
       await m.react('📄'); 
     } else {
-      
       await star.sendMessage(
         m.chat,
         {
