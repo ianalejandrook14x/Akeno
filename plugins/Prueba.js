@@ -17,11 +17,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let video;
     if (isUrl) {
-      
       let ytres = await yts({ videoId: query.split('v=')[1] });
       video = ytres.videos[0];
     } else {
-     
       let ytres = await yts(query);
       video = ytres.videos[0];
       if (!video) {
@@ -31,12 +29,10 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url } = video;
 
-    
     let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
     let audioInfo = yt.audio['128kbps']; 
     let { fileSizeH: size } = audioInfo;
 
-    
     let sizeMB = parseFloat(size.split('MB')[0]);
 
     if (sizeMB >= 700) {
@@ -44,23 +40,19 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
     }
 
     
-    let api = await fetch(`https://api.vreden.web.id/api/ytplaymp3?query=${url}`);
+    let api = await fetch(`https://api.agungny.my.id/api/youtube-audio?url=${url}`);
     let json = await api.json();
     let { data } = json;
     let { dl: download } = data;
 
-    
     let txt = `✦ *Título:* » ${title}\n`;
     txt += `✦ *Duración:* » ${timestamp}\n`;
     txt += `✦ *Visitas:* » ${views}\n`;
     txt += `✦ *Subido:* » ${ago}\n`;
     txt += `✦ *Tamaño:* » ${size}\n\n`;
-    
 
-   
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
-    
     if (sizeMB >= limit) {
       await star.sendMessage(m.chat, { document: { url: download }, mimetype: 'audio/mp4', fileName: `${title}.m4a` }, { quoted: m });
     } else {
