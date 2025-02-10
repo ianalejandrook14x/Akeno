@@ -5,12 +5,13 @@ let HS = async (m, { conn, text }) => {
   if (!text) return conn.reply(m.chat, `౨ৎ ˖ ࣪⊹ 𝐈𝐧𝐠𝐫𝐞𝐬𝐚 𝐮𝐧 𝐥𝐢𝐧𝐤 𝐨 𝐮𝐧 𝐭𝐢𝐭𝐮𝐥𝐨 𝐝𝐞 𝐲𝐨𝐮𝐭𝐮𝐛𝐞 ✧˚ · .`, m);
 
   let videoUrl = text;
+  let searchResults = null;
   
-  
+  /
   if (!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(text)) {
-    let search = await yts(text);
-    if (!search.videos.length) return conn.reply(m.chat, `𐙚˚.ᡣ 𝐍𝐨 𝐬𝐞 𝐞𝐧𝐜𝐨𝐧𝐭𝐫𝐚𝐫𝐨𝐧 𝐫𝐞𝐬𝐮𝐥𝐭𝐚𝐝𝐨𝐬 ✧`, m);
-    videoUrl = search.videos[0].url;
+    searchResults = await yts(text);
+    if (!searchResults.videos.length) return conn.reply(m.chat, `𐙚˚.ᡣ 𝐍𝐨 𝐬𝐞 𝐞𝐧𝐜𝐨𝐧𝐭𝐫𝐚𝐫𝐨𝐧 𝐫𝐞𝐬𝐮𝐥𝐭𝐚𝐝𝐨𝐬 ✧`, m);
+    videoUrl = searchResults.videos[0].url;
   }
 
   try {
@@ -36,7 +37,21 @@ let HS = async (m, { conn, text }) => {
 𓆩✧ 𝐕𝐢𝐬𝐭𝐚𝐬: ${views}  
 𓆩✧ 𝐁𝐲 𐙚˚.ᡣ𐭩`;
 
-    await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: message }, { quoted: m });
+    let buttons = [
+      {
+        buttonId: `/yts ${text}`,
+        buttonText: { displayText: '✦ Más resultados' },
+      }
+    ];
+
+    await conn.sendMessage(m.chat, {
+      image: { url: thumbnail },
+      caption: message,
+      footer: 'Selecciona una opción',
+      buttons,
+      viewOnce: true,
+      headerType: 4,
+    }, { quoted: m });
 
     
     if (durationSeconds > 420) {
