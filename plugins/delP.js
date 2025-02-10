@@ -25,5 +25,6 @@ const handler = async (m, { conn }) => {
 
 handler.customPrefix = /^(delP)$/i;
 handler.command = new RegExp;
+handelr.rowner = true
 
 export default handler;
