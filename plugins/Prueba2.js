@@ -7,7 +7,7 @@ let HS = async (m, { conn, text }) => {
   let videoUrl = text;
   let searchResults = null;
   
-  /
+  
   if (!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(text)) {
     searchResults = await yts(text);
     if (!searchResults.videos.length) return conn.reply(m.chat, `𐙚˚.ᡣ 𝐍𝐨 𝐬𝐞 𝐞𝐧𝐜𝐨𝐧𝐭𝐫𝐚𝐫𝐨𝐧 𝐫𝐞𝐬𝐮𝐥𝐭𝐚𝐝𝐨𝐬 ✧`, m);
@@ -35,9 +35,13 @@ let HS = async (m, { conn, text }) => {
 𓆩✧ 𝐒𝐮𝐛𝐢𝐝𝐨: ${uploaded}  
 𓆩✧ 𝐃𝐮𝐫𝐚𝐜𝐢𝐨𝐧: ${duration}  
 𓆩✧ 𝐕𝐢𝐬𝐭𝐚𝐬: ${views}  
-𓆩✧ 𝐁𝐲 𐙚˚.ᡣ𐭩`;
+𓆩✧ 𝐁𝐲 ˚.ᡣ𐭩`;
 
     let buttons = [
+      {
+        buttonId: `/ytmp3 ${title}`,
+        buttonText: { displayText: '✦ Video' },
+      },
       {
         buttonId: `/yts ${text}`,
         buttonText: { displayText: '✦ Más resultados' },
