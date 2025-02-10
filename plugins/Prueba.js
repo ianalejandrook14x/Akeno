@@ -35,10 +35,6 @@ let HS = async (m, { conn, text }) => {
 
     let buttons = [
       {
-        buttonId: `/ytdlmp3 ${title}`,
-        buttonText: { displayText: '✦ Audio' },
-      },
-      {
         buttonId: `/ytmp4 ${title}`,
         buttonText: { displayText: '✦ Video' },
       },
