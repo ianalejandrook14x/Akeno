@@ -1,75 +1,78 @@
-import fetch from 'node-fetch';
+import axios from 'axios';
 import yts from 'yt-search';
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
 
-let limit = 94; 
+let HS = async (m, { conn, text }) => {
+  if (!text) return conn.reply(m.chat, `౨ৎ ˖ ࣪⊹ 𝐈𝐧𝐠𝐫𝐞𝐬𝐚 𝐮𝐧 𝐥𝐢𝐧𝐤 𝐨 𝐮𝐧 𝐭𝐢𝐭𝐮𝐥𝐨 𝐝𝐞 𝐲𝐨𝐮𝐭𝐮𝐛𝐞 ✧˚ · .`, m);
 
-let handler = async (m, { conn: star, args, usedPrefix, command }) => {
-  if (!args || !args[0]) {
-    return star.reply(m.chat, `✦ *¡Ingresa el texto o enlace del vídeo de YouTube!*\n\n» *Ejemplo:*\n> *${usedPrefix + command}* Canción de ejemplo`, m);
+  let videoUrl = text;
+  let searchResults = null;
+
+ 
+  if (!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(text)) {
+    searchResults = await yts(text);
+    if (!searchResults.videos.length) return conn.reply(m.chat, `𐙚˚.ᡣ 𝐍𝐨 𝐬𝐞 𝐞𝐧𝐜𝐨𝐧𝐭𝐫𝐚𝐫𝐨𝐧 𝐫𝐞𝐬𝐮𝐥𝐭𝐚𝐝𝐨𝐬 ✧`, m);
+    videoUrl = searchResults.videos[0].url;
   }
 
-  await m.react('🕓'); 
-
   try {
-    let query = args.join(' ');
-    let isUrl = query.match(/youtu/gi);
+    let api = await axios.get(`https://mahiru-shiina.vercel.app/download/ytmp3?url=${videoUrl}`);
+    let json = api.data;
 
-    let video;
-    if (isUrl) {
-      let ytres = await yts({ videoId: query.split('v=')[1] });
-      video = ytres.videos[0];
-    } else {
-      let ytres = await yts(query);
-      video = ytres.videos[0];
-      if (!video) {
-        return star.reply(m.chat, '✦ *Video no encontrado.*', m).then(_ => m.react('✖️'));
-      }
-    }
-
-    let { title, thumbnail, timestamp, views, ago, url } = video;
-
-    let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
-    let audioInfo = yt.audio['128kbps']; 
-    let { fileSizeH: size } = audioInfo;
-
-    let sizeMB = parseFloat(size.split('MB')[0]);
-
-    if (sizeMB >= 700) {
-      return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(_ => m.react('✖️'));
-    }
+    let { title, uploaded, duration, views, url, thumbnail, download } = json.data;
 
     
-    let api = await fetch(`https://api.agungny.my.id/api/youtube-audio?url=${url}`);
-    let json = await api.json();
-    let { data } = json;
-    let { dl: download } = data;
+    let durationParts = duration.split(':').map(Number);
+    let durationSeconds = durationParts.length === 3
+      ? durationParts[0] * 3600 + durationParts[1] * 60 + durationParts[2]
+      : durationParts[0] * 60 + durationParts[1];
 
-    let txt = `✦ *Título:* » ${title}\n`;
-    txt += `✦ *Duración:* » ${timestamp}\n`;
-    txt += `✦ *Visitas:* » ${views}\n`;
-    txt += `✦ *Subido:* » ${ago}\n`;
-    txt += `✦ *Tamaño:* » ${size}\n\n`;
+    let message = `⋆˙⊹ 𝐘𝐨𝐮𝐓𝐮𝐛𝐞 𝐀𝐮𝐝𝐢𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐞𝐫 ⊹˖˚  
+𓆩✧ 𝐓𝐢𝐭𝐮𝐥𝐨: ${title}  
+𓆩✧ 𝐒𝐮𝐛𝐢𝐝𝐨: ${uploaded}  
+𓆩✧ 𝐃𝐮𝐫𝐚𝐜𝐢𝐨𝐧: ${duration}  
+𓆩✧ 𝐕𝐢𝐬𝐭𝐚𝐬: ${views}  
+𓆩✧ 𝐁𝐲 𝐉𝐭𝐱𝐬 𐙚˚.ᡣ𐭩`;
 
-    await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
+    let buttons = [
+      {
+        buttonId: `/ytdlmp3 ${title}`,
+        buttonText: { displayText: '✦ Audio' },
+      },
+      {
+        buttonId: `/ytmp4 ${title}`,
+        buttonText: { displayText: '✦ Video' },
+      },
+      {
+        buttonId: `/yts ${text}`,
+        buttonText: { displayText: '✦ Más resultados' },
+      }
+    ];
 
-    if (sizeMB >= limit) {
-      await star.sendMessage(m.chat, { document: { url: download }, mimetype: 'audio/mp4', fileName: `${title}.m4a` }, { quoted: m });
-    } else {
-      await star.sendMessage(m.chat, { audio: { url: download }, mimetype: 'audio/mpeg', fileName: `${title}.mp3` }, { quoted: m });
-    }
+    await conn.sendMessage(m.chat, {
+      image: { url: thumbnail },
+      caption: message,
+      footer: 'Selecciona una opción',
+      buttons,
+      viewOnce: true,
+      headerType: 4,
+    }, { quoted: m });
 
-    await m.react('✅'); 
+    
+    let mimetype = durationSeconds > 2400 ? 'audio/mp4' : 'audio/mpeg';
+    let extension = durationSeconds > 2400 ? '.m4a' : '.mp3';
+
+    await conn.sendMessage(m.chat, { 
+      audio: { url: download }, 
+      mimetype, 
+      fileName: `${title}${extension}`
+    }, { quoted: m });
+
   } catch (error) {
     console.error(error);
-    await m.react('✖️'); 
+    conn.reply(m.chat, `𐙚˚.ᡣ 𝐄𝐫𝐫𝐨𝐫 𝐚𝐥 𝐨𝐛𝐭𝐞𝐧𝐞𝐫 𝐞𝐥 𝐚𝐮𝐝𝐢𝐨. 𝐕𝐮𝐞𝐥𝐯𝐞 𝐚 𝐢𝐧𝐭𝐞𝐧𝐭𝐚𝐫 𝐦á𝐬 𝐭𝐚𝐫𝐝𝐞 ✧`, m);
   }
 };
 
-handler.help = ['ytmp3'];
-handler.tags = ['downloader'];
-handler.command = ['ytmp3', 'yta']; 
-// handler.limit = 1; // Límite de uso (opcional)
-//handler.register = true;
+HS.command = ['ytmp3'];
 
-export default handler;
+export default HS;
