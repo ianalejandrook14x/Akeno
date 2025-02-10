@@ -1,117 +1,42 @@
-import fetch from 'node-fetch';
-import yts from 'yt-search';
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
+import axios from 'axios';
 
-let limit = 100;
-
-let handler = async (m, { conn: star, args, usedPrefix, command }) => {
-  if (!args || !args[0]) {
-    return star.reply(
-      m.chat,
-      `✦ *¡Ingresa el texto o enlace del vídeo de YouTube!*\n\n» *Ejemplo:*\n> *${usedPrefix + command}* Canción de ejemplo`,
-      m
-    );
-  }
-
-  await m.react('🕓');
+let HS = async (m, { conn, text }) => {
+  if (!text) return conn.reply(m.chat, `౨ৎ ˖ ࣪⊹ 𝐈𝐧𝐠𝐫𝐞𝐬𝐚 𝐮𝐧 𝐥𝐢𝐧𝐤 𝐝𝐞 𝐘𝐨𝐮𝐓𝐮𝐛𝐞 ✧˚ · .`, m);
+  
+  // Verificar si el enlace es válido
+  if (!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(text))
+    return conn.reply(m.chat, `𐙚˚.ᡣ 𝐄𝐧𝐥𝐚𝐜𝐞 𝐧𝐨 𝐯𝐚𝐥𝐢𝐝𝐨, 𝐞𝐬𝐞𝐠𝐮𝐫𝐚𝐭𝐞 𝐝𝐞 𝐪𝐮𝐞 𝐬𝐞𝐚 𝐮𝐧 𝐥𝐢𝐧𝐤 𝐝𝐞 𝐘𝐨𝐮𝐓𝐮𝐛𝐞 ✧`, m);
 
   try {
-    let query = args.join(' ');
-    let isUrl = query.match(/youtu/gi);
+    let api = await axios.get(`https://mahiru-shiina.vercel.app/download/ytmp4?url=${text}`);
+    let json = api.data;
 
-    let video;
-    if (isUrl) {
-      let ytres = await yts({ videoId: query.split('v=')[1] });
-      video = ytres.videos[0];
-    } else {
-      let ytres = await yts(query);
-      video = ytres.videos[0];
-      if (!video) {
-        return star.reply(m.chat, '✦ *Video no encontrado.*', m).then(() => m.react('✖️'));
-      }
-    }
+    let { title, description, uploaded, duration, views, type, url, thumbnail, author, download } = json.data;
+    let { name, url: authorUrl } = author;
 
-    let { title, thumbnail, timestamp, views, ago, url } = video;
+    // Verificar la duración del video (limite: 10 minutos)
+    let durationSeconds = duration.split(':').reduce((acc, time) => (60 * acc) + +time);
+    if (durationSeconds > 600) 
+      return conn.reply(m.chat, `𐙚˚.ᡣ 𝐄𝐥 𝐯𝐢𝐝𝐞𝐨 𝐞𝐬 𝐝𝐞𝐦𝐚𝐬𝐢𝐚𝐝𝐨 𝐥𝐚𝐫𝐠𝐨 (𝐥𝐢𝐦𝐢𝐭𝐞: 𝟏𝟎 𝐦𝐢𝐧𝐮𝐭𝐨𝐬)`, m);
 
-    let timeParts = timestamp.split(':');
-    let minutes = parseInt(timeParts[0]);
-    let seconds = parseInt(timeParts[1]);
-    let durationInMinutes = minutes + (seconds / 60);
+    let message = `⋆˙⊹ 𝐘𝐨𝐮𝐓𝐮𝐛𝐞 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐞𝐫 ⊹˖˚  
+𓆩✧ 𝐓𝐢𝐭𝐮𝐥𝐨: ${title}  
+𓆩✧ 𝐀𝐮𝐭𝐨𝐫: [${name}](${authorUrl})  
+𓆩✧ 𝐃𝐞𝐬𝐜𝐫𝐢𝐩𝐜𝐢𝐨𝐧: ${description || '𝙎𝙞𝙣 𝙙𝙚𝙨𝙘𝙧𝙞𝙥𝙘𝙞𝙤𝙣'}  
+𓆩✧ 𝐒𝐮𝐛𝐢𝐝𝐨: ${uploaded}  
+𓆩✧ 𝐃𝐮𝐫𝐚𝐜𝐢𝐨𝐧: ${duration}  
+𓆩✧ 𝐕𝐢𝐬𝐭𝐚𝐬: ${views}  
+𓆩✧ 𝐁𝐲 𐙚˚.ᡣ𐭩`;
 
-    let yt = await youtubedl(url).catch(async () => await youtubedlv2(url));
-    let videoInfo = yt.video['360p'];
+    await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: message }, { quoted: m });
+    await conn.sendMessage(m.chat, { video: { url: download }, mimetype: 'video/mp4' }, { quoted: m });
 
-    if (!videoInfo) {
-      return star.reply(m.chat, '✦ *No se encontró una calidad compatible para el video.*', m).then(() => m.react('✖️'));
-    }
-
-    let { fileSizeH: sizeHumanReadable, fileSize } = videoInfo;
-
-    let sizeMB = fileSize / (1024 * 1024);
-
-    if (sizeMB >= 700) {
-      return star.reply(m.chat, '✦ *El archivo es demasiado pesado (más de 700 MB). Se canceló la descarga.*', m).then(() => m.react('✖️'));
-    }
-
-    let txt = `✦ *Título:* » ${title}\n`;
-    txt += `✦ *Duración:* » ${timestamp}\n`;
-    txt += `✦ *Visitas:* » ${views}\n`;
-    txt += `✦ *Subido:* » ${ago}\n`;
-    txt += `✦ *Tamaño:* » ${sizeHumanReadable}\n\n`;
-
-    // Cambia la URL de la API aquí
-    let api = await fetch(`https://mahiru-shiina.vercel.app/download/ytmp4?url=${url}`);
-    let json = await api.json();
-    let { data } = json;
-
-    if (!data || !data.dl) {
-      return star.reply(m.chat, '✦ *Error al obtener el enlace de descarga desde la API.*', m).then(() => m.react('✖️'));
-    }
-
-    let { dl: downloadUrl } = data;
-
-    let videoBuffer = await fetch(downloadUrl).then(res => res.buffer());
-    let img = await star.resize(thumbnail, 400, 400);
-
-    if (durationInMinutes > 30) {
-      let pageCount = 1;  
-
-      await star.sendMessage(
-        m.chat,
-        {
-          document: videoBuffer,
-          mimetype: 'video/mp4',
-          fileName: `${title}.mp4`,
-          caption: txt,
-          img,
-          fileLength: videoBuffer.length,
-          pageCount
-        },
-        { quoted: m }
-      );
-      await m.react('📄'); 
-    } else {
-      await star.sendMessage(
-        m.chat,
-        {
-          video: { url: downloadUrl },
-          caption: txt,
-          mimetype: 'video/mp4',
-          fileName: `${title}.mp4`
-        },
-        { quoted: m }
-      );
-      await m.react('✅'); 
-    }
   } catch (error) {
     console.error(error);
-    await m.react('✖️'); 
-    star.reply(m.chat, '✦ *Ocurrió un error al procesar tu solicitud. Intenta nuevamente más tarde.*', m);
+    conn.reply(m.chat, `𐙚˚.ᡣ 𝐄𝐫𝐫𝐨𝐫 𝐚𝐥 𝐨𝐛𝐭𝐞𝐧𝐞𝐫 𝐞𝐥 𝐯𝐢𝐝𝐞𝐨. 𝐕𝐮𝐞𝐥𝐯𝐞 𝐚 𝐢𝐧𝐭𝐞𝐧𝐭𝐚𝐫 𝐦á𝐬 𝐭𝐚𝐫𝐝𝐞 ✧`, m);
   }
 };
 
-handler.help = ['ytmp4'];
-handler.tags = ['downloader'];
-handler.command = ['ytmp4', 'ytv'];
+HS.command = ['ytmp4'];
 
-export default handler;
+export default HS;
