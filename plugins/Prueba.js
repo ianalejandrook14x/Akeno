@@ -7,7 +7,7 @@ let HS = async (m, { conn, text }) => {
   let videoUrl = text;
   let searchResults = null;
 
- 
+  
   if (!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(text)) {
     searchResults = await yts(text);
     if (!searchResults.videos.length) return conn.reply(m.chat, `𐙚˚.ᡣ 𝐍𝐨 𝐬𝐞 𝐞𝐧𝐜𝐨𝐧𝐭𝐫𝐚𝐫𝐨𝐧 𝐫𝐞𝐬𝐮𝐥𝐭𝐚𝐝𝐨𝐬 ✧`, m);
@@ -26,12 +26,16 @@ let HS = async (m, { conn, text }) => {
       ? durationParts[0] * 3600 + durationParts[1] * 60 + durationParts[2]
       : durationParts[0] * 60 + durationParts[1];
 
+    
+    if (durationSeconds > 5400)
+      return conn.reply(m.chat, `𐙚˚.ᡣ 𝐄𝐥 𝐚𝐮𝐝𝐢𝐨 𝐞𝐬 𝐝𝐞𝐦𝐚𝐬𝐢𝐚𝐝𝐨 𝐥𝐚𝐫𝐠𝐨 (𝐥í𝐦𝐢𝐭𝐞: 𝟏.𝟑𝟎𝐡)`, m);
+
     let message = `⋆˙⊹ 𝐘𝐨𝐮𝐓𝐮𝐛𝐞 𝐀𝐮𝐝𝐢𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐞𝐫 ⊹˖˚  
 𓆩✧ 𝐓𝐢𝐭𝐮𝐥𝐨: ${title}  
 𓆩✧ 𝐒𝐮𝐛𝐢𝐝𝐨: ${uploaded}  
 𓆩✧ 𝐃𝐮𝐫𝐚𝐜𝐢𝐨𝐧: ${duration}  
 𓆩✧ 𝐕𝐢𝐬𝐭𝐚𝐬: ${views}  
-𓆩✧ 𝐁𝐲 𝐉𝐭𝐱𝐬 𐙚˚.ᡣ𐭩`;
+𓆩✧ 𝐁𝐲 𐙚˚.ᡣ𐭩`;
 
     let buttons = [
       {
