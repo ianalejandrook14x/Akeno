@@ -6,7 +6,7 @@ let HS = async (m, { conn, text }) => {
 
   let videoUrl = text;
   
-  // Si no es un enlace, buscar por nombre
+  
   if (!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(text)) {
     let search = await yts(text);
     if (!search.videos.length) return conn.reply(m.chat, `𐙚˚.ᡣ 𝐍𝐨 𝐬𝐞 𝐞𝐧𝐜𝐨𝐧𝐭𝐫𝐚𝐫𝐨𝐧 𝐫𝐞𝐬𝐮𝐥𝐭𝐚𝐝𝐨𝐬 ✧`, m);
@@ -19,10 +19,15 @@ let HS = async (m, { conn, text }) => {
 
     let { title, uploaded, duration, views, url, thumbnail, download } = json.data;
 
-    // Verificar la duración del video (limite: 10 minutos)
-    let durationSeconds = duration.split(':').reduce((acc, time) => (60 * acc) + +time);
-    if (durationSeconds > 600) 
-      return conn.reply(m.chat, `𐙚˚.ᡣ 𝐄𝐥 𝐯𝐢𝐝𝐞𝐨 𝐞𝐬 𝐝𝐞𝐦𝐚𝐬𝐢𝐚𝐝𝐨 𝐥𝐚𝐫𝐠𝐨 (𝐥𝐢𝐦𝐢𝐭𝐞: 𝟏𝟎 𝐦𝐢𝐧𝐮𝐭𝐨𝐬)`, m);
+    
+    let durationParts = duration.split(':').map(Number);
+    let durationSeconds = durationParts.length === 3
+      ? durationParts[0] * 3600 + durationParts[1] * 60 + durationParts[2]
+      : durationParts[0] * 60 + durationParts[1];
+
+    
+    if (durationSeconds > 5400)
+      return conn.reply(m.chat, `𐙚˚.ᡣ 𝐄𝐥 𝐯𝐢𝐝𝐞𝐨 𝐞𝐬 𝐝𝐞𝐦𝐚𝐬𝐢𝐚𝐝𝐨 𝐥𝐚𝐫𝐠𝐨 (𝐥í𝐦𝐢𝐭𝐞: 𝟏.𝟑𝟎𝐡)`, m);
 
     let message = `⋆˙⊹ 𝐘𝐨𝐮𝐓𝐮𝐛𝐞 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐞𝐫 ⊹˖˚  
 𓆩✧ 𝐓𝐢𝐭𝐮𝐥𝐨: ${title}  
@@ -32,7 +37,13 @@ let HS = async (m, { conn, text }) => {
 𓆩✧ 𝐁𝐲 𐙚˚.ᡣ𐭩`;
 
     await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: message }, { quoted: m });
-    await conn.sendMessage(m.chat, { video: { url: download }, mimetype: 'video/mp4' }, { quoted: m });
+
+    
+    if (durationSeconds > 420) {
+      await conn.sendMessage(m.chat, { document: { url: download }, mimetype: 'video/mp4', fileName: `${title}.mp4` }, { quoted: m });
+    } else {
+      await conn.sendMessage(m.chat, { video: { url: download }, mimetype: 'video/mp4' }, { quoted: m });
+    }
 
   } catch (error) {
     console.error(error);
